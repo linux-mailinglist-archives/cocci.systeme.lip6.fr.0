@@ -2,36 +2,36 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB531B241
-	for <lists+cocci@lfdr.de>; Mon, 13 May 2019 11:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7821B256
+	for <lists+cocci@lfdr.de>; Mon, 13 May 2019 11:08:11 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-          by isis.lip6.fr (8.15.2/lip6) with ESMTP id x4D95Ixd019694
-          ; Mon, 13 May 2019 11:05:18 +0200 (CEST)
+          by isis.lip6.fr (8.15.2/lip6) with ESMTP id x4D97XEH018761
+          ; Mon, 13 May 2019 11:07:33 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id D0B617752;
-	Mon, 13 May 2019 11:05:18 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id D1A1E7752;
+	Mon, 13 May 2019 11:07:33 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id C7613770C
- for <cocci@systeme.lip6.fr>; Mon, 13 May 2019 11:05:16 +0200 (CEST)
-Received: from mout.web.de (mout.web.de [212.227.17.12])
- by isis.lip6.fr (8.15.2/lip6) with ESMTP id x4D95GOZ016933
- ; Mon, 13 May 2019 11:05:16 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id B9014770C
+ for <cocci@systeme.lip6.fr>; Mon, 13 May 2019 11:07:32 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by isis.lip6.fr (8.15.2/lip6) with ESMTP id x4D97Wk7010267
+ ; Mon, 13 May 2019 11:07:32 +0200 (CEST)
 X-pt: isis.lip6.fr
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1557738308;
- bh=jtrTYF8ULtsjM8wAgp4wSKoTfYfmnQXS/DVAPfI6gEM=;
+ s=dbaedf251592; t=1557738436;
+ bh=p2JMtjZdrKJWiooeLSimOvpmCziJX5gICxvARfKTUJQ=;
  h=X-UI-Sender-Class:Subject:From:To:Cc:References:Date:In-Reply-To;
- b=rRQY5N/5SF/f70up/pR8sWLFjySH+fLZIMMMWE0voXKfkPXAP1ItwD3tW3FZI/jrR
- MjU5+V2DRjIY4TLlHL3HNFNw3pxRuA2bxLhadrx4JEVtqXIHORDmyVMYZovJu6/ikZ
- M7bISruUzImjsD+Iq+Brh2wIp4rEHA5PupLN9mCc=
+ b=mBiFrGLciDKM9JCv++tRr2Of7KtBcL12/LxYlMhjLBM0UQqGJjVzVjtUup87tMRU9
+ c8T0VrltxZTXwmsy4kdUjP04NXpGsxFyJUE268g7IdpyI9R8dHacx+ZqZ7kA6JMHwA
+ k+N42gS9N9ICNrPpzkDgsnMPV3Pjta3vi0SN4VnU=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.3] ([93.135.147.80]) by smtp.web.de (mrweb103
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MFt8s-1hW6uw1SBa-00Eyrx; Mon, 13
- May 2019 11:05:08 +0200
+Received: from [192.168.1.3] ([93.135.147.80]) by smtp.web.de (mrweb102
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0M6mPA-1gWCtE20Wa-00wYqf; Mon, 13
+ May 2019 11:07:16 +0200
 From: Markus Elfring <Markus.Elfring@web.de>
 To: Julia Lawall <julia.lawall@lip6.fr>, Gilles Muller <Gilles.Muller@lip6.fr>,
         Masahiro Yamada <yamada.masahiro@socionext.com>,
@@ -85,42 +85,42 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <6b62ecb5-ab88-22d9-eee2-db4f58b6d2ae@web.de>
-Date: Mon, 13 May 2019 11:05:06 +0200
+Message-ID: <6f08d4d7-5ffc-11c0-8200-cade7d294de6@web.de>
+Date: Mon, 13 May 2019 11:07:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
 In-Reply-To: <e34d47fe-3aac-5b01-055d-61d97cf50fe7@web.de>
 Content-Language: en-US
-X-Provags-ID: V03:K1:Nz5xzp//Z6dJYDz1KvmzWtT9rzafZK2Ooj1MSx2MexRRipeUtdh
- e74PSMkvsEGIxb50Obt0Gy2xPoNo6u3ziBWjwZ8HK5ZWvB6VeaA9WJEtzcFAk48TyvNrssk
- 9fi0ywEjF+HBamQID0KjUCuEUnFAxH9F3oTDfQsbk0wzdbL35ozPIQQoR3SEi3LDaOJqlK2
- 1v8EEytEdMWtpXxBJIPSA==
+X-Provags-ID: V03:K1:MEuZTmOt4Ag6FjwzF38i38wt1hU1bkW6mub3oqxdpKJudRGgCmS
+ VEAZ5pjPwuNQBA9vbEcKnCgqENZ8hkaoS6ByP5JAk+hx62JKElI3z8iKA72MoSFu7CKTp6l
+ RkjG3h/IFEaT76yYIeGNVKZgqexfnpdCJdSvSq2z1hxe2wrBJefJhokcn3D2lvByiV2ch/2
+ Tg9Ok6DLB3oArPm9L5M7Q==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8+6CpDXOpp4=:53wTBdYgsz+Q3/zp+Aw62C
- uH+SP8um78+4O6oWUWbpGpuWkXQ3dNInJ0eIUPrHYSKprUuh568IgWOnboO8O+hkxeFa4uGtd
- X1byo8BQ932OMHq9t9cu5duWjNU0d5P6H8YmIw+IuHpr0Yfbtp1KJYPlR7kfxN06Fq3UJB17n
- G4OLogQouB6HYQJoNvdjCUDDZ/4px8jF48Hoe9LuGVVzssIB8kB6PFRxu+HQDrWggGM7QH2uD
- 2PjTisE1HTkaLMjC4h1zqkyAXOc4oWO0884VGNXfZYg9oj9rT0kS5zfZw2lAu2x4+K4GBsrk7
- s3ADtyivTShDs8eXU3CPAjrlDHqdVtXTLINfkP6D0vPli28TfNSUJdtNvfAZVvq19cm2m62vn
- a0pw96fovJ/Pp+ebhT6GbA9JYdQf76yAZPHrl8jU4a20NrbIJmbPbN40fBS/ml1Hjl0x/vhe2
- TsS1qJkpr3Xn9bTBxB6rVBhYJG41c7L95Uw5UYXPVquRyIjbxpZdFtYGfP6YMVrweieht/772
- cnsp7R82Scw8K2UVFfCAHWBwJIMjbsP9LtOtU9HzXzjb2C8ZPqZdtJusl7bNBDjHjApsBH7L1
- W61o+JlC7UoJEeGmm9rmSa+GBBWBJkwPbx7TzFr5gfdj+Ctys/IrS47ycDxLAVdBstXv/zJf9
- W265Lcd+9xzguEHdmKsSGOm1ETeqLgkzdNW9IuaSA6rtNvEXy0dIKdyL9gXS4AcX1fxcMddN7
- RLG5rnvjx6J9RZ7iMwQrsCzfrC6+El8PWxzzir83YIoVkZU6mIly0fz4QGCeQeXbs8OeafiA8
- WfWT/mrJbbvhNgDxaBdI4/MHFCDf/cTj9MU7HaCXQiI426WJbO1aJRQxWVIzDxsqmRqGuEfx8
- imawGgxZDTHeYnnvpsyIUyHxFGG5nKnFc2O2I+YmPnW2JyVFXdnuQJ1hqwgtog50WWmnvEiaK
- yJ5cKGI753Q==
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 13 May 2019 11:05:19 +0200 (CEST)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:iFvNYnhkJqg=:3fZW6GMXpLu4t1PO+afhvk
+ wP/MIDoaGSAA46qMQTMuq9rT6pn4n37i5hJQzSM7anNyyYJqBnE+1x8h+iedxYYisWJ1HKbQh
+ c8WNFtiNxYqRMGVNi/UqXlMOYJay3bNv52y79cTx/8yhoci4A+st9avjlnkLbBEtQUrUWc6le
+ AFtmPQ0PFU+Ngy6a7WBLSlAazlfRitQcQDG6twx3AeMjCkk4fXYik79btF0KRpDGeXXdIOVaF
+ gTiPuf6ohufX0uWIGGarpOffFNhgwB5QpYADUiFXJl0cZ5mzQcUAtg+5yUjwo3rk9PRxOoTzA
+ B5SkEKK+heF1ZiXoTplv8VXpngktVKz4nmxpYcyXIuVhunN1cV9uLpdfK9j7uyxlAK/hifseH
+ i565nsFbCo8mXv4MYoLcc5U98J3LNIsvTrn/CuBR8h6ShvFwSwcspAX0l44K08Y2pr59McU2R
+ XnpUJ7hOY3sKe8rC4X7fWjpysiLz15zGe3RPFS924ebxqZFKi7GzHsG0l8gFF/dVDWRZREy8A
+ b7z3Z7ElLueJy5EVoYdeGrAtED8A1gOtzvcV3biN6CqkSIhL9eM7z7O2gs72bOzzK0M7FjCBm
+ JIy0AXuAaWGDIshkkqbgMBSqjiYettwwqBWXqefIC+Wh+DHXQtk05hh8tpgzX8/ngMt2GsN8V
+ AdSo8p6KUFoPH+SR2Sy1Pclvh3qvcUDIjeRJlKrbnrhMntBPqudXK2LtL5O9o2p9cExT3NSY4
+ mshowisdbwA/FNzqot5KJv9BYdOYr5VFjd0ulCb6w5TC9POQPTIn1aGOZZPJApLp86N52tmWl
+ G9xY1y3mtzQNBDn/QJ9FwnSW/pouUhaNRI1iFQiTfUbzrygFeUMHCOLJokc1Ti9JLYiiv9NAW
+ gtjaMTnZfX7P/fb+MSNp3P01YCRbY8S0JEVY0BsRO6VtfE0UqkjEzCysSoNXHeP6M26Ybq/p1
+ qZiM6vinftA==
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 13 May 2019 11:07:34 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 13 May 2019 11:05:16 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Mon, 13 May 2019 11:07:32 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: Yi Wang <wang.yi59@zte.com.cn>, cocci@systeme.lip6.fr,
         linux-kernel@vger.kernel.org
-Subject: [Cocci] [PATCH 3/5] Coccinelle: put_device: Merge four SmPL when
- constraints into one
+Subject: [Cocci] [PATCH 4/5] Coccinelle: put_device: Extend when constraints
+ for two SmPL ellipses
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -138,33 +138,49 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Sun, 12 May 2019 18:32:46 +0200
+Date: Mon, 13 May 2019 09:47:17 +0200
 
-An assignment target was repeated in four SmPL when constraints.
-Combine the exclusion specifications into disjunctions for the semantic
-patch language so that this target is referenced only once there.
+A SmPL ellipsis was specified for a search approach so that additional
+source code would be tolerated between an assignment to a local variable
+and the corresponding null pointer check.
 
+But such code should be restricted.
+* The local variable must not be reassigned there.
+* It must also not be forwarded to an other assignment target.
+
+Take additional casts for these code exclusion specifications into account
+together with optional parentheses.
+
+Link: https://lore.kernel.org/cocci/201902191014156680299@zte.com.cn/
+Link: https://systeme.lip6.fr/pipermail/cocci/2019-February/005620.html
+Fixes: da9cfb87a44da61f2403c4312916befcb6b6d7e8 ("coccinelle: semantic code search for missing put_device()")
 Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
 ---
- scripts/coccinelle/free/put_device.cocci | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ scripts/coccinelle/free/put_device.cocci | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/scripts/coccinelle/free/put_device.cocci b/scripts/coccinelle/free/put_device.cocci
-index 120921366e84..aae79c02c1e0 100644
+index aae79c02c1e0..28b0be53fb3f 100644
 --- a/scripts/coccinelle/free/put_device.cocci
 +++ b/scripts/coccinelle/free/put_device.cocci
-@@ -23,10 +23,7 @@ if (id == NULL || ...) { ... return ...; }
+@@ -13,13 +13,15 @@ virtual org
+ local idexpression id;
+ expression x,e,e1;
+ position p1,p2;
+-type T,T1,T2,T3;
++type T,T1,T2,T3,T4,T5,T6;
+ @@
+
+ id = of_find_device_by_node@p1(x)
+-... when != e = id
++ ... when != e = (T4)(id)
++     when != id = (T5)(e)
+ if (id == NULL || ...) { ... return ...; }
+ ... when != put_device(&id->dev)
++    when != id = (T6)(e)
      when != platform_device_put(id)
      when != of_dev_put(id)
      when != if (id) { ... put_device(&id->dev) ... }
--    when != e1 = (T)id
--    when != e1 = (T)(&id->dev)
--    when != e1 = get_device(&id->dev)
--    when != e1 = (T1)platform_get_drvdata(id)
-+    when != e1 = \( (T) \( id \| (&id->dev) \) \| get_device(&id->dev) \| (T1)platform_get_drvdata(id) \)
- (
-   return
- (    id
 --
 2.21.0
 
