@@ -2,38 +2,38 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B6C223A5B
-	for <lists+cocci@lfdr.de>; Mon, 20 May 2019 16:38:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADFD3236A1
+	for <lists+cocci@lfdr.de>; Mon, 20 May 2019 14:59:38 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4KEcBEo008326;
-	Mon, 20 May 2019 16:38:11 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4KCwoUW017863;
+	Mon, 20 May 2019 14:58:50 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 40F737758;
-	Mon, 20 May 2019 16:38:11 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 2D32E7758;
+	Mon, 20 May 2019 14:58:50 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id A6A1F768D
- for <cocci@systeme.lip6.fr>; Mon, 20 May 2019 16:38:09 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 23CA3768D
+ for <cocci@systeme.lip6.fr>; Mon, 20 May 2019 14:58:47 +0200 (CEST)
 Received: from mout.web.de (mout.web.de [212.227.15.14])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4KEc9C0002016
- for <cocci@systeme.lip6.fr>; Mon, 20 May 2019 16:38:09 +0200 (CEST)
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4KCwkJC024979
+ for <cocci@systeme.lip6.fr>; Mon, 20 May 2019 14:58:46 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1558363089;
- bh=StEDDRzjWMT45eFGLqTPNOBTlF9uL0xfMqLTjrk7b2g=;
+ s=dbaedf251592; t=1558357126;
+ bh=BOFSm0zAlRJwIlFt0sFLNq72xZrQ0LNetA5bti57zhk=;
  h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=lPjThkJlDj8Z6ZZQX/+FJVp5d9XuyKB3UL3LkWaO+QojvvAd/qi1qd+VbzYKEbXjj
- B1YWh60n7tJNNpH67c+hdbNmmUFKuBN2tBGYgp1AtD9mtbcC5vI6LdptcStYVY5hiw
- eFRplBhGz30pi1PRO7O0H1mk4kVxwaO6QKqMc7ow=
+ b=lfdhQmHQyy1gLFmTidPlfKEjm6eTelk/qtH53LZSDsUEuTwJ54Do3UcsvfW9zCa+b
+ puOHLWCVLXNjjIw1tOctaJSisy7csITSVozd6hzCF3WxCac/ZQddg4H8zvM4tuhtu9
+ G6hm8AiTC1g7lQSt6+JicEXOVsJsfRc/hXOlO8wE=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.3] ([93.131.147.35]) by smtp.web.de (mrweb003
- [213.165.67.108]) with ESMTPSA (Nemesis) id 0LoYWI-1glLZ11hKU-00gW45; Fri, 17
- May 2019 10:22:37 +0200
-To: Julia Lawall <julia.lawall@lip6.fr>
+Received: from [192.168.1.3] ([93.133.109.122]) by smtp.web.de (mrweb003
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 0M0hcE-1gfGIB3xKY-00urtQ; Sat, 18
+ May 2019 16:43:30 +0200
+To: Wen Yang <wen.yang99@zte.com.cn>, Coccinelle <cocci@systeme.lip6.fr>,
+        linux-doc@vger.kernel.org
 References: <201905171432571474636@zte.com.cn>
- <alpine.DEB.2.20.1905170912590.4014@hadrien>
 From: Markus Elfring <Markus.Elfring@web.de>
 Openpgp: preference=signencrypt
 Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
@@ -79,41 +79,40 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <bb05f122-753a-7117-a00f-455b25621bac@web.de>
-Date: Fri, 17 May 2019 10:22:34 +0200
+Message-ID: <6790f1f5-284e-74b2-8b32-6245ba8e5fc2@web.de>
+Date: Sat, 18 May 2019 16:43:18 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.20.1905170912590.4014@hadrien>
-Content-Language: en-GB
-X-Provags-ID: V03:K1:oUTMqgIq40HKD+DHhaWtQHGaHjAK22g1NFiuagK4UuMePnZ+PGp
- AZGYWywTed2MP+2izP57yrjh2oUJxz9oQ24N1ECfBJ+lr8PPBnmeshubLANawdD3GPV+O9N
- NtCsDyaVHA14NNSBQspjYOu49bivjDG1AqoXZs0Y4HYGLxzlT4BPClXiYDK/dfD+oA8yivb
- ZELUdgNT6vGi5smeEYUCA==
+In-Reply-To: <201905171432571474636@zte.com.cn>
+Content-Language: en-US
+X-Provags-ID: V03:K1:hvZ/9QgwUIDXJWUUrMezwZYBwbd1Nm3yksCH5XmzfG7bNew7SM1
+ /j/P/WXnkI+pic0HXWYVbiRuyEo6hNXgU+FMZVMRmmSHwN86W83ePwZhpzKXO8MgWdguWEF
+ yUJzGvFtcODVwWzorWW4yDvy3dkH14O5siecH+7oHAqph62+CUM9IijCIJ/k16Y4+57VEv/
+ ryqu/JVGahCyJtRuNr1yQ==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+TDCTMwq2tw=:J3TVE9wGSzBoYlWl9mQJ5k
- vrQG4ldGnWwyUXPXqZHppQ/U9UwnVrtHYvBP3MOYH/svB8A4ko86geb43w6vBoKD/i79SXvBe
- cMR5WxWH4Im3stHnuDHeCJ0CYSJxD0ZFU15LSzN1V5Ofzw5qjCVf55Md3hEq5boUYu235dPnK
- XGWeoU8h2U6X+3nDxE4BMhmMB/CcfmTa+vJdzr0nuBQBH6O1nRXG/C4faawLssgOADy1JsTaB
- KqOjbinzAee9Q4r8QZkR2frt+rq2PqQ05XO6vp8MNLOLz0ccKSzJcyWXRlGNMkS8yYyXTjGy/
- FcBoNIhnvtgJvdToGTaBgW7ZRZgwyAd/XmiXvIWAp6iqGubGe1NNfHYxZExFIracMhe3fPU8A
- LW4H2AH+s3qyP4qfMGOrAOgxymImXLLrIEeVN7ZsBK2vfyfukwPSaJJYG5JM/ePjBZlK4sYsv
- Da/fBDlD4SBDIRK9bF19+7J+Tv3ikd8ktZ2XaInk+RXuIJ0hBZ0Wf0JXphFJq9Oufkr1PkOQd
- XFzA7l0VDXYzFm1HvRHFXX9kAVQxrZF5t8HUqJNCN1nLKv5rpMAze1toL37PKdnL+DJNZgW8i
- khmo68N7sMDeArNml3zpvCiIDlAPqAzvP40XArZHBcsXUFW6YDumhnDPdrHeNmwfy8cyNegwX
- nugHAP6dAZ+VjL1O5U8gaQFQwAQs4NdMLRPIUgVOlqUkjaGq/F/kdtNAJRjRTa4URLv73IJVm
- FfcfPqbQUsP8aRb3BC4i/3TDDFEKaBkwh/BPj82ldMzGIVxlbifyCwGC8CFGWM9hKh3ncSeLB
- dUscGzdRZTMk/4NIwz/39tgWqzvKrJcB82Jtl0kkQFGSjUouqGP5+615ax0pHz/PBMGMBf7fF
- qRTcKgvjZrj/fkZs+464wxabEaEmVSIlZNg94BswfTkEqXeYl8XhHrFmUqRIwwzYBrUQsc3X1
- Ff+ooZdkplkXIpGSxXKx96ROY3zzYK7vm6ATlDenXg3+puw4uNWNj
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 20 May 2019 16:38:11 +0200 (CEST)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:fjqAeqqGByY=:t+QSnqZa9D+Add/6E0WVoV
+ sCbnjefE+9Tv3D+aeOehG8A6axrA5fHn6nIgmXXHWG8vk2YqyzVjM72j1VmDSNsSjxtX+S6LV
+ MrNLpfmUV3KABjAxsDn7XZzcW1x9kc7mEaYTe2YO3RmjNFYwhVs/IYB2/EVjoOi2fzvGYHzJM
+ nNVnTaKRHpJOIPDoamp3Dg2htbMhONp5fhnFR4V60iYJgliSNBZ1XwTln9u2FbzpOFQFG4Uel
+ LJ8pLfimHxkqT7dy8VR58aKRnvB9l9ZZud31imo9Twd2SHmkAfmheOke3vCUmop6dhJHlFS4u
+ WDBbuyuiJ5zEkHkBhgYpIIVuwerzip0D+tdMc06lFcF2eav6MjwXleYzUKmbdxbCTpIIZUQCc
+ VauaOROa1uj4u/H2YdZ4zUvzvGzvvbhlXZmi8SRDlgF1+S5iF+YAqwt3o0djvN1W5PXSD41NQ
+ ZUq3siituiZ0Z8RQ3T2m5AMkESeKm1XgS3yzwnjnE8kE7DXE0QGgg16auReNQcPaqyNvSDUL6
+ gWCA/+IwiWtLcAJmo5lSmLvtep0bXqHT6G4oB/U5odasmvWXvXRCjMWG/IdXpkfu0M9246f3Q
+ pSPsBmNLlNK2X1kRpa9VNdYo6tlmv46IXQpO1sGCF6zDAZYccFWnJGbPgRHHrKYs5XxwKqGuA
+ 3vsdoGgKBvU3vC7a9qHewg3bgMbAZLR7Mu4jSDn6kl1t0ly5zihD8wpdHQyTI2JBs8/tplGWK
+ LSjf7xkHXPaUAzkkW6tbrCC8Hk8YnNd/JfPj73wkfSviETJni1dL5cbkS9hUE91akMNHPQG1N
+ gs+Wxr73WEDV0sttft3p/pfKWUZMGABg9GenxcNJ/bJ7HsrtqudPHf8PCf4rvtg2A9Ba0kWSw
+ i4md4jJ0bLo94Y3mlNjkNVSm+iOSsocTkqpwBmXfyR4THxrTTxJlSSBfr4nw0txjRfN/C/FMA
+ fdoEQkajN5DtQII2m9tK/AWGF3ZI4Vn9pxW7+slPoen701X+cxUBe
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 20 May 2019 14:58:52 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 20 May 2019 16:38:09 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Mon, 20 May 2019 14:58:46 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: Michal Marek <michal.lkml@markovi.net>,
-        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
-        Wen Yang <wen.yang99@zte.com.cn>, cocci@systeme.lip6.fr
+        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org
 Subject: Re: [Cocci] Coccinelle: semantic patch for missing of_node_put
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -126,30 +125,37 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-> A semantic patch has no access to comments.
-
-Thanks for your acknowledgement of the current situation.
-
-
-> The only thing I can see to do is to use python to interact with some external tools.
-
-I see more software development possibilities.
-
-* Advanced data processing for source code comments
-  https://github.com/coccinelle/coccinelle/issues/57
-
-* Add a metavariable for the handling of source code
-  https://github.com/coccinelle/coccinelle/issues/140
-
-
-Regards,
-Markus
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+PiAkIHNwYXRjaCAtLXRva2Vucy1jIGRyaXZlcnMvb2YvYmFzZS5jICAyPiYxICB8IGdyZXAgIlRh
+ZzMgIiB8IGdyZXAgIm9mX25vZGVfcHV0KCkgb24gaXQgd2hlbiBkb25lLiIgfCBhd2sgLUYgIiAt
+ICIgJ3twcmludCAkMX0nIHwgZ3JlcCAgLW8gIm9mX1tbOnByaW50Ol1dKiIKClRoaXMgY29tbWFu
+ZCBleGFtcGxlIHBvaW50cyBzb21lIGRldGFpbHMgb3V0IGZvciBmdXJ0aGVyIHNvZnR3YXJlIGRl
+dmVsb3BtZW50IGNvbnNpZGVyYXRpb25zLgoKMS4gSSBmaW5kIGl0IHF1ZXN0aW9uYWJsZSB0aGF0
+IHJlbGV2YW50IGRhdGEgYXJlIHByb3ZpZGVkIGJ5IHRoZSBvdXRwdXQgY2hhbm5lbAogICDigJxz
+dGRlcnLigJ0gc28gZmFyLgogICBodHRwczovL2dpdGh1Yi5jb20vY29jY2luZWxsZS9jb2NjaW5l
+bGxlL2Jsb2IvNjZhMTExOGUwNGE2YWFmMWFjZGFlODk2MjMzMTNjOGUwNTE1OGE4ZC9kb2NzL21h
+bnVhbC9zcGF0Y2hfb3B0aW9ucy50ZXgjTDE2NQoKMi4gVGhlIE9DYW1sIGNvZGUg4oCcIlRhZyIg
+XiBzdHJpbmdfb2ZfaW50IHQgXuKAnSBvY2N1cnMgaW4gdGhyZWUgc291cmNlIGZpbGVzLgogICAq
+IEl0IGlzIGNvbW1lbnRlZCBvdXQgaW4gb25lIGZpbGUuCiAgICAgaHR0cHM6Ly9naXRodWIuY29t
+L2NvY2NpbmVsbGUvY29jY2luZWxsZS9ibG9iLzc2MWNmNmExZmJiZjMxNzM4OTZmZjYxZjBlYTdl
+NGE4M2E1YjJhNTcvY29tbW9ucy9jb21tb24ubWwjTDMwNQoKICAgKiBUaGVzZSBwbGFjZXMgcmVm
+ZXIgdG8gdGhlIHNvdXJjZSBmaWxlIOKAnGR1bXBlci5tbCAxLjLigJ0gYnkgUmljaGFyZCBXLiBN
+LiBKb25lcy4KICAgICBUaHVzIGl0IHNlZW1zIHRoYXQgdGhpcyBjb2RlIGlzIHJlbGV2YW50IGF0
+IHRoZSBtb21lbnQuCiAgICAgaHR0cHM6Ly9naXRodWIuY29tL2NvY2NpbmVsbGUvY29jY2luZWxs
+ZS9ibG9iLzE3NWRlMTZiYzdlNTM1YjZhODlhNjJiODFhNjczYjBkMGNkNzA3NWMvY29tbW9ucy9v
+Y2FtbGV4dHJhL2R1bXBlci5tbCNMMQoKMy4gSG93IHdpbGwgdGhlIHNvZnR3YXJlIGRvY3VtZW50
+YXRpb24gZXZvbHZlIGhlcmU/Cgo0LiBTYWZlIGRhdGEgcHJvY2Vzc2luZyBjYW4gYmUgcGVyZm9y
+bWVkIG9ubHkgaWYgdGhlIGludm9sdmVkIHN0cnVjdHVyZXMKICAgd2lsbCByZW1haW4gY2xlYXIg
+Zm9yIGEgd2hpbGUuCiAgIElzIHRoZSBzaXR1YXRpb24gcGFydGx5IHVuY2xlYXI/CgogICBTaG91
+bGQgdGhlIGluZm9ybWF0aW9uIGFmdGVyIHdoaWNoIGZ1bmN0aW9uIGNhbGxzIHRoZSBmdW5jdGlv
+biDigJxvZl9ub2RlX3B1dOKAnQogICBzaG91bGQgYmUgY2FsbGVkIGJlIGRldGVybWluZWQgZnJv
+bSBhbnkgb3RoZXIgZG9jdW1lbnRhdGlvbiBmb3JtYXQ/Cgo1LiBBIHByb2dyYW1taW5nIGxhbmd1
+YWdlIGxpa2Ug4oCcYXdr4oCdIGhhcyBnb3QgdGhlIHBvdGVudGlhbCB0byBleHRyYWN0IHVzZWZ1
+bCBkYXRhCiAgIChhbHNvIHdpdGhvdXQgY2FsbGluZyB0aGUgdG9vbCDigJxncmVw4oCdIGFkZGl0
+aW9uYWxseSkuCgpSZWdhcmRzLApNYXJrdXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5m
+cgpodHRwczovL3N5c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
