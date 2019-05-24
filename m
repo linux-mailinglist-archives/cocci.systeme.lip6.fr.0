@@ -2,36 +2,37 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA2028719
-	for <lists+cocci@lfdr.de>; Thu, 23 May 2019 21:16:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1163F290C5
+	for <lists+cocci@lfdr.de>; Fri, 24 May 2019 08:10:05 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4NJFEOs027722;
-	Thu, 23 May 2019 21:15:14 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4O69WZc003666;
+	Fri, 24 May 2019 08:09:32 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 2C7417760;
-	Thu, 23 May 2019 21:15:14 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6C609775D;
+	Fri, 24 May 2019 08:09:32 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id BB25F7759
- for <cocci@systeme.lip6.fr>; Thu, 23 May 2019 21:15:11 +0200 (CEST)
-Received: from mout.web.de (mout.web.de [212.227.15.14])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4NJFB3i008699;
- Thu, 23 May 2019 21:15:11 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 113C77747
+ for <cocci@systeme.lip6.fr>; Fri, 24 May 2019 08:09:31 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4O69UXN022717;
+ Fri, 24 May 2019 08:09:30 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1558638910;
- bh=iwuqTcnRWNenCV2aB4ISk6JMN35HrQ0xWfBQOMQ8Gjs=;
+ s=dbaedf251592; t=1558678169;
+ bh=LGKTIdOlpYLmqNlwuTePDD0N6JhspfaUirJe9u2HVNM=;
  h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=o7F1kIfC8ikoQLo5wl+m6eKD7Ja3jl6bHSwN5c1uo8IgnTXMZ3xHsx2HkzogC0kq7
- RGRPPDOFVsLXg3TL8lfj0bwa5bD7/bBj9D+PxA6oep98urLoL9NZldf1wZWB3vMeTA
- XUMjPbqG1rHOTpW1Cl0t0AVbscvwSHHN0rtb4tFs=
+ b=qLb9IA/qMiWM3f4X6y+PAthSvwI/MSa2yZdcxoWK7w5Mr/Rm0deDgmA2JKLTl0dgX
+ wgYdRMfMT/YhzVkSVAhQI2uITh9kG/4NiZVdnwo0rBZz2y/dgfCCHBGwuZO1C/PSUQ
+ BOWVaMehQXCmavFDs/WUW8YdJcGws7r9X6eEPz0s=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.4] ([93.135.166.247]) by smtp.web.de (mrweb002
- [213.165.67.108]) with ESMTPSA (Nemesis) id 0LrsGE-1gUcNP3cEA-013fPe; Thu, 23
- May 2019 21:15:09 +0200
-To: Julia Lawall <julia.lawall@lip6.fr>
+Received: from [192.168.1.4] ([78.48.148.166]) by smtp.web.de (mrweb101
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MbhFJ-1hB9dF3aNx-00J2ks; Fri, 24
+ May 2019 08:09:28 +0200
+To: Julia Lawall <julia.lawall@lip6.fr>,
+        Thierry Martinez <Thierry.Martinez@inria.fr>
 References: <alpine.DEB.2.21.1905222114490.2618@hadrien>
  <81b409c6-5986-5961-5edf-843c6737d88c@web.de>
  <alpine.DEB.2.20.1905231500230.3573@hadrien>
@@ -82,40 +83,41 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <cfd828ab-c931-4ee8-3650-dd5b280f2ef6@web.de>
-Date: Thu, 23 May 2019 21:15:09 +0200
+Message-ID: <215d5cf7-b44c-8924-d049-e2a6e579f138@web.de>
+Date: Fri, 24 May 2019 08:09:02 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
 In-Reply-To: <alpine.DEB.2.20.1905231659010.3573@hadrien>
 Content-Language: en-US
-X-Provags-ID: V03:K1:NXtrfPx8SmxO/lT/W8B3BHRdxfNLkTrv+W+bFz1ufjcGko6aVct
- VdBDyKAX/RTW3Oz/2cx2B3wMbLep2SoWaAlQtKEj+EkwwPiRza+mLjYgDZ0dzitMn1V9S/P
- 0ftrhoyikN7kDw+E1FXLf1C6JAj4d5Hk3FkEN37uPxUwG/vy8OAdkgC8S2ipQ11h/A3PCE2
- 24bcWMvVU8iTf7Z23jfzA==
+X-Provags-ID: V03:K1:deqjKaULbwJTHVgL+Opf3uEJ6gQNVkoGNGul8IjCoKnlXsyWKK5
+ 2mKPeKXU/PXeZ2vepBJvkcVahnFj6xhLP0wWPC07x12GKGqvoowA8WtQtY2EeHOr/NT/Snp
+ nVPef9Eal7CZJKup7ZPSWF/4D3q4ZfgTwK1eO9QV9+c+rmqqxVxlrDqdT/XCqO+0mW6OPcX
+ K5ybLVzmSq33hbHnb5+oQ==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:31/XSkpoy04=:3X5gZof0/VWE9PkfACUA6R
- VHBKQ45J6NY2ogkyhVFiY7mxFMii7A6GXOKJ2FLwkdmbxkIytCspwziPZqPFcYkw6s/byG8Gj
- YQ2GwipPv3dQady8g8zxmH1WzZpwijQuWovNi+6ast2F9kyCBAaBT1fiHwd78Z3nckitdGt6a
- OsBvc00RWerVUqHIfhp1Z77aJrNoA41R9E6LZwEpEU6WgILDJ+y3WYxOefCuXIK0k8E7t5HGk
- ILf6gwJ9r8bsL9Pxc/ZMhUtK3gGM/ahvRbSTtcbmoZcNSEAWveHHTIgYDGXdJFxP4hk9G7gNb
- QjiE585RhSKAGCqNTtiuDmykK7RvhmoiXYYp3DtaRAYnGPWvtLwxI2IMAActfJNv5L+wk+SKY
- GmdirDxMandAhyOxDiBtc4qHAGa6Wa/G292lB1xiXWAU1lcLBNpvuNPN0OpZSn27SFnEawV5z
- 340eegzwuA3OfEiJtLkuL9a/XGcku+Tb/y23Iok/5ZPvsgyE0fg0wDHI3wNNZ7h7205Ve9R7I
- f8JiY9yZOrwMVWdFyLgqqRcy10ky6R4BomekH971hXqqhuhVN9vd3fjgbYejv1goXSKTGDZ90
- 8KKiEiK1s4Zcb0VfiQvHEFVl2bUJDgROS6qfvsMzuUFx4a1yX4QlRRQ6hXkuqohewn1uR81cT
- oNuA9srZruqYVnJ3ekatnFJ7wu6ELMQs0APhBq3sSylJxhNpRVpD3Asj86FG44Z0R510ozIgx
- 4r1/nAc2Nf1QkIWM31kun+NtO+BxAZKzgqU1VGDUNeX/3N8K+3+njvMRBWk6dbe+gsUDco83J
- RrVMlHIstsWgAGqj7q4Xy/0hpTch9qRHiM4YTfr7swqiwTmG9w0zwC0cO3rzhxI6Qf9maR52r
- IUyXOCUMgRmrHSBUopFXDxDXtLGlsddFXDlW9a2mMu9acyuF8np76hNLId3BnGk7xT78YT6Jf
- fbyPRp6UkFbIFV8kXUM4qx6VgJ8jDwygNCzIgXQ78h/cx+t+jql7d
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 23 May 2019 21:16:01 +0200 (CEST)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:WOrp4o2HRiI=:hy65q4yTuoNAyLyQHPagsX
+ fGb8rOy9+BDr4nBEA7uUVl9ojWIQ9MY4K+zzkRpyq1RxdJaSEQOqj3Fn3/71FJ+JU51TmBHbC
+ 8R/TVK7Oi/He4s/H0YJmlfZJcTrUk17zQ0ss81EzZZse77tldtDcVfWOidcRGJ+jVstkvwvxV
+ ObIlL6HzRYD7Ejd4iDo3XgjDAXDbnTKyMChLbhDYfsph8yZz6PpS/L5TbIU+SslxsPNTxdih/
+ mk2XG77HbQMVzFwgVZ5Uggioc2nXVGQY20iiMPTPdIljA5VlnmlM2EZqy5xOxAweZE9JuZ1SL
+ kPYxQGzcoWBYHvR00MYwvdL3HhKAH08kIY+G8Xe+9gfBcyLHE2ma96asZsIpyeetlHGGz8085
+ s1CziwtjKo64adADFE9BDWJUq63UdbMpvXfLzg6i+FvJppj1lUNfesnW60uJlOR3L58fG9KzT
+ 2ont5mydT133tiH7biCR1dp8RKyMyNKtLT6tzmW93064aBZdAtQY28MhPESbaRKysl8I59Zb1
+ TL73S5Bby/Yy4ro8tIZvUogL3ZwsJPDpQDSR7buS0ODcFNGSXst8s1FJdKEBxZR5V6lw1SXq7
+ w52YCKFRDVve19oVZr78WO2ye8XJC2nufkVYi4vMxfrAWy8Tgat/tFX3v2aoAaIOdok3TSGVf
+ vbDjEN76ZZPZOQ9wvp7u73ztVHyJytyvAWiOq+LINc6uUL3EkQ2qjgHXrmA5tw7Hf5NbC7oxk
+ bxaR8nsfl9FZ/rUWbBKqKr0FrdgSXaLrbLG1c1SYDvG2/TIF2lmsp6dDfc3kB4hvzsQy8elIP
+ mpwjNZ+nXEk9zYvFKC16+Wkt3v4mpficPPvIGpC1+OqTvsO5IKR/ahLxfdNuk+2sVfO3SAMaC
+ 2enonzuf8P7YXox3hULw/EWp+s7x2/CGH7an3SlXRGc+ZmpN4pcRErejzAY1Ja0XDf+aDCRyI
+ IlgTuzLCVX19J5PjUNyiVoKe9I188YQq3b2VpRupuqNlmCT3qHVR5
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 24 May 2019 08:09:32 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Thu, 23 May 2019 21:15:11 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Fri, 24 May 2019 08:09:30 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr
-Subject: Re: [Cocci] Development challenges around OCaml usage for SmPL
+Subject: Re: [Cocci] Checking configuration challenges around OCaml usage
+	for SmPL
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -127,19 +129,31 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-PiBZb3UgY2FuIGRvIHdoYXRldmVyIHlvdSB3YW50IGluIHRoZSBvY2FtbCBjb2RlLgoKVGhpcyBw
-cm9ncmFtbWluZyBsYW5ndWFnZSBoYXMgZ290IGFsc28gYSBnZW5lcmFsIHBvdGVudGlhbC4KQnV0
-IEkgZmluZCB0aGF0IHRoZXJlIGFyZSBzcGVjaWFsIGRldmVsb3BtZW50IGNoYWxsZW5nZXMgdG8g
-Y29uc2lkZXIKZm9yIHNvZnR3YXJlIGNvbXBvbmVudHMgd2hpY2ggZG8gbm90IGJlbG9uZyB0byBp
-dHMgc3RhbmRhcmQgbGlicmFyeS4KSG93IGRvIHlvdSB0aGluayBhYm91dCB0byB0YWtlIGFub3Ro
-ZXIgbG9vayBhdCBhbiBleHRlbnNpb24gcmVxdWVzdApsaWtlIOKAnFN1cHBvcnQgZm9yIHNwZWNp
-ZmljYXRpb24gb2YgYWRkaXRpb25hbCBsaWJyYXJ5IGRpcmVjdG9yaWVz4oCdCmZvciB0aGUgc2Vt
-YW50aWMgcGF0Y2ggbGFuZ3VhZ2U/Cmh0dHBzOi8vZ2l0aHViLmNvbS9jb2NjaW5lbGxlL2NvY2Np
-bmVsbGUvaXNzdWVzLzE5CgpSZWdhcmRzLApNYXJrdXMKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3RlbWUu
-bGlwNi5mcgpodHRwczovL3N5c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
+> You can do whatever you want in the ocaml code.
+
+How will the following software situation be resolved?
+
+elfring@Sonne:~/Projekte/Coccinelle/20160205> COCCINELLE_HOME=$(pwd) /usr/local/bin/opam config exec --switch 4.07.1 ./spatch demos/comments.cocci demos/comments.c
+init_defs_builtins: /home/elfring/Projekte/Coccinelle/20160205/standard.h
+Using native version of ocamlc/ocamlopt/ocamldep
+ocamlc.opt -c /tmp/ocaml_cocci_bbc38d.cmo -g -I /home/elfring/Projekte/Coccinelle/20160205/ocaml  -I /usr/lib64/ocaml /tmp/ocaml_cocci_bbc38d.ml
+File "/tmp/ocaml_cocci_bbc38d.ml", line 1:
+Error: /usr/lib64/ocaml/list.cmi
+is not a compiled interface for this version of OCaml.
+It seems to be for an older version of OCaml.
+Fatal error: exception Coccinelle_modules.Yes_prepare_ocamlcocci.CompileFailure("/tmp/ocaml_cocci_bbc38d.ml")
+
+
+Can the dependency on the system compiler version be avoided here?
+
+Regards,
+Markus
+_______________________________________________
+Cocci mailing list
+Cocci@systeme.lip6.fr
+https://systeme.lip6.fr/mailman/listinfo/cocci
