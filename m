@@ -2,35 +2,35 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD902A903
-	for <lists+cocci@lfdr.de>; Sun, 26 May 2019 10:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA632A908
+	for <lists+cocci@lfdr.de>; Sun, 26 May 2019 10:11:04 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4Q80X8K010801;
-	Sun, 26 May 2019 10:00:33 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4Q8AS5H026323;
+	Sun, 26 May 2019 10:10:28 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id F298B775F;
-	Sun, 26 May 2019 10:00:32 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 8C6BE7747;
+	Sun, 26 May 2019 10:10:28 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 46005773A
- for <cocci@systeme.lip6.fr>; Sun, 26 May 2019 10:00:31 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 3CAA4773A
+ for <cocci@systeme.lip6.fr>; Sun, 26 May 2019 10:10:27 +0200 (CEST)
 Received: from mout.web.de (mout.web.de [212.227.17.12])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4Q80Ub6023633;
- Sun, 26 May 2019 10:00:30 +0200 (CEST)
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4Q8APGM029235;
+ Sun, 26 May 2019 10:10:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1558857630;
- bh=DKKiGa1gHdQxHKp4tgxc690W/QMjOtpg6pE7amtbQ0w=;
+ s=dbaedf251592; t=1558858225;
+ bh=HzOgQZNztlAuXe8HKX/MxoLlYgIzxNCA08X3dz5wwk8=;
  h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=BXcg0GaJNHMvtx8Ugx1BNUZBMte3MES3GItHys2gw+/fJtoMCbbAWq9ff0S6zxj9T
- 9KcrIQbGGWaEpFTlU836r3OYOClba1S9qtcaIO3RAKWeOxSsyVuDpXKeoUbGXX9SmE
- pR2QSQyIx1dDSKSJQ2c+2EJfKQqhEP/04S+tQTvs=
+ b=rTpF0Kj0VKl7X2ZoN+0vVCpIgtv6BTtU73hmDbOyCeZQdt1rlXIJjg6/uLBDHkjtd
+ LFfXuTtgXWN4XnXOh2qSIu0J+kOs8Gf+vHrlqca2RQ6ZDsy40IjEyDHS4gWaVkOWTQ
+ lNj68OqV4/15NoA+2qHyS4KlAbpsr7pr2Ey/3OrI=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.4] ([78.49.116.98]) by smtp.web.de (mrweb102
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MQ6LH-1hYwft1iE7-005KBa; Sun, 26
- May 2019 10:00:30 +0200
+Received: from [192.168.1.4] ([78.49.116.98]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0Mb8sh-1hAevC1hRT-00Kh69; Sun, 26
+ May 2019 10:10:25 +0200
 To: Julia Lawall <julia.lawall@lip6.fr>
 References: <alpine.DEB.2.21.1905222114490.2618@hadrien>
  <81b409c6-5986-5961-5edf-843c6737d88c@web.de>
@@ -38,7 +38,9 @@ References: <alpine.DEB.2.21.1905222114490.2618@hadrien>
  <b5c322d3-3162-953f-a985-53abc5064482@web.de>
  <alpine.DEB.2.21.1905251522470.2799@hadrien>
  <63bd01ee-ea4d-fcbe-dc07-98bc98347b1c@web.de>
- <alpine.DEB.2.21.1905260153340.2816@hadrien>
+ <alpine.DEB.2.21.1905260152360.2816@hadrien>
+ <c90fc31f-3697-b21e-a079-e9cb3e0e53cc@web.de>
+ <alpine.DEB.2.21.1905260951250.2449@hadrien>
 From: Markus Elfring <Markus.Elfring@web.de>
 Openpgp: preference=signencrypt
 Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
@@ -84,36 +86,36 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <743c83c1-7c0c-84fa-7b94-5b47bafd577f@web.de>
-Date: Sun, 26 May 2019 10:00:19 +0200
+Message-ID: <277a2d3d-502e-3f8d-479c-351ab0113ad0@web.de>
+Date: Sun, 26 May 2019 10:10:24 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.1905260153340.2816@hadrien>
+In-Reply-To: <alpine.DEB.2.21.1905260951250.2449@hadrien>
 Content-Language: en-US
-X-Provags-ID: V03:K1:HflJRVG33hEtjSEphNO/G41Sve9R1z8X0yDnn69F8+IBVW113Qs
- vBBHArAie+nd1cHXb6UqeLvHHyz78NcHCHL4BpDS5SuyPK/mP3KSTO+7OGLOsi/KChPrr+D
- oXJQMSJ3xQFdX6+ykxMMtFkPLZeiXRArVlXu3H7ksWyqfe1unHAqn+wra4eqNRgi2XmGndD
- MLpAeDuazec1dWl2lW4mA==
+X-Provags-ID: V03:K1:mvB6KsKPgUfW7O1KMewOVjuUcizlrvmIKXpjQ7XMBnYk/BAikye
+ 7cpY1cQ4g0GrW5tC5RLmKQRE0z8W7wksuAMT1wAii/7mg/oHcDrlID02/1xoiRxd+OnJ+RY
+ snF0MC054pFAtFxiOX4v9V8N7PcTotFzyoJyJiYCPeTFNKpXUMihQkRKQKtmyv0P6bWO3IT
+ IFWHO4QzatwSQSsC9r8Kw==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:XSIie5BsnYM=:kJ/XqZQwNvJ+bItt+bt5fl
- I1EH3KgH7KKFUCqAdJWRJoTgHbUEwDj7mXHkEEL2msK8OpIRjjwiVJ1VOLOrANRohfSn8GzvY
- 8F4dL5CLaHSfLIc7bhoQsWNWDyWiPGVnAqB0fVMJUxkxOugK4lMuelMRlF0DR6amPcUsJ+Wq2
- JkQ6CTW34AxjpPLAwIWEsGjlXc7X33Lnwx25i1ermQAS5E1JnkUhZKeBufUrBqha9AQ8ovp9a
- ioa2Zv9wVIqb8to0yUuaped0gr8F7oCQutR8k6QYP1g5SAtajhNFQs0YWr5NiSdf1pCT5BuPW
- AJ8f+9r7zapFH3jRpggzij6Tt1nPq2sUb+Y8LD1OdPvDV1tUkb/rpmvfvt8KWekD/4uo7Le7J
- H3muCfFgcP/EsaNdFlDE6RovYdm0P3fjzm0tNaF15FtpZ8kccdtqeh3zOccAUw37IehBr0jxz
- 9V1j2WzRNHTazG217ABPEAI9tEKPhofB6WHOF4ycD6lMRHmWC+nMK/lmfz6MTECoS6q3XqhGq
- K5D7sFIO5mKAfU/fS67suVVGGHOqcror9kbtENDzhfjhd1OkYbGTrBbWbCa/gYFDy74XL5XNm
- 8CBf4M9yHhGVZpIFWE1nPxw36LKR5swoxhkdlEdlTtydZGIOqD3RSwfApk3JHtp1pUZgv0NAX
- HQHKaJFWnZZA5fWeLRSH/m5xZn3VN8W/UVK8yQ3ktE7z03cXhOKfvik8abepW1FB55xwb/6IC
- lQIrwbpb5ZAYdKjo1KAZxVAy7QWNEX23ivuSCQiWqIvxUsWoMbRjjQ0mFLS0RqVlC6plg4LfN
- F3zRNWL615DI5G4wFT94uhGwebqbgHA+2HLblUa3/SE/MohVuB1p4tlHOW7qndf2mnRUnnVMr
- 870wlrZM8IBXXp97dYKCjFpj6G/lka10tDXiopTtKIerdXowRhZIZVTgJspg+mwAJdVHppE4a
- dU5rtkkQ8BUmHGrAbqohuqmTPfcwB55f0bd8UKqf4lN7kZTbzanHR
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 May 2019 10:00:33 +0200 (CEST)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:8N+ctYRAXAU=:vyJtOY6XS6r+H0/WWTXPuh
+ iiBnYCoqfsntND+FmbaSKtcwzneTFsUA6ebLMnfikIHj31NToL5BzSFZ364olajTOakA7R+5Z
+ 1cwLJ6h1yXRf+WPxlXdJSP2YK/3J+IAJ0JuwP7VYg065Bm2RlSA0qBwHdmxn8/eHd+x+q5RJ6
+ Huhraw9dhVh6xkZ62WiglKlOnRAJ688HhyQRlSGQ6hq9IbW9BpkIl4aEDU+moODjMPXpZmAGs
+ ToWIx7T1YO/h2Bpz6rhqdg6fzUl8+0oMngrZZSLFKKoWRKjcyNHfLVGEpPeXrq38Jp1xvaiuK
+ Ahdw0CEv/8uVPuM9zdCC5BzmHCkHPEjcV0y1SY2IUifLBz9In+g12w57PXP6YuDJvnOrE92sx
+ VJRg5v75Zd9LgsrCGNEiPStOCYLlSM6vqE1exiJRbJy7RSYsHP8tVT/TwJjhUyx1f0TlAWHDM
+ RV2PHPtLz0W/7fKcYbmd8EqEezkr99CVjhNrECgG583xvHKRTETx6vPOvtNAaGhxwGnU6sjVd
+ RzVrcFD+Jn8tIzxMZlSbm75h2tKQeZn9tgoo5gf25bcFvHDWgf2HSHS6qjZMDeCsNJWPUiuUf
+ 0JDyvlxnG2mkmRYkQDsSZwTDM3L7SnZFhJVbctJKCb3RMdoBVKy1Z4gGFqDczBzSE4nbbtDU1
+ xxktmuWN861UgjO8Df2mb5THqfSaeKT5bRbnU7/I1ll7H9O4CTBJdLmedzY17xy3d1gECt8NP
+ rPjGWRyXWycgYrYPCeVijs1iP1s5unP40YDguPM6Nb/sIsKU5HNGVaPvgktZMzs4gbQ7vFHiD
+ qaBb0zwhYuIpAcPpZCVv7eo7fe9AG1Uw2N87YiQHKu+UsB9s/+9GNqZsL+fHR3E9QXRJIRkTE
+ BooyVuFBQ5xkiPnjVvIEPJcD1QLjFFvNb1Vm6W66G+HRSj1n7T5aehPqTBmqkTxUtlioF4O8X
+ NV0qNGDlfR+qPaJqZRhcqPFdxtIPVist7oeVzrdD/s4XyKwhb3Bov
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 May 2019 10:10:28 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 26 May 2019 10:00:30 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 26 May 2019 10:10:25 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: Coccinelle <cocci@systeme.lip6.fr>
@@ -134,17 +136,14 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
->> How many different pointers will refer to empty strings here?
->
-> None.  If there is no comment, it will be the empty list.
+> You can attach a comment metavariable to any token in the semantic patch.
+> some of these are metavariables.  Metavariables (except identifier
+> metavariables) often match more than one token in the C code.
 
-How many different pointers can occur for these empty items?
+Can this case distinction trigger corresponding software design adjustments?
 
-
-> The before, within and after comments are lists of strings.
-
-Will data structures become helpful where less than three attributes
-would be provided because a special source code element would be selected?
+How often will it matter if only one item is involved instead of
+several places?
 
 Regards,
 Markus
