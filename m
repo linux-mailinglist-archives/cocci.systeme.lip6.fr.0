@@ -2,61 +2,46 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849732E60E
-	for <lists+cocci@lfdr.de>; Wed, 29 May 2019 22:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1202E634
+	for <lists+cocci@lfdr.de>; Wed, 29 May 2019 22:32:24 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4TKQtA4021207;
-	Wed, 29 May 2019 22:26:56 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4TKVqN2028234;
+	Wed, 29 May 2019 22:31:52 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 7EE287756;
-	Wed, 29 May 2019 22:26:55 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 5E924776C;
+	Wed, 29 May 2019 22:31:52 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
-Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
+Received: from osiris.lip6.fr (osiris.lip6.fr [132.227.60.30])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 93E2A7756
- for <cocci@systeme.lip6.fr>; Wed, 29 May 2019 22:26:51 +0200 (CEST)
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x4TKQosp008965
- for <cocci@systeme.lip6.fr>; Wed, 29 May 2019 22:26:50 +0200 (CEST)
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com
- [209.85.210.43])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1496724156
- for <cocci@systeme.lip6.fr>; Wed, 29 May 2019 20:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1559161610;
- bh=sotf0agJjN/6XTnJWfZk/abBMIFYdarZwrV9DlUHdFY=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=xfnWXX9lqYrga2tGuGItIfEJWzgsVXo6dthtMqoWxQe3WziXbHFWULf4H0VLEgk5z
- Jf+R2xKyKrcWLLe7OOM/0bSpVgQNnir4peIUG1tfyKbtAGvbll2oLPPFGH8FiGfPcG
- nXHC6hbOVYGnaMvSY4+nBlJFZPppXWjLXvsl5r40=
-Received: by mail-ot1-f43.google.com with SMTP id i2so2422039otr.9
- for <cocci@systeme.lip6.fr>; Wed, 29 May 2019 13:26:50 -0700 (PDT)
-X-Gm-Message-State: APjAAAUHWI0VjIkSye13H6aT5OQmtYD0nuQDDPPhUSTJmCeHkYi7eVqB
- Hjp4P9E0wFJIPAzzISxe0fURy9NZ/M0pqA3CZug=
-X-Google-Smtp-Source: APXvYqyyYnzbEeNV0w7y02mornzEXFGHy7SiYWDcEdIrcecwU4lzxmm993ujmvySU2OPXkvHYse/4YAhP2xAGhQ5dzM=
-X-Received: by 2002:a9d:5c19:: with SMTP id o25mr52741050otk.176.1559161609461; 
- Wed, 29 May 2019 13:26:49 -0700 (PDT)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 4A26D7756
+ for <cocci@systeme.lip6.fr>; Wed, 29 May 2019 22:31:48 +0200 (CEST)
+Received: from poleia.lip6.fr (poleia.lip6.fr [132.227.201.8])
+ by osiris.lip6.fr (8.15.2/8.15.2) with ESMTP id x4TKVlbq009033;
+ Wed, 29 May 2019 22:31:47 +0200 (CEST)
+Received: from newmail.lip6.fr (localhost [127.0.0.1])
+ by poleia.lip6.fr (Postfix) with ESMTPA id 9A669672841;
+ Wed, 29 May 2019 22:31:47 +0200 (CEST)
 MIME-Version: 1.0
+Date: Wed, 29 May 2019 22:31:47 +0200
+From: Julia Lawall <Julia.Lawall@lip6.fr>
+To: Timur Tabi <timur@kernel.org>
+In-Reply-To: <CAOZdJXX_if3sa_qrVRPF-wpwEmM-_Yb=45gr+ZF==PUA3B79dA@mail.gmail.com>
 References: <CAOZdJXUYqKX6KEwzXqMR-Wq-gsdHOZzHu9O--5HD2gmb56O36g@mail.gmail.com>
  <alpine.DEB.2.21.1905242147210.2514@hadrien>
  <CAOZdJXXV0a7VgRvLcYvzLZrPzVNsr6+WAxf4e6HDsE+U59zShA@mail.gmail.com>
  <alpine.DEB.2.21.1905242211550.2514@hadrien>
  <CAOZdJXUK1BvbfrG2KTW4r-36A115izB+cYwuaAQ8xTmu5WMHHA@mail.gmail.com>
-In-Reply-To: <CAOZdJXUK1BvbfrG2KTW4r-36A115izB+cYwuaAQ8xTmu5WMHHA@mail.gmail.com>
-From: Timur Tabi <timur@kernel.org>
-Date: Wed, 29 May 2019 15:26:12 -0500
-X-Gmail-Original-Message-ID: <CAOZdJXX_if3sa_qrVRPF-wpwEmM-_Yb=45gr+ZF==PUA3B79dA@mail.gmail.com>
-Message-ID: <CAOZdJXX_if3sa_qrVRPF-wpwEmM-_Yb=45gr+ZF==PUA3B79dA@mail.gmail.com>
-To: Timur Tabi <timur@kernel.org>
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 29 May 2019 22:26:56 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 29 May 2019 22:26:51 +0200 (CEST)
+ <CAOZdJXX_if3sa_qrVRPF-wpwEmM-_Yb=45gr+ZF==PUA3B79dA@mail.gmail.com>
+Message-ID: <fad7175b0c56154744004ef4a6ad248c@lip6.fr>
+X-Sender: Julia.Lawall@lip6.fr
+User-Agent: Roundcube Webmail/1.3.9
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 29 May 2019 22:31:52 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.4.3
+ (osiris.lip6.fr [132.227.60.30]); Wed, 29 May 2019 22:31:47 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.30
 Cc: cocci <cocci@systeme.lip6.fr>
 Subject: Re: [Cocci] Checking if a line of code *does not* exist
 X-BeenThere: cocci@systeme.lip6.fr
@@ -70,55 +55,29 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Wed, May 29, 2019 at 2:33 PM Timur Tabi <timur@kernel.org> wrote:
-> minus: parse error:
->   File "/home/ttabi/boardobj.cocci", line 14, column 1, charpos = 135
->   around = '|',
->   whole content =  |
-
-I did some reading of the documentation and came up with this.  I
-think it's in improvement, but it still doesn't work.
-
-@@
-identifier func;
-fresh identifier label = func ## "_exit";
-type T;
-expression x;
-statement S;
-@@
-func(...) {
-<+...
- x =
-(
- (T)
- \(MACRO1\|MACRO2\|MACRO3\)
-|
- \(MACRO1\|MACRO2\|MACRO3\)
-)
- (...);
-(
- if (x == NULL) S
-|
-+if (x == NULL)
-+{
-+    status = ERROR;
-+    goto label;
-+}
-)
-...+>
-}
-
-This gives me:
-21: no available token to attach to
-
-So it looks like the "\(MACRO1\|MACRO2\|MACRO3\)" isn't correct, but I
-don't see what's wrong with it.
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+TGUgMjkuMDUuMjAxOSAyMjoyNiwgVGltdXIgVGFiaSBhIMOpY3JpdMKgOgo+IE9uIFdlZCwgTWF5
+IDI5LCAyMDE5IGF0IDI6MzMgUE0gVGltdXIgVGFiaSA8dGltdXJAa2VybmVsLm9yZz4gd3JvdGU6
+Cj4+IG1pbnVzOiBwYXJzZSBlcnJvcjoKPj4gICBGaWxlICIvaG9tZS90dGFiaS9ib2FyZG9iai5j
+b2NjaSIsIGxpbmUgMTQsIGNvbHVtbiAxLCBjaGFycG9zID0gMTM1Cj4+ICAgYXJvdW5kID0gJ3wn
+LAo+PiAgIHdob2xlIGNvbnRlbnQgPSAgfAo+IAo+IEkgZGlkIHNvbWUgcmVhZGluZyBvZiB0aGUg
+ZG9jdW1lbnRhdGlvbiBhbmQgY2FtZSB1cCB3aXRoIHRoaXMuICBJCj4gdGhpbmsgaXQncyBpbiBp
+bXByb3ZlbWVudCwgYnV0IGl0IHN0aWxsIGRvZXNuJ3Qgd29yay4KPiAKPiBAQAo+IGlkZW50aWZp
+ZXIgZnVuYzsKPiBmcmVzaCBpZGVudGlmaWVyIGxhYmVsID0gZnVuYyAjIyAiX2V4aXQiOwo+IHR5
+cGUgVDsKPiBleHByZXNzaW9uIHg7Cj4gc3RhdGVtZW50IFM7Cj4gQEAKPiBmdW5jKC4uLikgewo+
+IDwrLi4uCj4gIHggPQo+ICgKPiAgKFQpCj4gIFwoTUFDUk8xXHxNQUNSTzJcfE1BQ1JPM1wpCj4g
+fAo+ICBcKE1BQ1JPMVx8TUFDUk8yXHxNQUNSTzNcKQo+ICkKPiAgKC4uLik7Cj4gKAo+ICBpZiAo
+eCA9PSBOVUxMKSBTCj4gfAo+ICtpZiAoeCA9PSBOVUxMKQo+ICt7Cj4gKyAgICBzdGF0dXMgPSBF
+UlJPUjsKPiArICAgIGdvdG8gbGFiZWw7Cj4gK30KPiApCj4gLi4uKz4KPiB9Cj4gCj4gVGhpcyBn
+aXZlcyBtZToKPiAyMTogbm8gYXZhaWxhYmxlIHRva2VuIHRvIGF0dGFjaCB0bwo+IAo+IFNvIGl0
+IGxvb2tzIGxpa2UgdGhlICJcKE1BQ1JPMVx8TUFDUk8yXHxNQUNSTzNcKSIgaXNuJ3QgY29ycmVj
+dCwgYnV0IEkKPiBkb24ndCBzZWUgd2hhdCdzIHdyb25nIHdpdGggaXQuCgoKVGhlICsgY29kZSBo
+YXMgdG8gYmUgYWRqYWNlbnQgdG8gc29tZSAtIG9yIGNvbnRleHQgY29kZS4gIFNvIHlvdSBtYXkg
+Cm5lZWQgdG8gZHVwbGljYXRlIHNvbWUgICBjb2RlIGluIHRoZSBkaWZmZXJlbnQgYnJhbmNoZXMg
+b2YgdGhlIApkaXNqdW5jdGlvbi4KCkp1xLppYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpDb2NjaSBtYWlsaW5nIGxpc3QKQ29jY2lAc3lzdGVtZS5saXA2
+LmZyCmh0dHBzOi8vc3lzdGVtZS5saXA2LmZyL21haWxtYW4vbGlzdGluZm8vY29jY2kK
