@@ -2,61 +2,46 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D536EEE3
-	for <lists+cocci@lfdr.de>; Sat, 20 Jul 2019 11:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B706EF04
+	for <lists+cocci@lfdr.de>; Sat, 20 Jul 2019 12:21:36 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6K9tHmA008264;
-	Sat, 20 Jul 2019 11:55:17 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6KALKVH001342;
+	Sat, 20 Jul 2019 12:21:20 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 6301F777C;
-	Sat, 20 Jul 2019 11:55:17 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 7576A7780;
+	Sat, 20 Jul 2019 12:21:19 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 88E73777C
- for <cocci@systeme.lip6.fr>; Wed, 17 Jul 2019 09:34:26 +0200 (CEST)
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:336] (may be forged))
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6H7YPPn005710
- for <cocci@systeme.lip6.fr>; Wed, 17 Jul 2019 09:34:26 +0200 (CEST)
-Received: by mail-ot1-x336.google.com with SMTP id j19so23995365otq.2
- for <cocci@systeme.lip6.fr>; Wed, 17 Jul 2019 00:34:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uber.com; s=google;
- h=mime-version:from:date:message-id:subject:to;
- bh=iRCHXc0WjtHlars04sjnhcGsphGrZpOTdp2fzPvM1Zo=;
- b=8lEmHclvHmJf0KmrbBt6jSKXwaKLjPhs0rLAOXLAIo4+WWOLPfM2jC12TpskDyrUbI
- 6e4mBqwiJsXF8J3GPKrXAdnNDqIkSKBJFnDyAWK+tWCdgpUsrmFOBc5nLxYRMKLdOyXv
- htCOcwVSiwNVXwQaczFW2hb/l7d5pj4h/w6Yo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=iRCHXc0WjtHlars04sjnhcGsphGrZpOTdp2fzPvM1Zo=;
- b=s6R04YHDorJRZe2JXIJbbFaoHBYdrWoFiC0pyPzb/Qt9l1SD9Bha5l9QciZBwMmHCp
- 5gRUaSoEJwxD8ajre3eFlQkU7NktudeOB2lNz5SZ81DPXkbi/toQzF7BwTnCjI3an/Y1
- Vsh853X6DpCGvKQtBD+igjMJFy32NKe7Tf3HKB4qze2ob3rCo5MCQ2584l7pxVHYtw1g
- 8qbYE4c3XeCMFweUlOkwlGpgBi+Tt+7j0ZBUbBhbr/6u/5zyDaKJCOvoZCeixm/vMGds
- acqkyeHSVXkC27wXonGoYrA2S9qFloy3yqJEXLp6BdaW4jjDFB+V6tVAN3Oeftq6401h
- eavA==
-X-Gm-Message-State: APjAAAWL5VPLPeXuJglTxfUcdErgpLIm9ZE3DVvaQkIXTZgaZH3KrgsG
- XiL6GJBv44GXPGxREHIwH6ov2/oEfCpWm2RxxLeZrw5B
-X-Google-Smtp-Source: APXvYqxom0IzH5RukRwv74m2XBto9cIjTPmBSxi+9nU70BWzVaZHPvWCz8ZFXiAuXLs5qg+5tyKSkCxm+XWI7JlxCRw=
-X-Received: by 2002:a9d:7c8f:: with SMTP id q15mr2528054otn.24.1563348864915; 
- Wed, 17 Jul 2019 00:34:24 -0700 (PDT)
+ by systeme.lip6.fr (Postfix) with ESMTPS id B22C3777C
+ for <cocci@systeme.lip6.fr>; Sat, 20 Jul 2019 12:21:10 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6KALA8r029876
+ for <cocci@systeme.lip6.fr>; Sat, 20 Jul 2019 12:21:10 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.64,286,1559512800"; d="scan'208";a="314178932"
+Received: from abo-12-105-68.mrs.modulonet.fr (HELO hadrien) ([85.68.105.12])
+ by mail3-relais-sop.national.inria.fr with
+ ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 20 Jul 2019 12:11:42 +0200
+Date: Sat, 20 Jul 2019 12:11:42 +0200 (CEST)
+From: Julia Lawall <julia.lawall@lip6.fr>
+X-X-Sender: jll@hadrien
+To: Will Lester <hslester96@gmail.com>
+In-Reply-To: <CANhBUQ3cx0Vr5XCBbYnuwvDR5G0BqV6o3rocmP_HWeTwEW__7g@mail.gmail.com>
+Message-ID: <alpine.DEB.2.21.1907201207520.2558@hadrien>
+References: <CANhBUQ3cx0Vr5XCBbYnuwvDR5G0BqV6o3rocmP_HWeTwEW__7g@mail.gmail.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-From: Raghavan Raman <ragr@uber.com>
-Date: Wed, 17 Jul 2019 00:34:14 -0700
-Message-ID: <CAEgVsn4+aMn_3pXo1fex6_3oWmHbQERhmr42dO0igdFT1u67nA@mail.gmail.com>
-To: cocci@systeme.lip6.fr
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 20 Jul 2019 11:55:19 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Wed, 17 Jul 2019 09:34:26 +0200 (CEST)
+Content-Type: multipart/mixed; boundary="8323329-1791639392-1563617502=:2558"
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 20 Jul 2019 12:21:20 +0200 (CEST)
+X-Greylist: Delayed for 00:09:27 by milter-greylist-4.4.3 (isis.lip6.fr
+ [132.227.60.2]); Sat, 20 Jul 2019 12:21:10 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Sat, 20 Jul 2019 11:55:14 +0200
-Subject: [Cocci] Coccinelle for Go
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: cocci@systeme.lip6.fr
+Subject: Re: [Cocci] How to write a pattern which crosses two functions?
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,48 +53,69 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1164980134=="
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
---===============1164980134==
-Content-Type: multipart/alternative; boundary="000000000000c14a9e058ddb852e"
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
---000000000000c14a9e058ddb852e
-Content-Type: text/plain; charset="UTF-8"
+--8323329-1791639392-1563617502=:2558
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-Hi,
 
-I am part of the Programming Systems group
-<https://www.uber.com/us/en/about/science/> at Uber. We are looking into
-using Coccinelle for refactoring in Go <https://golang.org/>.
 
-Does Coccinelle include support for Go?
+On Tue, 16 Jul 2019, Will Lester wrote:
 
-If not:
-  * Is there any plan to add support for the same?
-  * What would it take to add this support? Any documentation regarding
-this?
+> Hello,
+> I want to write a script to solve problems of such pattern.
+> func_a () {
+>     x = .*alloc();
+> }
+> func_b () {
+>     foo(..., x, ...);
+> }
+> That is, a variable x is allocated by func_a and used by func_b in a file.
+> I wrote a script like this:
+> fn_a (...) {
+> ...
+> - X = fn1(...);
+> ...
+> }
+> ...
+> fn_b (...) {
+> ...
+> - fn2 (..., X, ...);
+> ...
+> }
+> But an error was reported between two functions, "..." cannot be used there.
+> Therefore, what is the correct solution to this problem?
 
-Thanks,
-Raghavan
+Just make two separate rules.  You can put a name for a rule between the
+initial @@ and then you can refer to the name in the second rule to
+obtain the value of a metavariable from the first one.  For example:
 
---000000000000c14a9e058ddb852e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+@r@
+identifier x;
+@@
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am part of the <a href=3D"https:/=
-/www.uber.com/us/en/about/science/">Programming Systems group</a> at Uber. =
-We are looking into using Coccinelle for refactoring in <a href=3D"https://=
-golang.org/">Go</a>.</div><div><br></div><div>Does Coccinelle include suppo=
-rt for Go?=C2=A0</div><div><br></div><div>If not:</div><div>=C2=A0 * Is the=
-re any plan to add support for the same?</div><div>=C2=A0 * What would it t=
-ake to add this support? Any documentation regarding this?</div><div><br></=
-div><div>Thanks,</div><div>Raghavan</div><div><br></div></div>
+x = fn1(...)
 
---000000000000c14a9e058ddb852e--
+@@
+identifier r.x;
+@@
 
---===============1164980134==
+fn2(...,x,...)
+
+In your example, fn1 should end with alloc.  If you want to declare a
+metavariable like that you can use a regular expression:
+
+identifier alloc =~ "alloc$";
+
+I guess this should match names that end with alloc.
+
+julia
+--8323329-1791639392-1563617502=:2558
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +126,4 @@ Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
 
---===============1164980134==--
+--8323329-1791639392-1563617502=:2558--
