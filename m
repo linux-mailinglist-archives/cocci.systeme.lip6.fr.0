@@ -2,46 +2,52 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70CA57BF40
-	for <lists+cocci@lfdr.de>; Wed, 31 Jul 2019 13:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D7747C4E3
+	for <lists+cocci@lfdr.de>; Wed, 31 Jul 2019 16:27:17 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6VBRhUL002245;
-	Wed, 31 Jul 2019 13:27:43 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6VEQpdj019105;
+	Wed, 31 Jul 2019 16:26:51 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 86BE2779E;
-	Wed, 31 Jul 2019 13:27:43 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 390FB779E;
+	Wed, 31 Jul 2019 16:26:51 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 54ECF7781
- for <cocci@systeme.lip6.fr>; Wed, 31 Jul 2019 13:27:42 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6VBRfUB002065
- for <cocci@systeme.lip6.fr>; Wed, 31 Jul 2019 13:27:41 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.64,330,1559512800"; d="scan'208";a="315249665"
-Received: from 71-219-88-14.chvl.qwest.net (HELO hadrien) ([71.219.88.14])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2019 13:27:40 +0200
-Date: Wed, 31 Jul 2019 07:27:39 -0400 (EDT)
-From: Julia Lawall <julia.lawall@lip6.fr>
-X-X-Sender: jll@hadrien
-To: Chuhong Yuan <hslester96@gmail.com>
-In-Reply-To: <CANhBUQ0Rc5Q=R6Ufc=UEmLe4d0emQz4Cv+VsoA_7v=mHBY_LuQ@mail.gmail.com>
-Message-ID: <alpine.DEB.2.21.1907310723090.9202@hadrien>
-References: <CANhBUQ0Rc5Q=R6Ufc=UEmLe4d0emQz4Cv+VsoA_7v=mHBY_LuQ@mail.gmail.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 76BDB7781
+ for <cocci@systeme.lip6.fr>; Wed, 31 Jul 2019 16:26:47 +0200 (CEST)
+Received: from pokefinder.org (sauhun.de [88.99.104.3])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x6VEQk66019736
+ for <cocci@systeme.lip6.fr>; Wed, 31 Jul 2019 16:26:46 +0200 (CEST)
+Received: from localhost (p54B33080.dip0.t-ipconnect.de [84.179.48.128])
+ by pokefinder.org (Postfix) with ESMTPSA id 6D2D32C270A;
+ Wed, 31 Jul 2019 16:26:46 +0200 (CEST)
+Date: Wed, 31 Jul 2019 16:26:46 +0200
+From: Wolfram Sang <wsa@the-dreams.de>
+To: Stephen Boyd <swboyd@chromium.org>
+Message-ID: <20190731142645.GA1680@kunai>
+References: <20190730053845.126834-1-swboyd@chromium.org>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 31 Jul 2019 13:27:43 +0200 (CEST)
-X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
- milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]);
- Wed, 31 Jul 2019 13:27:41 +0200 (CEST)
+In-Reply-To: <20190730053845.126834-1-swboyd@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 31 Jul 2019 16:26:53 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 31 Jul 2019 16:26:46 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr
-Subject: Re: [Cocci] How to match all conditions in if-else if blocks?
+Cc: Rob Herring <robh@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        cocci@systeme.lip6.fr, Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [Cocci] [PATCH v5 0/3] Add error message to platform_get_irq*()
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,81 +59,84 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1034991005=="
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 
-
-On Tue, 30 Jul 2019, Chuhong Yuan wrote:
-
-> Hi all,
-> I want to write a script to match a pattern of conditional statement.
-> However, I find that I can only match the first "if" in the block.
-> The script is like this:
-> fn(...) {
-> ...
-> - f(arg1, arg2, arg3)
-> ...
-> }
-> where f returns the condition check result.
-
-... means that what is before and after should not appear in the code
-matched by ...  This is useful for patterns like
-
-A
-...
-B
-
-when you want the closest A and B.
-
-You can remove this restriction using
-
-... when any
-
-However that will not completely solve your problem, because when
-transformation is used with ..., the patterns have to appear on every
-control-flow path.
-
-To eliminate this constraint, you can use
-
-fn(...) {
-<...
-- f(...)
-...> }
-
-The <... ...> allows the pattern to appear 0 or more times in the matched
-region.  If you want to be sure that it appears one or more times, you can
-use <+... ...+>.  But the latter is more expensive and may not be
-necessary.
-
-On the other hand, if the name of the function is not very important, it
-would be much more efficient to just match the function call that you are
-interested in directly, without putting the function definition pattern
-around it.
-
-julia
+--===============1034991005==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mP3DRpeJDSE+ciuQ"
+Content-Disposition: inline
 
 
->
-> But when I apply to source code like this:
-> if (f(a1, a2, a3)) {
-> ...
-> } else if (f(a4, a5, a6)) {
-> ...
-> }
-> I find it can only match f(a1, a2, a3).
-> So how to fix this problem?
->
-> Thanks,
-> Chuhong
-> _______________________________________________
-> Cocci mailing list
-> Cocci@systeme.lip6.fr
-> https://systeme.lip6.fr/mailman/listinfo/cocci
->
+--mP3DRpeJDSE+ciuQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Stephen,
+
+> There were some comments about adding an 'optional' platform_get_irq()
+> API in v4. This series doesn't include that, but I can add such an API
+> if it's required. I started to look into how it might work and got hung
+> up on what an optional IRQ means. I suppose it means that in DT there
+> isn't an 'interrupts' property in the device node, but in ACPI based
+> firmware I'm not sure what that would correspond to. Furthermore, the
+> return value is hard to comprehend. Do we return an error when an
+> optional irq can't be found? It doesn't seem safe to return 0 because
+> sometimes 0 is a valid IRQ. Do other errors in parsing the IRQ
+> constitute a failure when the IRQ is optional?
+
+Some time ago, I tried a series like yours and got stuck at this very
+point. I found drivers where using an interrupt was optional and
+platform_get_irq() returning a failure wasn't fatal. The drivers used
+PIO then or dropped some additional functionality. Some of them were
+very old.
+
+I didn't like the idea that platform_get_irq() will spit out errors for
+those drivers, yet I couldn't create a suitable cocci-script to convert
+drivers to use the *_optional callback where possible. So, I neither
+created the optional callback.
+
+I still have doubts of unneeded error messages popping up. Has this been
+discussed already? (Sorry, I missed the first iterations of this series)
+
+Thanks,
+
+   Wolfram
+
+
+--mP3DRpeJDSE+ciuQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1BpSEACgkQFA3kzBSg
+KbZhaQ/9HsT5Cy7Ah1bd3cSpQWkH7rJ4UUVNRskWX+dUIxckOfNlPnvxof79Yskr
+Fsp5ZrGlMCT3s49sfH5E2NF3Ubq2wVsIpSLH1u1Aoh1X4HPd4FuLzkX7slniJd9e
+DSCkWJaUVoxCq7O8S4LF3fZNzvsNk3HO7nxZXxwsrzJkwRIY9OOiPrkwkOR8EsPo
+mAi0TfC8kSqzHYTLoV8SwaVyOWxAGYYYHPJTCWiwAy8M5Z0fk566Jwf7fAohHDSC
+v4fGYkHpm8cy6jLGMbEPk/gqTEXYh9zIqlDelmdL+nqzJ9THZEcpU/zFITPqdNSs
+QaOci5P9DLUzGdXhlE3VvxJb8uHrgkDIYI2jg2wB58Nl/otzXZbwL7oNjF17D0Rl
+ATA/kuEnXFYVIEXBfXET4dr7JHvGpseDpjHpFau+KtbWQ0uVpCppimw2SryFUB+c
+9tymL7pdVG2t5LSMhwAYpqG7qiB5GLjtbfIbztvr9BuLnPoDmWeda7vVhI21LZXo
+NeO/w7ucmTKaMEKwwT8RgYn/TTZiGrGtnzSRdjY2AYDBxeVfRSir+Tu4x+bhMJne
+L/C/cv2uhhT+ZmysSI9CmBVeYTcVd55+43vmAbRftGRb7BSoEcuWY2vIL1SPsQUx
+Y/6gPBKbhNxLeHK6X2LHWthbBFhBqGAFJfv8+UnnU6nyJ64Rw+Q=
+=B9Za
+-----END PGP SIGNATURE-----
+
+--mP3DRpeJDSE+ciuQ--
+
+--===============1034991005==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
+
+--===============1034991005==--
