@@ -2,60 +2,52 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF9BAB2B5
-	for <lists+cocci@lfdr.de>; Fri,  6 Sep 2019 09:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87025AC157
+	for <lists+cocci@lfdr.de>; Fri,  6 Sep 2019 22:20:19 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x866xn6R026084;
-	Fri, 6 Sep 2019 08:59:51 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x86KJZvW012556;
+	Fri, 6 Sep 2019 22:19:35 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id ED8B677A6;
-	Fri,  6 Sep 2019 08:59:49 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6A3B177A4;
+	Fri,  6 Sep 2019 22:19:35 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 8C0C17793
- for <cocci@systeme.lip6.fr>; Fri,  6 Sep 2019 08:59:04 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x866x4as016215
- for <cocci@systeme.lip6.fr>; Fri, 6 Sep 2019 08:59:04 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.64,472,1559512800"; d="scan'208";a="318476281"
+ by systeme.lip6.fr (Postfix) with ESMTPS id 72EA77793
+ for <cocci@systeme.lip6.fr>; Fri,  6 Sep 2019 22:19:31 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x86KJL3o004369
+ for <cocci@systeme.lip6.fr>; Fri, 6 Sep 2019 22:19:21 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.64,474,1559512800"; d="scan'208";a="400644695"
 Received: from abo-12-105-68.mrs.modulonet.fr (HELO hadrien) ([85.68.105.12])
- by mail3-relais-sop.national.inria.fr with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Sep 2019 08:59:02 +0200
-Date: Fri, 6 Sep 2019 08:59:02 +0200 (CEST)
+ by mail2-relais-roc.national.inria.fr with
+ ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Sep 2019 22:19:21 +0200
+Date: Fri, 6 Sep 2019 22:19:21 +0200 (CEST)
 From: Julia Lawall <julia.lawall@lip6.fr>
 X-X-Sender: jll@hadrien
-To: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <7818ad20-615c-2ce9-c0d1-3f7a09bedf34@web.de>
-Message-ID: <alpine.DEB.2.21.1909060857290.2975@hadrien>
-References: <5d71eb6f.1c69fb81.31bc8.da2d@mx.google.com>
- <7818ad20-615c-2ce9-c0d1-3f7a09bedf34@web.de>
+To: Denis Efremov <efremov@linux.com>
+In-Reply-To: <20190829171013.22956-1-efremov@linux.com>
+Message-ID: <alpine.DEB.2.21.1909062217240.2643@hadrien>
+References: <20190825130536.14683-1-efremov@linux.com>
+ <20190829171013.22956-1-efremov@linux.com>
 User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 06 Sep 2019 08:59:51 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 06 Sep 2019 22:19:38 +0200 (CEST)
 X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
  milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]);
- Fri, 06 Sep 2019 08:59:04 +0200 (CEST)
+ Fri, 06 Sep 2019 22:19:21 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Fri, 06 Sep 2019 08:59:47 +0200
-Cc: Rob Herring <robh@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Nicolas Palix <nicolas.palix@imag.fr>, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Javier Martinez Canillas <javierm@redhat.com>, cocci@systeme.lip6.fr,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [Cocci] [PATCH -next] coccinelle: platform_get_irq: Fix parse
-	error
+Cc: Michal Marek <michal.lkml@markovi.net>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
+        Markus Elfring <Markus.Elfring@web.de>, Joe Perches <joe@perches.com>,
+        cocci@systeme.lip6.fr
+Subject: Re: [Cocci] [PATCH v2] scripts: coccinelle: check for !(un)?likely
+	usage
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,46 +66,147 @@ Errors-To: cocci-bounces@systeme.lip6.fr
 
 
 
-On Fri, 6 Sep 2019, Markus Elfring wrote:
+On Thu, 29 Aug 2019, Denis Efremov wrote:
 
-> > > minus: parse error:
-> > >   File "./scripts/coccinelle/api/platform_get_irq.cocci", line 24, column 9, charpos = 355
-> > >   around = '\(',
-> > >   whole content = if ( ret \( < \| <= \) 0 )
-> > >
-> > > In commit e56476897448 ("fpga: Remove dev_err() usage
-> > > after platform_get_irq()") log, I found the semantic patch,
-> > > it fix this issue.
-> > >
-> > > Fixes: 98051ba2b28b ("coccinelle: Add script to check for platform_get_irq() excessive prints")
-> > > Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-> > > ---
-> >
-> > Hmm I had this earlier but someone asked me to change it.
+> This patch adds coccinelle script for detecting !likely and
+> !unlikely usage. These notations are confusing. It's better
+> to replace !likely(x) with unlikely(!x) and !unlikely(x) with
+> likely(!x) for readability.
 >
-> I proposed something also during the development for this SmPL script.
-> https://lkml.org/lkml/2019/7/24/274
-> https://lore.kernel.org/r/c98b8f50-1adf-ea95-a91c-ec451e9fefe2@web.de/
-
-Markus,
-
-This is not the first time you have suggested to someone to do something
-that was simply incorrect.  Please actually test your suggestions before
-proposing them.
-
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> The rule transforms !likely(x) to unlikely(!x) based on this logic:
+>   !likely(x) iff
+>   !__builtin_expect(!!(x), 1) iff
+>    __builtin_expect(!!!(x), 0) iff
+>   unlikely(!x)
 >
-> Should disjunctions eventually work in the semantic patch language also together with
-> comparison operators?
-> https://github.com/coccinelle/coccinelle/issues/40
+> For !unlikely(x) to likely(!x):
+>   !unlikely(x) iff
+>   !__builtin_expect(!!(x), 0) iff
+>   __builtin_expect(!!!(x), 1) iff
+>   likely(!x)
+>
+> Signed-off-by: Denis Efremov <efremov@linux.com>
+> Cc: Julia Lawall <Julia.Lawall@lip6.fr>
+> Cc: Gilles Muller <Gilles.Muller@lip6.fr>
+> Cc: Nicolas Palix <nicolas.palix@imag.fr>
+> Cc: Michal Marek <michal.lkml@markovi.net>
+> Cc: Markus Elfring <Markus.Elfring@web.de>
+> Cc: Joe Perches <joe@perches.com>
+> Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 
-No.
+Acked-by: Julia Lawall <julia.lawall@lip6.fr>
 
-> Will any additional software adjustments be taken into account?
-
-No.
+A small improvement though would be to improve the explicit dependency of
+the last four python rules on r1 and r2.  Those rules won't execute unless
+the inherited metavariable has a value, which makes the same dependency.
 
 julia
+
+
+> ---
+>  scripts/coccinelle/misc/neg_unlikely.cocci | 89 ++++++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 scripts/coccinelle/misc/neg_unlikely.cocci
+>
+> diff --git a/scripts/coccinelle/misc/neg_unlikely.cocci b/scripts/coccinelle/misc/neg_unlikely.cocci
+> new file mode 100644
+> index 000000000000..9aac0a7ff042
+> --- /dev/null
+> +++ b/scripts/coccinelle/misc/neg_unlikely.cocci
+> @@ -0,0 +1,89 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/// Use unlikely(!x) instead of !likely(x) and vice versa.
+> +/// Notations !unlikely(x) and !likely(x) are confusing.
+> +//
+> +// Confidence: High
+> +// Copyright: (C) 2019 Denis Efremov, ISPRAS.
+> +// Options: --no-includes --include-headers
+> +
+> +virtual patch
+> +virtual context
+> +virtual org
+> +virtual report
+> +
+> +//----------------------------------------------------------
+> +//  For context mode
+> +//----------------------------------------------------------
+> +
+> +@depends on context disable unlikely@
+> +expression E;
+> +@@
+> +
+> +*! \( likely \| unlikely \) (E)
+> +
+> +//----------------------------------------------------------
+> +//  For patch mode
+> +//----------------------------------------------------------
+> +
+> +@depends on patch disable unlikely@
+> +expression E;
+> +@@
+> +
+> +(
+> +-!likely(!E)
+> ++unlikely(E)
+> +|
+> +-!likely(E)
+> ++unlikely(!E)
+> +|
+> +-!unlikely(!E)
+> ++likely(E)
+> +|
+> +-!unlikely(E)
+> ++likely(!E)
+> +)
+> +
+> +//----------------------------------------------------------
+> +//  For org and report mode
+> +//----------------------------------------------------------
+> +
+> +@r1 depends on (org || report) disable unlikely@
+> +expression E;
+> +position p;
+> +@@
+> +
+> +!likely@p(E)
+> +
+> +@r2 depends on (org || report) disable unlikely@
+> +expression E;
+> +position p;
+> +@@
+> +
+> +!unlikely@p(E)
+> +
+> +@script:python depends on org && r1@
+> +p << r1.p;
+> +@@
+> +
+> +coccilib.org.print_todo(p[0], "unlikely(!x) is more readable than !likely(x)")
+> +
+> +@script:python depends on org && r2@
+> +p << r2.p;
+> +@@
+> +
+> +coccilib.org.print_todo(p[0], "likely(!x) is more readable than !unlikely(x)")
+> +
+> +@script:python depends on report && r1@
+> +p << r1.p;
+> +@@
+> +
+> +coccilib.report.print_report(p[0],
+> +	"unlikely(!x) is more readable than !likely(x)")
+> +
+> +@script:python depends on report && r2@
+> +p << r2.p;
+> +@@
+> +
+> +coccilib.report.print_report(p[0],
+> +	"likely(!x) is more readable than !unlikely(x)")
+> +
+> --
+> 2.21.0
+>
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
