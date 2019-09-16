@@ -2,37 +2,40 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B4DB2FC2
-	for <lists+cocci@lfdr.de>; Sun, 15 Sep 2019 13:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFEAB34AF
+	for <lists+cocci@lfdr.de>; Mon, 16 Sep 2019 08:26:18 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8FBcx6T020366;
-	Sun, 15 Sep 2019 13:38:59 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8G6PeUg012126;
+	Mon, 16 Sep 2019 08:25:40 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id E2FF97798;
-	Sun, 15 Sep 2019 13:38:58 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id DF5B177A7;
+	Mon, 16 Sep 2019 08:25:39 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id CC38B76D9
- for <cocci@systeme.lip6.fr>; Sun, 15 Sep 2019 13:38:57 +0200 (CEST)
-Received: from mout.web.de (mout.web.de [212.227.15.3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8FBcvnu009725;
- Sun, 15 Sep 2019 13:38:57 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 1B797768E
+ for <cocci@systeme.lip6.fr>; Mon, 16 Sep 2019 08:25:37 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8G6PZGO018231;
+ Mon, 16 Sep 2019 08:25:35 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1568547536;
- bh=T00Nar2nA39u171os0ZEhgtXHNqgSwh2TVjdT/ECLyc=;
- h=X-UI-Sender-Class:Cc:References:Subject:To:From:Date:In-Reply-To;
- b=nAsif/NkS6pc4qpMFzFRKqPIyBMzVvJtn5qH/Snuo7sJqHT9LdHIZBSJatu3AU/B6
- KudFlXw4ulBoLx8RjlN6Gk0Y9GnpAlXQbIVGEMJ+YDY9FIfofEBBtq4pZK+ND7Qkck
- P8K4PI4zLR8mOEMY7CJ/cthlqduWtcXqRWSK0tQ4=
+ s=dbaedf251592; t=1568615100;
+ bh=k2E2Ntp6ZUnN/wRnRegLghDHBJ24BZAb9hxJrYFaDxo=;
+ h=X-UI-Sender-Class:Subject:To:References:From:Cc:Date:In-Reply-To;
+ b=f9NT3YkIX1I2oasSrcLf1bSMreJeJSEHk8eFsuNaB3LMYh2KDyiCE/5Pi4xLb0q0K
+ QhaMMu1CETx0tyAEzmcBt/0rs6Pi5iTb6VqgACQJnsiXCDlM0wJZxQZXr2BfXWFRwV
+ VuAAJ9MpFhdleVpnHGWtWL7jiM9XIjX/6PTtdCeo=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([93.135.135.21]) by smtp.web.de (mrweb001
- [213.165.67.108]) with ESMTPSA (Nemesis) id 0LtoGb-1iHcEX1H2j-011CG2; Sun, 15
- Sep 2019 13:38:56 +0200
-References: <alpine.DEB.2.21.1909142158560.2490@hadrien>
-To: Julia Lawall <julia.lawall@lip6.fr>
+Received: from [192.168.1.2] ([93.131.32.36]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0LqDYi-1iehTP3ZCq-00dlKv; Mon, 16
+ Sep 2019 08:25:00 +0200
+To: Julia Lawall <julia.lawall@lip6.fr>, Coccinelle <cocci@systeme.lip6.fr>
+References: <9666134d-0ff6-81eb-b088-f0086a0e61b1@web.de>
+ <alpine.DEB.2.21.1909081019020.3340@hadrien>
+ <63e433b4-06cf-cecc-46e0-9f31226f71d0@web.de>
+ <alpine.DEB.2.21.1909082149100.2644@hadrien>
 From: Markus Elfring <Markus.Elfring@web.de>
 Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  mQINBFg2+xABEADBJW2hoUoFXVFWTeKbqqif8VjszdMkriilx90WB5c0ddWQX14h6w5bT/A8
@@ -77,44 +80,51 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <44eed855-492e-46c7-ac0b-352d2c1e680a@web.de>
-Date: Sun, 15 Sep 2019 13:38:49 +0200
+Message-ID: <7fc4c8fd-c00e-a455-29ff-ec016cbff08a@web.de>
+Date: Mon, 16 Sep 2019 08:24:49 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.1.0
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.1909142158560.2490@hadrien>
+In-Reply-To: <alpine.DEB.2.21.1909082149100.2644@hadrien>
 Content-Language: en-US
-X-Provags-ID: V03:K1:1fGdzIx+YolDdnkAxQBacHuBlrN2NZZXZcoO8ilorcXFFyLAXhP
- OS/c9rjc54NS5j0qZdob//8dEfxREF9dXRxSJgmQ9W3ZZ1CPFdLIAWTR9p2bdCw9HsdGjVj
- FzCt7PkgjteayBRAIpJTy43J459J8hlNBCAleFtnawq6ZCWBscms61h0MkZbIBwerUJ36pR
- S0ZoP/X19Vvn62j7YjdDQ==
+X-Provags-ID: V03:K1:KwksYw4+6yxAX7JCyj/rwqZG8kZW8CP6BCuDYkAI+FGpSUcwYRh
+ vjDCQuKz7o3EWToiQ10jENs+BJAFBuPGLfUnacEnBd4JGvxjvQK/BxrYZNvl+CqLvynWbte
+ 2IounRmwrJ8FLgcg94mV2zAs1Fj6SmiFyUsLGRpmzGh5N4/hLjTEpultBrU7KwIdj/jsky+
+ zLJAy/iKUKtua5mWaxopg==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:H7qH/Gb9Gew=:uHNXstY1LWUMqtB6mY+iuq
- bGT5q0jN7xvC6xfHpLBJIDzNr0J+SGGsE6hauZgW9mdBbeDLDpUjarCzgqHAbKpH5orhhFJ3b
- GhFAQVWcDKJ8E0X+CurLQng31sJmXKc3+jQpEqJbe7GVdeydIQTN8kQf3pkeyeDWwqEipJGBL
- dTAbiL1T4VcQPmb7xcNE9/orQYyLhSmRYRITbiUVqL7o+m+zBmdeVNoiTCHTJ6qfAuG4TBAgs
- V1CWgxiPb8P9yGl7IREW/N/6I8l9OxrOioStDVf7CN6dJX/jIYCwCXQGUhav9PMluF0YlUc/X
- 0GCe7OglIFII8iWUZ1J+t0pBJL4WHkLM7J5gErJmIJKA7DK5zsqVF/hs6u0alX0sLjlSR5fBc
- uXHW8nkmOT9Cku9TQDBgGStfarPW7ow6ncNIil1YoOVDWPdlHJilBe4RRzmBkW07JwGZjgvEm
- Xj52oSyYqYLr1i516LPyGjBLvUpokkJd4Ho1pcOiGDEYu9cQ2hqiP+nde6tK2XsNFpjovQ4Et
- aEEESYHF2ytatVw3/Xp/CwQ2T0gKapXJdLXZtUSOGe3BDSUgW6oPG5hTELRP4WEtaGR/Aa2pB
- C05TnGbdkj0qxacIbIacMWOetBLDEorJOIRq6amMilg+kXwZaIDdGbgd+ZRuMX3GrcOUaPVkb
- t3TN9PJEpsIUCh8VPXIfaXlRz2NcSC8/KpLk06pyG0pZvjl3763trhhAW/2KgcVhXWzHdxvzI
- z3aPnQXfTmLsB1wBdIDeDsFxVqRiWILh7L2AvA1CDFSR6/ac0nN3doDb2KNac00AvBKVnkB1R
- UM7GThJqFpHTB2tNZECNkGHNjf/3XHskvIH2CE64MECaSMYK2c2OtPl3GH0MCGjUCnWDYQ0hu
- EJbxL8+MNR7G1etffqe18vIIsl+ipRTE0uwhov10dVWDneE2YuEcQzbmCm1fopT8fx8qKRIbO
- KcS9gyoqRLCBYniaLeuSJru+e91BH0dXCH9SolisC+C7oCBV/Cjk3W99kUFc7TnYnl4Qj+ypy
- RXnkBVz2BIdJwW5+hN4O5nAzeCW7Q1dIvIZ+JP7TWIpZcfw1PybfvZNIZGpKhNBuI2Ly721k8
- pWtCn+GQlX6brCByEmNS/LifOqC3b+Rzg0LvqkAPzHCk7UQrpnYP/b3k8Fb/8X3N9JhxEBsyQ
- j2bcelM3dI44yBjWvUcXe39KXcfaBMDOTEZ11ci+eu/CU5OcvVaD9vSc+sID3tnrzpSpmKVvO
- fdaO8pbdxnO5dooi0by8ipbvRrdvcWKvqW7HPH6BwVH4r51VBkvOlPPs0YoU=
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 15 Sep 2019 13:39:00 +0200 (CEST)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/EcsmFGcW4Y=:re6gANQZN2GMN93QuH6xVC
+ nu7updoRrPP+GS17Morf6UYrf43cRh0kjHPnE5lFffizc1hW2IeN8I9D4xREkG3PwzonTLNjG
+ X8X7EhmHFm044tZCz1p7IBojBW2EdWPpkceUS1ZRs/Kujg8vZBlxwne6OF+i0xOc6lYkF692E
+ osvGoBMv04CNU6mAKyrI5iroukHR7ex0VTVcmRV/gD05dy909dEP863HgJJjx4biYLvMgJNLz
+ Xw+E6MowCUv5Wv//6HLsBspwpUQfEry2bMOWv2TXwyp9MMaHjZNvSa7U1/B4Ka5as5naw+UVF
+ UzOW4yBX9EpG/YIudOjRuLIQ0YqF4SG5EfdZQXrlVYGPTV2asBZm4tG7V0WqmXMropKNyRCs9
+ A2h7sH7PmvuARzbOmCMTNzh77V+8x9/fJAenKEzF13errW0SUmP6AQRXPEo2XFZFXXQ9m60JC
+ tqZgsgta2MmovgrNY8rrgi1qNzlmZqZLPWHoVhJdkR6W0mCR356CxmT05SEjq8d/pS8SAkBsD
+ DpqxW1pNnKp6wuhMbhqDtRXN27VfLltfTJf8/shNXPTMU4qeMCVPy8WXdU2okGKtr88YXMNUQ
+ 0s2eYeJ+m1qXcOubrIzPDn3Y+eZfDygVV4s8MIqukKlQXzZJ3uh9e81kYw5oWzHV2/k0SR7Rl
+ /5RcwCFj/lfVPjt4IYlRTODKP9wDC2Oe+l1yyauB4g3Fs1NTXKojvlkz/UpiIFlqGy61woQer
+ NNsa84kaDsF+AclAliJyuq455lG7Pvh1nduqapPJDmXuLc5tij9AX029bhgx5L8KXZQZd9JU4
+ s3GlkhuQYwJZB0g8xQW3Xye3otGuNQd+TEXH3N59P136dzoGGPOaXOh4lw4Cmw1Kwmp2601I2
+ i7A5b91LFvPELMbIIWTeeK6mZb3vs2YjJOgvmLjeXtEPjbsUNFLF6PR8kMm43+8ZdGMcCGOL4
+ g/IKgMNHFPrkt4UMCWPR+46BHllgraJ50BY2Dv3c5UgZwYVrSonxhq0RwEhjm4rNVK0SviKDQ
+ NhoBG2atTBbZMxnlbuicC/ek9MAoAGNb1/AEsf5q0PYHBb16SgpHiAga1+LWZ/FGuc7LDvs+P
+ YZOP2AWdXitAuLJzlKI/9Vx39lM83cBbk4iV6Z2r6q0J4lA8khqWWU+qQzTtRiXmsE35cq8bj
+ B8beLfpHR141+flNclc4SuIgmIaixshEN4t4mp8DT+jmvupPcQYw/0uwuWm2f42VBbhlLTK9q
+ +jxxaWRaXx+Blu/jlBm4qyttEVZUww4zQMJ0Ew69HRKtO4KgTqTGBNwCzKr4=
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 16 Sep 2019 08:25:42 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 15 Sep 2019 13:38:57 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Mon, 16 Sep 2019 08:25:35 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr
-Subject: Re: [Cocci] const in parameter lists
+Cc: Kate Stewart <kstewart@linuxfoundation.org>,
+        Yi Wang <wang.yi59@zte.com.cn>, Michal Marek <michal.lkml@markovi.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>, Wen Yang <wen.yang99@zte.com.cn>,
+        Allison Randal <allison@lohutok.net>
+Subject: Re: [Cocci] Coccinelle: pci_free_consistent: Checking when
+	constraints
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -126,19 +136,31 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-PiBDb25zdCB3YXMgbm90IHN1cHBvcnRlZCBpbiBmcm9udCBvZiBzaWduZWQgb3IgdW5zaWduZWQg
-KGFzIG9wcG9zZWQgdG8KPiBzaWduZWQgaW50IG9yIHVuc2lnbmVkIGludCkuCgpUaGFua3MgZm9y
-IHRoaXMgZXhwbGFuYXRpb24uCgoKPiBJIGhhdmUgZml4ZWQgdGhpcywKCldpbGwgdGhlIHNvZnR3
-YXJlIGV4dGVuc2lvbiB0cmlnZ2VyIGFueSBjb25zZXF1ZW5jZXMgZm9yIGZlYXR1cmUgcmVxdWVz
-dHMKbGlrZSDigJxTdXBwb3J0IGZvciB2YXJ5aW5nIG9yZGVyIG9mIHR5cGUgcXVhbGlmaWVyc+KA
-nT8KaHR0cHM6Ly9naXRodWIuY29tL2NvY2NpbmVsbGUvY29jY2luZWxsZS9pc3N1ZXMvNDkKCgo+
-IGJ1dCBhbSBub3QgYWJsZSB0b3VwZGF0ZSBnaXRodWIgZHVlIHRvIGEgYnVpbGQgaXNzdWUuCgpD
-YW4gYW55IGNvbnRyaWJ1dG9ycyBoZWxwIGFueSBtb3JlIGhlcmU/CgpSZWdhcmRzLApNYXJrdXMK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KQ29jY2kgbWFp
-bGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5mcgpodHRwczovL3N5c3RlbWUubGlwNi5mci9t
-YWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
+> If you had made your change and tested it, it's at least highly probable
+> that you would understand why it is not sufficient as well.
+
+Where do you expect to find the information how the Coccinelle software
+should handle SmPL when constraints here finally?
+
+
+> You first reflex when you have a question should be to try what you are
+> wondering about, not to head for the mailing list.
+>
+> Please stop spreading misinformation.
+
+* How will different application views influence the desired clarification of
+  software behaviour also for this use case?
+
+* Can such an open issue be resolved better?
+
+Regards,
+Markus
+_______________________________________________
+Cocci mailing list
+Cocci@systeme.lip6.fr
+https://systeme.lip6.fr/mailman/listinfo/cocci
