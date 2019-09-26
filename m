@@ -2,43 +2,43 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40BB4BE2EF
-	for <lists+cocci@lfdr.de>; Wed, 25 Sep 2019 18:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE8EBBEAD0
+	for <lists+cocci@lfdr.de>; Thu, 26 Sep 2019 05:05:08 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8PGtYWr004719;
-	Wed, 25 Sep 2019 18:55:34 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8Q34gUU002320;
+	Thu, 26 Sep 2019 05:04:42 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id E0C9377B4;
-	Wed, 25 Sep 2019 18:55:33 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 070B777B4;
+	Thu, 26 Sep 2019 05:04:42 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 0FE6E76D9
- for <cocci@systeme.lip6.fr>; Wed, 25 Sep 2019 18:55:32 +0200 (CEST)
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.141])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8PGscrA027211
- for <cocci@systeme.lip6.fr>; Wed, 25 Sep 2019 18:54:39 +0200 (CEST)
-Received: from submission (posteo.de [89.146.220.130]) 
- by mout01.posteo.de (Postfix) with ESMTPS id 4F2A8160062
- for <cocci@systeme.lip6.fr>; Wed, 25 Sep 2019 18:54:38 +0200 (CEST)
-Received: from customer (localhost [127.0.0.1])
- by submission (posteo.de) with ESMTPSA id 46dkgJ5vHnz6tm6;
- Wed, 25 Sep 2019 18:54:36 +0200 (CEST)
-From: Michele Martone <michelemartone@users.sourceforge.net>
+ by systeme.lip6.fr (Postfix) with ESMTPS id A0C7B779E
+ for <cocci@systeme.lip6.fr>; Thu, 26 Sep 2019 05:04:39 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8Q34d0H027912
+ for <cocci@systeme.lip6.fr>; Thu, 26 Sep 2019 05:04:39 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.64,550,1559512800"; d="scan'208";a="320650874"
+Received: from unknown (HELO hadrien) ([12.157.10.114])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2019 05:04:38 +0200
+Date: Thu, 26 Sep 2019 05:04:36 +0200 (CEST)
+From: Julia Lawall <julia.lawall@lip6.fr>
+X-X-Sender: julia@hadrien
 To: cocci@systeme.lip6.fr
-Date: Wed, 25 Sep 2019 18:54:14 +0200
-Message-Id: <20190925165414.23602-1-michelemartone@users.sourceforge.net>
-X-Mailer: git-send-email 2.20.1
+Message-ID: <alpine.DEB.2.21.1909260502560.2599@hadrien>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 25 Sep 2019 18:55:36 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 25 Sep 2019 18:54:39 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 26 Sep 2019 05:04:44 +0200 (CEST)
+X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
+ milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]);
+ Thu, 26 Sep 2019 05:04:39 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: nicolas.palix@imag.fr
-Subject: [Cocci] [PATCH] clarify misleading warning message
+Subject: [Cocci] 1.0.8
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,30 +55,11 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-One may think that when warning that
- "should %s be a metavariable?"
-Coccinelle also treats a given symbol %s as a metavariable.
-Better state explicitly that this is not the case.
----
- parsing_cocci/check_meta.ml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Version 1.0.8 is now available as a tag on github.  I will update the web
+page within the next week.  Version 1.0.8 has been tested up through OCaml
+4.08, ie without ocamlp4.
 
-diff --git a/parsing_cocci/check_meta.ml b/parsing_cocci/check_meta.ml
-index e728d8f5..b857d3f6 100644
---- a/parsing_cocci/check_meta.ml
-+++ b/parsing_cocci/check_meta.ml
-@@ -84,7 +84,7 @@ let rec ident context old_metas table minus i =
- 	    not err(* warn only once per id *) && not info.Ast0.isSymbolIdent
- 	  then
- 	    warning
--	      (Printf.sprintf "line %d: should %s be a metavariable?" rl name)
-+	      (Printf.sprintf "line %d: should %s be a metavariable? treating it as symbol." rl name)
-       | _ -> ())
-   | Ast0.MetaId(name,_,seedval,_) ->
-       check_table table minus name;
--- 
-2.20.1
-
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
