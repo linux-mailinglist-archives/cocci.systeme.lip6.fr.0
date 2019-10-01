@@ -2,43 +2,79 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBFD7C264C
-	for <lists+cocci@lfdr.de>; Mon, 30 Sep 2019 21:43:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F6CC34FA
+	for <lists+cocci@lfdr.de>; Tue,  1 Oct 2019 14:58:29 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8UJhLfk002517;
-	Mon, 30 Sep 2019 21:43:21 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x91CvnEp008344;
+	Tue, 1 Oct 2019 14:57:50 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 976EE77B2;
-	Mon, 30 Sep 2019 21:43:21 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id DADC477B4;
+	Tue,  1 Oct 2019 14:57:49 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 033CA77A0
- for <cocci@systeme.lip6.fr>; Mon, 30 Sep 2019 21:43:19 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x8UJhIBo019530
- for <cocci@systeme.lip6.fr>; Mon, 30 Sep 2019 21:43:18 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.64,568,1559512800"; d="scan'208";a="321149451"
-Received: from 81-65-53-202.rev.numericable.fr (HELO hadrien) ([81.65.53.202])
- by mail3-relais-sop.national.inria.fr with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Sep 2019 21:43:18 +0200
-Date: Mon, 30 Sep 2019 21:43:18 +0200 (CEST)
-From: Julia Lawall <julia.lawall@lip6.fr>
-X-X-Sender: jll@hadrien
-To: cocci@systeme.lip6.fr
-Message-ID: <alpine.DEB.2.21.1909302142430.2925@hadrien>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 7C0B877A7
+ for <cocci@systeme.lip6.fr>; Tue,  1 Oct 2019 14:57:47 +0200 (CEST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20:0:0:0:442] (may be forged))
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x91Cvkfh009647
+ for <cocci@systeme.lip6.fr>; Tue, 1 Oct 2019 14:57:46 +0200 (CEST)
+Received: by mail-wr1-x442.google.com with SMTP id o18so15360615wrv.13
+ for <cocci@systeme.lip6.fr>; Tue, 01 Oct 2019 05:57:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=MPSSA5yYuwi4+td+wXD52Uwh92a2xR1aiiNotMAMCSE=;
+ b=a3Rf8OxscSifwK0pPutJqQjH17miHaikmrXWHOE/FPTWSW2aOC3KYZ1G+PI+hpTj+A
+ fp3YnJyeqQg713B9PbOqFQ6BLHaC1ZiTowuI9mLH404Gmo1Ma1HcTOqgLeErFNWD1ga5
+ vsnrRm04P2Smbg+E94VKoPJd8aoWCP6oqR60pCQyU+RHjfGHIwKWeF+oZZEtFeEedpay
+ E8T8bo/TX2D7AYPCNFosomlWZTUP93cvmhud2OhFvEsSj63EZW93wBOXtosyeq5PPay3
+ aYaNst+psFNwxtr/2FE+OHh0IP0X9rfT18NU9OzKopbou1VeVAGMc/hg/NxVpqLadS0D
+ aJig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=MPSSA5yYuwi4+td+wXD52Uwh92a2xR1aiiNotMAMCSE=;
+ b=gJ/g9ZgphqqkDYJmTNm8OL5V4VCJoolxTgc5AaXdSE3bCsGq+C9gLjr/y+JVAwpKR4
+ hMJy1zAkzP/wN+8FMj0w+8X+gt/jT/MQ9KXVLy58GBrJfshd1Z8vbvLdUm3UNN/VYBhu
+ THWkk5JnmBp449Pnu14r1N1DztzIEVaWbbHqMfBfjCGURCYXyZ2AFd7t227M9xyABMAH
+ eyfNkkqquVKrFMo2unkNUxc1inbXpGXMKwYhSalua5A5BRyZcRrmfQNJL5yj8+tP994K
+ t8MYE89mqJ7oGa4e4kPy0wUSSoT2UDfw2okeWbWIyVSDUKj6FqG0Je9+XyQ901tVcILW
+ bhkw==
+X-Gm-Message-State: APjAAAV+y7mCc9z7DIgYH7mbMGiBkvAITg/ZGd35XLQ7oMo6AFaa5E5/
+ /zR8bv/6HoAYBJ+SQEPxarfHZA==
+X-Google-Smtp-Source: APXvYqy7EU9bCTxulCE2P0U9ceV+LdZF+owY0xIwvghTFmWd+5GbnaVwlZM8yo2Kzj/1Bc7sCAsNJQ==
+X-Received: by 2002:adf:f5ca:: with SMTP id k10mr3683712wrp.236.1569934665625; 
+ Tue, 01 Oct 2019 05:57:45 -0700 (PDT)
+Received: from google.com ([2a00:79e0:d:210:e8f7:125b:61e9:733d])
+ by smtp.gmail.com with ESMTPSA id l9sm2730888wme.45.2019.10.01.05.57.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Oct 2019 05:57:44 -0700 (PDT)
+Date: Tue, 1 Oct 2019 13:57:42 +0100
+From: Matthias Maennich <maennich@google.com>
+To: Yuehaibing <yuehaibing@huawei.com>
+Message-ID: <20191001125742.GD90796@google.com>
+References: <20190928094245.45696-1-yuehaibing@huawei.com>
+ <alpine.DEB.2.21.1909280542490.2168@hadrien>
+ <2c109d6b-45ad-b3ca-1951-bde4dac91d2a@huawei.com>
+ <alpine.DEB.2.21.1909291810300.3346@hadrien>
+ <ac79cb42-1713-8801-37e4-edde540f101c@huawei.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 30 Sep 2019 21:43:24 +0200 (CEST)
-X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
- milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]);
- Mon, 30 Sep 2019 21:43:18 +0200 (CEST)
+Content-Disposition: inline
+In-Reply-To: <ac79cb42-1713-8801-37e4-edde540f101c@huawei.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 01 Oct 2019 14:57:52 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Tue, 01 Oct 2019 14:57:46 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Subject: [Cocci] 1.0.8 on Ubuntu
+X-Scanned-By: MIMEDefang 2.78
+Cc: michal.lkml@markovi.net, gregkh@linuxfoundation.org, nicolas.palix@imag.fr,
+        linux-kernel@vger.kernel.org, cocci@systeme.lip6.fr
+Subject: Re: [Cocci] [RFC PATCH] scripts: Fix coccicheck failed
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,16 +86,102 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-For those who use Ubuntu, a PPA is available:
+Hi Yuehaibing!
 
-https://launchpad.net/~npalix/+archive/ubuntu/coccinelle/+packages
+On Mon, Sep 30, 2019 at 10:32:18AM +0800, Yuehaibing wrote:
+>On 2019/9/30 0:32, Julia Lawall wrote:
+>>
+>>
+>> On Sun, 29 Sep 2019, Yuehaibing wrote:
+>>
+>>> On 2019/9/28 20:43, Julia Lawall wrote:
+>>>>
+>>>>
+>>>> On Sat, 28 Sep 2019, YueHaibing wrote:
+>>>>
+>>>>> Run make coccicheck, I got this:
+>>>>>
+>>>>> spatch -D patch --no-show-diff --very-quiet --cocci-file
+>>>>>  ./scripts/coccinelle/misc/add_namespace.cocci --dir .
+>>>>>  -I ./arch/x86/include -I ./arch/x86/include/generated
+>>>>>  -I ./include -I ./arch/x86/include/uapi
+>>>>>  -I ./arch/x86/include/generated/uapi -I ./include/uapi
+>>>>>  -I ./include/generated/uapi --include ./include/linux/kconfig.h
+>>>>>  --jobs 192 --chunksize 1
+>>>>>
+>>>>> virtual rule patch not supported
+>>>>> coccicheck failed
+>>>>>
+>>>>> It seems add_namespace.cocci cannot be called in coccicheck.
+>>>>
+>>>> Could you explain the issue better?  Does the current state cause make
+>>>> coccicheck to fail?  Or is it just silently not being called?
+>>>
+>>> Yes, it cause make coccicheck failed like this:
+>>>
+>>> ...
+>>> ./drivers/xen/xenbus/xenbus_comms.c:290:2-8: preceding lock on line 243
+>>> ./fs/fuse/dev.c:1227:2-8: preceding lock on line 1206
+>>> ./fs/fuse/dev.c:1232:3-9: preceding lock on line 1206
+>>> coccicheck failed
+>>> make[1]: *** [coccicheck] Error 255
+>>> make: *** [sub-make] Error 2
+>>
+>> Could you set the verbose options to see what the problem is?  Maybe the
+>> problem would be solved by putting virtual report at the top of the rule.
+>> But it might still fail because nothing can happen without a value for the
+>> virtual metavariable ns.
+>
+>diff --git a/scripts/coccinelle/misc/add_namespace.cocci b/scripts/coccinelle/misc/add_namespace.cocci
+>index c832bb6445a8..99e93a6c2e24 100644
+>--- a/scripts/coccinelle/misc/add_namespace.cocci
+>+++ b/scripts/coccinelle/misc/add_namespace.cocci
+>@@ -6,6 +6,8 @@
+> /// add a missing namespace tag to a module source file.
+> ///
+>
+>+virtual report
+>+
+> @has_ns_import@
+> declarer name MODULE_IMPORT_NS;
+> identifier virtual.ns;
+>
+>
+>
+>Adding virtual report make the coccicheck go ahead smoothly.
 
-julia
+Thanks for reporting and following up with this issue. I certainly did
+not expect all scripts in scripts/coccinelle to be automatically called
+by coccicheck and I still think scripts/coccinelle is the right location
+for add_namespace.cocci.
+
+I guess, others might better understand the implications of your two
+lines fix above, but it looks good to me to address the problem.
+
+Thanks!
+
+>>
+>> Should the coccinelle directory be only for things that work with make
+>> coccicheck, or for all Coccinelle scripts?
+
+At least I was not expecting this behaviour. Though scripts/ hosts
+scripts of various languages, I still think putting all coccinelle
+scripts in scripts/coccinelle sounds sensible.
+
+>>
+>> julia
+>>
+>> .
+>>
+>
+
+Cheers,
+Matthias
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
