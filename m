@@ -2,45 +2,46 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3F0D6424
-	for <lists+cocci@lfdr.de>; Mon, 14 Oct 2019 15:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8E0D6495
+	for <lists+cocci@lfdr.de>; Mon, 14 Oct 2019 16:03:59 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9EDXAvC021598;
-	Mon, 14 Oct 2019 15:33:10 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9EE3a5K005683;
+	Mon, 14 Oct 2019 16:03:36 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 8FEC377C3;
-	Mon, 14 Oct 2019 15:33:10 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 1728B77C3;
+	Mon, 14 Oct 2019 16:03:36 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 1DAFB7792
- for <cocci@systeme.lip6.fr>; Mon, 14 Oct 2019 15:33:08 +0200 (CEST)
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9EDX6bx009410
- for <cocci@systeme.lip6.fr>; Mon, 14 Oct 2019 15:33:07 +0200 (CEST)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 21946BDE8;
- Mon, 14 Oct 2019 13:33:06 +0000 (UTC)
-To: Julia Lawall <julia.lawall@lip6.fr>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 69B9F7792
+ for <cocci@systeme.lip6.fr>; Mon, 14 Oct 2019 16:03:34 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9EE3YgA002493
+ for <cocci@systeme.lip6.fr>; Mon, 14 Oct 2019 16:03:34 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.67,295,1566856800"; d="scan'208";a="322647124"
+Received: from portablejulia.rsr.lip6.fr ([132.227.76.63])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2019 16:03:33 +0200
+Date: Mon, 14 Oct 2019 16:03:33 +0200 (CEST)
+From: Julia Lawall <julia.lawall@lip6.fr>
+X-X-Sender: julia@hadrien
+To: =?ISO-8859-15?Q?J=FCrgen_Gro=DF?= <jgross@suse.com>
+In-Reply-To: <c03fd3e3-685b-1305-54c0-e3063201cd31@suse.com>
+Message-ID: <alpine.DEB.2.21.1910141602130.2330@hadrien>
 References: <56e7bd73-5b50-ddeb-9a56-62daf93eb015@suse.com>
  <alpine.DEB.2.21.1910112200230.3284@hadrien>
  <fb924870-4bc2-1ca0-4fa4-0ddbf7ebb9d2@suse.com>
  <alpine.DEB.2.21.1910141309080.2330@hadrien>
-From: =?UTF-8?B?SsO8cmdlbiBHcm/Dnw==?= <jgross@suse.com>
-Message-ID: <c03fd3e3-685b-1305-54c0-e3063201cd31@suse.com>
-Date: Mon, 14 Oct 2019 15:33:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+ <c03fd3e3-685b-1305-54c0-e3063201cd31@suse.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.1910141309080.2330@hadrien>
-Content-Type: multipart/mixed; boundary="------------63E125D08E7ABFC8CFE21D0B"
-Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 14 Oct 2019 15:33:13 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 14 Oct 2019 15:33:07 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 14 Oct 2019 16:03:36 +0200 (CEST)
+X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
+ milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]);
+ Mon, 14 Oct 2019 16:03:34 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr
@@ -56,145 +57,26 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-This is a multi-part message in MIME format.
---------------63E125D08E7ABFC8CFE21D0B
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 8bit
+> > the macro is not valid C.  But it doesn't work if you add a semicolon at
+> > the end either.  It seems that a sequence of statements is not supported
+> > either.  On the other hand, if you transform it into a do while(0), even
+> > with no trailing semicolon after the while (0) all is fine.
+>
+> This is not always possible. See the new example as attached.
+>
+> This is more like the original problem (stripped down a lot).
 
-On 14.10.19 13:14, Julia Lawall wrote:
-> 
-> 
-> On Mon, 14 Oct 2019, Jürgen Groß wrote:
-> 
->> On 11.10.19 22:00, Julia Lawall wrote:
->>>
->>>
->>> On Fri, 11 Oct 2019, Jürgen Groß wrote:
->>>
->>>> Hi,
->>>>
->>>> I have a simple semantic patch:
->>>>
->>>>     virtual patch
->>>>
->>>>     @@
->>>>     expression buf, val;
->>>>     @@
->>>>     - snprintf(buf, PAGE_SIZE, "%d\n", val)
->>>>     + spgprintf_d(buf, val)
->>>>
->>>> This works nearly always as expected, but not in some macros. The cases
->>>> where it is not working are those when "val" is using a parameter of the
->>>> macro, e.g.:
->>>>
->>>>     #define MACRO(name)    snprintf(pg, PAGE_SIZE, %u\n", ptr->name)
->>>>
->>>> Is that on purpose? If yes, how can this be avoided?
->>>
->>> I don't think it should be on purpose.  Could you send some C code that
->>> illustrates the problem?
->>
->> I have attached a little C file and a semantic patch, which I had
->> located in a local directory.
->>
->> I invoke spatch via: "spatch --cocci-file patch.cocci --patch . --dir ."
->>
->> The result shows that the problem is a little bit different from my
->> first analysis: whether a pattern is recognized or not seems to depend
->> on macro parameter usage, which is not limited to the pattern itself.
-> 
-> Thanks for the examples.  The problem in these examples actually has
-> nothing to with parameter usage, but with the ability to parse the macro
-> definition.  I get:
-> 
->   #define macro1a(par)            \
-> -        func(buf, 1, par)
-> +        func2(buf, par)
-> 
-> Tha above mentions a parameter but the code gets changed.  This case is no
-> problem because the body of the macro is an expression.
-> 
-> 
->   #define macro1b(par)            \
->           func(buf, 1, par)       \
->           func(buf, 1, par)
-> 
-> Nothing happens here.  It is not possible in C to have one function call
-> after another like this.
+At the moment, a complete function definition is not possible.  But I know
+that this is a common case.  I'll see if it can be added without adding
+parsing conflicts.  A sequence of statements did not work for this reason.
 
-Oh sorry, typo by me.
-
-> 
-> 
->   #define macro2a(par)            \
->           par++;                  \
->           func(buf, 1, 17)
-> 
-> Nothing happens here either.  Because the final ; is omitted the body of
-> the macro is not valid C.  But it doesn't work if you add a semicolon at
-> the end either.  It seems that a sequence of statements is not supported
-> either.  OOn the other hand, if you transform it into a do while(0), even
-> with no trailing semicolon after the while (0) all is fine.
-
-This is not always possible. See the new example as attached.
-
-This is more like the original problem (stripped down a lot).
-
-
-Juergen
-
---------------63E125D08E7ABFC8CFE21D0B
-Content-Type: text/x-csrc; charset=UTF-8;
- name="tst.c"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="tst.c"
-
-#include <stdio.h>
-
-#define macro1(prefix, name)                              \
-static int func##prefix##_##name##_show(char *page)       \
-{                                                         \
-        return snprintf(page, 1, "%d\n", name);           \
-}
-
-#define macro2(name)                                      \
-static int func##name##_show(char *page)                  \
-{                                                         \
-        int rb;                                           \
-                                                          \
-        rb = snprintf(page, 1, "%d\n", name);             \
-                                                          \
-        return rb;                                        \
-}                                                         \
-                                                          \
-macro1(pre, name)
-
---------------63E125D08E7ABFC8CFE21D0B
-Content-Type: text/plain; charset=UTF-8;
- name="patch.cocci"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="patch.cocci"
-
-@@
-expression buf, val;
-@@
-- snprintf(buf, 1, "%d\n", val)
-+ spgprintf(buf, val)
-
---------------63E125D08E7ABFC8CFE21D0B
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
-
---------------63E125D08E7ABFC8CFE21D0B--
