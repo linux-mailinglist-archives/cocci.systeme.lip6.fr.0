@@ -2,54 +2,77 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F524DDCDF
-	for <lists+cocci@lfdr.de>; Sun, 20 Oct 2019 07:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D29F3DDCE2
+	for <lists+cocci@lfdr.de>; Sun, 20 Oct 2019 07:44:23 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9K5i2nD028225;
-	Sun, 20 Oct 2019 07:44:02 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9K5i39i026540;
+	Sun, 20 Oct 2019 07:44:03 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id D5B7177C2;
-	Sun, 20 Oct 2019 07:44:02 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 3899C76F6;
+	Sun, 20 Oct 2019 07:44:03 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 94FC67792
- for <cocci@systeme.lip6.fr>; Sat, 19 Oct 2019 14:09:46 +0200 (CEST)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
- [217.70.183.201])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9JC9ilV029148
- for <cocci@systeme.lip6.fr>; Sat, 19 Oct 2019 14:09:44 +0200 (CEST)
-X-Originating-IP: 86.202.229.42
-Received: from localhost (lfbn-lyo-1-146-42.w86-202.abo.wanadoo.fr
- [86.202.229.42])
- (Authenticated sender: alexandre.belloni@bootlin.com)
- by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 79C991BF208;
- Sat, 19 Oct 2019 12:09:41 +0000 (UTC)
-Date: Sat, 19 Oct 2019 14:09:41 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Markus Elfring <Markus.Elfring@web.de>
-Message-ID: <20191019120941.GL3125@piout.net>
+ by systeme.lip6.fr (Postfix) with ESMTPS id DFC937792
+ for <cocci@systeme.lip6.fr>; Sat, 19 Oct 2019 16:30:03 +0200 (CEST)
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:242] (may be forged))
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9JEU12Z021453
+ for <cocci@systeme.lip6.fr>; Sat, 19 Oct 2019 16:30:01 +0200 (CEST)
+Received: by mail-oi1-x242.google.com with SMTP id k9so7591980oib.7
+ for <cocci@systeme.lip6.fr>; Sat, 19 Oct 2019 07:30:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=ghDSQm39Jlx5gmXnVANSIgsOJIuDnV4Wo+ABz1BaRQU=;
+ b=1tP4sHwYNnpUfkWS3qnr2mj9w0eS2pve2ZqGcA7RzVnVzMz+noVDjBSoCquw3GTUSk
+ f++M1+Rc6MGqcbC/TbG/SmndF5rQSjKZTrOEuHH9ie83u+6B1tSC005RK6D1DxL2ZlTh
+ Xllcir1nEKTJ7o0C8pxtRmkgEUBu9uehNb45RopqUyZIfHkcbzhZ9BGJiD8F8x7R1eBZ
+ FZwAgKrK8ZE1SNh4s3+j78KnVFNduRwTearMxrg3K2DGSzMocmiDQicDO/JE+c+fa5jV
+ /G6KTl3E1eIIPgv0if1LsVYBbc6ru8l7X979qo6qXHCDcLrtYbAYwp6XQ0LZYec+SXHg
+ B43g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=ghDSQm39Jlx5gmXnVANSIgsOJIuDnV4Wo+ABz1BaRQU=;
+ b=Peellg8aKm9qdIm7f6JoX2Afu4qx88hmlIBUnxhGmBpyI26q8C8aq2n1Fk2kEV14WM
+ uwBZt2uEYwgC6vSQSLvPQxuGJP4c0gEOjMz9SbB5Gr6dC+gzgIUerhwpTv7PB/Ctc7wY
+ jFVjZxibxOc1F6KbLUAljV2O0OhqyzGEuMGcp4+repI06XnmWZJlP+AUY4Q05HdGUuxz
+ rPlWMtOsPdJNcixDQ0qxP5Qfyu7d+pVlElNMUNfInlnb1j71sEYvwJA8JXo7crREhAZg
+ 8aUCGHjcrSY+mdrXqlz2WoB2nrgtxaiI3MVEzHvOrbA6m9LV6yAA+Vg2OIBL0vcAFapl
+ s/JQ==
+X-Gm-Message-State: APjAAAX97I7QRjIr7L0uMbLnL7wfIlFyB9FHuPulw+ar2adq5rx6ScVG
+ YegK/gmYAhf7bfbur72V7wfSX1i0idHHt8UeGj9MWg==
+X-Google-Smtp-Source: APXvYqy7kFGbeJUVk96O4myEcxmRrSHyTc66p9xYDDub/LBqYgX2CKrxiG35GXcyGwr8n6C75UtxLrayLoJT/v4Zxsk=
+X-Received: by 2002:a54:4e83:: with SMTP id c3mr12411782oiy.170.1571495400968; 
+ Sat, 19 Oct 2019 07:30:00 -0700 (PDT)
+MIME-Version: 1.0
 References: <20191017142237.9734-1-alexandre.belloni@bootlin.com>
  <81269cd6-e26d-b8aa-cf17-3a2285851564@web.de>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <81269cd6-e26d-b8aa-cf17-3a2285851564@web.de>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+ <20191019120941.GL3125@piout.net>
+In-Reply-To: <20191019120941.GL3125@piout.net>
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date: Sat, 19 Oct 2019 16:29:49 +0200
+Message-ID: <CAMpxmJVEXubtBhQs5wH00wvK=yp8nr0cZ04x9t8eCTLVU=O1JA@mail.gmail.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
 X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 20 Oct 2019 07:44:03 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 19 Oct 2019 14:09:44 +0200 (CEST)
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sat, 19 Oct 2019 16:30:02 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 20 Oct 2019 07:43:59 +0200
+X-Scanned-By: MIMEDefang 2.78
+X-Mailman-Approved-At: Sun, 20 Oct 2019 07:44:00 +0200
 Cc: Nicolas Palix <nicolas.palix@imag.fr>,
         Michal Marek <michal.lkml@markovi.net>, Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Marc Zyngier <maz@kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
         Linus Torvalds <torvalds@linuxfoundation.org>,
+        Markus Elfring <Markus.Elfring@web.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Thomas Gleixner <tglx@linutronix.de>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -67,60 +90,43 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On 19/10/2019 11:00:47+0200, Markus Elfring wrote:
-> > While it is useful for new drivers to use devm_platform_ioremap_resource,
-> 
-> This is nice.
-> 
-> 
-> > this script is currently used to spam maintainers,
-> 
-> This view is unfortunate.
-> 
-> Do we stumble on a target conflict again?
-> 
-> 
-> > often updating very old drivers.
-> 
-> This can also happen.
-> 
-> 
-> > The net benefit is the removal of 2 lines of code in the driver
-> 
-> Additional effects can be reconsidered, can't they?
-> 
-
-What are the additional effects? What is the end goal of converting all
-the existing drivers to devm_platform_ioremap_resource? The existing
-code is currently always correct and it is difficult to see how this
-would lead to any bug avoidance in the long term.
-
-> > but the review load for the maintainers is huge.
-> 
-> Does collateral evolution trigger a remarkable amount of changes occasionally?
-> 
-
-This is not an evolution, it is unnecessary churn. Those patches have no
-benefit and eat up very valuable reviewer time.
-
-> 
-> How will such feedback influence the development and integration of
-> further scripts for the semantic patch language (Coccinelle software)?
-> 
-
-There are a few other scripts that have no added value when applied to
-existing code, like ptr_ret.cocci.
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+c29iLiwgMTkgcGHFuiAyMDE5IG8gMTQ6MDkgQWxleGFuZHJlIEJlbGxvbmkKPGFsZXhhbmRyZS5i
+ZWxsb25pQGJvb3RsaW4uY29tPiBuYXBpc2HFgihhKToKPgo+IE9uIDE5LzEwLzIwMTkgMTE6MDA6
+NDcrMDIwMCwgTWFya3VzIEVsZnJpbmcgd3JvdGU6Cj4gPiA+IFdoaWxlIGl0IGlzIHVzZWZ1bCBm
+b3IgbmV3IGRyaXZlcnMgdG8gdXNlIGRldm1fcGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZSwKPiA+
+Cj4gPiBUaGlzIGlzIG5pY2UuCj4gPgo+ID4KPiA+ID4gdGhpcyBzY3JpcHQgaXMgY3VycmVudGx5
+IHVzZWQgdG8gc3BhbSBtYWludGFpbmVycywKPiA+Cj4gPiBUaGlzIHZpZXcgaXMgdW5mb3J0dW5h
+dGUuCj4gPgo+ID4gRG8gd2Ugc3R1bWJsZSBvbiBhIHRhcmdldCBjb25mbGljdCBhZ2Fpbj8KPiA+
+Cj4gPgo+ID4gPiBvZnRlbiB1cGRhdGluZyB2ZXJ5IG9sZCBkcml2ZXJzLgo+ID4KPiA+IFRoaXMg
+Y2FuIGFsc28gaGFwcGVuLgo+ID4KPiA+Cj4gPiA+IFRoZSBuZXQgYmVuZWZpdCBpcyB0aGUgcmVt
+b3ZhbCBvZiAyIGxpbmVzIG9mIGNvZGUgaW4gdGhlIGRyaXZlcgo+ID4KPiA+IEFkZGl0aW9uYWwg
+ZWZmZWN0cyBjYW4gYmUgcmVjb25zaWRlcmVkLCBjYW4ndCB0aGV5Pwo+ID4KPgo+IFdoYXQgYXJl
+IHRoZSBhZGRpdGlvbmFsIGVmZmVjdHM/IFdoYXQgaXMgdGhlIGVuZCBnb2FsIG9mIGNvbnZlcnRp
+bmcgYWxsCj4gdGhlIGV4aXN0aW5nIGRyaXZlcnMgdG8gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jl
+c291cmNlPyBUaGUgZXhpc3RpbmcKPiBjb2RlIGlzIGN1cnJlbnRseSBhbHdheXMgY29ycmVjdCBh
+bmQgaXQgaXMgZGlmZmljdWx0IHRvIHNlZSBob3cgdGhpcwo+IHdvdWxkIGxlYWQgdG8gYW55IGJ1
+ZyBhdm9pZGFuY2UgaW4gdGhlIGxvbmcgdGVybS4KPgo+ID4gPiBidXQgdGhlIHJldmlldyBsb2Fk
+IGZvciB0aGUgbWFpbnRhaW5lcnMgaXMgaHVnZS4KPiA+Cj4gPiBEb2VzIGNvbGxhdGVyYWwgZXZv
+bHV0aW9uIHRyaWdnZXIgYSByZW1hcmthYmxlIGFtb3VudCBvZiBjaGFuZ2VzIG9jY2FzaW9uYWxs
+eT8KPiA+Cj4KPiBUaGlzIGlzIG5vdCBhbiBldm9sdXRpb24sIGl0IGlzIHVubmVjZXNzYXJ5IGNo
+dXJuLiBUaG9zZSBwYXRjaGVzIGhhdmUgbm8KPiBiZW5lZml0IGFuZCBlYXQgdXAgdmVyeSB2YWx1
+YWJsZSByZXZpZXdlciB0aW1lLgo+Cj4gPgo+ID4gSG93IHdpbGwgc3VjaCBmZWVkYmFjayBpbmZs
+dWVuY2UgdGhlIGRldmVsb3BtZW50IGFuZCBpbnRlZ3JhdGlvbiBvZgo+ID4gZnVydGhlciBzY3Jp
+cHRzIGZvciB0aGUgc2VtYW50aWMgcGF0Y2ggbGFuZ3VhZ2UgKENvY2NpbmVsbGUgc29mdHdhcmUp
+Pwo+ID4KPgo+IFRoZXJlIGFyZSBhIGZldyBvdGhlciBzY3JpcHRzIHRoYXQgaGF2ZSBubyBhZGRl
+ZCB2YWx1ZSB3aGVuIGFwcGxpZWQgdG8KPiBleGlzdGluZyBjb2RlLCBsaWtlIHB0cl9yZXQuY29j
+Y2kuCj4KPiAtLQo+IEFsZXhhbmRyZSBCZWxsb25pLCBCb290bGluCj4gRW1iZWRkZWQgTGludXgg
+YW5kIEtlcm5lbCBlbmdpbmVlcmluZwo+IGh0dHBzOi8vYm9vdGxpbi5jb20KCkhpIEFsZXhhbmRy
+ZSwKCk1hcmt1cyBoYXMgYmVlbiBibGFjay1saXN0ZWQgYnkgc2V2ZXJhbCBjb3JlIG1haW50YWlu
+ZXJzIGFscmVhZHksIEkKdGhpbmsgeW91J3JlIHdhc3RpbmcgeW91ciB0aW1lIGFyZ3VpbmcuIFdS
+VCB0aGUgcGF0Y2g6IHdoZW4KaW50cm9kdWNpbmcgdGhpcyB3cmFwcGVyLCBJIGRlZmluaXRlbHkg
+ZGlkbid0IGV4cGVjdCBwZW9wbGUgdG8gc2VuZApodW5kcmVkcyBvZiBvZnRlbiB3cm9uZyBwYXRj
+aGVzIGJhc2VkIG9uIGNvY2NpbmVsbGUgcmVwb3J0cywgc28gSQpndWVzcyByZW1vdmluZyB0aGUg
+c2NyaXB0IGlzIGNvcnJlY3QuCgpCYXJ0Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCkNvY2NpIG1haWxpbmcgbGlzdApDb2NjaUBzeXN0ZW1lLmxpcDYuZnIK
+aHR0cHM6Ly9zeXN0ZW1lLmxpcDYuZnIvbWFpbG1hbi9saXN0aW5mby9jb2NjaQo=
