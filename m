@@ -2,62 +2,56 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76F5DDCE1
-	for <lists+cocci@lfdr.de>; Sun, 20 Oct 2019 07:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C898ADDCDE
+	for <lists+cocci@lfdr.de>; Sun, 20 Oct 2019 07:43:09 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9K5i5BB018662;
-	Sun, 20 Oct 2019 07:44:05 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9K5geg5026330;
+	Sun, 20 Oct 2019 07:42:40 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 6838C77E3;
-	Sun, 20 Oct 2019 07:44:04 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 2C23977C2;
+	Sun, 20 Oct 2019 07:42:40 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 6627376F6
- for <cocci@systeme.lip6.fr>; Sun, 20 Oct 2019 07:38:33 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 733BE76F6
+ for <cocci@systeme.lip6.fr>; Sun, 20 Oct 2019 07:42:38 +0200 (CEST)
 Received: from mail3-relais-sop.national.inria.fr
  (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9K5cVEu014460
- for <cocci@systeme.lip6.fr>; Sun, 20 Oct 2019 07:38:31 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.67,318,1566856800"; d="scan'208";a="323338717"
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id x9K5gb4Z012806
+ for <cocci@systeme.lip6.fr>; Sun, 20 Oct 2019 07:42:37 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.67,318,1566856800"; d="scan'208";a="323338896"
 Received: from ip-121.net-89-2-166.rev.numericable.fr (HELO hadrien)
  ([89.2.166.121])
  by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2019 07:38:30 +0200
-Date: Sun, 20 Oct 2019 07:38:30 +0200 (CEST)
+ 20 Oct 2019 07:42:37 +0200
+Date: Sun, 20 Oct 2019 07:42:36 +0200 (CEST)
 From: Julia Lawall <julia.lawall@lip6.fr>
 X-X-Sender: jll@hadrien
-To: Marc Zyngier <maz@kernel.org>
-In-Reply-To: <868spgzcti.wl-maz@kernel.org>
-Message-ID: <alpine.DEB.2.21.1910200735400.3689@hadrien>
-References: <e895d04ef5a282b5b48fcb21cbc175d2@www.loen.fr>
- <693a3b68-a0f1-81fe-40ce-2b6ba189450c@web.de> <868spgzcti.wl-maz@kernel.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <958b4a11-e45b-3795-a3cb-08f98aaa40d6@web.de>
+Message-ID: <alpine.DEB.2.21.1910200741180.3689@hadrien>
+References: <24130ec6-4a20-7be4-755f-a6dfffcb6c97@web.de>
+ <alpine.DEB.2.21.1910101509370.2305@hadrien>
+ <45be389f-23f9-cbff-fa5f-8ad111124f94@web.de>
+ <alpine.DEB.2.21.1910181530460.3697@hadrien>
+ <1a3776fe-7f18-e072-9bda-30d10ffd1c07@web.de>
+ <32b67cc6-0dd9-6615-d8ed-5c2dfe2af863@web.de>
+ <alpine.DEB.2.21.1910191740020.3272@hadrien>
+ <958b4a11-e45b-3795-a3cb-08f98aaa40d6@web.de>
 User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 20 Oct 2019 07:44:05 +0200 (CEST)
+Content-Type: multipart/mixed; boundary="8323329-305256650-1571550157=:3689"
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 20 Oct 2019 07:42:42 +0200 (CEST)
 X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
  milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]);
- Sun, 20 Oct 2019 07:38:31 +0200 (CEST)
+ Sun, 20 Oct 2019 07:42:37 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 20 Oct 2019 07:43:59 +0200
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        YueHaibing <yuehaibing@huawei.com>, Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nicolas Palix <nicolas.palix@imag.fr>,
-        Linus Torvalds <torvalds@linuxfoundation.org>,
-        Markus Elfring <Markus.Elfring@web.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] coccinelle: api/devm_platform_ioremap_resource: remove
- useless script
+Cc: Coccinelle <cocci@systeme.lip6.fr>
+Subject: Re: [Cocci] Software analysis with SmPL around unchecked pointer
+ function calls
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,24 +63,91 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-> If said script was providing a correct semantic patch instead of being
-> an incentive for people to churn untested patches that span the whole
-> tree, that'd be a different story. But that's not what this is about.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-What is the actual incorrectness with the script?
+--8323329-305256650-1571550157=:3689
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 
-An option could be to adjust the rule such that it can be run with an
-extra command line option, like -D developer but is not run by default by
-make coccicheck.
 
-thanks,
+
+On Sat, 19 Oct 2019, Markus Elfring wrote:
+
+> >> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/arm/display/komeda/komeda_dev.c?id=c4b9850b3676869ac0def5885d781d17f64b3a86#n222
+> >>
+> >> …
+> >> @@ -222,… @@ struct komeda_dev *komeda_dev_create(str
+> >>
+> >>  	clk_prepare_enable(mdev->aclk);
+> >>
+> >> -	mdev->funcs = product->identify(mdev->reg_base, &mdev->chip);
+> >>  	if (!komeda_product_match(mdev, product->product_id)) {
+> >> …
+> >> 	mdev->funcs->init_format_table(mdev);
+> >>
+> >> 	err = mdev->funcs->enum_resources(mdev);
+> >> …
+> >>
+> >>
+> >> Now I would appreciate once more if the description for the supported
+> >> software behaviour can be completed for the safe usage of SmPL
+> >> code exclusion specifications.
+> …
+> > I have no idea what you are asking about here.
+>
+> I hope that another wording approach can contribute another bit
+> to a better common understanding of the involved source code
+> analysis expectations.
+>
+>
+> > Are you concerned that you don't know the return type of mdev->funcs->init_format_table?
+>
+> No, not in this test case.
+>
+> This member function is declared with the return type “void”.
+> https://elixir.bootlin.com/linux/v5.4-rc2/source/drivers/gpu/drm/arm/display/komeda/komeda_dev.h#L83
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/arm/display/komeda/komeda_dev.h?id=c4b9850b3676869ac0def5885d781d17f64b3a86#n94
+>
+> I would find this function call questionable otherwise.
+>
+> The desired function is determined over the pointer “mdev->funcs”
+> which was provided by a call of the function “product->identify(…)”.
+> The provided function pointer is actually not directly checked
+> after the data structure member assignment.
+> This could be an analysis concern. (But it can be determined by inspection
+> of involved source files that a valid pointer will probably be set.
+> I assume that the exclusion of null pointers would be too challenging
+> for the discussed tiny SmPL script.)
+>
+> The uncertainty around the partly (un)documented software behaviour
+> for SmPL when constraints makes it unclear then if the presented
+> source code place should finally be treated as a false positive.
+> Should it have been excluded because pointer expressions should be detectable
+> for the metavariable “y” (a bit later)?
+
+Coccinelle only knows the type of mdev->funcs if it sees the type
+definition of mdev.  It doesn't take into account the subsequent usage of
+mdev->funcs to determine that this value is a pointer.
+
 julia
+
+>
+> Regards,
+> Markus
+>
+--8323329-305256650-1571550157=:3689
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
+
+--8323329-305256650-1571550157=:3689--
