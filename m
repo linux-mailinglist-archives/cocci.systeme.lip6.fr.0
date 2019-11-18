@@ -2,38 +2,36 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 580B6FFA56
-	for <lists+cocci@lfdr.de>; Sun, 17 Nov 2019 15:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36921FFF4E
+	for <lists+cocci@lfdr.de>; Mon, 18 Nov 2019 08:08:50 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id xAHEkZoZ009255;
-	Sun, 17 Nov 2019 15:46:35 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id xAI78LKW002695;
+	Mon, 18 Nov 2019 08:08:21 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 12F7D77D7;
-	Sun, 17 Nov 2019 15:46:35 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 4AFEA77D9;
+	Mon, 18 Nov 2019 08:08:21 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id BEEA27705
- for <cocci@systeme.lip6.fr>; Sun, 17 Nov 2019 15:46:32 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id B618277C6
+ for <cocci@systeme.lip6.fr>; Mon, 18 Nov 2019 08:08:19 +0100 (CET)
 Received: from mout.web.de (mout.web.de [212.227.17.11])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id xAHEkW79002677;
- Sun, 17 Nov 2019 15:46:32 +0100 (CET)
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id xAI78Jfm022007
+ for <cocci@systeme.lip6.fr>; Mon, 18 Nov 2019 08:08:19 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1574001992;
- bh=7SY3ddrm/D0WYFbOFx946GObQ88yFDbtTp3D7mkm5Uw=;
- h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=eetYTiPMRQ6LdxqI+Vr52BFVkFWudGaUnvrQ5Cz8Horw6BHXEs3R79+EPX/oJ+dn5
- yIbhXFkum2Ne07qtqJsfqdmUOGgkiWlFwHsxY3FSRgLuRZqkxtZVhk7KMbWEGdloTM
- C9lh64lyi5hhRCJsEx6CNl0g+XcJHv82LzVPvpHs=
+ s=dbaedf251592; t=1574060899;
+ bh=mn6/ezlSn0nyeE5eEb5iAa3jyYw1hdIA5yaS+lhALm4=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=GBKnhje7VSWy6QOtMRvgUv0iVwMRYFc2evV3svjueRfb+TopfPGZlwxEfL0EU1etG
+ ukCCv19nx55fORrbnrWb+xaogJ6piumJGBFW7ab2ebhi3mcFcj+6xIeR1Af6/juyIV
+ d3B+RfNTqnsCnvXyLaIu/Qa150BSbaNGjN9XC8wc=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.3] ([93.131.59.42]) by smtp.web.de (mrweb101
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MBkPj-1igYZE3OSN-00AjSf; Sun, 17
- Nov 2019 15:46:31 +0100
-To: Julia Lawall <julia.lawall@lip6.fr>
-References: <87018ba7-e8ac-8b46-e082-c0c9ecc20624@web.de>
- <alpine.DEB.2.21.1911171320530.2641@hadrien>
+Received: from [192.168.1.3] ([78.49.191.247]) by smtp.web.de (mrweb102
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0LfRzh-1i4TKF3dwf-00p2jy for
+ <cocci@systeme.lip6.fr>; Mon, 18 Nov 2019 08:08:18 +0100
+To: Coccinelle <cocci@systeme.lip6.fr>
 From: Markus Elfring <Markus.Elfring@web.de>
 Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  mQINBFg2+xABEADBJW2hoUoFXVFWTeKbqqif8VjszdMkriilx90WB5c0ddWQX14h6w5bT/A8
@@ -78,44 +76,42 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <4f6ed96c-9439-c060-19eb-75a7151d5823@web.de>
-Date: Sun, 17 Nov 2019 15:46:30 +0100
+Message-ID: <2fd7c36b-552c-8dea-a39d-ab484fb45995@web.de>
+Date: Mon, 18 Nov 2019 08:08:12 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.1911171320530.2641@hadrien>
 Content-Language: en-US
-X-Provags-ID: V03:K1:illkKHY2wvVsSX7QXZRJmm/F8o+D+AdAV+GfwwwBRkiQtVKlJZ+
- jmgYEEjZGnYT1ig+8d+/bKD8qQ9aJ+VM9bPAfMjz+EzQ66iKduXEivWrKsKitjpY+jEgxdd
- pK3sDBaz7WXy3CranzLmYu4bz6Jrru6QN0AhPNjKc6bBZ/cWMQwKha+0yyN++Rj00bVJyru
- +b1zqeFx667iSmYmlpzvQ==
+X-Provags-ID: V03:K1:dp3UqxI9TvxFY+2nz6V2NhB2tb8ppQMo/FeRHrv3qzY0h/yj87T
+ M4HSX/kulG6VoEvQ71k6G/nbuNZcfFGTizkQxXYoUnq/imOBLTtWdDx6GKyb0UojEey7bru
+ IpDE94zxsjGU0roY+0qBCzIGo9wpnjsLEybABQq+p5Fx+AM04xu7WjOnofkBSPKsaMg1gWc
+ 0/EzjzKSwjSZQv4gQCq+w==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:l16nde3HXVY=:/8U04+WFnxrwN4F1ti6VfK
- 1QNkjw/COFDSL9ok3hjj7Hn8DfW8ujQXY2V4cL11LRMwU8e5dwgjopqOL2E46O8YV99ZwkrTI
- cXzmq/AEQLtDceMJmADL4EHBfAOubxUwWgQqXW78kWCipsLjqcdw00kxVq1iqw1pt+Mnzd7G7
- WazctljfpB0+FG8pFFHDGhqB5WO4G6ZVxwVqgNwVfyqo536cV4JzkjYpAEH+XT6/ntaVCexjH
- A3P5n3yOKplaait4EPggL1dD0g963yWCYp7K3Ii7281Sf27yffQJUUYSa5KTCMKmdn+6PHjl6
- s48sLkrxyeNACtf9+Ex7Is5YynkKgpMjpNt+KBrMrdrQLxeaWa9zP/OxcO0gPN8hrWi3AAM09
- b3JV7v/vwr1ILRPLTQE6PuzAW8wVD4+eIX1Of2rINorISBV8/soPhYdgeIF9y/yuEipETn0RR
- 9HpK795KnSioMhUetNtg3/qyIJy67B5QZGKoYxtzDefbbeEhDqzUMk/l8pu8N+B/EcrZnmAqX
- k+4DdfyoBh3LtBUMnMkgD2CIkbRJp4r/H4n7ku0WuPGOpWxOXQVeDHWnRvyhDFwBRe/MX8Sxn
- pAXf98nC24m/2Fw3HuP8MJdzANsDWxEpZWnPMRVlJbiqZKt3HeW42fbBsivUWNyeQnXLfS/2L
- Z5mU0ztnZKN15tZ0ZgOqYXm5JQhTL81xzYEr//GrCi4Y8+3D5El5NyZWcw64TiI6SjU8BVX6u
- RUzHsQyol9pKJYSrA1wRTQM+6myvMFyuWLZPIkIzeQ/SuxcyMMU5D5WsSpsjCu8+zHzzc+hlY
- Q+whjze/Km8KcT9LxkoX2m5Laa5PisPSVwv6QQ/Hts7Qvbg3HlArCuj+j/PsSqC1fPsph/Krw
- JP/O6yvnMUhBMbK8mhQL2TbBCDobqnPyJF5h9OmbqfMIenBtNQza5ZYN6WoQI3WCOzDL4dK5W
- 3YouLsfqsaDowTyrGnao/ZhuGgBwbXHPAkH/4jh43w/sVkdCKDIvVWprLaFbVlZPTrfadbbHU
- izNEJUW3fH1Ixeuuok0mqHIQxpWJjpZ4rvoQeaDIDqIAXXW6q7AZ//RPLDhIqKmmpxL9y8gqu
- KfjIoXpyCM9qlMyodJq2IW7JjJx5kiyn+PO2qIWsgw3yHzb8FSHjOnNrVLD1uymKYN1NRsMnh
- HK+e1/7i9K673LFTrOxWBc+vPkgpLJskiwrny9tp/y9oTvYqE8cK/rViklbA5HtYDIPa/eRLD
- iDZbel/Sv2Dxu5OXfr7jSekfKmBAAAPB34HpwiiwKWXfEtqOnp2/HhSCTJx8=
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 17 Nov 2019 15:46:37 +0100 (CET)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Ul//K2L2NqQ=:FyZIfqn27YcxRLAO+M4DBA
+ tvNTVtGobQkKqh9sT+V+W1YFa6xe6T7bdhPLSq2CyUtvv3s7vln0BkxK4ZK5bdtaXBAuslwlt
+ 23QP+J6FTB5BWyzNxZI5h0vrGNct7oXUWZp4/9xMwPthZdC2jnvv8dbZyx6Ml7x4Bihi3IH1F
+ p6Cp90XLyHnuCKFR6koTFQhzzNZFdephXwgzU8+pslKbkS1u004UmWWYWojEHnzf0rs422QOw
+ FEia/oLAWbT2+vD1DYOknHcXSLV2Vqhtmha+LHmNekNvFMc8o6hBn1NrcdiAXFegzPpU/SCFo
+ trx9NSk/r5v2BZhfrBO1hXHNKzGgnST+WJNCdhNcltltRVST3Lza7c4pFLdz+4wBdSWEhnX1s
+ kth0sta6I3O61+i/nlYK6DxNMrljtUmVevgEQ/h0vICvauhDbmGtDjHT76zToHfkOC2z99jyY
+ OYPkbr3cZZqKYodtUdPSUaUjCEKXpC/YYBd9cokEouX8KEo6x6ATaixvSu8HVQx2tMmkO/ELC
+ +xpkNlzPeu0eeEdb+9vwgJjUquAVgdpm7RjYi7e2UsH4Vjq6gsfH1O6EXuY8vPeVPQIRMPBr0
+ vSqD5JjDbHuGmle5lzte1b9oix/bNOD/5uAJxcadHYUhOdYX//1mOf6P5+EgmYxZ3vz1CrW6t
+ yMKg2Agj1h+JV6IiWQfMcuACJe/RN2v1NtbAAUI5hV37vEivD2V8nXIKTJNz/Ul/EszztZN8F
+ vbwYyJid/1GQHYqa5PDt6Jg8FRJN8Wg+ucI4HfZy3C8pmOywDbPmK6NTkFFpxWXP9k/TKdFk8
+ 5qA7BW0tuMAvPT1k+t9dmYHrprQGPdKYbDINcMtYhWc2tU03+aPkOTZ2h2NjtfIKnBEOlKusy
+ TsUKnr1+nkDsD96VboBEJuHpmN+BoKZHNrpnUfz6DlK2P3A6uhaqycEgKh5AOcU/ruS0UmxxW
+ BzoecPwQfIk0prG7QTse5ZclRs0GZ3+nS6LRgySGCeAJlGGcapZ7Lp8zTdnvaUs+3IF7c9zdW
+ e8/cmyLJJjz9eOCIcDQbN7Vl7ckDp+AtZMV9sEA5OklE98UVbhAWhRzfO2Hj9yUViqcX25JqY
+ QiXTJjHYsNaE9dWIETL4EWVhZPFklw/6GSKbUMZSmKT05LKzZsJYuXp4GkIZdiU1PhrX3peJ6
+ LfXUT76lIoTau9Ynr3ndHeAcQ2RpD4UtgWYJ8wDtQ3rOXSzLnTxCfEOWQZTqzxcaWp46mRAUC
+ UNtM/fs5Y3zm1/Wr31xE5tZ+WUpT2/c3iZt408bZbHTOp/U4KBB7uizAGUOQ=
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 18 Nov 2019 08:08:23 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 17 Nov 2019 15:46:32 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Mon, 18 Nov 2019 08:08:19 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] Checking size determinations with SmPL
+Subject: [Cocci] Relationships between kinds of metavariables?
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -127,19 +123,29 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Pj4gKlwoIHNpemVvZih0KSBcfCBzaXplb2YoKmUpIFwpCj4+Cj4+Cj4+IFdvdWxkIGl0IGJlIG5p
-Y2UgaWYgYW5vdGhlciBzY3JpcHQgdmFyaWFudCBjYW4gd29yayB0b2dldGhlciB3aXRoCj4+IHN1
-Y2ggYSBTbVBMIGRpc2p1bmN0aW9uIGFsc28gaW4gdGhpcyB3YXk/Cj4KPiBOby4gIFRoZXkgYXJl
-IHF1aXRlIGRpZmZlcmVudCBiZWNhdXNlIHRoZSAoKSBpcyByZXF1aXJlZCBvbiBhIHR5cGUgYnV0
-Cj4gb3B0aW9uYWwgb24gYW4gZXhwcmVzc2lvbi4K4oCmCj4+IEBkaXNwbGF5MkAKPj4gZXhwcmVz
-c2lvbiogZTsKPj4gdHlwZSB0Owo+PiBAQAo+PiAqc2l6ZW9mKCBcKCB0IFx8ICplIFwpICkKCldv
-dWxkIHN1Y2ggYSBzZWFyY2ggcGF0dGVybiBiZSBhY2NlcHRhYmxlIGlmIGJvdGggaXRlbXMgd291
-bGQgYmUgaGFuZGxlZAphcyBub24tb3B0aW9uYWwgc2VsZWN0aW9ucyBpbiB0aGlzIGNhc2U/CgpS
-ZWdhcmRzLApNYXJrdXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5mcgpodHRwczovL3N5
-c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
+Hello,
+
+The semantic patch language supports metavariables.
+Now I would like to know a bit more about possible relationships between them.
+
+Examples:
+* type
+* expression
+
+
+Is any kind of metavariable available which would be a superset
+according to another item?
+
+Can the specification of SmPL disjunctions be accordingly improved then?
+
+Regards,
+Markus
+_______________________________________________
+Cocci mailing list
+Cocci@systeme.lip6.fr
+https://systeme.lip6.fr/mailman/listinfo/cocci
