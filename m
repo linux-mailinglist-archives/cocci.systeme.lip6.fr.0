@@ -2,64 +2,52 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F6412FA2F
-	for <lists+cocci@lfdr.de>; Fri,  3 Jan 2020 17:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE3B013014A
+	for <lists+cocci@lfdr.de>; Sat,  4 Jan 2020 08:19:37 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 003GJEY1000332;
-	Fri, 3 Jan 2020 17:19:14 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0047JLt9001402;
+	Sat, 4 Jan 2020 08:19:21 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 9753077F4;
-	Fri,  3 Jan 2020 17:19:14 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 303BF77F5;
+	Sat,  4 Jan 2020 08:19:21 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 0F1035BEE
- for <cocci@systeme.lip6.fr>; Fri,  3 Jan 2020 17:19:13 +0100 (CET)
-Received: from pb-smtp2.pobox.com (pb-smtp2.pobox.com [64.147.108.71])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 003GJCB8006880
- for <cocci@systeme.lip6.fr>; Fri, 3 Jan 2020 17:19:12 +0100 (CET)
-Received: from pb-smtp2.pobox.com (unknown [127.0.0.1])
- by pb-smtp2.pobox.com (Postfix) with ESMTP id 1295732946
- for <cocci@systeme.lip6.fr>; Fri,  3 Jan 2020 11:03:06 -0500 (EST)
- (envelope-from dyoung@netbsd.org)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=date:from:to
- :subject:message-id:references:mime-version:content-type
- :in-reply-to; s=sasl; bh=mr/X1/JYx2DtKECWGZINCW9EBkk=; b=McFXXE7
- EfdoVEoTVrwlRB5+1i4XdMytE5/e0j1WFrQ5kBrektS3TyzqWWUm+gpQFiFqD8Zd
- B9fbTY8jwyGbC4k0UWLYmcSKUVXFKUwk3mOJfGfZIBv1KACP09+n329uwba4FUqS
- Qrj1i9TygKCIB709+rr8zO+CwjaiaryxXGGo=
-Received: from pb-smtp2.nyi.icgroup.com (unknown [127.0.0.1])
- by pb-smtp2.pobox.com (Postfix) with ESMTP id 0AE9532945
- for <cocci@systeme.lip6.fr>; Fri,  3 Jan 2020 11:03:06 -0500 (EST)
- (envelope-from dyoung@netbsd.org)
-Received: from elmendorf.whitecoralislands.com (unknown [67.173.96.142])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by pb-smtp2.pobox.com (Postfix) with ESMTPSA id 69EDA32944
- for <cocci@systeme.lip6.fr>; Fri,  3 Jan 2020 11:03:05 -0500 (EST)
- (envelope-from dyoung@netbsd.org)
-Received: by elmendorf.whitecoralislands.com (Postfix, from userid 1000)
- id 643D61BF051; Fri,  3 Jan 2020 10:03:04 -0600 (CST)
-Date: Fri, 3 Jan 2020 10:03:04 -0600
-From: David Young <dyoung@netbsd.org>
-To: cocci@systeme.lip6.fr
-Message-ID: <20200103160304.GG17258@pobox.com>
-Mail-Followup-To: cocci@systeme.lip6.fr
-References: <20200102220345.GF17258@pobox.com>
- <alpine.DEB.2.21.2001030727330.2980@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 7E87373E2
+ for <cocci@systeme.lip6.fr>; Sat,  4 Jan 2020 07:45:04 +0100 (CET)
+Received: from out30-56.freemail.mail.aliyun.com
+ (out30-56.freemail.mail.aliyun.com [115.124.30.56])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0046j2BL019352
+ for <cocci@systeme.lip6.fr>; Sat, 4 Jan 2020 07:45:02 +0100 (CET)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R191e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01f04427; MF=wenyang@linux.alibaba.com;
+ NM=1; PH=DS; RN=11; SR=0; TI=SMTPD_---0Tmn3PsD_1578120290; 
+Received: from localhost(mailfrom:wenyang@linux.alibaba.com
+ fp:SMTPD_---0Tmn3PsD_1578120290) by smtp.aliyun-inc.com(127.0.0.1);
+ Sat, 04 Jan 2020 14:44:56 +0800
+From: Wen Yang <wenyang@linux.alibaba.com>
+To: Julia Lawall <Julia.Lawall@lip6.fr>
+Date: Sat,  4 Jan 2020 14:44:48 +0800
+Message-Id: <20200104064448.24314-1-wenyang@linux.alibaba.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2001030727330.2980@hadrien>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Pobox-Relay-ID: 86EAF03C-2E42-11EA-BEF9-D1361DBA3BAF-71664428!pb-smtp2.pobox.com
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 03 Jan 2020 17:19:16 +0100 (CET)
-X-Greylist: Delayed for 00:16:02 by milter-greylist-4.4.3 (isis.lip6.fr
- [132.227.60.2]); Fri, 03 Jan 2020 17:19:12 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 04 Jan 2020 08:19:21 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Sat, 04 Jan 2020 07:45:03 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Subject: Re: [Cocci] transforming arguments to statement macros?
+X-Mailman-Approved-At: Sat, 04 Jan 2020 08:19:20 +0100
+Cc: Michal Marek <michal.lkml@markovi.net>,
+        Wen Yang <wenyang@linux.alibaba.com>,
+        Gilles Muller <Gilles.Muller@lip6.fr>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        Matthias Maennich <maennich@google.com>, linux-kernel@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>, cocci@systeme.lip6.fr
+Subject: [Cocci] [PATCH] coccinelle: semantic patch to check for
+	inappropriate do_div() calls
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,29 +64,104 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Fri, Jan 03, 2020 at 07:32:09AM +0100, Julia Lawall wrote:
-> I think that the problem is that there is no ; in the uses of your macro.
+do_div() does a 64-by-32 division.
+When the divisor is unsigned long, u64, or s64,
+do_div() truncates it to 32 bits, this means it
+can test non-zero and be truncated to zero for division.
+This semantic patch is inspired by Mateusz Guzik's patch:
+commit b0ab99e7736a ("sched: Fix possible divide by zero in avg_atom() calculation")
 
-I was afraid of that.
+Signed-off-by: Wen Yang <wenyang@linux.alibaba.com>
+Cc: Julia Lawall <Julia.Lawall@lip6.fr>
+Cc: Gilles Muller <Gilles.Muller@lip6.fr>
+Cc: Nicolas Palix <nicolas.palix@imag.fr>
+Cc: Michal Marek <michal.lkml@markovi.net>
+Cc: Matthias Maennich <maennich@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: cocci@systeme.lip6.fr
+Cc: linux-kernel@vger.kernel.org
+---
+ scripts/coccinelle/misc/do_div.cocci | 66 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 scripts/coccinelle/misc/do_div.cocci
 
-> The proper way to write such a macro, independent of Coccinelle, is as a
-> while do(0) loop, so that the uses can end in a semicolon.  Then there is
-> no possibility of strange mistakes if someone actually does put a
-> semicolon.  Would that be feasible to do?
-
-I would prefer that the macros were written with the do-while pattern,
-but it's a legacy codebase that uses HGOTO_ERROR() no fewer than 12,000
-times, and most occurrences have no semicolon.  I will have to automate
-the conversion, and I guess that I cannot use spatch to do it. :-) I may
-be able to write a suitable vim macro.
-
-Thank you for your help.
-
-Dave
-
+diff --git a/scripts/coccinelle/misc/do_div.cocci b/scripts/coccinelle/misc/do_div.cocci
+new file mode 100644
+index 0000000..f1b72d1
+--- /dev/null
++++ b/scripts/coccinelle/misc/do_div.cocci
+@@ -0,0 +1,66 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/// do_div() does a 64-by-32 division.
++/// When the divisor is unsigned long, u64, or s64,
++/// do_div() truncates it to 32 bits, this means it
++/// can test non-zero and be truncated to zero for division.
++///
++//# This makes an effort to find those inappropriate do_div () calls.
++//
++// Confidence: Moderate
++// Copyright: (C) 2020 Wen Yang, Alibaba.
++// Comments:
++// Options: --no-includes --include-headers
++
++virtual context
++virtual org
++virtual report
++
++@depends on context@
++expression f;
++long l;
++unsigned long ul;
++u64 ul64;
++s64 sl64;
++
++@@
++(
++* do_div(f, l);
++|
++* do_div(f, ul);
++|
++* do_div(f, ul64);
++|
++* do_div(f, sl64);
++)
++
++@r depends on (org || report)@
++expression f;
++long l;
++unsigned long ul;
++position p;
++u64 ul64;
++s64 sl64;
++@@
++(
++do_div@p(f, l);
++|
++do_div@p(f, ul);
++|
++do_div@p(f, ul64);
++|
++do_div@p(f, sl64);
++)
++
++@script:python depends on org@
++p << r.p;
++@@
++
++msg="WARNING: WARNING: do_div() does a 64-by-32 division, which may truncation the divisor to 32-bit"
++coccilib.org.print_todo(p[0], msg)
++
++@script:python depends on report@
++p << r.p;
++@@
++
++msg="WARNING: WARNING: do_div() does a 64-by-32 division, which may truncation the divisor to 32-bit"
++coccilib.report.print_report(p[0], msg)
 -- 
-David Young
-dyoung@pobox.com    Urbana, IL    (217) 721-9981
+1.8.3.1
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
