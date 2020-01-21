@@ -2,76 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6836D143804
-	for <lists+cocci@lfdr.de>; Tue, 21 Jan 2020 09:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 539E4143808
+	for <lists+cocci@lfdr.de>; Tue, 21 Jan 2020 09:06:31 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00L85UXq022729;
-	Tue, 21 Jan 2020 09:05:30 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00L85ext029300;
+	Tue, 21 Jan 2020 09:05:40 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 8382577F5;
-	Tue, 21 Jan 2020 09:05:30 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id DBEF677F2;
+	Tue, 21 Jan 2020 09:05:40 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 2817E77DB
- for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 09:05:29 +0100 (CET)
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:1043])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00L85NtR016526
- for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 09:05:23 +0100 (CET)
-Received: by mail-pj1-x1043.google.com with SMTP id d5so979436pjz.5
- for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 00:05:23 -0800 (PST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 497F577DB
+ for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 09:05:39 +0100 (CET)
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:1042])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00L85VRu011041
+ for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 09:05:31 +0100 (CET)
+Received: by mail-pj1-x1042.google.com with SMTP id kx11so980418pjb.4
+ for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 00:05:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=jdQS21ydiqH5O7l4ooG/TbyIarLFdZNwCcRFXTzEwfQ=;
- b=OW0W8uqbHgyJzGmxlxl+NAeXcoztjqnFUChO+ZQbRKmYbTkaRzUy5fnNEg3Tk35m05
- QVHl4qvauktkQ2yyq7j7hQTro9Al23YybZHIo4FDkpvIYCabyWGr4MSYyB/wBwlMJdwB
- C0KnS5UaI0xTnzLKZnUEBcRjzEw+GmXhOho9cdlHFMfGuKsRmO/TiRTZdc25hOPe962r
- bLFnKm2BcQBJlbbuu/h3jA0pxb8tcQqnkvXQYRiZIWQdUtkEpP0SLw0FaLjgbisTbyG0
- VgLcWdL/ScJe41LDOz5shUal+3M2hmEdivL47eUvJqwdSW/9iVVjZAGopFm8SmNL8waT
- nRbw==
+ bh=SiAOjSQQBJyQRmqiwiRWCNQp66CEeV/KpK/nhQbCexA=;
+ b=I+7JaGCj9wVBADAlwc38iJULpgvxoy6fbNyYOxIpgGlcUkVvjMO/If1Y9autpRGTWF
+ 3Z22P+rQhruktxtqQEZgfUzOwI09MuEj+UbpjtdPVSSNAGE4ajWmwrolZQrJT7rZn72w
+ FEDl8jKyVPXh8ObSHCwlXMYzv+NhWO8T9zEBwMDCYgWls6LG3cAsRORhqnNQSBez4ejm
+ Zljl3HyyMvEbAMWKtvAkPf1u+jfDZIJRQuaBiZVax34oNPAUcu/4qCS2GtrcYaJpKNpS
+ 5wHnijvpXxMF0/FEPdkx51IhA5arSNRStcB1GkPjw9wmxlD36FSTkF2E2LOlxo3+J4hb
+ vkvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=jdQS21ydiqH5O7l4ooG/TbyIarLFdZNwCcRFXTzEwfQ=;
- b=XW18LwvCBeHrqwz4aTAhYvefa426SiAypkh25y9Hp5hIMPVO+ywYYPjq8HqNfalmkf
- 1MQKkOPFcyq34QDcniu+Z6U384bNtS70HR3gKX6cgWqMwgzajCAz2HTPFZIXgokUkQHN
- 06OkJEK3DCdoftccP9vwFmBzhHQlrIuqnGtgslRtEr4tRiCHcaCqfz3LvUlT4QLM50zb
- mugKQDBU/YbcGjRZrGQvpr6K4BJCy8YwsZBzGIK2md4FAJR67yigjaAZskl405VVcjpq
- rCFKwa5j9BZGAKBEpgyqfHfdaYV0qRp1fbYvyQiQilEqUo//5GE8grO34Fo/bw2OkSt1
- rkag==
-X-Gm-Message-State: APjAAAVv/+UK5EuLgi+zc7mR0q6uHydqsrJmd/5TfHz2mIDIAT0sAdkv
- qtECx+/sUxTloniafwKkjLa6RL7qzCo=
-X-Google-Smtp-Source: APXvYqw1rnvTylQT/5z5sYlNe65+4JnHPFjWaGwKKFtC9s0oUYXeMsG79n8MJwsxS3Dr9oIKelKpSw==
-X-Received: by 2002:a17:902:6507:: with SMTP id
- b7mr4142142plk.308.1579593923041; 
- Tue, 21 Jan 2020 00:05:23 -0800 (PST)
+ bh=SiAOjSQQBJyQRmqiwiRWCNQp66CEeV/KpK/nhQbCexA=;
+ b=AhNCdAd7EGR+8dRFruHpZbatljdR496TI3/8t78Xl07/8l1GVfR1u2wGrWJ63aQIoi
+ kYuWDe8WevgrwyOugkh43bPxG77KH4lOHlm3BB2IV7ndVa++b054EY7FExVvuPtuavid
+ jThJO+yovxU9TcyE5ADB4qkuZQguOM+mv8F159NHML/iIazywzGf69wsLlRJ6z6NnPZN
+ 9WD8DJSEkzpj4EabXOnn5UC/3BXTBOYuFd8SarsNexfEdFWMkWVxSwsymEhfWLNWV87g
+ 6kCOrR03OPZgo6xF1tarq9mS854ouz4wjXSk1pqFA1jwKHQtAYZOD4CqT0f/3KE3MKER
+ Jqfg==
+X-Gm-Message-State: APjAAAXBocjzCQDLvFkeGSLXtejeygLV85V50dsJ5HPhVzk+BxLxN0dp
+ zOVi+9ldSMkEOtHKmqpSB5Udq02eFqo=
+X-Google-Smtp-Source: APXvYqxtN6INbGZdFPyIBPJJKijDHVSIyBfFB77Uwmd1tHGWM6g0liiSakFzhcqN98IenRDP6M0qvQ==
+X-Received: by 2002:a17:90a:23ad:: with SMTP id
+ g42mr3819252pje.105.1579593930908; 
+ Tue, 21 Jan 2020 00:05:30 -0800 (PST)
 Received: from localhost.localdomain ([2402:3a80:167e:da7:fcf8:ab67:c0bb:e29])
  by smtp.gmail.com with ESMTPSA id
- k23sm39229604pgg.7.2020.01.21.00.05.20
+ k23sm39229604pgg.7.2020.01.21.00.05.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jan 2020 00:05:22 -0800 (PST)
+ Tue, 21 Jan 2020 00:05:30 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Tue, 21 Jan 2020 13:34:53 +0530
-Message-Id: <20200121080455.24748-2-jaskaransingh7654321@gmail.com>
+Date: Tue, 21 Jan 2020 13:34:54 +0530
+Message-Id: <20200121080455.24748-3-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200121080455.24748-1-jaskaransingh7654321@gmail.com>
 References: <20200121080455.24748-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 21 Jan 2020 09:05:30 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 21 Jan 2020 09:05:41 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Tue, 21 Jan 2020 09:05:24 +0100 (CET)
+ Tue, 21 Jan 2020 09:05:31 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v2 1/3] parsing_c: Handle case of macro before
-	typedef
+Subject: [Cocci] [PATCH v2 2/3] parsing_hacks: Add bool to list of known
+	typedefs
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,78 +88,61 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-For the following case:
+bool is widely used in the Linux kernel. Certain cases of
+parsing_hacks.ml would mislabel bool.
 
-<macro> <typedef> <identifier>
+Add bool to the list of known typedefs.
 
-A case in parsing_hacks.ml sometimes mislabels <macro> as a
-typedef ident.
-
-If typedef is a known typedef (such as u8 or *_t), then label
-<macro> as a CppMacro. Subsequent cases will then label <typedef>
-correctly.
-
-Following are results of --parse-c on the Linux Kernel v5.5-rc4:
+Stats of --parse-c on Linux v5.5-rc4 are as follows:
 
 Before:
 
-  nb good = 18956150,  nb passed = 134061 =========> 0.70% passed
+  nb good = 18956150,  nb passed = 134062 =========> 0.70% passed
 
 After:
 
-  nb good = 18956150,  nb passed = 134062 =========> 0.70% passed
+  nb good = 18956150,  nb passed = 134073 =========> 0.70% passed
+
+The increase in passed tokens is due to functions in
+kernel/trace/trace_kprobe.c using nokprobe_inline. For instances of
+nokprobe_inline bool, nokprobe_inline is labeled as a CppMacro.
+
+Examples of this in the --parse-c diff are as follows:
+
+Before:
+  passed:bool
+  passed:bool
+  passed:bool
+  passed:bool
+  passed:bool
+
+After:
+  passed:nokprobe_inline
+  passed:nokprobe_inline
+  passed:nokprobe_inline
+  passed:nokprobe_inline
+  passed:nokprobe_inline
+  passed:nokprobe_inline
+  passed:nokprobe_inline
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_c/parsing_hacks.ml | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ parsing_c/parsing_hacks.ml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/parsing_c/parsing_hacks.ml b/parsing_c/parsing_hacks.ml
-index 8374731b..23d675cf 100644
+index 23d675cf..42ad9ccc 100644
 --- a/parsing_c/parsing_hacks.ml
 +++ b/parsing_c/parsing_hacks.ml
-@@ -2184,6 +2184,41 @@ let lookahead2 ~pass next before =
-       && ok_typedef s && is_macro s2 && is_type type_
-         ->
- 	  TIdent (s, i1)
-+
-+  (* xx yy zz : xx is a macro *)
-+  | (TIdent (s, i1)::TIdent (s2, i2)::TIdent(_,_)::_ , _)
-+    when not_struct_enum before
-+	&& ok_typedef s2
-+	&& is_known_typdef s2
-+        ->
-+	  TCommentCpp(Token_c.CppMacro, i1)
-+
-+  (* xx yy zz : xx is a typedef ident *)
-+  | (TIdent (s, i1)::TIdent (s2, i2)::TIdent(_,_)::_ , _)
-+    when not_struct_enum before
-+	&& ok_typedef s
-+        ->
-+      msg_typedef s i1 2; LP.add_typedef_root s i1;
-+      TypedefIdent (s, i1)
-+
-+  (* xx yy * zz : xx is a macro *)
-+  | (TIdent (s, i1)::TIdent (s2, i2)::ptr , _)
-+    when pointer ~followed_by:(function TIdent _ -> true | _ -> false) ptr
-+	&& not_struct_enum before
-+	&& ok_typedef s2
-+	&& is_known_typdef s2
-+        ->
-+	  TCommentCpp(Token_c.CppMacro, i1)
-+
-+  (* xx yy * zz : xx is a typedef ident *)
-+  | (TIdent (s, i1)::TIdent (s2, i2)::ptr , _)
-+    when pointer ~followed_by:(function TIdent _ -> true | _ -> false) ptr
-+	&& not_struct_enum before
-+	&& ok_typedef s
-+        ->
-+      msg_typedef s i1 2; LP.add_typedef_root s i1;
-+      TypedefIdent (s, i1)
-+
-   (* xx yy *)
-   | (TIdent (s, i1)::TIdent (s2, i2)::rest  , _) when not_struct_enum before
- 	&& ok_typedef s && not (is_macro_paren s2 rest)
+@@ -61,7 +61,7 @@ let is_known_typdef =
+       | "u_char"   | "u_short"  | "u_int"  | "u_long"
+       | "u8" | "u16" | "u32" | "u64"
+       | "s8"  | "s16" | "s32" | "s64"
+-      | "__u8" | "__u16" | "__u32"  | "__u64"
++      | "__u8" | "__u16" | "__u32"  | "__u64" | "bool"
+         -> true
+ 
+       | "acpi_handle"
 -- 
 2.21.1
 
