@@ -2,75 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB603143CC0
-	for <lists+cocci@lfdr.de>; Tue, 21 Jan 2020 13:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6476E143CD1
+	for <lists+cocci@lfdr.de>; Tue, 21 Jan 2020 13:28:02 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00LCPNws018702;
-	Tue, 21 Jan 2020 13:25:23 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00LCRdjn028263;
+	Tue, 21 Jan 2020 13:27:39 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id B858077F4;
-	Tue, 21 Jan 2020 13:25:23 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 481B777F4;
+	Tue, 21 Jan 2020 13:27:39 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 2586E77E1
- for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 13:25:22 +0100 (CET)
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:542])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00LCPGbC010618
- for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 13:25:16 +0100 (CET)
-Received: by mail-pg1-x542.google.com with SMTP id k25so1402422pgt.7
- for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 04:25:16 -0800 (PST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 7A2E677E1
+ for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 13:27:37 +0100 (CET)
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:641])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 00LCRVed023457
+ for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 13:27:32 +0100 (CET)
+Received: by mail-pl1-x641.google.com with SMTP id p27so1269144pli.10
+ for <cocci@systeme.lip6.fr>; Tue, 21 Jan 2020 04:27:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=1brXa2k7mZVlrYO/2Iox/x78nooL7rko+woUwHappp8=;
- b=vcJByH8EX/HyjBddbY8rRwClzMwpAORu307BToJxvW4wNwk5XdOOL4kYv9g9OllwZd
- 849ZH2dKM6amiQCblT4eKtKe3bPE+l+L+Ot40ogX7B+UybW8UCW/CXtv7FfnWhakXAf/
- lqOZ/wQnnOt6J1OiKaAcHTQYlS9VYSfRFl1dSBKe2hHTCVbXMqzpTgqBntPfhSeL6rno
- 6bydeMZrDkEOR0EXxdARRafei5GsPsTAqgyhF+DC1JLQujFad0o6KOGHyb/i+dm9AUOZ
- tZjZHhWto2pqzN+MZqrvuhK2x0bWtRIX/84krJ/AW7CvGvM3o5Iv9y/cjS0AyKmI3P/o
- YVvg==
+ bh=IsJaYZtQo19fVGMr85I01baXl5YZLZhRFya5p7CvVcc=;
+ b=jxQ0MCKhhCdXQfG13FK1N8EIeQabN+ZwE5xg8lRdnRG6k3Wf3MgawtTLlAwHA9+yCU
+ SF8U5ok7ybM5buPCtTJ2wiS6BaWILw3EsFytD74I+Oc+JxxVsifQPJj5oge1WIu7GAgg
+ SYAV5ZQlAwU6tK9vgQmcgNNCqT23ATrQYMu/AiqOr8hahxuU37C62VVCpQ+nfbFTQc0w
+ +tjN8xi10gYIV8/3Hlb+5cvOz14LKO+tnNZTwyCfEYpXh0kNdhuhO5xd1QymgSmCtrjB
+ y2kQfrvYss5gOb6GY+xoSLD/HjzzKoNzKrayw9hgh9UDvrL+f3eQpBK3MEVLrfDKoSM6
+ 5/NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=1brXa2k7mZVlrYO/2Iox/x78nooL7rko+woUwHappp8=;
- b=IqzXpx4O73+f9FN88eFzzE09KgjT5/EGsvjpanUeBYR6AaGIuI85oLEhSQzco4gNNu
- g+5Ouk5msrC8M43jLjutC722/QXemKgLRm2u0rAynnCGntxrpctWy3mXFZCU6CCjl9CR
- v+SAGq/NcIDkbFiAVi67ytL3R3vwXLlgyn5geSHaPc0W9MyhTBuL7vVnzxxotywbfkqX
- EYQ+tV5Rly5fQ0bYCCcZGYRQaH90Hj54gDdSCuAjlYte9BLZY4OWTWyXZ8F/zCyKGP0V
- pwy00hEIj/7cse4Sno6n5V16k1Ozw1EQjxvfdRUWtU/32vbhcfMvqRS7o2ynCvrnq0H/
- v+2g==
-X-Gm-Message-State: APjAAAXTP6WvQe4veY0kkvI7yuv/i+ghTH3dCMh7brYumuoOpruHmd5g
- VElozKxlN1JJ8f+Ep+bBf4A+t7z0AbQ=
-X-Google-Smtp-Source: APXvYqxGWol6flMmuT0EUQSjed7DunPgVYs1ZdoMOi+/6oR8cqLxrzGAVaNBDKW5NHz9kD9L1hsaGw==
-X-Received: by 2002:a65:4c82:: with SMTP id m2mr4987048pgt.432.1579609515942; 
- Tue, 21 Jan 2020 04:25:15 -0800 (PST)
+ bh=IsJaYZtQo19fVGMr85I01baXl5YZLZhRFya5p7CvVcc=;
+ b=dNrgSF97bRtivZ1DSR+oyMfKy9uItaLNVV5HR3522ztld7cLObN//ZLAjc4TxArmWu
+ HobxCKnSdqnUybN1vxKQBcsHGThyWRh6+3A7fiSC/5f5vqyt+VcbZ34SNk1iNYfg1VU6
+ 8vrUx5lf7GqwrNLZP6MFdP7ak/31e4gOwC6gbN3rQE7prglVlEeYDi+guNoImCRLzxp3
+ EwwtjCXDiI2DjPErVpcOR1Ize/L/BuCi6kWZfokYsBqAPehTlyPrJUl71o5AxHJt2mX3
+ eCrAMS4eAiQYlwY/EFQ9fPksNsHHVJuRyAnmNyYJ292/RKgPU4WTYnQC0km1MEn3LcMd
+ tGzQ==
+X-Gm-Message-State: APjAAAWUgsVOGzZmZngA/mn/c3lWcDU7woiuwaBkB3qOxQTyeFPq17Bl
+ bEShB2MvnbYEHp5Ibs1+woY3SajQwI4=
+X-Google-Smtp-Source: APXvYqxQYHQpzequEiKEEkgjz+ZzR514ghsazq64tUGImZDU8JlumnwVK1R/i611HWN8vLMd6boSyA==
+X-Received: by 2002:a17:90a:20aa:: with SMTP id
+ f39mr5197189pjg.35.1579609651316; 
+ Tue, 21 Jan 2020 04:27:31 -0800 (PST)
 Received: from localhost.localdomain ([2402:3a80:167e:da7:fcf8:ab67:c0bb:e29])
  by smtp.gmail.com with ESMTPSA id
- h11sm40479560pgv.38.2020.01.21.04.25.14
+ i9sm44381347pfk.24.2020.01.21.04.27.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jan 2020 04:25:15 -0800 (PST)
+ Tue, 21 Jan 2020 04:27:31 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Tue, 21 Jan 2020 17:54:56 +0530
-Message-Id: <20200121122458.5513-1-jaskaransingh7654321@gmail.com>
+Date: Tue, 21 Jan 2020 17:57:17 +0530
+Message-Id: <20200121122719.24226-1-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200121080455.24748-1-jaskaransingh7654321@gmail.com>
 References: <20200121080455.24748-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 21 Jan 2020 13:25:24 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 21 Jan 2020 13:27:39 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Tue, 21 Jan 2020 13:25:17 +0100 (CET)
+ Tue, 21 Jan 2020 13:27:32 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v3 0/3] cocci: Improve management of macros before
-	typedefs
+Subject: [Cocci] [PATCH v3 1/3] parsing_c: Handle case of macro before
+	typedef
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,42 +88,80 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-This patch series is for improving the management of the following
-case:
+For the following case:
 
-<macro> <typedef> <ident>
+<macro> <typedef> <identifier>
 
-If <typedef> is a known typedef (such as u8 or *_t) then label <macro> as a
-CppMacro. Subsequent cases will continue to label <typedef> correctly as a
+A case in parsing_hacks.ml sometimes mislabels <macro> as a
 typedef identifier.
 
-Also add bool to the list of known typedefs so that cases of
+If typedef is a known typedef (such as u8 or *_t), then label <macro>
+as a CppMacro. Subsequent cases will continue to label <typedef>
+correctly as a typedef identifier.
 
-<macro> bool <ident>
+Following are results of --parse-c on the Linux Kernel v5.5-rc4:
 
-are handled correctly just like any known typedef will be.
+Before:
 
-Changes in v3:
---------------
-- Change "subsequent cases will label" to "subsequent cases will continue to
-  label" in commit messages of Patch 0/3 and Patch 1/3.
-- Change the term "typedef ident" to "typedef identifier" wherever
-  suitable.
-- Add metavariable symbol false to tests/macro_before_bool.cocci to
-  suppress warning.
+  nb good = 18956150,  nb passed = 134061 =========> 0.70% passed
 
-Changes in v2:
---------------
-- Group these patches as a series for clarity
-- Add a test case for <macro> bool <ident> (Patch 3/3)
-- Explain what has been improved with Patch 2/3
+After:
 
- parsing_c/parsing_hacks.ml    |   37 ++++++++++++++++++++++++++++++++++++-
- tests/macro_before_bool.c     |    4 ++++
- tests/macro_before_bool.cocci |   10 ++++++++++
- tests/macro_before_bool.res   |    5 +++++
- 4 files changed, 55 insertions(+), 1 deletion(-)
+  nb good = 18956150,  nb passed = 134062 =========> 0.70% passed
 
+Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
+---
+ parsing_c/parsing_hacks.ml | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/parsing_c/parsing_hacks.ml b/parsing_c/parsing_hacks.ml
+index 8374731b..23d675cf 100644
+--- a/parsing_c/parsing_hacks.ml
++++ b/parsing_c/parsing_hacks.ml
+@@ -2184,6 +2184,41 @@ let lookahead2 ~pass next before =
+       && ok_typedef s && is_macro s2 && is_type type_
+         ->
+ 	  TIdent (s, i1)
++
++  (* xx yy zz : xx is a macro *)
++  | (TIdent (s, i1)::TIdent (s2, i2)::TIdent(_,_)::_ , _)
++    when not_struct_enum before
++	&& ok_typedef s2
++	&& is_known_typdef s2
++        ->
++	  TCommentCpp(Token_c.CppMacro, i1)
++
++  (* xx yy zz : xx is a typedef ident *)
++  | (TIdent (s, i1)::TIdent (s2, i2)::TIdent(_,_)::_ , _)
++    when not_struct_enum before
++	&& ok_typedef s
++        ->
++      msg_typedef s i1 2; LP.add_typedef_root s i1;
++      TypedefIdent (s, i1)
++
++  (* xx yy * zz : xx is a macro *)
++  | (TIdent (s, i1)::TIdent (s2, i2)::ptr , _)
++    when pointer ~followed_by:(function TIdent _ -> true | _ -> false) ptr
++	&& not_struct_enum before
++	&& ok_typedef s2
++	&& is_known_typdef s2
++        ->
++	  TCommentCpp(Token_c.CppMacro, i1)
++
++  (* xx yy * zz : xx is a typedef ident *)
++  | (TIdent (s, i1)::TIdent (s2, i2)::ptr , _)
++    when pointer ~followed_by:(function TIdent _ -> true | _ -> false) ptr
++	&& not_struct_enum before
++	&& ok_typedef s
++        ->
++      msg_typedef s i1 2; LP.add_typedef_root s i1;
++      TypedefIdent (s, i1)
++
+   (* xx yy *)
+   | (TIdent (s, i1)::TIdent (s2, i2)::rest  , _) when not_struct_enum before
+ 	&& ok_typedef s && not (is_macro_paren s2 rest)
+-- 
+2.21.1
 
 _______________________________________________
 Cocci mailing list
