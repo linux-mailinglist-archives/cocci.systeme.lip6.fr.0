@@ -2,75 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 271B3156B06
-	for <lists+cocci@lfdr.de>; Sun,  9 Feb 2020 16:35:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00AE156B08
+	for <lists+cocci@lfdr.de>; Sun,  9 Feb 2020 16:35:39 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 019FZFJh025928;
-	Sun, 9 Feb 2020 16:35:15 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 019FZJcZ015473;
+	Sun, 9 Feb 2020 16:35:19 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 9797B7718;
-	Sun,  9 Feb 2020 16:35:15 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 2604F7718;
+	Sun,  9 Feb 2020 16:35:19 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 11EBE7718
- for <cocci@systeme.lip6.fr>; Sun,  9 Feb 2020 16:35:13 +0100 (CET)
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:543])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 019FZBtC003629
+ by systeme.lip6.fr (Postfix) with ESMTPS id DB3387718
+ for <cocci@systeme.lip6.fr>; Sun,  9 Feb 2020 16:35:17 +0100 (CET)
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:102e])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 019FZGdP020527
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 9 Feb 2020 16:35:12 +0100 (CET)
-Received: by mail-pg1-x543.google.com with SMTP id l24so2512684pgk.2
- for <cocci@systeme.lip6.fr>; Sun, 09 Feb 2020 07:35:12 -0800 (PST)
+ for <cocci@systeme.lip6.fr>; Sun, 9 Feb 2020 16:35:17 +0100 (CET)
+Received: by mail-pj1-x102e.google.com with SMTP id m13so3079055pjb.2
+ for <cocci@systeme.lip6.fr>; Sun, 09 Feb 2020 07:35:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wJEO2wGMQKJV/ohpKPyAeBTsL/tteXWNt2JClbfnv8c=;
- b=k8V7I4kDs2EneTmD/2fFVHyS+EQi2hIinkVj3L+Ks1W/KB0pIBMGZpgXtisJsfOigd
- CvW2TZy7FA3VluMP6Hj8p77KIIiE+IjWSkJSCqhQw1oGOvsWcqNmQ0EgcuXggLMCc9zp
- TERhR9YNlIIr+ik52Ocr0d27V/N9XXC6KNmFDlJgMMsHjyRqYP1YhA6bMdDnIU4Xz7m4
- sZqzGOxf7Hjy6morkPmXnc/abuW53uVphYSg4PB/UtKXb4/+wEHuPGjuV72saw7B4eDo
- mbjPCcBuN6HetWjS3B8FE0cCLJZGULCQX3YLfHc4yxISbVgjDsdSxOC/3xcUxVYBULSu
- X/kg==
+ bh=5rugtx9GBe1lG9uj6KsKtPWifj61Jj2aO+D5dGd+5dc=;
+ b=qM2tNFvWPLge7LBrhpy+xLO1v5Uhd5qpyh/dO5PR6dwQTwNsp1eQGj1JLbvwo+v8zG
+ EzyhyiX/B1B2wo7RUqWaostrw3YqaoSr0zdTa6bSfUtL+ksDIoaRclEd9a0bjllR3pLo
+ F6Nax7GXdnPFyytidQXPbSTmzoOJZmbxcKbRUWCU4nb4cZluMUaNyZKlIPL1sS7J9Yh3
+ C2Ol5NFeMoUseWtYnuYIzjLkM10FRj2/Bx3Xjf6WecNil/2WyfkturPAlTwIENPZh0O2
+ 1Rlg+la3rRtb9fguSj3BgE8TXuT8szRzcLFLKbPYyZIGY+piucI1kU06v56GCIJpAkQx
+ h5hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wJEO2wGMQKJV/ohpKPyAeBTsL/tteXWNt2JClbfnv8c=;
- b=E/hXrSANegQBsDoD20p2Xys/I07nvRcU+p5rObZWbFGXFN1bxYALMziSMXZz1cHnN+
- SI2GKuhFH/lgVQC5Uqthrn3lcFM7bsvz88W1seMAoovv8u7H+O4XRb4FPpa4tWr74NFu
- DV7zsOHXVwfsGWcxi/YwrZF2yJvhNSNCy3rVS2RK8n+qvj0tZztzcWc8WsyzD2ZYj1wc
- FIOUlUbUwEj5gyzMjwVZUWuGmckM4D86+UigguHQg2ALysK1SKM3Hilq0Zs0DHkF6+ZY
- z3ec9O0e7hA9hkr4fDR3UWsznsU5DZiOaj0DbfCIDOQo1AuQuAWvIFAt/W5d+ku5TBtL
- DdSA==
-X-Gm-Message-State: APjAAAVk3PErrUn+lnCZ29U32PLRbDXm7SPYf7rGC5vLA6j8IsgBhxbr
- 6RQuf/hOr99XZPEmyw9dqDalNNaN
-X-Google-Smtp-Source: APXvYqw8yCg6wVwBM2m81xmUuy2nfZCMu+0ART74xY0kB8P1d24f8vBX8/H5p/5JWp8n0ZJaBPZ/MA==
-X-Received: by 2002:a63:3084:: with SMTP id w126mr9540094pgw.169.1581262510673; 
- Sun, 09 Feb 2020 07:35:10 -0800 (PST)
+ bh=5rugtx9GBe1lG9uj6KsKtPWifj61Jj2aO+D5dGd+5dc=;
+ b=JmP1DGiJbWRoE+m9ppXEEGxLxUg4gi/m9y7FGL2zhMLgRbZqSl7Z6xIoC/zpJQqNr3
+ IiuUmCwXMwQY3mS06qAp/j456wnBsI0412ItLRDY7SWDUkIEREwCPK5Ocwu+qldAMz43
+ YanICOk6k2hEQd3XGzaurUySKTsHyWseRhLKGoDoewNjuowj/blEBdyJ6ECMIE/xOk8Y
+ ByzxUKh7PRoOJW+UUxGH0l35CviAbUX9Shqa0733c3QtI1Cby/L037JE14qJ3aQioF86
+ 9KNCb6ux+/fLYWaRMVNJ1dIJbhuqY8sqtui16jnYqgo3wEEuqn7hA69jtdJSz3eiJTNR
+ Np9g==
+X-Gm-Message-State: APjAAAW5RbC5awXtCe0Zrj4FULSC/BnrfmUUefzZYvSxhoe2RrPi6osW
+ tpsJa59oaXVLsdi+oaI6Js9LlifL
+X-Google-Smtp-Source: APXvYqyct8n7HYbRu8eOdkmI8XTZ7FRIztv38xD0azxyi8Z05d/iKhf9XpyM8NfNGhLUk/qReaSQHA==
+X-Received: by 2002:a17:90a:2351:: with SMTP id
+ f75mr15778296pje.133.1581262515323; 
+ Sun, 09 Feb 2020 07:35:15 -0800 (PST)
 Received: from localhost.localdomain ([2405:204:22ac:7250:d1c8:6411:2f12:731d])
- by smtp.gmail.com with ESMTPSA id c11sm9451702pfo.170.2020.02.09.07.35.08
+ by smtp.gmail.com with ESMTPSA id c11sm9451702pfo.170.2020.02.09.07.35.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 Feb 2020 07:35:10 -0800 (PST)
+ Sun, 09 Feb 2020 07:35:14 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Sun,  9 Feb 2020 21:04:51 +0530
-Message-Id: <20200209153452.11837-3-jaskaransingh7654321@gmail.com>
+Date: Sun,  9 Feb 2020 21:04:52 +0530
+Message-Id: <20200209153452.11837-4-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200209153452.11837-1-jaskaransingh7654321@gmail.com>
 References: <20200209153452.11837-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 09 Feb 2020 16:35:15 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 09 Feb 2020 16:35:19 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 09 Feb 2020 16:35:12 +0100 (CET)
+ Sun, 09 Feb 2020 16:35:17 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v4 2/3] tests: Add space between * and const in
-	ptrconstptr.res
+Subject: [Cocci] [PATCH v4 3/3] tests: Add test case to match const pointer
+	variants
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,23 +88,70 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-A space is now added between the * and qualifier. Reflect this
-change in the ptrconstptr test case.
+Pointer to const pointer and its variants would not match previously.
+Add a test case for matching these types.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- tests/ptrconstptr.res | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests/constptr.c     |  7 +++++++
+ tests/constptr.cocci | 19 +++++++++++++++++++
+ tests/constptr.res   |  7 +++++++
+ 3 files changed, 33 insertions(+)
+ create mode 100644 tests/constptr.c
+ create mode 100644 tests/constptr.cocci
+ create mode 100644 tests/constptr.res
 
-diff --git a/tests/ptrconstptr.res b/tests/ptrconstptr.res
-index f5b2210c..1d0c3c1d 100644
---- a/tests/ptrconstptr.res
-+++ b/tests/ptrconstptr.res
-@@ -1,3 +1,3 @@
- void main() {
--	const char *const *y;
-+	const char * const *y;
- }
+diff --git a/tests/constptr.c b/tests/constptr.c
+new file mode 100644
+index 00000000..13fe064c
+--- /dev/null
++++ b/tests/constptr.c
+@@ -0,0 +1,7 @@
++int main()
++{
++	const char * const * id;
++	const char * * const * id;
++	const char * const * * id;
++	const char * const id;
++}
+diff --git a/tests/constptr.cocci b/tests/constptr.cocci
+new file mode 100644
+index 00000000..29f0aa96
+--- /dev/null
++++ b/tests/constptr.cocci
+@@ -0,0 +1,19 @@
++@ r0 @
++identifier id;
++@@
++const char * const *
++- id
+++ id1
++;
++const char * * const *
++- id
+++ id2
++;
++const char * const * *
++- id
+++ id3
++;
++const char * const
++- id
+++ id4
++;
+diff --git a/tests/constptr.res b/tests/constptr.res
+new file mode 100644
+index 00000000..0af4de9a
+--- /dev/null
++++ b/tests/constptr.res
+@@ -0,0 +1,7 @@
++int main()
++{
++	const char * const * id1;
++	const char * * const * id2;
++	const char * const * * id3;
++	const char * const id4;
++}
 -- 
 2.21.1
 
