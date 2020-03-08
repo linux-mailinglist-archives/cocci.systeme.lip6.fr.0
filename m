@@ -2,75 +2,117 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225A517D2BA
-	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:46:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CE317D3D9
+	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 14:26:37 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288j0Qu002067;
-	Sun, 8 Mar 2020 09:45:00 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 028DQAQA008300;
+	Sun, 8 Mar 2020 14:26:10 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 3F046781D;
-	Sun,  8 Mar 2020 09:45:00 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 458F17802;
+	Sun,  8 Mar 2020 14:26:10 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 595FC7742
- for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:58 +0100 (CET)
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:641])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iuYm018471
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:57 +0100 (CET)
-Received: by mail-pl1-x641.google.com with SMTP id y1so2757196plp.7
- for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=pN3fYF/WUsAoyz1cgrMGrvu9VIDZsdxapnqkdhrA3LQ=;
- b=ZOpaRZL3SygYG3iOy2WOLV3foacXo1ls8I2xoGnphPKx5Dzv1ypG780JKxF6mDYobH
- UGpB1eRfNehzXhegxzmBD1M5Vu1l1L5kfOj/Pm1vbnjWW2zmb2Bh7qaYY0aUtPVj7nmz
- wDMI1LgYUr3cwFLnn6jGlyGbbyr2C6MoSTOkkIrfdLFed6gY64s8hPztGiMSEF/LppLO
- mDknSqZAy/cYY2hmfXBQtoxakjV/bdGyBnBFvfI7BjwxplDJvElSLSUbiGsCO8NAR47Q
- V8gEr70MqUjiDOtGUZKsAzD2ZBlAjAj770KYVYa/BlJXWCl5SfFOP/rVnPFnnuvg6Sss
- NE2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=pN3fYF/WUsAoyz1cgrMGrvu9VIDZsdxapnqkdhrA3LQ=;
- b=QWJwBGaQdRN6XlRWiPE5FFLg9lB8tJcmqFBWFORAuLHhR5j2driVhlCvw79NNJKIJa
- rvE9QOy8Xz0qPnEGpXRbSRH6OOrnbaLeYHYyKlrpMjc/FQiG+CuXbPaNCODYw5C4CuOf
- cbeByoWw6ZhBEWOz9Ykn3/wKjOILR3uGVMWRMW3mlKUzBz6sNIFyJSPwYRnnUK+VBzYT
- NoyyyL34VHNHhCyYec+hA5/cCOf5sDcrUxt2kCp0CSwXhcvLBhO/wII74o9FG6OjRLSq
- xhrfXNv0lPbEYKhbkKsCbaf3jY7wi6o+pML1+ptm+6nvDDEn9HyTCL7uT4bPzRcOd863
- lgeQ==
-X-Gm-Message-State: ANhLgQ3YRo2DOLuo8+9eAXmR9W6Tqo4W5xzChwjHTfhxNnTH90Y9FBDc
- 4wPPvafqTb8oNlRMMGNLB8q9fal6
-X-Google-Smtp-Source: ADFU+vsqzlsWvo1HT7ryuvWzTajYOyQ/efsAsZtgE04qcU68NIrwoyPAYEP4rXl08DBujTEHltzz9g==
-X-Received: by 2002:a17:90b:3009:: with SMTP id
- hg9mr12176644pjb.181.1583657095578; 
- Sun, 08 Mar 2020 00:44:55 -0800 (PST)
-Received: from localhost.localdomain ([1.38.148.20])
- by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Mar 2020 00:44:55 -0800 (PST)
-From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
-To: cocci@systeme.lip6.fr
-Date: Sun,  8 Mar 2020 14:13:56 +0530
-Message-Id: <20200308084356.14506-14-jaskaransingh7654321@gmail.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
-References: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 0A20D7742
+ for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 14:26:09 +0100 (CET)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 028DQ84U025989
+ (version=TLSv1.2 cipher=DHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO)
+ for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 14:26:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1583673968;
+ bh=7JRL7UXDgjR4mZSGAEOpEsAjIxQ8PyziU3t1X3anS1Q=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=YZbC3jIUrcqs7Eb5TSL43Mz83yai/4Gjtuy6JdL25oDApv6h9tgMiZI6Xlh4gUeoD
+ 4kJNY4fDUAcaMTKr/8XjRC3Drf5NqfFyxa37i2iv/ZWb+N6GqwVW3c5ZyVzyBhzeuH
+ zrgKLmfrQaSS39wOSIdLW1M150JbpdDo6oHADoDU=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([93.131.62.235]) by smtp.web.de (mrweb103
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0M5OUd-1jYe5w3Upb-00zW9S for
+ <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 14:26:07 +0100
+To: Coccinelle <cocci@systeme.lip6.fr>
+From: Markus Elfring <Markus.Elfring@web.de>
+Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
+ 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 FEE=
+Message-ID: <127b687b-7139-e3b3-bc5a-13461609851c@web.de>
+Date: Sun, 8 Mar 2020 14:26:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:45:00 +0100 (CET)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 08 Mar 2020 09:44:57 +0100 (CET)
+Content-Language: en-US
+X-Provags-ID: V03:K1:1aDKLk7pks1uHWiZUMJDeO2FdN6Q5CGaqn27ZZGYMzXWQ3Pnysl
+ LuVQDrd3584NTQwF95WpmfV8qBrJFkSunzak4UjWaoRYhyG+NZAQYy5oT3WhzNS6OQe/O9F
+ SRwS6Jl/nrnfQZ9UPnjuFbkrAw5bgWbPNBbq6qsaUt/yb7HfUiQycfMs/bbTZ2ShU16i96F
+ CLnIMR2sN+yp5T2LKObhA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:aK55BkwZMIU=:3pgy9MD4pBix9zWKfRTZvT
+ SyvuORDXBEQmjnbq/79csd4IjENtrRKS2zsigFPeYhm8/yg7sdl6vjZB7huoAJQ4aqnPtVobe
+ amCcWovz4hXuBOUrYj1h0lLf/Q+Nwg0dxNlgicQmE+i8sMsXjjYuz3JVBtVDtfq/fAB8NSyVd
+ wHs/ZlUAgqAg2eGbe356p8nDU3mAO5Co5y7zDFL7afx/UILDBPFW4Q/qEeWUvxjClV0O+Pwkm
+ iqFGgoPAOan2LoLm16dSnS5xVckhUoHuDct/nLVq/jaSIhaFO1Ej/BuY9l2bdLMnrbOz6otgM
+ /lUDSCypTaWtMIWU7a1YHjMItczvM7T2+LJnUak99agEhVwyKGki1Qbb3wBuZOZ+IU1MU22c7
+ kSUkGQhZY7ZWmU5D3PpmElRXh3i37mJC5dfe1ZvNwvzszT2aFGP4eHUJ9xhaxirWZtxxvjvCv
+ IhHfJmacDhrghYIVnMopIzfGLS3VOG0VrLf7W9Md7wj1cjv04h5tW9xOLkPD7ChSgbQOiTN2b
+ 7jnYb2/5pL4wc9VSI07FkGb7VkLHL8Ds40hBrTnZHQi2ilJte4FY2ldNlFpNsJmWCo79k/2DV
+ ce6aa+jKyRcJXcdEnMtAd3suBHgc8pSn07vvMCI3s5hepTn/qP6uEcmJVjURnxNw8eKw6IpiN
+ UcVHbxM3z+MGcYqdphW5xpJ2IidbuFlTuB7Pxt6Ndh2OGbGD/7RteTsXSK1r8yYdDSS/6OGs4
+ oiQkhqqTCfWtZC6e/kYOs5qitJq+GpcYws2FqBGLFEFfme0x8Eb/8FLKyBWVtsjVcscitz9VU
+ NOcvkvJB+mH0AYJpdU/uLF3dIMy74TFd//h0D5Evj210NRWpX608rEUSfToKceQYBU6vZYAjf
+ j91q+lzdiWAj20RH7iVq6IyDfwu9XMo1nJyHI+Wo5Wpovbq3SvdNp4xYRSiLhKQ+hx4lR8chD
+ X5oRNBir7TFUkocv9n2ywKGN23IdeibK4yxf2rTZQYGxaW0U24cM1uzlZ5FTyDah1pWaZsqoJ
+ H5WWTVN9fQoMNo2xNjiGJO6CXRnt4enf5MMmTk/xp8gezBUxgVSsQOPMauhF62qw2EMKmF4Uu
+ cPbN7CKoN27z3f77q5QJVOVO+QjuQcIbKF5dRYZ81zIL0PqBw4POMyPKqIETYCR8YHQFmKmvx
+ r2Yli0bNU9zGJ6CCRrp71o/XiY1b3IJ2dhXAjWCevMc2wGQz5yMFwxlYINXCuc/duBlkXud01
+ rMYeqcivEHC96pwMp
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 14:26:12 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 14:26:08 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 13/13] tools: spgen: Reflect visitor changes
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Subject: [Cocci] Checking two error messages
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,117 +124,32 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Visitor_ast0 has changes with respect to enums. Reflect these
-changes in spgen by adding additional arguments in the combiners
-and rebuilders.
-
-Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
----
- tools/spgen/source/detect_patch.ml  | 6 ++++--
- tools/spgen/source/meta_variable.ml | 6 ++++--
- tools/spgen/source/rule_body.ml     | 6 ++++--
- 3 files changed, 12 insertions(+), 6 deletions(-)
-
-diff --git a/tools/spgen/source/detect_patch.ml b/tools/spgen/source/detect_patch.ml
-index 6cf1c538..0489afec 100644
---- a/tools/spgen/source/detect_patch.ml
-+++ b/tools/spgen/source/detect_patch.ml
-@@ -101,11 +101,13 @@ let patch_combiner =
-   let dotsparamfn = donothing in
-   let dotsdeclfn = donothing in
-   let dotsfieldfn = donothing in
-+  let dotsenumdeclfn = donothing in
-   let dotscasefn = donothing in
-   let dotsdefparfn = donothing in
-   let assignOpfn = donothing in
-   let binaryOpfn = donothing in
-   let initfn = donothing in
-+  let enumdeclfn = donothing in
-   let paramfn = donothing in
-   let forinfofn = donothing in
-   let string_fragmentfn = donothing in
-@@ -159,9 +161,9 @@ let patch_combiner =
-     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
-     struct_mcode storage_mcode inc_mcode
-     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
--    dotscasefn dotsdefparfn
-+    dotsenumdeclfn dotscasefn dotsdefparfn
-     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
--    stmtfn forinfofn casefn string_fragmentfn topfn
-+    enumdeclfn stmtfn forinfofn casefn string_fragmentfn topfn
- 
- 
- (* ------------------------------------------------------------------------- *)
-diff --git a/tools/spgen/source/meta_variable.ml b/tools/spgen/source/meta_variable.ml
-index 7adfacad..a1804a05 100644
---- a/tools/spgen/source/meta_variable.ml
-+++ b/tools/spgen/source/meta_variable.ml
-@@ -390,11 +390,13 @@ let metavar_combiner rn =
-   let dotsstmtfn = donothing in
-   let dotsdeclfn = donothing in
-   let dotsfieldfn = donothing in
-+  let dotsenumdeclfn = donothing in
-   let dotscasefn = donothing in
-   let dotsdefparfn = donothing in
-   let forinfofn = donothing in
-   let casefn = donothing in
-   let topfn = donothing in
-+  let enumdeclfn = donothing in
- 
-   (* --- These are shortened formatting functions that return MVSets --- *)
- 
-@@ -574,9 +576,9 @@ let metavar_combiner rn =
-     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
-     struct_mcode storage_mcode inc_mcode
-     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
--    dotscasefn dotsdefparfn
-+    dotsenumdeclfn dotscasefn dotsdefparfn
-     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
--    stmtfn forinfofn casefn string_fragmentfn topfn
-+    enumdeclfn stmtfn forinfofn casefn string_fragmentfn topfn
- 
- 
- (* ------------------------------------------------------------------------- *)
-diff --git a/tools/spgen/source/rule_body.ml b/tools/spgen/source/rule_body.ml
-index 6345c9df..163dff9a 100644
---- a/tools/spgen/source/rule_body.ml
-+++ b/tools/spgen/source/rule_body.ml
-@@ -219,12 +219,14 @@ let rec gen_combiner ~context_mode =
-   let dotsparamfn = donothing in
-   let dotsdeclfn = donothing in
-   let dotsfieldfn = donothing in
-+  let dotsenumdeclfn = donothing in
-   let dotscasefn = donothing in
-   let dotsdefparfn = donothing in
-   let assignOpfn = donothing in
-   let binaryOpfn = donothing in
-   let tyfn = donothing in
-   let initfn = donothing in
-+  let enumdeclfn = donothing in
-   let paramfn = donothing in
-   let forinfofn = donothing in
-   let casefn = donothing in
-@@ -349,9 +351,9 @@ let rec gen_combiner ~context_mode =
-     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
-     struct_mcode storage_mcode inc_mcode
-     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
--    dotscasefn dotsdefparfn
-+    dotsenumdeclfn dotscasefn dotsdefparfn
-     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
--    stmtfn forinfofn casefn string_fragmentfn topfn
-+    enumdeclfn stmtfn forinfofn casefn string_fragmentfn topfn
- 
- 
- (* ------------------------------------------------------------------------- *)
--- 
-2.21.1
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+SGVsbG8sCgpJIGhhdmUgdHJpZWQgdGhlIGZvbGxvd2luZyBzbWFsbCBzY3JpcHQgdmFyaWFudCBv
+dXQgYWdhaW4gZm9yCnRoZSBzZW1hbnRpYyBwYXRjaCBsYW5ndWFnZS4KCkBkaXNwbGF5QApleHBy
+ZXNzaW9uIGFjdGlvbjsKZXhwcmVzc2lvbiogcG9pbnRlciwgdGFyZ2V0LCB4OwppZGVudGlmaWVy
+IG1lbWJlciwgdmFyOwpzdGF0ZW1lbnQgaXM7CnR5cGUgdDsKQEAKKAoqdCogdmFyID0gcG9pbnRl
+ci0+bWVtYmVyOwp8Cipwb2ludGVyLT5tZW1iZXI7CnwKKnRhcmdldCA9IHBvaW50ZXItPm1lbWJl
+cjsKfAoqdCogdmFyID0gcG9pbnRlci0+bWVtYmVyKC4uLik7CnwKKnBvaW50ZXItPm1lbWJlcigu
+Li4pOwp8Cip0YXJnZXQgPSBwb2ludGVyLT5tZW1iZXIoLi4uKTsKKQogLi4uIHdoZW4gYW55CiAg
+ICAgd2hlbiAhPSBwb2ludGVyID0gXCggYWN0aW9uKC4uLikgXHwgeCBcKQoqaWYgKAooICAgICFw
+b2ludGVyCnwgICAgcG9pbnRlciA9PSBOVUxMCikKICAgICkKICBpcwoKClRoZSBzb2Z0d2FyZSDi
+gJxDb2NjaW5lbGxlIDEuMC44LTAwMDI5LWdhNTQ5YjlmMOKAnSAoT0NhbWwgNC4xMC4wKSByZXBv
+cnRzIHRoZSBmb2xsb3dpbmcgZXJyb3IgbWVzc2FnZXMKZm9yIGFuIGFuYWx5c2lzIGFwcHJvYWNo
+IG9uIHNvdXJjZSBmaWxlcyBmcm9tIOKAnExpbnV4IG5leHQtMjAyMDAzMDbigJ0uCgoKZWxmcmlu
+Z0BTb25uZTp+L1Byb2pla3RlL0xpbnV4L25leHQtcGF0Y2hlZD4gc3BhdGNoIH4vUHJvamVrdGUv
+Q29jY2luZWxsZS9qYW5pdG9yL3Nob3dfcG9pbnRlcl9hY2Nlc3NfYmVmb3JlX251bGxfY2hlY2sz
+LmNvY2NpIGRyaXZlcnMvZmlybXdhcmUvZWZpL3J1bnRpbWUtd3JhcHBlcnMuYwrigKYKRmF0YWwg
+ZXJyb3I6IGV4Y2VwdGlvbiBGaWxlICJlbmdpbmUvY3RsY29jY2lfaW50ZWdyYXRpb24ubWwiLCBs
+aW5lIDM2MSwgY2hhcmFjdGVycyA0LTEwOiBBc3NlcnRpb24gZmFpbGVkCmVsZnJpbmdAU29ubmU6
+fi9Qcm9qZWt0ZS9MaW51eC9uZXh0LXBhdGNoZWQ+IHNwYXRjaCB+L1Byb2pla3RlL0NvY2NpbmVs
+bGUvamFuaXRvci9zaG93X3BvaW50ZXJfYWNjZXNzX2JlZm9yZV9udWxsX2NoZWNrMy5jb2NjaSBu
+ZXQvY29yZS9kZXYuYwrigKYKbm8gcG9zaXRpb24gaW5mb3JtYXRpb24KCgpJcyBzdWNoIGluZm9y
+bWF0aW9uIHdvcnRoIGZvciBmdXJ0aGVyIGNsYXJpZmljYXRpb24/CgpSZWdhcmRzLApNYXJrdXMK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KQ29jY2kgbWFp
+bGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5mcgpodHRwczovL3N5c3RlbWUubGlwNi5mci9t
+YWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
