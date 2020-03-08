@@ -2,75 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCBE617D2B1
-	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:45:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CAEB17D2B6
+	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:45:41 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288iJ4J005092;
-	Sun, 8 Mar 2020 09:44:19 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288iQ8H001601;
+	Sun, 8 Mar 2020 09:44:26 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 884017827;
-	Sun,  8 Mar 2020 09:44:16 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 750FA7802;
+	Sun,  8 Mar 2020 09:44:26 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 980BE77F4
- for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:14 +0100 (CET)
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:443])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iBxX009748
+ by systeme.lip6.fr (Postfix) with ESMTPS id 310C17742
+ for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:23 +0100 (CET)
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:441])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iGYT006704
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:12 +0100 (CET)
-Received: by mail-pf1-x443.google.com with SMTP id g21so3413562pfb.5
- for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:12 -0800 (PST)
+ for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:17 +0100 (CET)
+Received: by mail-pf1-x441.google.com with SMTP id c144so3404032pfb.10
+ for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=545xpgF/TgsFYj2C7WNNA12U+rN0HF1e2CWbfKsBxO4=;
- b=U16KbaBQMrYLdZfV1XsWmiTFXgkIyNGTAxqJj2Y4jSwQTXMf7THWgBRuxx/ilrT3ID
- axN4mDAdj1R6wlcX56WCXQfl1WrOw320o+hzwBvOdOZrD/Yvyy5y275z/F2oA9w70Zgb
- no2XcQdWO5MCnuwWAYbZEys0eLDsA7Z+PyRiSWubOZYrzFPDL8jNNASqCdbRAA6yVHca
- c6xc7/1aG+dCHNmqG3MR1UCdxqg6ECLE1nsxEFNZkZBMnGjNVV/ulYGxHqNUnt7MDOdL
- M5W9F3Bt1thfZvJibi9RKARNwaeb9KzVSsh2gJlceItS8T6fUnew6rMy8Wp4df2QpLYf
- g3XA==
+ bh=nSi+dgPVv0xkezcYKd48ZE1X5GOqXzTJa3ohoO1Apmo=;
+ b=MTIESWNFcQY2QWPO5eMS6C7CeqW7anSsU6Z793Utd9GI6wnXL4pEk6xRykG5QdhVcF
+ HTrfsorFLXxMQU9sFg3glWtpvetTEobTHK3vDRFK7ZsU1ztOqTXPeEu7PemJe+gMsZvd
+ fB72E4Rn+xuY04AnURROZFtXiTrmSqYTEW5zxtRSe8iYKu7M8WIjb6WpZ8gVVFfKZu4E
+ 2u4D4hse21fL/oCw3VpNCOHeP9b+tSoX5rNhrbQgRVoYrzGdej+BIG9wxY+Ea/sgOiNL
+ q1A7v0FoZggezQrQFH6Wikqr50DjEw4YEhZtSlIteShsNfTmZFhIs0iT+i8kDOT6K0Ez
+ cnQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=545xpgF/TgsFYj2C7WNNA12U+rN0HF1e2CWbfKsBxO4=;
- b=AM5/KgVFOMWziHFR6YHnFL7SqHvQX4p7VJ11Gc2ncIrxYSwJ+VbO08G2BQ8heGBjdl
- YcPUG3H6VHtzAVR4BI9vYDLHyDjf2/Xj3+vBdFw6fIA6kOx9S6hIHqAS/jkuRXqsBzcc
- w14Fszs7/ijQ5JQvDlcMEFne0paE7qNXrAIJHV0UB3Bmd4cYYdPFHmbyzlC9xXqoYzpf
- HWBAaW5rGKeR7B9yM+CgqbRVhQsRIryXmobWpfMI25/NTxoCx2gcOsZYoAfMVgDJiBEw
- mOpd/tiSIAE9kwGC48nCeeO/+Hr7JSYJ49TrpI28bbfubkOqsWrwjhOUfFF3X87AZZhg
- T+kQ==
-X-Gm-Message-State: ANhLgQ1SPL3MG9KZSi3ABjYA4SUTL3lRM+PZ6NeuPrDfMt7pOXXzwnWA
- ohcoFaj1gOUMGYV/1jxWcmUrFbNH
-X-Google-Smtp-Source: ADFU+vtIba+N2PlB/eSjr8m8G44DahIG5XiCgdZsMvmT1LMkGPx6cQ0gnNKi4XYXqLSH2bayFS8Qxw==
-X-Received: by 2002:aa7:8426:: with SMTP id q6mr11570619pfn.221.1583657050910; 
- Sun, 08 Mar 2020 00:44:10 -0800 (PST)
+ bh=nSi+dgPVv0xkezcYKd48ZE1X5GOqXzTJa3ohoO1Apmo=;
+ b=q9/mDsT/pxscaTxh5qtLDgyX/lKVfN7CcKSbovjLZsvClO/4Llf/45www7vW92p6wQ
+ zRTKuLDxs1ao/DrX8B4Sw9TztNemNLPm6rqlMUamynIp+k9Jp77v6msIu/ISV9YEYLHU
+ tFF0P8jzTAxRDy5koNXB+o4+jdRQJSY62MmTUbWF8gVIGyRcuRAPZkxwh+3Fhi0QjqCW
+ fMswOrINFMbe+dM3XdrFfljii2p3V+GR1iwlln/a77adiYyjWQ4Hj1LlzICW1bCk5Ko+
+ q1Q+jENwoTwDUryuQDI305VDYL4fB7vPfliL10VRg9X8LR6Jc/W2dr5/naLgdBvBg3Sk
+ E0Cw==
+X-Gm-Message-State: ANhLgQ2+pIZZ4USOUE5gw2YdcUnxySEzTAUfFj/n495VHH3nAvDuWWtg
+ 456Fn+VB4dBIfFccSfcsgm8bVshG
+X-Google-Smtp-Source: ADFU+vu9GWkUHfH56Um7+sGuoWDgr5VRLwBRNq+Y6cecZi6NyGSDkUWq4+Vkr91rmr27KChtEfK0Iw==
+X-Received: by 2002:a63:770d:: with SMTP id s13mr10961125pgc.7.1583657055986; 
+ Sun, 08 Mar 2020 00:44:15 -0800 (PST)
 Received: from localhost.localdomain ([1.38.148.20])
- by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.08
+ by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Mar 2020 00:44:10 -0800 (PST)
+ Sun, 08 Mar 2020 00:44:15 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Sun,  8 Mar 2020 14:13:45 +0530
-Message-Id: <20200308084356.14506-3-jaskaransingh7654321@gmail.com>
+Date: Sun,  8 Mar 2020 14:13:46 +0530
+Message-Id: <20200308084356.14506-4-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 References: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:19 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:26 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 08 Mar 2020 09:44:13 +0100 (CET)
+ Sun, 08 Mar 2020 09:44:18 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 02/13] ocaml: coccilib: Reflect changes in SmPL AST
-	for EnumDef
+Subject: [Cocci] [PATCH 03/13] parsing_cocci: parser: Parse enumerators
+	correctly
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,63 +87,85 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-The EnumDef constructor is changed in the SmPL AST. Reflect
-these changes in coccilib.
+The EnumDef constructor of the SmPL AST has changed. Make
+the SmPL parser parse an EnumDef correctly.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- ocaml/coccilib.mli | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ parsing_cocci/parse_aux.ml            |  5 +++++
+ parsing_cocci/parse_aux.mli           |  9 +++++++++
+ parsing_cocci/parser_cocci_menhir.mly | 13 +++++--------
+ 3 files changed, 19 insertions(+), 8 deletions(-)
 
-diff --git a/ocaml/coccilib.mli b/ocaml/coccilib.mli
-index 5a913099..9b00e130 100644
---- a/ocaml/coccilib.mli
-+++ b/ocaml/coccilib.mli
-@@ -2713,7 +2713,7 @@ module Ast_cocci :
-       | Decimal of string mcode * string mcode * expression *
-           string mcode option * expression option * string mcode
-       | EnumName of string mcode * ident option
--      | EnumDef of fullType * string mcode * expression dots * string mcode
-+      | EnumDef of fullType * string mcode * enum_decl dots * string mcode
-       | StructUnionName of structUnion mcode * ident option
-       | StructUnionDef of fullType * string mcode * annotated_field dots *
-           string mcode
-@@ -2789,6 +2789,12 @@ module Ast_cocci :
-       | ConjField of annotated_field list
-       | OptField  of annotated_field
-     and annotated_field = base_annotated_field wrap
-+    and base_enum_decl =
-+      Ast_cocci.base_enum_decl =
-+        Enum of ident * (string mcode * expression) option
-+      | EnumComma of string mcode
-+      | EnumDots of string mcode * enum_decl option
-+    and enum_decl = base_enum_decl wrap
-     and base_initialiser =
-       Ast_cocci.base_initialiser =
-         MetaInit of meta_name mcode * constraints * keep_binding * inherited
-@@ -3357,7 +3363,7 @@ module Ast0_cocci :
-       | Decimal of string mcode * string mcode * expression *
-           string mcode option * expression option * string mcode
-       | EnumName of string mcode * ident option
--      | EnumDef of typeC * string mcode * expression dots * string mcode
-+      | EnumDef of typeC * string mcode * enum_decl dots * string mcode
-       | StructUnionName of Ast_cocci.structUnion mcode * ident option
-       | StructUnionDef of typeC * string mcode * field dots * string mcode
-       | TypeOfExpr of string mcode * string mcode * expression * string mcode
-@@ -3408,6 +3414,13 @@ module Ast0_cocci :
-       | OptField of field
-     and bitfield = string mcode * expression
-     and field = base_field wrap
-+    and base_enum_decl =
-+      Ast0_cocci.base_enum_decl =
-+        Enum of ident * (string mcode * expression) option
-+      | EnumComma of string mcode
-+      | EnumDots of string mcode *
-+                    (string mcode * string mcode * enum_decl) option
-+    and enum_decl = base_enum_decl wrap
-     and base_initialiser =
-       Ast0_cocci.base_initialiser =
-         MetaInit of Ast_cocci.meta_name mcode * constraints * pure
+diff --git a/parsing_cocci/parse_aux.ml b/parsing_cocci/parse_aux.ml
+index 9f2d607b..b5d1afb4 100644
+--- a/parsing_cocci/parse_aux.ml
++++ b/parsing_cocci/parse_aux.ml
+@@ -136,6 +136,11 @@ let mkpdots str dot =
+     "..." -> Ast0.wrap(Ast0.Pdots(clt2mcode str dot))
+   | _ -> failwith "cannot happen"
+ 
++let mkenumdots str (dot,whencode) =
++  match str with
++    "..." -> Ast0.wrap(Ast0.EnumDots(clt2mcode str dot, whencode))
++  | _ -> failwith "cannot happen"
++
+ let arith_op ast_op left op right =
+   let op' = Ast0.wrap (Ast0.Arith (clt2mcode ast_op op)) in  
+   Ast0.wrap (Ast0.Binary(left, op', right))
+diff --git a/parsing_cocci/parse_aux.mli b/parsing_cocci/parse_aux.mli
+index 63419831..91d7cb26 100644
+--- a/parsing_cocci/parse_aux.mli
++++ b/parsing_cocci/parse_aux.mli
+@@ -126,6 +126,15 @@ val mkpdots :
+   (Ast_cocci.added_string * Ast0_cocci.position_info) list *
+   (Ast_cocci.added_string * Ast0_cocci.position_info) list * Ast0_cocci.anything list *
+   string -> Ast0_cocci.base_parameterTypeDef Ast0_cocci.wrap
++val mkenumdots :
++  string ->
++  (Data.line_type * int * int * int * int * int *
++   (Ast_cocci.added_string * Ast0_cocci.position_info) list *
++   (Ast_cocci.added_string * Ast0_cocci.position_info) list * Ast0_cocci.anything list *
++   string) *
++  (string Ast0_cocci.mcode * string Ast0_cocci.mcode * Ast0_cocci.enum_decl)
++  option ->
++  Ast0_cocci.base_enum_decl Ast0_cocci.wrap
+ val arith_op :
+   Ast_cocci.arithOp ->
+   Ast0_cocci.expression ->
+diff --git a/parsing_cocci/parser_cocci_menhir.mly b/parsing_cocci/parser_cocci_menhir.mly
+index 9e6c8a08..ff535729 100644
+--- a/parsing_cocci/parser_cocci_menhir.mly
++++ b/parsing_cocci/parser_cocci_menhir.mly
+@@ -1160,15 +1160,12 @@ struct_decl_list_start:
+ /* very restricted what kinds of expressions can appear in an enum decl */
+ 
+ enum_decl_one:
+-    | disj_ident    { Ast0.wrap(Ast0.Ident($1)) }
++    | disj_ident    { Ast0.wrap(Ast0.Enum($1, None)) }
+     | disj_ident TEq enum_val
+-	{ let id = Ast0.wrap(Ast0.Ident($1)) in
+-        let (op,clt) = ("=",$2) in
+-        let op' = P.clt2mcode op clt in
+-        let op'' = Ast0.wrap (Ast0.SimpleAssign op') in
++	{
+ 	Ast0.wrap
+-	  (Ast0.Assignment
+-	     (id, op'', Ast0.set_arg_exp $3, false)) }
++	  (Ast0.Enum
++	     ($1, Some(P.clt2mcode "=" $2, $3))) }
+ 
+ enum_val:
+    ident    { Ast0.wrap(Ast0.Ident($1)) }
+@@ -1193,7 +1190,7 @@ enum_val:
+ 
+ enum_decl_list:
+    nonempty_list_start(enum_decl_one,edots_when(TEllipsis,enum_decl_one))
+-     { Ast0.wrap($1 P.mkedots (fun c -> Ast0.EComma c)) }
++     { Ast0.wrap($1 P.mkenumdots (fun c -> Ast0.EnumComma c)) }
+ 
+ /*****************************************************************************/
+ 
 -- 
 2.21.1
 
