@@ -2,75 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CAEB17D2B6
-	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E85F517D2B3
+	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:45:22 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288iQ8H001601;
-	Sun, 8 Mar 2020 09:44:26 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288iOFq020037;
+	Sun, 8 Mar 2020 09:44:24 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 750FA7802;
-	Sun,  8 Mar 2020 09:44:26 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id EA1EC781D;
+	Sun,  8 Mar 2020 09:44:23 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 310C17742
- for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:23 +0100 (CET)
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:441])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iGYT006704
+ by systeme.lip6.fr (Postfix) with ESMTPS id DF0807742
+ for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:21 +0100 (CET)
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:644])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iJXf021999
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:17 +0100 (CET)
-Received: by mail-pf1-x441.google.com with SMTP id c144so3404032pfb.10
- for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:17 -0800 (PST)
+ for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:20 +0100 (CET)
+Received: by mail-pl1-x644.google.com with SMTP id w12so2747727pll.13
+ for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=nSi+dgPVv0xkezcYKd48ZE1X5GOqXzTJa3ohoO1Apmo=;
- b=MTIESWNFcQY2QWPO5eMS6C7CeqW7anSsU6Z793Utd9GI6wnXL4pEk6xRykG5QdhVcF
- HTrfsorFLXxMQU9sFg3glWtpvetTEobTHK3vDRFK7ZsU1ztOqTXPeEu7PemJe+gMsZvd
- fB72E4Rn+xuY04AnURROZFtXiTrmSqYTEW5zxtRSe8iYKu7M8WIjb6WpZ8gVVFfKZu4E
- 2u4D4hse21fL/oCw3VpNCOHeP9b+tSoX5rNhrbQgRVoYrzGdej+BIG9wxY+Ea/sgOiNL
- q1A7v0FoZggezQrQFH6Wikqr50DjEw4YEhZtSlIteShsNfTmZFhIs0iT+i8kDOT6K0Ez
- cnQQ==
+ bh=qagemmdAByghWog/PZSgjV9lDfhA1TgFTR47PU95//M=;
+ b=d1GC4AC+XpmzJ+bm7oLAgwMAh0wGT2P3Lm9WsnOHeJnIkX/mOrLiHVnxqdTeoCq85Q
+ Mh2t9hGbQWkdxgowh4LvC55kBfDAqKVwvOf2SXWqpOAEPxbBajnSTDztXuPhSXZyAq8c
+ 9QW7kqLBe8Id8mVUk4wzI4CXnYbNaA7RbEmJa3N7sZj3d+UOhzfnBcKLPgtGPQgTSPjW
+ eJWTUW+nw3VTRI7Kkzzfi/zO0EcQQDqlLx3g0rJbafKJVE5L6N9rqCPHN0UqIksSBSbD
+ 2jpaSlIcLoaLAmSlNrdbwhSbfkM4m+1FY1jbBVY0cwgpE39MflRaMvoT05CSuy5iwJDr
+ e3EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=nSi+dgPVv0xkezcYKd48ZE1X5GOqXzTJa3ohoO1Apmo=;
- b=q9/mDsT/pxscaTxh5qtLDgyX/lKVfN7CcKSbovjLZsvClO/4Llf/45www7vW92p6wQ
- zRTKuLDxs1ao/DrX8B4Sw9TztNemNLPm6rqlMUamynIp+k9Jp77v6msIu/ISV9YEYLHU
- tFF0P8jzTAxRDy5koNXB+o4+jdRQJSY62MmTUbWF8gVIGyRcuRAPZkxwh+3Fhi0QjqCW
- fMswOrINFMbe+dM3XdrFfljii2p3V+GR1iwlln/a77adiYyjWQ4Hj1LlzICW1bCk5Ko+
- q1Q+jENwoTwDUryuQDI305VDYL4fB7vPfliL10VRg9X8LR6Jc/W2dr5/naLgdBvBg3Sk
- E0Cw==
-X-Gm-Message-State: ANhLgQ2+pIZZ4USOUE5gw2YdcUnxySEzTAUfFj/n495VHH3nAvDuWWtg
- 456Fn+VB4dBIfFccSfcsgm8bVshG
-X-Google-Smtp-Source: ADFU+vu9GWkUHfH56Um7+sGuoWDgr5VRLwBRNq+Y6cecZi6NyGSDkUWq4+Vkr91rmr27KChtEfK0Iw==
-X-Received: by 2002:a63:770d:: with SMTP id s13mr10961125pgc.7.1583657055986; 
- Sun, 08 Mar 2020 00:44:15 -0800 (PST)
+ bh=qagemmdAByghWog/PZSgjV9lDfhA1TgFTR47PU95//M=;
+ b=BmMmVNepB/EFjjwb0xMmc26I/iHptkD2HRdP9SxuF67hdTBJJJgmOw18NBVi9vbf1F
+ WgOqNWZNhvWef5tYi6mZKSjV5HKNgK/wUsngWtSvkNLPH1iq0rymOAIJpycEGKkiktT2
+ 3BA+04KMKYksLd0SmgGZegDmtq0jPocrmHE7gEi9CfhTZthnGI58j6LKfby5zfUmigLp
+ Dp4JE2mUgtsUeJI9Uw0C0LGHqqe8weUkyfBn+hFQvEdLuBnfpNrRwuk9fpMJ/FP8ZOvy
+ IHbdowjFfjG6PmXiFezpNpFWv5OHiT7jRnIE9j7JSMY1jPppiyO31P6FyACyNJ24h+0d
+ QtMw==
+X-Gm-Message-State: ANhLgQ1mm9syk4dBCeoKUmwEiNrTKy14I/wKRxvlcCpjvnNbskc9bgtE
+ xXE9vt+fDg+6EcwNNqrTXWDUhh/N
+X-Google-Smtp-Source: ADFU+vtnKOaVgntM6nicPE6H1uYoM812COQm0nIquik+g1h1po5hkvx/uc8LKlp1J5aoWnnq63bqhg==
+X-Received: by 2002:a17:90a:1b4c:: with SMTP id
+ q70mr12992692pjq.106.1583657059060; 
+ Sun, 08 Mar 2020 00:44:19 -0800 (PST)
 Received: from localhost.localdomain ([1.38.148.20])
- by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.11
+ by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Mar 2020 00:44:15 -0800 (PST)
+ Sun, 08 Mar 2020 00:44:18 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Sun,  8 Mar 2020 14:13:46 +0530
-Message-Id: <20200308084356.14506-4-jaskaransingh7654321@gmail.com>
+Date: Sun,  8 Mar 2020 14:13:47 +0530
+Message-Id: <20200308084356.14506-5-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 References: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:26 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:24 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 08 Mar 2020 09:44:18 +0100 (CET)
+ Sun, 08 Mar 2020 09:44:21 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 03/13] parsing_cocci: parser: Parse enumerators
-	correctly
+Subject: [Cocci] [PATCH 04/13] parsing_cocci: Add EnumDeclTag and
+	EnumDeclDotsTag to SmPL ASTs
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,85 +88,146 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-The EnumDef constructor of the SmPL AST has changed. Make
-the SmPL parser parse an EnumDef correctly.
+These constructors are needed by the visitor and various other
+functions in the codebase. Maintain consistency and add these
+constructs w/r/t changes in the SmPL AST.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/parse_aux.ml            |  5 +++++
- parsing_cocci/parse_aux.mli           |  9 +++++++++
- parsing_cocci/parser_cocci_menhir.mly | 13 +++++--------
- 3 files changed, 19 insertions(+), 8 deletions(-)
+ parsing_cocci/ast0_cocci.ml  | 4 ++++
+ parsing_cocci/ast0_cocci.mli | 4 ++++
+ parsing_cocci/ast_cocci.ml   | 4 ++++
+ parsing_cocci/ast_cocci.mli  | 2 ++
+ 4 files changed, 14 insertions(+)
 
-diff --git a/parsing_cocci/parse_aux.ml b/parsing_cocci/parse_aux.ml
-index 9f2d607b..b5d1afb4 100644
---- a/parsing_cocci/parse_aux.ml
-+++ b/parsing_cocci/parse_aux.ml
-@@ -136,6 +136,11 @@ let mkpdots str dot =
-     "..." -> Ast0.wrap(Ast0.Pdots(clt2mcode str dot))
-   | _ -> failwith "cannot happen"
+diff --git a/parsing_cocci/ast0_cocci.ml b/parsing_cocci/ast0_cocci.ml
+index b3d8b137..70486e4c 100644
+--- a/parsing_cocci/ast0_cocci.ml
++++ b/parsing_cocci/ast0_cocci.ml
+@@ -553,6 +553,7 @@ and anything =
+   | DotsStmtTag of statement dots
+   | DotsDeclTag of declaration dots
+   | DotsFieldTag of field dots
++  | DotsEnumDeclTag of enum_decl dots
+   | DotsCaseTag of case_line dots
+   | DotsDefParamTag of define_param dots
+   | IdentTag of ident
+@@ -566,6 +567,7 @@ and anything =
+   | InitTag of initialiser
+   | DeclTag of declaration
+   | FieldTag of field
++  | EnumDeclTag of enum_decl
+   | StmtTag of statement
+   | ForInfoTag of forinfo
+   | CaseLineTag of case_line
+@@ -585,6 +587,7 @@ let dotsInit x = DotsInitTag x
+ let dotsStmt x = DotsStmtTag x
+ let dotsDecl x = DotsDeclTag x
+ let dotsField x = DotsFieldTag x
++let dotsEnumDecl x = DotsEnumDeclTag x
+ let dotsCase x = DotsCaseTag x
+ let dotsDefParam x = DotsDefParamTag x
+ let ident x = IdentTag x
+@@ -601,6 +604,7 @@ let forinfo x = ForInfoTag x
+ let case_line x = CaseLineTag x
+ let string_fragment x = StringFragmentTag x
+ let top x = TopTag x
++let enum_decl x = EnumDeclTag x
  
-+let mkenumdots str (dot,whencode) =
-+  match str with
-+    "..." -> Ast0.wrap(Ast0.EnumDots(clt2mcode str dot, whencode))
-+  | _ -> failwith "cannot happen"
-+
- let arith_op ast_op left op right =
-   let op' = Ast0.wrap (Ast0.Arith (clt2mcode ast_op op)) in  
-   Ast0.wrap (Ast0.Binary(left, op', right))
-diff --git a/parsing_cocci/parse_aux.mli b/parsing_cocci/parse_aux.mli
-index 63419831..91d7cb26 100644
---- a/parsing_cocci/parse_aux.mli
-+++ b/parsing_cocci/parse_aux.mli
-@@ -126,6 +126,15 @@ val mkpdots :
-   (Ast_cocci.added_string * Ast0_cocci.position_info) list *
-   (Ast_cocci.added_string * Ast0_cocci.position_info) list * Ast0_cocci.anything list *
-   string -> Ast0_cocci.base_parameterTypeDef Ast0_cocci.wrap
-+val mkenumdots :
-+  string ->
-+  (Data.line_type * int * int * int * int * int *
-+   (Ast_cocci.added_string * Ast0_cocci.position_info) list *
-+   (Ast_cocci.added_string * Ast0_cocci.position_info) list * Ast0_cocci.anything list *
-+   string) *
-+  (string Ast0_cocci.mcode * string Ast0_cocci.mcode * Ast0_cocci.enum_decl)
-+  option ->
-+  Ast0_cocci.base_enum_decl Ast0_cocci.wrap
- val arith_op :
-   Ast_cocci.arithOp ->
-   Ast0_cocci.expression ->
-diff --git a/parsing_cocci/parser_cocci_menhir.mly b/parsing_cocci/parser_cocci_menhir.mly
-index 9e6c8a08..ff535729 100644
---- a/parsing_cocci/parser_cocci_menhir.mly
-+++ b/parsing_cocci/parser_cocci_menhir.mly
-@@ -1160,15 +1160,12 @@ struct_decl_list_start:
- /* very restricted what kinds of expressions can appear in an enum decl */
- 
- enum_decl_one:
--    | disj_ident    { Ast0.wrap(Ast0.Ident($1)) }
-+    | disj_ident    { Ast0.wrap(Ast0.Enum($1, None)) }
-     | disj_ident TEq enum_val
--	{ let id = Ast0.wrap(Ast0.Ident($1)) in
--        let (op,clt) = ("=",$2) in
--        let op' = P.clt2mcode op clt in
--        let op'' = Ast0.wrap (Ast0.SimpleAssign op') in
-+	{
- 	Ast0.wrap
--	  (Ast0.Assignment
--	     (id, op'', Ast0.set_arg_exp $3, false)) }
-+	  (Ast0.Enum
-+	     ($1, Some(P.clt2mcode "=" $2, $3))) }
- 
- enum_val:
-    ident    { Ast0.wrap(Ast0.Ident($1)) }
-@@ -1193,7 +1190,7 @@ enum_val:
- 
- enum_decl_list:
-    nonempty_list_start(enum_decl_one,edots_when(TEllipsis,enum_decl_one))
--     { Ast0.wrap($1 P.mkedots (fun c -> Ast0.EComma c)) }
-+     { Ast0.wrap($1 P.mkenumdots (fun c -> Ast0.EnumComma c)) }
- 
- /*****************************************************************************/
- 
+ (* --------------------------------------------------------------------- *)
+ (* Avoid cluttering the parser.  Calculated in compute_lines.ml. *)
+diff --git a/parsing_cocci/ast0_cocci.mli b/parsing_cocci/ast0_cocci.mli
+index 732a1345..7b2a87c4 100644
+--- a/parsing_cocci/ast0_cocci.mli
++++ b/parsing_cocci/ast0_cocci.mli
+@@ -542,6 +542,7 @@ and anything =
+   | DotsStmtTag of statement dots
+   | DotsDeclTag of declaration dots
+   | DotsFieldTag of field dots
++  | DotsEnumDeclTag of enum_decl dots
+   | DotsCaseTag of case_line dots
+   | DotsDefParamTag of define_param dots
+   | IdentTag of ident
+@@ -555,6 +556,7 @@ and anything =
+   | InitTag of initialiser
+   | DeclTag of declaration
+   | FieldTag of field
++  | EnumDeclTag of enum_decl
+   | StmtTag of statement
+   | ForInfoTag of forinfo
+   | CaseLineTag of case_line
+@@ -574,6 +576,7 @@ val dotsParam : parameterTypeDef dots -> anything
+ val dotsStmt : statement dots -> anything
+ val dotsDecl : declaration dots -> anything
+ val dotsField : field dots -> anything
++val dotsEnumDecl : enum_decl dots -> anything
+ val dotsCase : case_line dots -> anything
+ val dotsDefParam : define_param dots -> anything
+ val ident : ident -> anything
+@@ -585,6 +588,7 @@ val param : parameterTypeDef -> anything
+ val ini : initialiser -> anything
+ val decl : declaration -> anything
+ val field : field -> anything
++val enum_decl : enum_decl -> anything
+ val stmt : statement -> anything
+ val forinfo : forinfo -> anything
+ val case_line : case_line -> anything
+diff --git a/parsing_cocci/ast_cocci.ml b/parsing_cocci/ast_cocci.ml
+index 8fa64dcc..27942992 100644
+--- a/parsing_cocci/ast_cocci.ml
++++ b/parsing_cocci/ast_cocci.ml
+@@ -790,6 +790,7 @@ and anything =
+   | LogicalOpTag        of logicalOp
+   | DeclarationTag      of declaration
+   | FieldTag            of field
++  | EnumDeclTag         of enum_decl
+   | InitTag             of initialiser
+   | StorageTag          of storage
+   | IncFileTag          of inc_file
+@@ -807,6 +808,7 @@ and anything =
+   | StmtDotsTag         of statement dots
+   | AnnDeclDotsTag      of annotated_decl dots
+   | AnnFieldDotsTag     of annotated_field dots
++  | EnumDeclDotsTag     of enum_decl dots
+   | DefParDotsTag       of define_param dots
+   | TypeCTag            of typeC
+   | ParamTag            of parameterTypeDef
+@@ -932,6 +934,7 @@ and tag2c = function
+   | LogicalOpTag _ -> "LogicalOpTag"
+   | DeclarationTag _ -> "DeclarationTag"
+   | FieldTag _ -> "FieldTag"
++  | EnumDeclTag _ -> "EnumDeclTag"
+   | InitTag _      -> "InitTag"
+   | StorageTag _   -> "StorageTag"
+   | IncFileTag _   -> "IncFileTag"
+@@ -949,6 +952,7 @@ and tag2c = function
+   | StmtDotsTag _ -> "StmtDotsTag"
+   | AnnDeclDotsTag _ -> "AnnDeclDotsTag"
+   | AnnFieldDotsTag _ -> "AnnFieldDotsTag"
++  | EnumDeclDotsTag _ -> "EnumDeclDotsTag"
+   | DefParDotsTag _ -> "DefParDotsTag"
+   | TypeCTag _ -> "TypeCTag"
+   | ParamTag _ -> "ParamTag"
+diff --git a/parsing_cocci/ast_cocci.mli b/parsing_cocci/ast_cocci.mli
+index e921f917..8316a427 100644
+--- a/parsing_cocci/ast_cocci.mli
++++ b/parsing_cocci/ast_cocci.mli
+@@ -759,6 +759,7 @@ and anything =
+   | LogicalOpTag        of logicalOp
+   | DeclarationTag      of declaration
+   | FieldTag            of field
++  | EnumDeclTag         of enum_decl
+   | InitTag             of initialiser
+   | StorageTag          of storage
+   | IncFileTag          of inc_file
+@@ -776,6 +777,7 @@ and anything =
+   | StmtDotsTag         of statement dots
+   | AnnDeclDotsTag      of annotated_decl dots
+   | AnnFieldDotsTag     of annotated_field dots
++  | EnumDeclDotsTag     of enum_decl dots
+   | DefParDotsTag       of define_param dots
+   | TypeCTag            of typeC
+   | ParamTag            of parameterTypeDef
 -- 
 2.21.1
 
