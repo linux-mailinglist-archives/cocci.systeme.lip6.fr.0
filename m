@@ -2,75 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 279D517D2BB
+	by mail.lfdr.de (Postfix) with ESMTPS id 225A517D2BA
 	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:46:37 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288ivFD015326;
-	Sun, 8 Mar 2020 09:44:57 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288j0Qu002067;
+	Sun, 8 Mar 2020 09:45:00 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id BE2697742;
-	Sun,  8 Mar 2020 09:44:57 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 3F046781D;
+	Sun,  8 Mar 2020 09:45:00 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 66EF37814
- for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:55 +0100 (CET)
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:102e])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288irsP025184
+ by systeme.lip6.fr (Postfix) with ESMTPS id 595FC7742
+ for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:58 +0100 (CET)
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:641])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iuYm018471
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:54 +0100 (CET)
-Received: by mail-pj1-x102e.google.com with SMTP id l8so3032991pjy.1
- for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:54 -0800 (PST)
+ for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:57 +0100 (CET)
+Received: by mail-pl1-x641.google.com with SMTP id y1so2757196plp.7
+ for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=OAgaf6f/g8C77m/ZDRBPmrtY2bP/QHsonyCPsjIZw/U=;
- b=nLYHosbblarsu+jNX0qmOgQv0OXnyZyzPSP+u9P7VGUkZriHsQQXSD4CODIg4lMm60
- RR38WjbvCM5dpFvetEA5ttRfOnmFQbuJUGWNDObwv6/WAYuvA9gNbREdM1AHHTMGjR5t
- lQuu/4YkAy4azj2mNeXmEiSo1s18ZsWVmEP0hUvudU5XGJyPmp3ZZl7aqx3r+AL1UH6r
- DEIZihnbfCm+vhAIS6PvFVDcu1KDXrDUNtPd+L7pRbWizGJI7xP4GnjJKAPRqUoC/ETd
- tT3pzbkEizLqJbyy4hIeh6pKOrZxF+xERd4WNK8LcwHxViE6RbBzmnCNTivewASVr6PN
- UdSQ==
+ bh=pN3fYF/WUsAoyz1cgrMGrvu9VIDZsdxapnqkdhrA3LQ=;
+ b=ZOpaRZL3SygYG3iOy2WOLV3foacXo1ls8I2xoGnphPKx5Dzv1ypG780JKxF6mDYobH
+ UGpB1eRfNehzXhegxzmBD1M5Vu1l1L5kfOj/Pm1vbnjWW2zmb2Bh7qaYY0aUtPVj7nmz
+ wDMI1LgYUr3cwFLnn6jGlyGbbyr2C6MoSTOkkIrfdLFed6gY64s8hPztGiMSEF/LppLO
+ mDknSqZAy/cYY2hmfXBQtoxakjV/bdGyBnBFvfI7BjwxplDJvElSLSUbiGsCO8NAR47Q
+ V8gEr70MqUjiDOtGUZKsAzD2ZBlAjAj770KYVYa/BlJXWCl5SfFOP/rVnPFnnuvg6Sss
+ NE2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=OAgaf6f/g8C77m/ZDRBPmrtY2bP/QHsonyCPsjIZw/U=;
- b=mWhCYImOvrbZbWXH0kmz4/7DaGpm3iv+EIoiby5v//3H7AEhE/ErqOxhRnBoS1z9Ni
- TVjjwldiJai3tY//X4k+NdQQ59DQPttbmk94v89bdqx5rd4Ek3jq2M4QfHXYTzknTrtX
- v4MrgtJTYEzQSnBOgtocwtZ/fxDD6Y5C1Xlm4SOFaE9XdyrpD1czhX/Qzcl2gyUbsker
- 6/OKU68x7GybeVX8sJvUe104XJS54pvAiFFnPujn7wZFutJh1H11yXrqiIdAHGsDGS9L
- k+CHUmMjoDEpGcFTsL0YCCjw4H4ozU/hktPxIrXV31YWPB94REJ3xQhXhPcs8oXOqlXf
- jbGQ==
-X-Gm-Message-State: ANhLgQ293Q/nt8+2/c438ksJ7kBTqUueLUMSdXBnIiV+wFIAb7ezxWsW
- aj1uW5+JtL7EGazydciqjUvIY3vI
-X-Google-Smtp-Source: ADFU+vuV3eswFrpa7AXYG+ZZ4kW1n+P7XnLdC0H8c6UN/irj0Ldjz1NyKWqGy3I11B0tyK4DsENs3A==
-X-Received: by 2002:a17:902:ab8f:: with SMTP id
- f15mr11029537plr.280.1583657092804; 
- Sun, 08 Mar 2020 00:44:52 -0800 (PST)
+ bh=pN3fYF/WUsAoyz1cgrMGrvu9VIDZsdxapnqkdhrA3LQ=;
+ b=QWJwBGaQdRN6XlRWiPE5FFLg9lB8tJcmqFBWFORAuLHhR5j2driVhlCvw79NNJKIJa
+ rvE9QOy8Xz0qPnEGpXRbSRH6OOrnbaLeYHYyKlrpMjc/FQiG+CuXbPaNCODYw5C4CuOf
+ cbeByoWw6ZhBEWOz9Ykn3/wKjOILR3uGVMWRMW3mlKUzBz6sNIFyJSPwYRnnUK+VBzYT
+ NoyyyL34VHNHhCyYec+hA5/cCOf5sDcrUxt2kCp0CSwXhcvLBhO/wII74o9FG6OjRLSq
+ xhrfXNv0lPbEYKhbkKsCbaf3jY7wi6o+pML1+ptm+6nvDDEn9HyTCL7uT4bPzRcOd863
+ lgeQ==
+X-Gm-Message-State: ANhLgQ3YRo2DOLuo8+9eAXmR9W6Tqo4W5xzChwjHTfhxNnTH90Y9FBDc
+ 4wPPvafqTb8oNlRMMGNLB8q9fal6
+X-Google-Smtp-Source: ADFU+vsqzlsWvo1HT7ryuvWzTajYOyQ/efsAsZtgE04qcU68NIrwoyPAYEP4rXl08DBujTEHltzz9g==
+X-Received: by 2002:a17:90b:3009:: with SMTP id
+ hg9mr12176644pjb.181.1583657095578; 
+ Sun, 08 Mar 2020 00:44:55 -0800 (PST)
 Received: from localhost.localdomain ([1.38.148.20])
- by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.50
+ by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Mar 2020 00:44:52 -0800 (PST)
+ Sun, 08 Mar 2020 00:44:55 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Sun,  8 Mar 2020 14:13:55 +0530
-Message-Id: <20200308084356.14506-13-jaskaransingh7654321@gmail.com>
+Date: Sun,  8 Mar 2020 14:13:56 +0530
+Message-Id: <20200308084356.14506-14-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 References: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:57 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:45:00 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 08 Mar 2020 09:44:54 +0100 (CET)
+ Sun, 08 Mar 2020 09:44:57 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 12/13] tests: Add test case for assigned enumerator
+Subject: [Cocci] [PATCH 13/13] tools: spgen: Reflect visitor changes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,63 +87,108 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Add a test case to verify correct pretty printing of
-enumerators that are assigned. The test case should cover
-minused assigned enumerators, plussed assigned enumerators
-and correct matching of an enum with an assigned enumerator.
+Visitor_ast0 has changes with respect to enums. Reflect these
+changes in spgen by adding additional arguments in the combiners
+and rebuilders.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- tests/enum_assign.c     |  6 ++++++
- tests/enum_assign.cocci | 11 +++++++++++
- tests/enum_assign.res   |  7 +++++++
- 3 files changed, 24 insertions(+)
- create mode 100644 tests/enum_assign.c
- create mode 100644 tests/enum_assign.cocci
- create mode 100644 tests/enum_assign.res
+ tools/spgen/source/detect_patch.ml  | 6 ++++--
+ tools/spgen/source/meta_variable.ml | 6 ++++--
+ tools/spgen/source/rule_body.ml     | 6 ++++--
+ 3 files changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/tests/enum_assign.c b/tests/enum_assign.c
-new file mode 100644
-index 00000000..9c2d16df
---- /dev/null
-+++ b/tests/enum_assign.c
-@@ -0,0 +1,6 @@
-+enum h {
-+	a = 0,
-+	c,
-+	x,
-+	b
-+};
-diff --git a/tests/enum_assign.cocci b/tests/enum_assign.cocci
-new file mode 100644
-index 00000000..a1a59ef8
---- /dev/null
-+++ b/tests/enum_assign.cocci
-@@ -0,0 +1,11 @@
-+@@
-+@@
-+
-+enum h {
-+  ...,
-+- a = 0,
-++ q = 0,
-+  ...,
-+  b,
-++ z
-+};
-diff --git a/tests/enum_assign.res b/tests/enum_assign.res
-new file mode 100644
-index 00000000..3b204aa0
---- /dev/null
-+++ b/tests/enum_assign.res
-@@ -0,0 +1,7 @@
-+enum h {
-+	q = 0,
-+	c,
-+	x,
-+	b,
-+	z
-+};
+diff --git a/tools/spgen/source/detect_patch.ml b/tools/spgen/source/detect_patch.ml
+index 6cf1c538..0489afec 100644
+--- a/tools/spgen/source/detect_patch.ml
++++ b/tools/spgen/source/detect_patch.ml
+@@ -101,11 +101,13 @@ let patch_combiner =
+   let dotsparamfn = donothing in
+   let dotsdeclfn = donothing in
+   let dotsfieldfn = donothing in
++  let dotsenumdeclfn = donothing in
+   let dotscasefn = donothing in
+   let dotsdefparfn = donothing in
+   let assignOpfn = donothing in
+   let binaryOpfn = donothing in
+   let initfn = donothing in
++  let enumdeclfn = donothing in
+   let paramfn = donothing in
+   let forinfofn = donothing in
+   let string_fragmentfn = donothing in
+@@ -159,9 +161,9 @@ let patch_combiner =
+     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
+     struct_mcode storage_mcode inc_mcode
+     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
+-    dotscasefn dotsdefparfn
++    dotsenumdeclfn dotscasefn dotsdefparfn
+     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
+-    stmtfn forinfofn casefn string_fragmentfn topfn
++    enumdeclfn stmtfn forinfofn casefn string_fragmentfn topfn
+ 
+ 
+ (* ------------------------------------------------------------------------- *)
+diff --git a/tools/spgen/source/meta_variable.ml b/tools/spgen/source/meta_variable.ml
+index 7adfacad..a1804a05 100644
+--- a/tools/spgen/source/meta_variable.ml
++++ b/tools/spgen/source/meta_variable.ml
+@@ -390,11 +390,13 @@ let metavar_combiner rn =
+   let dotsstmtfn = donothing in
+   let dotsdeclfn = donothing in
+   let dotsfieldfn = donothing in
++  let dotsenumdeclfn = donothing in
+   let dotscasefn = donothing in
+   let dotsdefparfn = donothing in
+   let forinfofn = donothing in
+   let casefn = donothing in
+   let topfn = donothing in
++  let enumdeclfn = donothing in
+ 
+   (* --- These are shortened formatting functions that return MVSets --- *)
+ 
+@@ -574,9 +576,9 @@ let metavar_combiner rn =
+     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
+     struct_mcode storage_mcode inc_mcode
+     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
+-    dotscasefn dotsdefparfn
++    dotsenumdeclfn dotscasefn dotsdefparfn
+     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
+-    stmtfn forinfofn casefn string_fragmentfn topfn
++    enumdeclfn stmtfn forinfofn casefn string_fragmentfn topfn
+ 
+ 
+ (* ------------------------------------------------------------------------- *)
+diff --git a/tools/spgen/source/rule_body.ml b/tools/spgen/source/rule_body.ml
+index 6345c9df..163dff9a 100644
+--- a/tools/spgen/source/rule_body.ml
++++ b/tools/spgen/source/rule_body.ml
+@@ -219,12 +219,14 @@ let rec gen_combiner ~context_mode =
+   let dotsparamfn = donothing in
+   let dotsdeclfn = donothing in
+   let dotsfieldfn = donothing in
++  let dotsenumdeclfn = donothing in
+   let dotscasefn = donothing in
+   let dotsdefparfn = donothing in
+   let assignOpfn = donothing in
+   let binaryOpfn = donothing in
+   let tyfn = donothing in
+   let initfn = donothing in
++  let enumdeclfn = donothing in
+   let paramfn = donothing in
+   let forinfofn = donothing in
+   let casefn = donothing in
+@@ -349,9 +351,9 @@ let rec gen_combiner ~context_mode =
+     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
+     struct_mcode storage_mcode inc_mcode
+     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
+-    dotscasefn dotsdefparfn
++    dotsenumdeclfn dotscasefn dotsdefparfn
+     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
+-    stmtfn forinfofn casefn string_fragmentfn topfn
++    enumdeclfn stmtfn forinfofn casefn string_fragmentfn topfn
+ 
+ 
+ (* ------------------------------------------------------------------------- *)
 -- 
 2.21.1
 
