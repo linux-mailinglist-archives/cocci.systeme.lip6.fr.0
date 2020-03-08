@@ -2,75 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065A417D2B7
-	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0872917D2B8
+	for <lists+cocci@lfdr.de>; Sun,  8 Mar 2020 09:46:12 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288iXJk021030;
-	Sun, 8 Mar 2020 09:44:33 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0288igPq029997;
+	Sun, 8 Mar 2020 09:44:42 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 40B147802;
-	Sun,  8 Mar 2020 09:44:33 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id DF9317742;
+	Sun,  8 Mar 2020 09:44:41 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 935C57742
- for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:31 +0100 (CET)
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:543])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iSm2011551
+ by systeme.lip6.fr (Postfix) with ESMTPS id 13C157742
+ for <cocci@systeme.lip6.fr>; Sun,  8 Mar 2020 09:44:40 +0100 (CET)
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:641])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0288iYC9022827
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:29 +0100 (CET)
-Received: by mail-pg1-x543.google.com with SMTP id 7so3304745pgr.2
- for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:29 -0800 (PST)
+ for <cocci@systeme.lip6.fr>; Sun, 8 Mar 2020 09:44:35 +0100 (CET)
+Received: by mail-pl1-x641.google.com with SMTP id y1so2757033plp.7
+ for <cocci@systeme.lip6.fr>; Sun, 08 Mar 2020 00:44:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=q6bsRb5FM/CBzfw/Yg19d4VPJnQe18W85S5PoTpmYGE=;
- b=clJc066dLqZWnJjK6cnKSx/RXC0WDd5bUftQrmvV9pgiDpM+xtteXtySvH3XhhiaI0
- 7tRe8Q2WKuQLDI5FwfQblpuPCjuzcsZKTgV5r2z5p0CLLUz9PYfUNfnz3BfpxbCH82uU
- FTciS6PfjQc28QfXP6GFVD/nykYpAK6eRc85HfBLKaMBJE58HftLUg9wbPldaBW2l0MW
- xozRJjK8sVHJNZ4jdPP+Ap5Kcj+9t8XSGHKYccnvfRmrZKsYHfrt9E0Fbn85sHfLy8V6
- fqIK+aLOVPvF95kDlOdU30/UXnXQeMxpx9EIrVG22Nd5hj/txjZHUT7RO/mzoHe7TNBz
- B6Ag==
+ bh=tmZ2r2ye5hi777w21ljUx/ozVNUxoB80avOcR1Ip2Ws=;
+ b=nUPq2s1yU74M0gMKSgcyA8MHJaIZzcf5E4O2yIb0ivpDuyF9vFeXmXH7Mp4qDH+rJL
+ EfO4Qdwv09HB84/U4kopP+DVHFUDsLapvMuEvDDUNe2MaFWfA8oecUyFTRtpbQfM+u4J
+ jStzQa0uEt+JBgt+YaghaIkTfSTV2s7Y2rFdLoHHlQuzartwhJf4LqrH+9bW9ngrx1bV
+ tMUpiodeShZxIcjDPLJUlH7uD72wa18aLRrK4HfnG7rhwxrmYH0dycyW+cKPxhLr3DYf
+ MnO1VCLdLjPL45V0AXaQ4tihI3QcI+/om8573gb5vkDAocM8nqNwkBxClPyZjcNfHVmO
+ sjLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=q6bsRb5FM/CBzfw/Yg19d4VPJnQe18W85S5PoTpmYGE=;
- b=NAF1uQo2plyuLpPj16jEFBmxuRESvsRqjBEF4GO6hW/EikucwTGXKBjm3GlumP/TG6
- xY1gVhwNgm17MZpvOpYzhaFRj2raoimDWuquRN26rc8bsy79+44YIHmFsi/sEAbBwBnr
- /3Amv5WO5iFnLCmwgHyMXLpfswE9S6ytZxgIZ2lPh1GRGHv2H+lhFkdVvBACx/UjIauQ
- CcrECQmG4Dxh/FvOVbkr/hv2qyzOcXlEN4P2RFrttdYd1VK0mmY8AofKIVX+dO02idrj
- HDWs4nrlfvwRgtt65W7eYYawe1LyHowsITNOKoKxEWR1P77r/CGRGYf0qQr5ir3m1Lch
- wYKA==
-X-Gm-Message-State: ANhLgQ2fTLRf8AwJ3dPVyWmwT4hvXdSZWz8alYXzDw78RyO3QRbUbgWo
- z+UcjVkHj7KZy4eEAtbiLn0rj88D
-X-Google-Smtp-Source: ADFU+vu1bMGketovHLqugbeyssswmgg/mlMbnrXsmrLOqiz+UvFFaQwNyHqXQ6U8lnj7BFIV3NEpVg==
-X-Received: by 2002:a65:4cc1:: with SMTP id n1mr10630920pgt.94.1583657066752; 
- Sun, 08 Mar 2020 00:44:26 -0800 (PST)
+ bh=tmZ2r2ye5hi777w21ljUx/ozVNUxoB80avOcR1Ip2Ws=;
+ b=W7tnOYjIAVwrHzLe2s5UEYbJvhTTda6D6DpJHyhkxZ+kSl5qfR60Wrd7lwnSfUOQuL
+ 9+TGG22S9+IL9YC9U/uBpViReGoUKnRVLiGEeuAOEE7+E2/uUhwF5up68f7Nk36007TT
+ jCrWC+3E5hLmU5O+qH29rv18AiU1+2xzXVrsThDPS3h3TrnuSz/z/s1wByCryuG4DC+K
+ ff6ithcQcI+o2uqicIhY1zjpCE514ynZVuLiZe2vbnDIZL15JwvPi/rpL1J/VZulBOh1
+ Dpul9CH2s4Smp6Fw799LaX1CewBk/2dFdT1C4MucoPZQRfdlQzLvws4Vj0pMpLevtYES
+ J28g==
+X-Gm-Message-State: ANhLgQ3XF5WAhPNLCyY9k58NSfRuv3SbFJ0ClxJSLPzIWc+y2MU5DQJ+
+ h/JFmtvfvurzI/8YhwvmY1RLwZkY
+X-Google-Smtp-Source: ADFU+vt3QGGW+V4bjFziYoxxs32ZJdAvpzAsKY0q0G9FKK2dqpcm1mqlkgkzRXtaeUnm5FVksrUaoQ==
+X-Received: by 2002:a17:902:8a88:: with SMTP id
+ p8mr10646317plo.179.1583657073243; 
+ Sun, 08 Mar 2020 00:44:33 -0800 (PST)
 Received: from localhost.localdomain ([1.38.148.20])
- by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.21
+ by smtp.gmail.com with ESMTPSA id b3sm14587244pjo.30.2020.03.08.00.44.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 08 Mar 2020 00:44:26 -0800 (PST)
+ Sun, 08 Mar 2020 00:44:32 -0800 (PST)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Sun,  8 Mar 2020 14:13:49 +0530
-Message-Id: <20200308084356.14506-7-jaskaransingh7654321@gmail.com>
+Date: Sun,  8 Mar 2020 14:13:50 +0530
+Message-Id: <20200308084356.14506-8-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 References: <20200308084356.14506-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:33 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 08 Mar 2020 09:44:42 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 08 Mar 2020 09:44:29 +0100 (CET)
+ Sun, 08 Mar 2020 09:44:36 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 06/13] parsing_cocci: visitor_ast0: Add visitor
-	functions for enum_decl
+Subject: [Cocci] [PATCH 07/13] parsing_cocci: Reflect visitor_ast0 changes
+	in parsing_cocci
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,545 +88,897 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-An enumerator in the SmPL AST now has the enum_decl type.
-Add corresponding functions for the combiner, combiner_rebuilder
-and rebuilder in Visitor_ast0.
+The SmPL AST0 visitor has functions for handling enumerators
+separately. Handle these collateral evolutions in parsing_cocci
+by creating visitor functions for enum and enumdots in various places,
+as well as adding the additional arguments needed in the visitor
+combiners and rebuilders.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/visitor_ast0.ml        | 72 ++++++++++++++++++++++++++--
- parsing_cocci/visitor_ast0.mli       |  4 ++
- parsing_cocci/visitor_ast0_types.ml  | 14 ++++++
- parsing_cocci/visitor_ast0_types.mli | 12 +++++
- 4 files changed, 98 insertions(+), 4 deletions(-)
+ parsing_cocci/ast0toast.ml           | 30 +++++++++--
+ parsing_cocci/ast0toast.mli          |  4 ++
+ parsing_cocci/check_meta.ml          | 17 ++++--
+ parsing_cocci/commas_on_lists.ml     | 10 ++--
+ parsing_cocci/compute_lines.ml       | 25 ++++++++-
+ parsing_cocci/context_neg.ml         | 47 +++++++++++++---
+ parsing_cocci/function_prototypes.ml |  7 +--
+ parsing_cocci/index.ml               |  7 +++
+ parsing_cocci/index.mli              |  2 +
+ parsing_cocci/insert_plus.ml         | 39 +++++++++++---
+ parsing_cocci/iso_compile.ml         |  4 +-
+ parsing_cocci/iso_pattern.ml         | 80 +++++++++++++++++++++++-----
+ parsing_cocci/parse_cocci.ml         |  2 +-
+ parsing_cocci/unitary_ast0.ml        |  5 +-
+ parsing_cocci/unparse_ast0.ml        | 22 +++++++-
+ 15 files changed, 252 insertions(+), 49 deletions(-)
 
-diff --git a/parsing_cocci/visitor_ast0.ml b/parsing_cocci/visitor_ast0.ml
-index c282e1f8..e4ac82bc 100644
---- a/parsing_cocci/visitor_ast0.ml
-+++ b/parsing_cocci/visitor_ast0.ml
-@@ -22,8 +22,9 @@ let visitor mode bind option_default
-     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
-     struct_mcode storage_mcode inc_mcode
-     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
--    dotscasefn dotsdefparfn
-+    dotsenumdeclfn dotscasefn dotsdefparfn
-     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
-+    enumdeclfn
-     stmtfn forinfofn casefn string_fragmentfn topfn =
-   let multibind l =
-     let rec loop = function
-@@ -63,6 +64,7 @@ let visitor mode bind option_default
-   and statement_dots d = dotsfn dotsstmtfn statement all_functions d
-   and declaration_dots d = dotsfn dotsdeclfn declaration all_functions d
-   and field_dots d = dotsfn dotsfieldfn field all_functions d
-+  and enum_decl_dots d = dotsfn dotsenumdeclfn enum_decl all_functions d
-   and case_line_dots d = dotsfn dotscasefn case_line all_functions d
-   and string_fragment_dots d = dotsfn strdotsfn string_fragment all_functions d
-   and exec_code_dots d = dotsfn ecdotsfn exec_code all_functions d
-@@ -358,7 +360,7 @@ let visitor mode bind option_default
- 	| Ast0.EnumDef(ty,lb,ids,rb) ->
- 	    let (ty_n,ty) = typeC ty in
- 	    let (lb_n,lb) = string_mcode lb in
--	    let (ids_n,ids) = expression_dots ids in
-+	    let (ids_n,ids) = enum_decl_dots ids in
- 	    let (rb_n,rb) = string_mcode rb in
- 	    (multibind [ty_n;lb_n;ids_n;rb_n], Ast0.EnumDef(ty,lb,ids,rb))
- 	| Ast0.StructUnionName(kind,name) ->
-@@ -622,6 +624,34 @@ let visitor mode bind option_default
- 	    let (n,decl) = field decl in (n,Ast0.OptField(decl))) in
-     fieldfn all_functions k d
+diff --git a/parsing_cocci/ast0toast.ml b/parsing_cocci/ast0toast.ml
+index f1bbde0b..cd46b0b8 100644
+--- a/parsing_cocci/ast0toast.ml
++++ b/parsing_cocci/ast0toast.ml
+@@ -187,9 +187,9 @@ let inline_mcodes =
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode
+     do_nothing do_nothing do_nothing do_nothing do_nothing do_nothing
+-    do_nothing
++    do_nothing do_nothing
+     do_nothing do_nothing do_nothing do_nothing do_nothing do_nothing
+-    do_nothing do_nothing do_nothing_end do_nothing_end do_nothing
++    do_nothing do_nothing do_nothing_end do_nothing_end do_nothing do_nothing
+     do_nothing do_nothing do_nothing do_nothing
  
-+  and enum_decl d =
-+    let k d =
-+      rewrap d
-+	(match Ast0.unwrap d with
-+	  Ast0.Enum(name,enum_val) ->
-+	    let (name_n,name) = ident name in
-+            (match enum_val with
-+              None -> (name_n,Ast0.Enum(name,None))
-+            | Some(eq,eval) ->
-+                let (eq_n,eq) = string_mcode eq in
-+                let (eval_n,eval) = expression eval in
-+                (multibind [name_n; eq_n; eval_n],
-+                 Ast0.Enum(name,Some(eq,eval))))
-+	| Ast0.EnumComma(cm) ->
-+	    let (cm_n,cm) = string_mcode cm in
-+	    (cm_n,Ast0.EnumComma(cm))
-+	| Ast0.EnumDots(dots,whencode) ->
-+	    let (dots_n,dots) = string_mcode dots in
-+	    let (whencode_n, whencode) = match whencode with
-+              | Some (a,b,c) ->
-+                  let (_,a2) = string_mcode a in
-+                  let (_,b2) = string_mcode b in
-+                  let (c1,c2) = enum_decl c in (c1, Some (a2,b2,c2))
-+              | None -> (option_default, None) in
-+	    (bind dots_n whencode_n, Ast0.EnumDots(dots,whencode))) in
-+    enumdeclfn all_functions k d
+ (* --------------------------------------------------------------------- *)
+@@ -271,8 +271,10 @@ let check_allminus =
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode mcode mcode
+     donothing donothing donothing donothing donothing donothing donothing
++    donothing
+     donothing ident expression donothing donothing typeC initialiser donothing
+-    declaration field statement donothing case_line donothing donothing
++    declaration field donothing statement donothing case_line donothing
++    donothing
+ 
+ (* --------------------------------------------------------------------- *)
+ (* --------------------------------------------------------------------- *)
+@@ -598,7 +600,7 @@ and base_typeC allminus t =
+   | Ast0.EnumName(kind,name) ->
+       Ast.EnumName(mcode kind,get_option ident name)
+   | Ast0.EnumDef(ty,lb,ids,rb) ->
+-      Ast.EnumDef(typeC allminus ty,mcode lb,dots expression ids,mcode rb)
++      Ast.EnumDef(typeC allminus ty,mcode lb,enum_decl_dots ids,mcode rb)
+   | Ast0.StructUnionName(kind,name) ->
+       Ast.StructUnionName(mcode kind,get_option ident name)
+   | Ast0.StructUnionDef(ty,lb,decls,rb) ->
+@@ -748,6 +750,24 @@ and annotated_field bef d =
+ 
+ and field_dots l = dots (annotated_field None) l
+ 
++and enum_decl d =
++  rewrap d (do_isos (Ast0.get_iso d))
++    (match Ast0.unwrap d with
++      Ast0.Enum(name,enum_val) ->
++        (match enum_val with
++          None -> Ast.Enum(ident name,None)
++        | Some(eq,eval) ->
++            Ast.Enum(ident name,Some(mcode eq,expression eval)))
++    | Ast0.EnumComma(cm) ->
++	Ast.EnumComma(mcode cm)
++    | Ast0.EnumDots(dots,whencode) ->
++	(* structure definitions only *)
++	let dots = mcode dots in
++	let whencode = get_option (fun (_,_,b) -> enum_decl b) whencode in
++	Ast.EnumDots(dots,whencode))
++
++and enum_decl_dots l = dots enum_decl l
++
+ (* --------------------------------------------------------------------- *)
+ (* Initialiser *)
+ 
+@@ -1214,6 +1234,7 @@ and anything = function
+   | Ast0.DotsStmtTag(d) -> Ast.StmtDotsTag(statement_dots d)
+   | Ast0.DotsDeclTag(d) -> Ast.AnnDeclDotsTag(declaration_dots d)
+   | Ast0.DotsFieldTag(d) -> Ast.AnnFieldDotsTag(field_dots d)
++  | Ast0.DotsEnumDeclTag(d) -> Ast.EnumDeclDotsTag(enum_decl_dots d)
+   | Ast0.DotsCaseTag(d) -> failwith "not possible"
+   | Ast0.DotsDefParamTag(d) -> Ast.DefParDotsTag(define_param_dots d)
+   | Ast0.IdentTag(d) -> Ast.IdentTag(ident d)
+@@ -1227,6 +1248,7 @@ and anything = function
+   | Ast0.InitTag(d) -> Ast.InitTag(initialiser d)
+   | Ast0.DeclTag(d) -> Ast.DeclarationTag(declaration d)
+   | Ast0.FieldTag(d) -> Ast.FieldTag(field d)
++  | Ast0.EnumDeclTag(d) -> Ast.EnumDeclTag(enum_decl d)
+   | Ast0.StmtTag(d) -> Ast.StatementTag(statement d)
+   | Ast0.ForInfoTag(d) -> Ast.ForInfoTag(forinfo d)
+   | Ast0.CaseLineTag(d) -> Ast.CaseLineTag(case_line d)
+diff --git a/parsing_cocci/ast0toast.mli b/parsing_cocci/ast0toast.mli
+index 24f8c52a..f4d2bb19 100644
+--- a/parsing_cocci/ast0toast.mli
++++ b/parsing_cocci/ast0toast.mli
+@@ -28,6 +28,9 @@ val declaration_dots :
+ val field_dots :
+     Ast0_cocci.field Ast0_cocci.dots ->
+       Ast_cocci.annotated_field Ast_cocci.dots
++val enum_decl_dots :
++    Ast0_cocci.enum_decl Ast0_cocci.dots ->
++      Ast_cocci.enum_decl Ast_cocci.dots
+ val define_param_dots :
+     Ast0_cocci.define_param Ast0_cocci.dots ->
+       Ast_cocci.define_param Ast_cocci.dots
+@@ -36,6 +39,7 @@ val string_fragment : Ast0_cocci.string_fragment -> Ast_cocci.string_fragment
+ val typeC : bool (*allminus*) -> Ast0_cocci.typeC -> Ast_cocci.fullType
+ val declaration : Ast0_cocci.declaration -> Ast_cocci.declaration
+ val field : Ast0_cocci.field -> Ast_cocci.field
++val enum_decl : Ast0_cocci.enum_decl -> Ast_cocci.enum_decl
+ val parameterTypeDef :
+     Ast0_cocci.parameterTypeDef -> Ast_cocci.parameterTypeDef
+ val parameter_list : Ast0_cocci.parameter_list -> Ast_cocci.parameter_list
+diff --git a/parsing_cocci/check_meta.ml b/parsing_cocci/check_meta.ml
+index 02b0fd9c..fc96bf34 100644
+--- a/parsing_cocci/check_meta.ml
++++ b/parsing_cocci/check_meta.ml
+@@ -241,7 +241,7 @@ and typeC old_metas table minus t =
+   | Ast0.EnumName(en,Some id) -> ident GLOBAL old_metas table minus id
+   | Ast0.EnumDef(ty,lb,ids,rb) ->
+       typeC old_metas table minus ty;
+-      dots (expression GLOBAL old_metas table minus) ids
++      dots (enum_decl GLOBAL old_metas table minus) ids
+   | Ast0.StructUnionName(su,Some id) -> ident GLOBAL old_metas table minus id
+   | Ast0.StructUnionDef(ty,lb,decls,rb) ->
+       typeC old_metas table minus ty;
+@@ -321,6 +321,15 @@ and field context old_metas table minus d =
+   | Ast0.Fdots(_,Some (_,_,x)) -> field ID old_metas table minus x
+   | Ast0.Fdots(_,None) -> ()
+ 
++and enum_decl context old_metas table minus d =
++  match Ast0.unwrap d with
++    Ast0.Enum(name,enum_val) ->
++      ident context old_metas table minus name;
++      (match enum_val with
++        None -> ()
++      | Some(eq,eval) -> expression context old_metas table minus eval)
++  | Ast0.EnumComma(_) | Ast0.EnumDots(_) -> ()
++
+ (* --------------------------------------------------------------------- *)
+ (* Initialiser *)
+ 
+@@ -583,7 +592,7 @@ let positions rname table rules =
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing in
++      donothing donothing donothing in
+ 
+   List.iter fn.VT0.combiner_rec_top_level rules
+ 
+@@ -651,8 +660,8 @@ let dup_positions rules =
+       mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+       mcode mcode mcode mcode
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing donothing expression donothing donothing typeC donothing
+-      donothing declaration field statement
++      donothing donothing donothing expression donothing donothing typeC
++      donothing donothing declaration field donothing statement
+       donothing donothing donothing donothing in
+ 
+   let res =
+diff --git a/parsing_cocci/commas_on_lists.ml b/parsing_cocci/commas_on_lists.ml
+index 3c1facfe..9ea23ef5 100644
+--- a/parsing_cocci/commas_on_lists.ml
++++ b/parsing_cocci/commas_on_lists.ml
+@@ -31,11 +31,11 @@ now. See list_matcher in cocci_vs_c.ml in first try_matches case. *)
+ 	Ast0.rewrap itemlist
+           (List.rev (Ast0.rewrap e (make_comma comma) :: (e::es)))
+ 
+-let add_exp_comma =
++let add_enum_decl_comma =
+   add_comma
+-    (function x -> match Ast0.unwrap x with Ast0.EComma _ -> true | _ -> false)
+-    (function x -> match Ast0.unwrap x with Ast0.Edots _  -> true | _ -> false)
+-    (function x -> Ast0.EComma x)
++    (function x -> match Ast0.unwrap x with Ast0.EnumComma _ -> true | _ -> false)
++    (function x -> match Ast0.unwrap x with Ast0.EnumDots _  -> true | _ -> false)
++    (function x -> Ast0.EnumComma x)
+ 
+ and add_init_comma =
+   add_comma
+@@ -51,7 +51,7 @@ let base_typeC r k t =
+   let t = k t in
+   match Ast0.unwrap t with
+     Ast0.EnumDef(ty,lb,ids,rb) ->
+-      let ids = add_exp_comma ids in
++      let ids = add_enum_decl_comma ids in
+       Ast0.rewrap t (Ast0.EnumDef(ty,lb,ids,rb))
+   | _ -> t
+ 
+diff --git a/parsing_cocci/compute_lines.ml b/parsing_cocci/compute_lines.ml
+index f4b6f4d8..d7ca651c 100644
+--- a/parsing_cocci/compute_lines.ml
++++ b/parsing_cocci/compute_lines.ml
+@@ -600,7 +600,8 @@ and typeC t =
+   | Ast0.EnumDef(ty,lb,ids,rb) ->
+       let ty = typeC ty in
+       let lb = normal_mcode lb in
+-      let ids = dots is_exp_dots (Some(promote_mcode lb)) expression ids in
++      let ids =
++        dots is_enum_decl_dots (Some(promote_mcode lb)) enum_decl ids in
+       let rb = normal_mcode rb in
+       mkres t (Ast0.EnumDef(ty,lb,ids,rb)) ty (promote_mcode rb)
+   | Ast0.StructUnionName(kind,Some name) ->
+@@ -804,6 +805,28 @@ and field d =
+       let ln = promote_mcode dots in
+       mkres d (Ast0.Fdots(dots,whencode)) ln ln
+ 
++and is_enum_decl_dots d =
++  match Ast0.unwrap d with
++    Ast0.EnumDots(_) -> true
++  | _ -> false
++
++and enum_decl d =
++  match Ast0.unwrap d with
++     Ast0.Enum(name,enum_val) ->
++      let name = ident name in
++      let eval (a, b) = (normal_mcode a, expression b) in
++      let enum_val = get_option eval enum_val in
++      mkres d (Ast0.Enum(name,enum_val)) name name
++  | Ast0.EnumComma(cm) ->
++      let cm = normal_mcode cm in
++      let ln = promote_mcode cm in
++      mkres d (Ast0.EnumComma(cm)) ln ln
++  | Ast0.EnumDots(dots,whencode) ->
++      let dots = bad_mcode dots in
++      let ln = promote_mcode dots in
++      mkres d (Ast0.EnumDots(dots,whencode)) ln ln
 +
 +
-   and initialiser i =
-     let k i =
-       rewrap i
-@@ -1121,6 +1151,9 @@ let visitor mode bind option_default
-       | Ast0.DotsFieldTag(decls) ->
- 	  let (decls_n,decls) = field_dots decls in
- 	  (decls_n,Ast0.DotsFieldTag(decls))
-+      | Ast0.DotsEnumDeclTag(decls) ->
-+	  let (decls_n,decls) = enum_decl_dots decls in
-+	  (decls_n,Ast0.DotsEnumDeclTag(decls))
-       | Ast0.DotsCaseTag(cases) ->
- 	  let (cases_n,cases) = case_line_dots cases in
- 	  (cases_n,Ast0.DotsCaseTag(cases))
-@@ -1160,6 +1193,9 @@ let visitor mode bind option_default
-       | Ast0.FieldTag(decl) ->
- 	  let (decl_n,decl) = field decl in
- 	  (decl_n,Ast0.FieldTag(decl))
-+      | Ast0.EnumDeclTag(decl) ->
-+	  let (decl_n,decl) = enum_decl decl in
-+	  (decl_n,Ast0.EnumDeclTag(decl))
-       | Ast0.StmtTag(stmt) ->
- 	  let (stmt_n,stmt) = statement stmt in
- 	  (stmt_n,Ast0.StmtTag(stmt))
-@@ -1204,6 +1240,7 @@ let visitor mode bind option_default
-       VT0.typeC = typeC;
-       VT0.declaration = declaration;
-       VT0.field = field;
-+      VT0.enum_decl = enum_decl;
-       VT0.initialiser = initialiser;
-       VT0.initialiser_list = initialiser_dots;
-       VT0.parameter = parameterTypeDef;
-@@ -1218,6 +1255,7 @@ let visitor mode bind option_default
-       VT0.statement_dots = statement_dots;
-       VT0.declaration_dots = declaration_dots;
-       VT0.field_dots = field_dots;
-+      VT0.enum_decl_dots = enum_decl_dots;
-       VT0.case_line_dots = case_line_dots;
-       VT0.define_param_dots = define_param_dots;
-       VT0.anything = anything} in
-@@ -1244,6 +1282,7 @@ let combiner_functions =
-    VT0.combiner_dotsstmtfn = (fun r k e -> k e);
-    VT0.combiner_dotsdeclfn = (fun r k e -> k e);
-    VT0.combiner_dotsfieldfn = (fun r k e -> k e);
-+   VT0.combiner_dotsenumdeclfn = (fun r k e -> k e);
-    VT0.combiner_dotscasefn = (fun r k e -> k e);
-    VT0.combiner_dotsdefparfn = (fun r k e -> k e);
-    VT0.combiner_identfn = (fun r k e -> k e);
-@@ -1255,6 +1294,7 @@ let combiner_functions =
-    VT0.combiner_paramfn = (fun r k e -> k e);
-    VT0.combiner_declfn = (fun r k e -> k e);
-    VT0.combiner_fieldfn = (fun r k e -> k e);
-+   VT0.combiner_enumdeclfn = (fun r k e -> k e);
-    VT0.combiner_stmtfn = (fun r k e -> k e);
-    VT0.combiner_forinfofn = (fun r k e -> k e);
-    VT0.combiner_casefn = (fun r k e -> k e);
-@@ -1278,6 +1318,8 @@ let combiner_dz r =
-       (function e -> let (n,_) = r.VT0.declaration e in n);
-       VT0.combiner_rec_field =
-       (function e -> let (n,_) = r.VT0.field e in n);
-+      VT0.combiner_rec_enumdecl =
-+      (function e -> let (n,_) = r.VT0.enum_decl e in n);
-       VT0.combiner_rec_initialiser =
-       (function e -> let (n,_) = r.VT0.initialiser e in n);
-       VT0.combiner_rec_initialiser_list =
-@@ -1306,6 +1348,8 @@ let combiner_dz r =
-       (function e -> let (n,_) = r.VT0.declaration_dots e in n);
-       VT0.combiner_rec_field_dots =
-       (function e -> let (n,_) = r.VT0.field_dots e in n);
-+      VT0.combiner_rec_enum_decl_dots =
-+      (function e -> let (n,_) = r.VT0.enum_decl_dots e in n);
-       VT0.combiner_rec_case_line_dots =
-       (function e -> let (n,_) = r.VT0.case_line_dots e in n);
-       VT0.combiner_rec_define_param_dots =
-@@ -1343,6 +1387,7 @@ let combiner bind option_default functions =
-     (fun r k e -> (functions.VT0.combiner_dotsstmtfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_dotsdeclfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_dotsfieldfn (dz r) (xk k) e, e))
-+    (fun r k e -> (functions.VT0.combiner_dotsenumdeclfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_dotscasefn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_dotsdefparfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_identfn (dz r) (xk k) e, e))
-@@ -1354,6 +1399,7 @@ let combiner bind option_default functions =
-     (fun r k e -> (functions.VT0.combiner_paramfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_declfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_fieldfn (dz r) (xk k) e, e))
-+    (fun r k e -> (functions.VT0.combiner_enumdeclfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_stmtfn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_forinfofn (dz r) (xk k) e, e))
-     (fun r k e -> (functions.VT0.combiner_casefn (dz r) (xk k) e, e))
-@@ -1365,8 +1411,9 @@ let flat_combiner bind option_default
-     fix_mcode unary_mcode arithOp_mcode logicalOp_mcode cv_mcode sign_mcode
-     struct_mcode storage_mcode inc_mcode
-     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
--    dotscasefn dotsdefparfn
-+    dotsenumdeclfn dotscasefn dotsdefparfn
-     identfn exprfn assignOpfn binaryOpfn tyfn initfn paramfn declfn fieldfn
-+    enumdeclfn
-     stmtfn forinfofn casefn string_fragmentfn topfn =
-   let dz = combiner_dz in
-   let xk k e = let (n,_) = k e in n in
-@@ -1391,6 +1438,7 @@ let flat_combiner bind option_default
-     (fun r k e -> (dotsstmtfn (dz r) (xk k) e, e))
-     (fun r k e -> (dotsdeclfn (dz r) (xk k) e, e))
-     (fun r k e -> (dotsfieldfn (dz r) (xk k) e, e))
-+    (fun r k e -> (dotsenumdeclfn (dz r) (xk k) e, e))
-     (fun r k e -> (dotscasefn (dz r) (xk k) e, e))
-     (fun r k e -> (dotsdefparfn (dz r) (xk k) e, e))
-     (fun r k e -> (identfn (dz r) (xk k) e, e))
-@@ -1402,6 +1450,7 @@ let flat_combiner bind option_default
-     (fun r k e -> (paramfn (dz r) (xk k) e, e))
-     (fun r k e -> (declfn (dz r) (xk k) e, e))
-     (fun r k e -> (fieldfn (dz r) (xk k) e, e))
-+    (fun r k e -> (enumdeclfn (dz r) (xk k) e, e))
-     (fun r k e -> (stmtfn (dz r) (xk k) e, e))
-     (fun r k e -> (forinfofn (dz r) (xk k) e, e))
-     (fun r k e -> (casefn (dz r) (xk k) e, e))
-@@ -1429,6 +1478,7 @@ let rebuilder_functions =
-    VT0.rebuilder_dotsstmtfn = (fun r k e -> k e);
-    VT0.rebuilder_dotsdeclfn = (fun r k e -> k e);
-    VT0.rebuilder_dotsfieldfn = (fun r k e -> k e);
-+   VT0.rebuilder_dotsenumdeclfn = (fun r k e -> k e);
-    VT0.rebuilder_dotscasefn = (fun r k e -> k e);
-    VT0.rebuilder_dotsdefparfn = (fun r k e -> k e);
-    VT0.rebuilder_identfn = (fun r k e -> k e);
-@@ -1440,6 +1490,7 @@ let rebuilder_functions =
-    VT0.rebuilder_paramfn = (fun r k e -> k e);
-    VT0.rebuilder_declfn = (fun r k e -> k e);
-    VT0.rebuilder_fieldfn = (fun r k e -> k e);
-+   VT0.rebuilder_enumdeclfn = (fun r k e -> k e);
-    VT0.rebuilder_stmtfn = (fun r k e -> k e);
-    VT0.rebuilder_forinfofn = (fun r k e -> k e);
-    VT0.rebuilder_casefn = (fun r k e -> k e);
-@@ -1463,6 +1514,8 @@ let rebuilder_dz r =
-       (function e -> let (_,e) = r.VT0.declaration e in e);
-       VT0.rebuilder_rec_field =
-       (function e -> let (_,e) = r.VT0.field e in e);
-+      VT0.rebuilder_rec_enumdecl =
-+      (function e -> let (_,e) = r.VT0.enum_decl e in e);
-       VT0.rebuilder_rec_initialiser =
-       (function e -> let (_,e) = r.VT0.initialiser e in e);
-       VT0.rebuilder_rec_initialiser_list =
-@@ -1489,6 +1542,8 @@ let rebuilder_dz r =
-       (function e -> let (_,e) = r.VT0.declaration_dots e in e);
-       VT0.rebuilder_rec_field_dots =
-       (function e -> let (_,e) = r.VT0.field_dots e in e);
-+      VT0.rebuilder_rec_enum_decl_dots =
-+      (function e -> let (_,e) = r.VT0.enum_decl_dots e in e);
-       VT0.rebuilder_rec_case_line_dots =
-       (function e -> let (_,e) = r.VT0.case_line_dots e in e);
-       VT0.rebuilder_rec_define_param_dots =
-@@ -1521,6 +1576,7 @@ let rebuilder functions =
-     (fun r k e -> ((),functions.VT0.rebuilder_dotsstmtfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_dotsdeclfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_dotsfieldfn (dz r) (xk k) e))
-+    (fun r k e -> ((),functions.VT0.rebuilder_dotsenumdeclfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_dotscasefn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_dotsdefparfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_identfn (dz r) (xk k) e))
-@@ -1532,6 +1588,7 @@ let rebuilder functions =
-     (fun r k e -> ((),functions.VT0.rebuilder_paramfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_declfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_fieldfn (dz r) (xk k) e))
-+    (fun r k e -> ((),functions.VT0.rebuilder_enumdeclfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_stmtfn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_forinfofn (dz r) (xk k) e))
-     (fun r k e -> ((),functions.VT0.rebuilder_casefn (dz r) (xk k) e))
-@@ -1545,8 +1602,9 @@ let flat_rebuilder
-     arithOp_mcode logicalOp_mcode cv_mcode sign_mcode struct_mcode
-     storage_mcode inc_mcode
-     dotsexprfn dotsinitfn dotsparamfn dotsstmtfn dotsdeclfn dotsfieldfn
--    dotscasefn dotsdefparfn
-+    dotsenumdeclfn dotscasefn dotsdefparfn
-     identfn exprfn assignOpfn arithOpfn tyfn initfn paramfn declfn fieldfn
-+    enumdeclfn
-     stmtfn forinfofn casefn string_fragmentfn topfn =
-   let dz = rebuilder_dz in
-   let xk k e = let (_,e) = k e in e in
-@@ -1572,6 +1630,7 @@ let flat_rebuilder
-     (fun r k e -> ((),dotsstmtfn (dz r) (xk k) e))
-     (fun r k e -> ((),dotsdeclfn (dz r) (xk k) e))
-     (fun r k e -> ((),dotsfieldfn (dz r) (xk k) e))
-+    (fun r k e -> ((),dotsenumdeclfn (dz r) (xk k) e))
-     (fun r k e -> ((),dotscasefn (dz r) (xk k) e))
-     (fun r k e -> ((),dotsdefparfn (dz r) (xk k) e))
-     (fun r k e -> ((),identfn (dz r) (xk k) e))
-@@ -1583,6 +1642,7 @@ let flat_rebuilder
-     (fun r k e -> ((),paramfn (dz r) (xk k) e))
-     (fun r k e -> ((),declfn (dz r) (xk k) e))
-     (fun r k e -> ((),fieldfn (dz r) (xk k) e))
-+    (fun r k e -> ((),enumdeclfn (dz r) (xk k) e))
-     (fun r k e -> ((),stmtfn (dz r) (xk k) e))
-     (fun r k e -> ((),forinfofn (dz r) (xk k) e))
-     (fun r k e -> ((),casefn (dz r) (xk k) e))
-@@ -1624,6 +1684,7 @@ let combiner_rebuilder_functions =
-    VT0.combiner_rebuilder_dotsstmtfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_dotsdeclfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_dotsfieldfn = (fun r k e -> k e);
-+   VT0.combiner_rebuilder_dotsenumdeclfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_dotscasefn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_dotsdefparfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_identfn = (fun r k e -> k e);
-@@ -1635,6 +1696,7 @@ let combiner_rebuilder_functions =
-    VT0.combiner_rebuilder_paramfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_declfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_fieldfn = (fun r k e -> k e);
-+   VT0.combiner_rebuilder_enumdeclfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_stmtfn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_forinfofn = (fun r k e -> k e);
-    VT0.combiner_rebuilder_casefn = (fun r k e -> k e);
-@@ -1663,6 +1725,7 @@ let combiner_rebuilder bind option_default functions =
-     functions.VT0.combiner_rebuilder_dotsstmtfn
-     functions.VT0.combiner_rebuilder_dotsdeclfn
-     functions.VT0.combiner_rebuilder_dotsfieldfn
-+    functions.VT0.combiner_rebuilder_dotsenumdeclfn
-     functions.VT0.combiner_rebuilder_dotscasefn
-     functions.VT0.combiner_rebuilder_dotsdefparfn
-     functions.VT0.combiner_rebuilder_identfn
-@@ -1674,6 +1737,7 @@ let combiner_rebuilder bind option_default functions =
-     functions.VT0.combiner_rebuilder_paramfn
-     functions.VT0.combiner_rebuilder_declfn
-     functions.VT0.combiner_rebuilder_fieldfn
-+    functions.VT0.combiner_rebuilder_enumdeclfn
-     functions.VT0.combiner_rebuilder_stmtfn
-     functions.VT0.combiner_rebuilder_forinfofn
-     functions.VT0.combiner_rebuilder_casefn
-diff --git a/parsing_cocci/visitor_ast0.mli b/parsing_cocci/visitor_ast0.mli
-index 5784e9e6..e801c983 100644
---- a/parsing_cocci/visitor_ast0.mli
-+++ b/parsing_cocci/visitor_ast0.mli
-@@ -33,6 +33,7 @@ val flat_combiner :
-     ((Ast0_cocci.statement Ast0_cocci.dots,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.declaration Ast0_cocci.dots,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.field Ast0_cocci.dots,'a) Visitor_ast0_types.ccode) ->
-+    ((Ast0_cocci.enum_decl Ast0_cocci.dots,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.case_line Ast0_cocci.dots,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.define_param Ast0_cocci.dots,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.ident,'a) Visitor_ast0_types.ccode) ->
-@@ -44,6 +45,7 @@ val flat_combiner :
-     ((Ast0_cocci.parameterTypeDef,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.declaration,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.field,'a) Visitor_ast0_types.ccode) ->
-+    ((Ast0_cocci.enum_decl,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.statement,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.forinfo,'a) Visitor_ast0_types.ccode) ->
-     ((Ast0_cocci.case_line,'a) Visitor_ast0_types.ccode) ->
-@@ -76,6 +78,7 @@ val flat_rebuilder :
-     (Ast0_cocci.statement Ast0_cocci.dots Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.declaration Ast0_cocci.dots Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.field Ast0_cocci.dots Visitor_ast0_types.rcode) ->
-+    (Ast0_cocci.enum_decl Ast0_cocci.dots Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.case_line Ast0_cocci.dots Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.define_param Ast0_cocci.dots Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.ident Visitor_ast0_types.rcode) ->
-@@ -87,6 +90,7 @@ val flat_rebuilder :
-     (Ast0_cocci.parameterTypeDef Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.declaration Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.field Visitor_ast0_types.rcode) ->
-+    (Ast0_cocci.enum_decl Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.statement Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.forinfo Visitor_ast0_types.rcode) ->
-     (Ast0_cocci.case_line Visitor_ast0_types.rcode) ->
-diff --git a/parsing_cocci/visitor_ast0_types.ml b/parsing_cocci/visitor_ast0_types.ml
-index c24a0c0a..7a00c702 100644
---- a/parsing_cocci/visitor_ast0_types.ml
-+++ b/parsing_cocci/visitor_ast0_types.ml
-@@ -18,6 +18,7 @@ type 'n all_functions =
-       typeC : (Ast0.typeC,'n) inout;
-       declaration : (Ast0.declaration,'n) inout;
-       field : (Ast0.field,'n) inout;
-+      enum_decl : (Ast0.enum_decl,'n) inout;
-       initialiser : (Ast0.initialiser,'n) inout;
-       initialiser_list : (Ast0.initialiser_list,'n) inout;
-       parameter : (Ast0.parameterTypeDef,'n) inout;
-@@ -32,6 +33,7 @@ type 'n all_functions =
-       statement_dots : (Ast0.statement Ast0.dots,'n) inout;
-       declaration_dots : (Ast0.declaration Ast0.dots,'n) inout;
-       field_dots : (Ast0.field Ast0.dots,'n) inout;
-+      enum_decl_dots : (Ast0.enum_decl Ast0.dots,'n) inout;
-       case_line_dots : (Ast0.case_line Ast0.dots,'n) inout;
-       define_param_dots : (Ast0.define_param Ast0.dots,'n) inout;
-       anything : (Ast0.anything,'n) inout}
-@@ -50,6 +52,7 @@ type 'n combiner_rec_functions =
-       combiner_rec_typeC : (Ast0.typeC,'n) combiner_inout;
-       combiner_rec_declaration : (Ast0.declaration,'n) combiner_inout;
-       combiner_rec_field : (Ast0.field,'n) combiner_inout;
-+      combiner_rec_enumdecl : (Ast0.enum_decl,'n) combiner_inout;
-       combiner_rec_initialiser : (Ast0.initialiser,'n) combiner_inout;
-       combiner_rec_initialiser_list :
- 	(Ast0.initialiser_list,'n) combiner_inout;
-@@ -69,6 +72,8 @@ type 'n combiner_rec_functions =
- 	(Ast0.declaration Ast0.dots,'n) combiner_inout;
-       combiner_rec_field_dots :
- 	(Ast0.field Ast0.dots,'n) combiner_inout;
-+      combiner_rec_enum_decl_dots :
-+	(Ast0.enum_decl Ast0.dots,'n) combiner_inout;
-       combiner_rec_case_line_dots :
- 	(Ast0.case_line Ast0.dots,'n) combiner_inout;
-       combiner_rec_define_param_dots :
-@@ -100,6 +105,7 @@ type 'n combiner_functions =
-    combiner_dotsstmtfn : (Ast0.statement Ast0.dots,'n) ccode;
-    combiner_dotsdeclfn : (Ast0.declaration Ast0.dots,'n) ccode;
-    combiner_dotsfieldfn : (Ast0.field Ast0.dots,'n) ccode;
-+   combiner_dotsenumdeclfn : (Ast0.enum_decl Ast0.dots,'n) ccode;
-    combiner_dotscasefn : (Ast0.case_line Ast0.dots,'n) ccode;
-    combiner_dotsdefparfn : (Ast0.define_param Ast0.dots,'n) ccode;
-    combiner_identfn : (Ast0.ident,'n) ccode;
-@@ -111,6 +117,7 @@ type 'n combiner_functions =
-    combiner_paramfn : (Ast0.parameterTypeDef,'n) ccode;
-    combiner_declfn : (Ast0.declaration,'n) ccode;
-    combiner_fieldfn : (Ast0.field,'n) ccode;
-+   combiner_enumdeclfn : (Ast0.enum_decl,'n) ccode;
-    combiner_stmtfn : (Ast0.statement,'n) ccode;
-    combiner_forinfofn : (Ast0.forinfo,'n) ccode;
-    combiner_casefn : (Ast0.case_line,'n) ccode;
-@@ -131,6 +138,7 @@ type rebuilder_rec_functions =
-       rebuilder_rec_typeC : Ast0.typeC rebuilder_inout;
-       rebuilder_rec_declaration : Ast0.declaration rebuilder_inout;
-       rebuilder_rec_field : Ast0.field rebuilder_inout;
-+      rebuilder_rec_enumdecl : Ast0.enum_decl rebuilder_inout;
-       rebuilder_rec_initialiser : Ast0.initialiser rebuilder_inout;
-       rebuilder_rec_initialiser_list :
- 	Ast0.initialiser_list rebuilder_inout;
-@@ -149,6 +157,8 @@ type rebuilder_rec_functions =
- 	Ast0.declaration Ast0.dots rebuilder_inout;
-       rebuilder_rec_field_dots :
- 	Ast0.field Ast0.dots rebuilder_inout;
-+      rebuilder_rec_enum_decl_dots :
-+	Ast0.enum_decl Ast0.dots rebuilder_inout;
-       rebuilder_rec_case_line_dots :
- 	Ast0.case_line Ast0.dots rebuilder_inout;
-       rebuilder_rec_define_param_dots :
-@@ -180,6 +190,7 @@ type rebuilder_functions =
-    rebuilder_dotsstmtfn : Ast0.statement Ast0.dots rcode;
-    rebuilder_dotsdeclfn : Ast0.declaration Ast0.dots rcode;
-    rebuilder_dotsfieldfn : Ast0.field Ast0.dots rcode;
-+   rebuilder_dotsenumdeclfn : Ast0.enum_decl Ast0.dots rcode;
-    rebuilder_dotscasefn : Ast0.case_line Ast0.dots rcode;
-    rebuilder_dotsdefparfn : Ast0.define_param Ast0.dots rcode;
-    rebuilder_identfn : Ast0.ident rcode;
-@@ -192,6 +203,7 @@ type rebuilder_functions =
-    rebuilder_paramfn : Ast0.parameterTypeDef rcode;
-    rebuilder_declfn : Ast0.declaration rcode;
-    rebuilder_fieldfn : Ast0.field rcode;
-+   rebuilder_enumdeclfn : Ast0.enum_decl rcode;
-    rebuilder_stmtfn : Ast0.statement rcode;
-    rebuilder_forinfofn : Ast0.forinfo rcode;
-    rebuilder_casefn : Ast0.case_line rcode;
-@@ -227,6 +239,7 @@ type 'n combiner_rebuilder_functions =
-    combiner_rebuilder_dotsstmtfn : (Ast0.statement Ast0.dots,'n) rccode;
-    combiner_rebuilder_dotsdeclfn : (Ast0.declaration Ast0.dots,'n) rccode;
-    combiner_rebuilder_dotsfieldfn : (Ast0.field Ast0.dots,'n) rccode;
-+   combiner_rebuilder_dotsenumdeclfn : (Ast0.enum_decl Ast0.dots,'n) rccode;
-    combiner_rebuilder_dotscasefn : (Ast0.case_line Ast0.dots,'n) rccode;
-    combiner_rebuilder_dotsdefparfn : (Ast0.define_param Ast0.dots,'n) rccode;
-    combiner_rebuilder_identfn : (Ast0.ident,'n) rccode;
-@@ -238,6 +251,7 @@ type 'n combiner_rebuilder_functions =
-    combiner_rebuilder_paramfn : (Ast0.parameterTypeDef,'n) rccode;
-    combiner_rebuilder_declfn : (Ast0.declaration,'n) rccode;
-    combiner_rebuilder_fieldfn : (Ast0.field,'n) rccode;
-+   combiner_rebuilder_enumdeclfn : (Ast0.enum_decl,'n) rccode;
-    combiner_rebuilder_stmtfn : (Ast0.statement,'n) rccode;
-    combiner_rebuilder_forinfofn : (Ast0.forinfo,'n) rccode;
-    combiner_rebuilder_casefn : (Ast0.case_line,'n) rccode;
-diff --git a/parsing_cocci/visitor_ast0_types.mli b/parsing_cocci/visitor_ast0_types.mli
-index 78e3b804..d06baaf7 100644
---- a/parsing_cocci/visitor_ast0_types.mli
-+++ b/parsing_cocci/visitor_ast0_types.mli
-@@ -8,6 +8,7 @@ type 'n all_functions = {
-   typeC : (Ast0_cocci.typeC, 'n) inout;
-   declaration : (Ast0_cocci.declaration, 'n) inout;
-   field : (Ast0_cocci.field, 'n) inout;
-+  enum_decl : (Ast0_cocci.enum_decl,'n) inout;
-   initialiser : (Ast0_cocci.initialiser, 'n) inout;
-   initialiser_list : (Ast0_cocci.initialiser_list, 'n) inout;
-   parameter : (Ast0_cocci.parameterTypeDef, 'n) inout;
-@@ -22,6 +23,7 @@ type 'n all_functions = {
-   statement_dots : (Ast0_cocci.statement Ast0_cocci.dots, 'n) inout;
-   declaration_dots : (Ast0_cocci.declaration Ast0_cocci.dots, 'n) inout;
-   field_dots : (Ast0_cocci.field Ast0_cocci.dots, 'n) inout;
-+  enum_decl_dots : (Ast0_cocci.enum_decl Ast0_cocci.dots, 'n) inout;
-   case_line_dots : (Ast0_cocci.case_line Ast0_cocci.dots, 'n) inout;
-   define_param_dots : (Ast0_cocci.define_param Ast0_cocci.dots, 'n) inout;
-   anything : (Ast0_cocci.anything, 'n) inout;
-@@ -36,6 +38,7 @@ type 'n combiner_rec_functions = {
-   combiner_rec_typeC : (Ast0_cocci.typeC, 'n) combiner_inout;
-   combiner_rec_declaration : (Ast0_cocci.declaration, 'n) combiner_inout;
-   combiner_rec_field : (Ast0_cocci.field, 'n) combiner_inout;
-+  combiner_rec_enumdecl : (Ast0_cocci.enum_decl,'n) combiner_inout;
-   combiner_rec_initialiser : (Ast0_cocci.initialiser, 'n) combiner_inout;
-   combiner_rec_initialiser_list : (Ast0_cocci.initialiser_list, 'n) combiner_inout;
-   combiner_rec_parameter : (Ast0_cocci.parameterTypeDef, 'n) combiner_inout;
-@@ -52,6 +55,7 @@ type 'n combiner_rec_functions = {
-   combiner_rec_declaration_dots :
-     (Ast0_cocci.declaration Ast0_cocci.dots, 'n) combiner_inout;
-   combiner_rec_field_dots : (Ast0_cocci.field Ast0_cocci.dots, 'n) combiner_inout;
-+  combiner_rec_enum_decl_dots : (Ast0_cocci.enum_decl Ast0_cocci.dots, 'n) combiner_inout;
-   combiner_rec_case_line_dots : (Ast0_cocci.case_line Ast0_cocci.dots, 'n) combiner_inout;
-   combiner_rec_define_param_dots :
-     (Ast0_cocci.define_param Ast0_cocci.dots, 'n) combiner_inout;
-@@ -81,6 +85,7 @@ type 'n combiner_functions = {
-   combiner_dotsstmtfn : (Ast0_cocci.statement Ast0_cocci.dots, 'n) ccode;
-   combiner_dotsdeclfn : (Ast0_cocci.declaration Ast0_cocci.dots, 'n) ccode;
-   combiner_dotsfieldfn : (Ast0_cocci.field Ast0_cocci.dots, 'n) ccode;
-+  combiner_dotsenumdeclfn : (Ast0_cocci.enum_decl Ast0_cocci.dots, 'n) ccode;
-   combiner_dotscasefn : (Ast0_cocci.case_line Ast0_cocci.dots, 'n) ccode;
-   combiner_dotsdefparfn : (Ast0_cocci.define_param Ast0_cocci.dots, 'n) ccode;
-   combiner_identfn : (Ast0_cocci.ident, 'n) ccode;
-@@ -92,6 +97,7 @@ type 'n combiner_functions = {
-   combiner_paramfn : (Ast0_cocci.parameterTypeDef, 'n) ccode;
-   combiner_declfn : (Ast0_cocci.declaration, 'n) ccode;
-   combiner_fieldfn : (Ast0_cocci.field, 'n) ccode;
-+  combiner_enumdeclfn : (Ast0_cocci.enum_decl,'n) ccode;
-   combiner_stmtfn : (Ast0_cocci.statement, 'n) ccode;
-   combiner_forinfofn : (Ast0_cocci.forinfo, 'n) ccode;
-   combiner_casefn : (Ast0_cocci.case_line, 'n) ccode;
-@@ -108,6 +114,7 @@ type rebuilder_rec_functions = {
-   rebuilder_rec_typeC : Ast0_cocci.typeC rebuilder_inout;
-   rebuilder_rec_declaration : Ast0_cocci.declaration rebuilder_inout;
-   rebuilder_rec_field : Ast0_cocci.field rebuilder_inout;
-+  rebuilder_rec_enumdecl : Ast0_cocci.enum_decl rebuilder_inout;
-   rebuilder_rec_initialiser : Ast0_cocci.initialiser rebuilder_inout;
-   rebuilder_rec_initialiser_list : Ast0_cocci.initialiser_list rebuilder_inout;
-   rebuilder_rec_parameter : Ast0_cocci.parameterTypeDef rebuilder_inout;
-@@ -121,6 +128,7 @@ type rebuilder_rec_functions = {
-   rebuilder_rec_statement_dots : Ast0_cocci.statement Ast0_cocci.dots rebuilder_inout;
-   rebuilder_rec_declaration_dots : Ast0_cocci.declaration Ast0_cocci.dots rebuilder_inout;
-   rebuilder_rec_field_dots : Ast0_cocci.field Ast0_cocci.dots rebuilder_inout;
-+  rebuilder_rec_enum_decl_dots : Ast0_cocci.enum_decl Ast0_cocci.dots rebuilder_inout;
-   rebuilder_rec_case_line_dots : Ast0_cocci.case_line Ast0_cocci.dots rebuilder_inout;
-   rebuilder_rec_define_param_dots :
-     Ast0_cocci.define_param Ast0_cocci.dots rebuilder_inout;
-@@ -150,6 +158,7 @@ type rebuilder_functions = {
-   rebuilder_dotsstmtfn : Ast0_cocci.statement Ast0_cocci.dots rcode;
-   rebuilder_dotsdeclfn : Ast0_cocci.declaration Ast0_cocci.dots rcode;
-   rebuilder_dotsfieldfn : Ast0_cocci.field Ast0_cocci.dots rcode;
-+  rebuilder_dotsenumdeclfn : Ast0_cocci.enum_decl Ast0_cocci.dots rcode;
-   rebuilder_dotscasefn : Ast0_cocci.case_line Ast0_cocci.dots rcode;
-   rebuilder_dotsdefparfn : Ast0_cocci.define_param Ast0_cocci.dots rcode;
-   rebuilder_identfn : Ast0_cocci.ident rcode;
-@@ -161,6 +170,7 @@ type rebuilder_functions = {
-   rebuilder_paramfn : Ast0_cocci.parameterTypeDef rcode;
-   rebuilder_declfn : Ast0_cocci.declaration rcode;
-   rebuilder_fieldfn : Ast0_cocci.field rcode;
-+  rebuilder_enumdeclfn : Ast0_cocci.enum_decl rcode;
-   rebuilder_stmtfn : Ast0_cocci.statement rcode;
-   rebuilder_forinfofn : Ast0_cocci.forinfo rcode;
-   rebuilder_casefn : Ast0_cocci.case_line rcode;
-@@ -192,6 +202,7 @@ type 'n combiner_rebuilder_functions = {
-   combiner_rebuilder_dotsstmtfn : (Ast0_cocci.statement Ast0_cocci.dots, 'n) rccode;
-   combiner_rebuilder_dotsdeclfn : (Ast0_cocci.declaration Ast0_cocci.dots, 'n) rccode;
-   combiner_rebuilder_dotsfieldfn : (Ast0_cocci.field Ast0_cocci.dots, 'n) rccode;
-+  combiner_rebuilder_dotsenumdeclfn : (Ast0_cocci.enum_decl Ast0_cocci.dots, 'n) rccode;
-   combiner_rebuilder_dotscasefn : (Ast0_cocci.case_line Ast0_cocci.dots, 'n) rccode;
-   combiner_rebuilder_dotsdefparfn : (Ast0_cocci.define_param Ast0_cocci.dots, 'n) rccode;
-   combiner_rebuilder_identfn : (Ast0_cocci.ident, 'n) rccode;
-@@ -203,6 +214,7 @@ type 'n combiner_rebuilder_functions = {
-   combiner_rebuilder_paramfn : (Ast0_cocci.parameterTypeDef, 'n) rccode;
-   combiner_rebuilder_declfn : (Ast0_cocci.declaration, 'n) rccode;
-   combiner_rebuilder_fieldfn : (Ast0_cocci.field, 'n) rccode;
-+  combiner_rebuilder_enumdeclfn : (Ast0_cocci.enum_decl,'n) rccode;
-   combiner_rebuilder_stmtfn : (Ast0_cocci.statement, 'n) rccode;
-   combiner_rebuilder_forinfofn : (Ast0_cocci.forinfo, 'n) rccode;
-   combiner_rebuilder_casefn : (Ast0_cocci.case_line, 'n) rccode;
+ (* --------------------------------------------------------------------- *)
+ (* Initializer *)
+ 
+diff --git a/parsing_cocci/context_neg.ml b/parsing_cocci/context_neg.ml
+index 7bbf743d..85214b5b 100644
+--- a/parsing_cocci/context_neg.ml
++++ b/parsing_cocci/context_neg.ml
+@@ -27,6 +27,7 @@ let set_mcodekind x mcodekind =
+   | Ast0.DotsStmtTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.DotsDeclTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.DotsFieldTag(d) -> Ast0.set_mcodekind d mcodekind
++  | Ast0.DotsEnumDeclTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.DotsCaseTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.DotsDefParamTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.IdentTag(d) -> Ast0.set_mcodekind d mcodekind
+@@ -39,6 +40,7 @@ let set_mcodekind x mcodekind =
+   | Ast0.ParamTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.DeclTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.FieldTag(d) -> Ast0.set_mcodekind d mcodekind
++  | Ast0.EnumDeclTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.InitTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.StmtTag(d) -> Ast0.set_mcodekind d mcodekind
+   | Ast0.ForInfoTag(d) -> Ast0.set_mcodekind d mcodekind
+@@ -60,6 +62,7 @@ let set_index x index =
+   | Ast0.DotsStmtTag(d) -> Ast0.set_index d index
+   | Ast0.DotsDeclTag(d) -> Ast0.set_index d index
+   | Ast0.DotsFieldTag(d) -> Ast0.set_index d index
++  | Ast0.DotsEnumDeclTag(d) -> Ast0.set_index d index
+   | Ast0.DotsCaseTag(d) -> Ast0.set_index d index
+   | Ast0.DotsDefParamTag(d) -> Ast0.set_index d index
+   | Ast0.IdentTag(d) -> Ast0.set_index d index
+@@ -73,6 +76,7 @@ let set_index x index =
+   | Ast0.InitTag(d) -> Ast0.set_index d index
+   | Ast0.DeclTag(d) -> Ast0.set_index d index
+   | Ast0.FieldTag(d) -> Ast0.set_index d index
++  | Ast0.EnumDeclTag(d) -> Ast0.set_index d index
+   | Ast0.StmtTag(d) -> Ast0.set_index d index
+   | Ast0.ForInfoTag(d) -> Ast0.set_index d index
+   | Ast0.CaseLineTag(d) -> Ast0.set_index d index
+@@ -92,6 +96,7 @@ let get_index = function
+   | Ast0.DotsStmtTag(d) -> Index.statement_dots d
+   | Ast0.DotsDeclTag(d) -> Index.declaration_dots d
+   | Ast0.DotsFieldTag(d) -> Index.field_dots d
++  | Ast0.DotsEnumDeclTag(d) -> Index.enum_decl_dots d
+   | Ast0.DotsCaseTag(d) -> Index.case_line_dots d
+   | Ast0.DotsDefParamTag(d) -> Index.define_param_dots d
+   | Ast0.IdentTag(d) -> Index.ident d
+@@ -105,6 +110,7 @@ let get_index = function
+   | Ast0.InitTag(d) -> Index.initialiser d
+   | Ast0.DeclTag(d) -> Index.declaration d
+   | Ast0.FieldTag(d) -> Index.field d
++  | Ast0.EnumDeclTag(d) -> Index.enum_decl d
+   | Ast0.StmtTag(d) -> Index.statement d
+   | Ast0.ForInfoTag(d) -> Index.forinfo d
+   | Ast0.CaseLineTag(d) -> Index.case_line d
+@@ -174,9 +180,10 @@ let collect_plus_lines top =
+       mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+       mcode mcode
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing
++      donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing donothing statement donothing donothing donothing donothing in
++      donothing donothing donothing statement donothing donothing donothing
++      donothing in
+   fn.VT0.combiner_rec_top_level top
+ 
+ (* --------------------------------------------------------------------- *)
+@@ -446,6 +453,16 @@ let classify is_minus all_marked table code =
+ 	       (bind (Common.default option_default bitfield bf) (mcode sem)))
+       |	_ -> k e) in
+ 
++  let enum_decl r k e =
++    compute_result Ast0.enum_decl e
++      (match Ast0.unwrap e with
++	Ast0.Enum(name,Some(eq,eval)) ->
++          bind (r.VT0.combiner_rec_ident name)
++            (bind (mcode eq) (r.VT0.combiner_rec_expression eval))
++      | Ast0.EnumDots(dots,whencode) ->
++	  k (Ast0.rewrap e (Ast0.EnumDots(dots,None)))
++      | _ -> k e) in
++
+   let param r k e =
+     compute_result Ast0.param e
+       (match Ast0.unwrap e with
+@@ -526,10 +543,10 @@ let classify is_minus all_marked table code =
+       (do_nothing Ast0.dotsExpr) (do_nothing Ast0.dotsInit)
+       (do_nothing Ast0.dotsParam) (do_nothing Ast0.dotsStmt)
+       (do_nothing Ast0.dotsDecl) (do_nothing Ast0.dotsField)
+-      (do_nothing Ast0.dotsCase)
++      (do_nothing Ast0.dotsEnumDecl) (do_nothing Ast0.dotsCase)
+       (do_nothing Ast0.dotsDefParam)
+       ident expression (do_nothing Ast0.assignOp) (do_nothing Ast0.binaryOp)
+-      typeC initialiser param declaration field
++      typeC initialiser param declaration field enum_decl
+       statement (do_nothing Ast0.forinfo) case_line string_fragment
+       (do_top Ast0.top) in
+   combiner.VT0.combiner_rec_top_level code
+@@ -672,7 +689,9 @@ let equal_typeC t1 t2 =
+   | (Ast0.EnumName(kind1,_),Ast0.EnumName(kind2,_)) ->
+       equal_mcode kind1 kind2
+   | (Ast0.EnumDef(_,lb1,_,rb1),Ast0.EnumDef(_,lb2,_,rb2)) ->
+-       equal_mcode lb1 lb2 && equal_mcode rb1 rb2
++       let tru1 = equal_mcode lb1 lb2 in
++       let tru2 = equal_mcode rb1 rb2 in
++       tru1 && tru2
+   | (Ast0.StructUnionName(kind1,_),Ast0.StructUnionName(kind2,_)) ->
+       equal_mcode kind1 kind2
+   | (Ast0.StructUnionDef(_,lb1,_,rb1),
+@@ -766,6 +785,19 @@ let equal_field d1 d2 =
+        equal_mcode ender1 ender2
+   | _ -> false
+ 
++let equal_enum_decl d1 d2 =
++  match (Ast0.unwrap d1,Ast0.unwrap d2) with
++    (Ast0.Enum(name1,enum_val1),Ast0.Enum(name2,enum_val2)) ->
++      equal_ident name1 name2 &&
++      (match enum_val1,enum_val2 with
++        None,None -> true
++      | Some (eq1,val1),Some(eq2,val2) ->
++         equal_mcode eq1 eq2 && equal_expression val1 val2
++      | _ -> false)
++  | (Ast0.EnumComma(cm1),Ast0.EnumComma(cm2)) -> equal_mcode cm1 cm2
++  | (Ast0.EnumDots(dots1,_),Ast0.EnumDots(dots2,_)) -> equal_mcode dots1 dots2
++  | _ -> false
++
+ let equal_designator d1 d2 =
+   match (d1,d2) with
+     (Ast0.DesignatorField(dot1,_),Ast0.DesignatorField(dot2,_)) ->
+@@ -939,6 +971,8 @@ let root_equal e1 e2 =
+   | (Ast0.DotsStmtTag(d1),Ast0.DotsStmtTag(d2)) -> dots equal_statement d1 d2
+   | (Ast0.DotsDeclTag(d1),Ast0.DotsDeclTag(d2)) -> dots equal_declaration d1 d2
+   | (Ast0.DotsFieldTag(d1),Ast0.DotsFieldTag(d2)) -> dots equal_field d1 d2
++  | (Ast0.DotsEnumDeclTag(d1),Ast0.DotsEnumDeclTag(d2)) ->
++      dots equal_field d1 d2
+   | (Ast0.DotsCaseTag(d1),Ast0.DotsCaseTag(d2)) -> dots equal_case_line d1 d2
+   | (Ast0.DotsDefParamTag(d1),Ast0.DotsDefParamTag(d2)) ->
+       dots equal_define_param d1 d2
+@@ -952,6 +986,7 @@ let root_equal e1 e2 =
+   | (Ast0.InitTag(d1),Ast0.InitTag(d2)) -> equal_initialiser d1 d2
+   | (Ast0.DeclTag(d1),Ast0.DeclTag(d2)) -> equal_declaration d1 d2
+   | (Ast0.FieldTag(d1),Ast0.FieldTag(d2)) -> equal_field d1 d2
++  | (Ast0.EnumDeclTag(d1),Ast0.EnumDeclTag(d2)) -> equal_enum_decl d1 d2
+   | (Ast0.StmtTag(s1),Ast0.StmtTag(s2)) -> equal_statement s1 s2
+   | (Ast0.TopTag(t1),Ast0.TopTag(t2)) -> equal_top_level t1 t2
+   | (Ast0.IsoWhenTag(_),_) | (_,Ast0.IsoWhenTag(_))
+@@ -996,7 +1031,7 @@ let contextify_all =
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing
++    donothing donothing donothing
+ 
+ let contextify_whencode =
+   let bind x y = () in
+diff --git a/parsing_cocci/function_prototypes.ml b/parsing_cocci/function_prototypes.ml
+index 2e6eea43..6eeb72af 100644
+--- a/parsing_cocci/function_prototypes.ml
++++ b/parsing_cocci/function_prototypes.ml
+@@ -68,7 +68,7 @@ let drop_positions =
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing in
++    donothing donothing donothing in
+   res.VT0.rebuilder_rec_statement
+ 
+ let get_all_functions rule =
+@@ -171,9 +171,10 @@ and strip =
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing
++    donothing donothing
+     ident donothing donothing donothing typeC donothing param
+     donothing donothing donothing donothing donothing donothing donothing
++    donothing
+ 
+ and changed_proto = function
+     (mname,mdef,mproto,None) -> true
+@@ -197,7 +198,7 @@ let collect_ident_strings id =
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing in
++      donothing donothing donothing in
+       v.VT0.combiner_rec_ident id
+ 
+ let right_attach_mcode strings (x,ar,info,mc,pos,adj) =
+diff --git a/parsing_cocci/index.ml b/parsing_cocci/index.ml
+index a1103503..f2cbe3d0 100644
+--- a/parsing_cocci/index.ml
++++ b/parsing_cocci/index.ml
+@@ -28,6 +28,7 @@ let parameter_dots x =   3 :: dots x
+ let statement_dots x =   4 :: dots x
+ let declaration_dots x = 5 :: dots x
+ let field_dots x = 8 :: dots x
++let enum_decl_dots x = 9 :: dots x
+ let case_line_dots x =   6 :: dots x
+ let define_param_dots x =7 :: dots x
+ 
+@@ -133,6 +134,12 @@ let field d =
+   | Ast0.Fdots(dots,whencode) -> [133]
+   | Ast0.OptField(decl) -> [191]
+ 
++let enum_decl d =
++  match Ast0.unwrap d with
++  | Ast0.Enum(name,enum_val) -> [113]
++  | Ast0.EnumComma(cm) -> [114]
++  | Ast0.EnumDots(dots,whencode) -> [115]
++
+ let initialiser i =
+   match Ast0.unwrap i with
+     Ast0.MetaInit(nm,_,_) -> [106] (* added after *)
+diff --git a/parsing_cocci/index.mli b/parsing_cocci/index.mli
+index 3cf7b8dc..4f86f5ba 100644
+--- a/parsing_cocci/index.mli
++++ b/parsing_cocci/index.mli
+@@ -10,6 +10,7 @@ val parameter_dots : Ast0_cocci.parameterTypeDef Ast0_cocci.dots -> int list
+ val statement_dots : Ast0_cocci.statement Ast0_cocci.dots -> int list
+ val declaration_dots : Ast0_cocci.declaration Ast0_cocci.dots -> int list
+ val field_dots : Ast0_cocci.field Ast0_cocci.dots -> int list
++val enum_decl_dots : Ast0_cocci.enum_decl Ast0_cocci.dots -> int list
+ val case_line_dots : Ast0_cocci.case_line Ast0_cocci.dots -> int list
+ val define_param_dots : Ast0_cocci.define_param Ast0_cocci.dots -> int list
+ val ident : Ast0_cocci.ident -> int list
+@@ -19,6 +20,7 @@ val binaryOp : Ast0_cocci.binaryOp -> int list
+ val typeC : Ast0_cocci.typeC -> int list
+ val declaration : Ast0_cocci.declaration -> int list
+ val field : Ast0_cocci.field -> int list
++val enum_decl : Ast0_cocci.enum_decl -> int list
+ val initialiser : Ast0_cocci.initialiser -> int list
+ val parameterTypeDef : Ast0_cocci.parameterTypeDef -> int list
+ val statement : Ast0_cocci.statement -> int list
+diff --git a/parsing_cocci/insert_plus.ml b/parsing_cocci/insert_plus.ml
+index b7b50f10..bdc10ae6 100644
+--- a/parsing_cocci/insert_plus.ml
++++ b/parsing_cocci/insert_plus.ml
+@@ -75,13 +75,13 @@ it *)
+       (donothing Ast0.dotsExpr) (donothing Ast0.dotsInit)
+       (donothing Ast0.dotsParam) (donothing Ast0.dotsStmt)
+       (donothing Ast0.dotsDecl) (donothing Ast0.dotsField)
+-      (donothing Ast0.dotsCase)
++      (donothing Ast0.dotsEnumDecl) (donothing Ast0.dotsCase)
+       (donothing Ast0.dotsDefParam)
+       (donothing Ast0.ident) expression  (donothing Ast0.assignOp)
+       (donothing Ast0.binaryOp)
+       (donothing Ast0.typeC) initialiser
+       (donothing Ast0.param) (donothing Ast0.decl)
+-      (donothing Ast0.field) statement
++      (donothing Ast0.field) (donothing Ast0.enum_decl) statement
+       (donothing Ast0.forinfo) (donothing Ast0.case_line)
+       (donothing Ast0.string_fragment) topfn in
+   res.VT0.combiner_rec_top_level e
+@@ -114,6 +114,7 @@ let create_root_token_table minus =
+ 	  | Ast0.DotsStmtTag(d) -> Ast0.get_index d
+ 	  | Ast0.DotsDeclTag(d) -> Ast0.get_index d
+ 	  | Ast0.DotsFieldTag(d) -> Ast0.get_index d
++	  | Ast0.DotsEnumDeclTag(d) -> Ast0.get_index d
+ 	  | Ast0.DotsCaseTag(d) -> Ast0.get_index d
+ 	  | Ast0.DotsDefParamTag(d) -> Ast0.get_index d
+ 	  | Ast0.IdentTag(d) -> Ast0.get_index d
+@@ -127,6 +128,7 @@ let create_root_token_table minus =
+ 	  | Ast0.InitTag(d) -> Ast0.get_index d
+ 	  | Ast0.DeclTag(d) -> Ast0.get_index d
+ 	  | Ast0.FieldTag(d) -> Ast0.get_index d
++	  | Ast0.EnumDeclTag(d) -> Ast0.get_index d
+ 	  | Ast0.StmtTag(d) -> Ast0.get_index d
+ 	  | Ast0.ForInfoTag(d) -> Ast0.get_index d
+ 	  | Ast0.CaseLineTag(d) -> Ast0.get_index d
+@@ -215,6 +217,13 @@ bind to that; not good for isomorphisms *)
+ 	  Ast0.DPComma(comma) -> unfavored_mcode comma
+ 	| _ -> r.VT0.combiner_rec_define_param p)
+   k d in
++  let enumdots r k d =
++    dots
++      (function p ->
++	match Ast0.unwrap p with
++	  Ast0.EnumComma(comma) -> unfavored_mcode comma
++	| _ -> r.VT0.combiner_rec_enumdecl p)
++  k d in
+ 
+   let sdots r k d = dots r.VT0.combiner_rec_statement k d in
+   let ddots r k d = dots r.VT0.combiner_rec_declaration k d in
+@@ -345,9 +354,9 @@ bind to that; not good for isomorphisms *)
+   V0.flat_combiner bind option_default
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode
+-    edots idots pdots sdots ddots fdots cdots dpdots
++    edots idots pdots sdots ddots fdots enumdots cdots dpdots
+     ident expression do_nothing do_nothing
+-    typeC initialiser param decl field statement forinfo
++    typeC initialiser param decl field do_nothing statement forinfo
+     case_line do_nothing do_top
+ 
+ 
+@@ -374,6 +383,9 @@ let call_collect_minus context_nodes :
+       | Ast0.DotsFieldTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_minus_join_points e).VT0.combiner_rec_field_dots e)
++      | Ast0.DotsEnumDeclTag(e) ->
++	  (Ast0.get_index e,
++	   (collect_minus_join_points e).VT0.combiner_rec_enum_decl_dots e)
+       | Ast0.DotsCaseTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_minus_join_points e).VT0.combiner_rec_case_line_dots e)
+@@ -409,6 +421,9 @@ let call_collect_minus context_nodes :
+       | Ast0.FieldTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_minus_join_points e).VT0.combiner_rec_field e)
++      | Ast0.EnumDeclTag(e) ->
++	  (Ast0.get_index e,
++	   (collect_minus_join_points e).VT0.combiner_rec_enumdecl e)
+       | Ast0.StmtTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_minus_join_points e).VT0.combiner_rec_statement e)
+@@ -497,6 +512,7 @@ let mk_arithOp x          = Ast.ArithOpTag x
+ let mk_logicalOp x        = Ast.LogicalOpTag x
+ let mk_declaration x      = Ast.DeclarationTag (Ast0toast.declaration x)
+ let mk_field x            = Ast.FieldTag (Ast0toast.field x)
++let mk_enum_decl x        = Ast.EnumDeclTag (Ast0toast.enum_decl x)
+ let mk_topdeclaration x   = Ast.DeclarationTag (Ast0toast.declaration x)
+ let mk_storage x          = Ast.StorageTag x
+ let mk_inc_file x         = Ast.IncFileTag x
+@@ -514,6 +530,7 @@ let mk_paramdots x = Ast.ParamDotsTag (Ast0toast.parameter_list x)
+ let mk_stmtdots x  = Ast.StmtDotsTag (Ast0toast.statement_dots x)
+ let mk_decldots x  = Ast.AnnDeclDotsTag (Ast0toast.declaration_dots x)
+ let mk_fielddots x  = Ast.AnnFieldDotsTag (Ast0toast.field_dots x)
++let mk_enumdecldots x  = Ast.EnumDeclDotsTag (Ast0toast.enum_decl_dots x)
+ let mk_casedots x  = failwith "+ case lines not supported"
+ let mk_defpardots x= Ast.DefParDotsTag (Ast0toast.define_param_dots x)
+ let mk_typeC x     = Ast.FullTypeTag (Ast0toast.typeC false x)
+@@ -620,12 +637,13 @@ let collect_plus_nodes root =
+     (mcode mk_storage) (mcode mk_inc_file)
+     (do_nothing mk_exprdots) initdots
+     (do_nothing mk_paramdots) stmt_dots (do_nothing mk_decldots)
+-    (do_nothing mk_fielddots)
++    (do_nothing mk_fielddots) (do_nothing mk_enumdecldots)
+     (do_nothing mk_casedots) (do_nothing mk_defpardots)
+     (do_nothing mk_ident) (do_nothing mk_expression)
+     (do_nothing mk_assignOp) (do_nothing mk_binaryOp)
+     (do_nothing mk_typeC) (do_nothing mk_init) (do_nothing mk_param)
+     (do_nothing mk_declaration) (do_nothing mk_field)
++    (do_nothing mk_enum_decl)
+     stmt (do_nothing mk_forinfo) (do_nothing mk_case_line)
+     (do_nothing mk_string_fragment) toplevel
+ 
+@@ -652,6 +670,9 @@ let call_collect_plus context_nodes :
+       | Ast0.DotsFieldTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_plus_nodes e).VT0.combiner_rec_field_dots e)
++      | Ast0.DotsEnumDeclTag(e) ->
++	  (Ast0.get_index e,
++	   (collect_plus_nodes e).VT0.combiner_rec_enum_decl_dots e)
+       | Ast0.DotsCaseTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_plus_nodes e).VT0.combiner_rec_case_line_dots e)
+@@ -687,6 +708,9 @@ let call_collect_plus context_nodes :
+       | Ast0.FieldTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_plus_nodes e).VT0.combiner_rec_field e)
++      | Ast0.EnumDeclTag(e) ->
++	  (Ast0.get_index e,
++	   (collect_plus_nodes e).VT0.combiner_rec_enumdecl e)
+       | Ast0.StmtTag(e) ->
+ 	  (Ast0.get_index e,
+ 	   (collect_plus_nodes e).VT0.combiner_rec_statement e)
+@@ -1175,8 +1199,9 @@ let reevaluate_contextness =
+       mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+       mcode mcode
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing donothing donothing donothing donothing
+-      donothing donothing donothing donothing donothing stmt donothing
++      donothing donothing donothing donothing donothing donothing
++      donothing donothing donothing donothing donothing donothing stmt
++      donothing
+       donothing donothing
+       donothing in
+   res.VT0.combiner_rec_top_level
+diff --git a/parsing_cocci/iso_compile.ml b/parsing_cocci/iso_compile.ml
+index 24c825f2..d17e1106 100644
+--- a/parsing_cocci/iso_compile.ml
++++ b/parsing_cocci/iso_compile.ml
+@@ -53,9 +53,9 @@ let sequence_tokens =
+     (mcode (function x -> Store (Ast0.unwrap_mcode x)))
+     (mcode (function x -> Inc (Ast0.unwrap_mcode x)))
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing donothing
++    donothing donothing donothing donothing donothing donothing donothing
++    donothing donothing donothing
+ 
+ (* In general, we will get a list of lists:
+ 
+diff --git a/parsing_cocci/iso_pattern.ml b/parsing_cocci/iso_pattern.ml
+index 5ceb2bdb..ca1b2810 100644
+--- a/parsing_cocci/iso_pattern.ml
++++ b/parsing_cocci/iso_pattern.ml
+@@ -45,7 +45,7 @@ let strip_info =
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing
++    donothing donothing donothing
+ 
+ let anything_equal = function
+     (Ast0.DotsExprTag(d1),Ast0.DotsExprTag(d2)) ->
+@@ -476,9 +476,9 @@ let match_maker checks_needed context_required whencode_allowed =
+       mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+       mcode mcode
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing
+-      ident expression assignOp binaryOp typeC init param decl field stmt
+-      donothing donothing donothing donothing in
++      donothing donothing
++      ident expression assignOp binaryOp typeC init param decl field donothing
++      stmt donothing donothing donothing donothing in
+ 
+   let add_pure_list_binding name pure is_pure builder1 builder2 lst =
+     match (checks_needed,pure) with
+@@ -892,7 +892,7 @@ let match_maker checks_needed context_required whencode_allowed =
+ 	       conjunct_many_bindings
+ 		 [check_mcode lb1 lb; check_mcode rb1 rb;
+ 		   match_typeC tya tyb;
+-		   match_dots match_expr no_list do_nolist_match idsa idsb]
++		   match_dots match_enum_decl no_list do_nolist_match idsa idsb]
+ 	  | (Ast0.StructUnionName(kinda,Some namea),
+ 	     Ast0.StructUnionName(kindb,Some nameb)) ->
+ 	       if mcode_equal kinda kindb
+@@ -1062,6 +1062,35 @@ let match_maker checks_needed context_required whencode_allowed =
+ 	  | _ -> return false
+ 	else return_false (ContextRequired (Ast0.FieldTag d))
+ 
++  and match_enum_decl pattern d =
++    match (Ast0.unwrap pattern,Ast0.unwrap d) with
++      (Ast0.Enum(namea,enum_vala),Ast0.Enum(nameb,enum_valb)) ->
++        let match_option_enum_val evala evalb =
++          match evala, evalb with
++            Some (eqa,ea), Some (eqb,eb) ->
++              [check_mcode eqa eqb] @ [match_expr ea eb]
++          | Some _, None | None, Some _ -> [return false]
++          | None, None -> [] in
++        conjunct_many_bindings
++          ([match_ident namea nameb]
++           @ match_option_enum_val enum_vala enum_valb)
++    | (Ast0.EnumComma(comma1),Ast0.EnumComma(comma2)) ->
++        check_mcode comma1 comma2
++    | (Ast0.EnumDots(d1,None),Ast0.EnumDots(d,None)) -> check_mcode d1 d
++    | (Ast0.EnumDots(dd,None),Ast0.EnumDots(d,Some (wh,ee,wc))) ->
++      conjunct_bindings (check_mcode dd d)
++	(* hope that mcode of ddots is unique somehow *)
++	(let (ddots_whencode_allowed,_,_) = whencode_allowed in
++	if ddots_whencode_allowed
++	then add_dot_binding dd
++	  (Ast0.WhenTag (wh,Some ee,Ast0.EnumDeclTag wc))
++	else
++	  (Printf.eprintf "warning: not applying iso because of whencode";
++	   return false))
++    | (Ast0.EnumDots(_,Some _),_) ->
++	failwith "whencode not allowed in a pattern1"
++    | _ -> return false
++
+   and match_init pattern i =
+     match Ast0.unwrap pattern with
+       Ast0.MetaInit(name,_,pure) ->
+@@ -1497,6 +1526,14 @@ let make_minus =
+ 	update_mc mcodekind e; Ast0.rewrap e (Ast0.Fdots(mcode d,whencode))
+     | _ -> donothing r k e in
+ 
++  let enum_decl r k e =
++    let mcodekind = Ast0.get_mcodekind_ref e in
++    match Ast0.unwrap e with
++      Ast0.EnumDots(d,whencode) ->
++       (*don't recurse because whencode hasn't been processed by context_neg*)
++	update_mc mcodekind e; Ast0.rewrap e (Ast0.EnumDots(mcode d,whencode))
++    | _ -> donothing r k e in
++
+   let statement r k e =
+     let mcodekind = Ast0.get_mcodekind_ref e in
+     match Ast0.unwrap e with
+@@ -1549,9 +1586,10 @@ let make_minus =
+   V0.flat_rebuilder
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode
+-    dots dots dots dots dots dots dots dots
++    dots dots dots dots dots dots dots dots dots
+     donothing expression donothing donothing donothing initialiser donothing
+-    declaration field statement donothing donothing donothing donothing
++    declaration field enum_decl statement donothing donothing donothing
++    donothing
+ 
+ (* --------------------------------------------------------------------- *)
+ (* rebuild mcode cells in an instantiated alt *)
+@@ -1642,8 +1680,8 @@ let rebuild_mcode start_line =
+     mcode mcode
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing donothing donothing statement donothing donothing donothing
+-    donothing
++    donothing donothing donothing donothing donothing statement donothing
++    donothing donothing donothing
+ 
+ (* --------------------------------------------------------------------- *)
+ (* The problem of whencode.  If an isomorphism contains dots in multiple
+@@ -2059,6 +2097,18 @@ let instantiate bindings mv_bindings model =
+ 	with Not_found -> e)
+     | _ -> e in
+ 
++  let enumdeclfn r k e =
++    let e = k e in
++    match Ast0.unwrap e with
++      Ast0.EnumDots(d,_) ->
++	(try
++	  (match List.assoc (dot_term d) bindings with
++	    Ast0.WhenTag(wh,Some ee,Ast0.EnumDeclTag(exp)) ->
++              Ast0.rewrap e (Ast0.EnumDots(d,Some (wh,ee,exp)))
++	  | _ -> failwith "unexpected binding")
++	with Not_found -> e)
++    | _ -> e in
++
+   let paramfn r k e =
+     let e = k e in
+     match Ast0.unwrap e with
+@@ -2111,9 +2161,9 @@ let instantiate bindings mv_bindings model =
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode
+     (dots elist) donothing (dots plist) (dots slist) donothing donothing
+-    donothing donothing
+-    identfn exprfn donothing donothing tyfn initfn paramfn declfn fieldfn stmtfn
+-    donothing donothing donothing donothing
++    donothing donothing donothing
++    identfn exprfn donothing donothing tyfn initfn paramfn declfn fieldfn
++    enumdeclfn stmtfn donothing donothing donothing donothing
+ 
+ (* --------------------------------------------------------------------- *)
+ 
+@@ -2843,7 +2893,7 @@ let rewrap =
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+     donothing donothing donothing donothing donothing donothing donothing
+-    donothing
++    donothing donothing donothing
+ 
+ let rec rewrap_anything = function
+     Ast0.DotsExprTag(d) ->
+@@ -2858,6 +2908,8 @@ let rec rewrap_anything = function
+       Ast0.DotsDeclTag(rewrap.VT0.rebuilder_rec_declaration_dots d)
+   | Ast0.DotsFieldTag(d) ->
+       Ast0.DotsFieldTag(rewrap.VT0.rebuilder_rec_field_dots d)
++  | Ast0.DotsEnumDeclTag(d) ->
++      Ast0.DotsEnumDeclTag(rewrap.VT0.rebuilder_rec_enum_decl_dots d)
+   | Ast0.DotsCaseTag(d) ->
+       Ast0.DotsCaseTag(rewrap.VT0.rebuilder_rec_case_line_dots d)
+   | Ast0.DotsDefParamTag(d) ->
+@@ -2877,6 +2929,8 @@ let rec rewrap_anything = function
+   | Ast0.ParamTag(d) -> Ast0.ParamTag(rewrap.VT0.rebuilder_rec_parameter d)
+   | Ast0.DeclTag(d) -> Ast0.DeclTag(rewrap.VT0.rebuilder_rec_declaration d)
+   | Ast0.FieldTag(d) -> Ast0.FieldTag(rewrap.VT0.rebuilder_rec_field d)
++  | Ast0.EnumDeclTag(d) ->
++      Ast0.EnumDeclTag(rewrap.VT0.rebuilder_rec_enumdecl d)
+   | Ast0.StmtTag(d) -> Ast0.StmtTag(rewrap.VT0.rebuilder_rec_statement d)
+   | Ast0.ForInfoTag(d) -> Ast0.ForInfoTag(rewrap.VT0.rebuilder_rec_forinfo d)
+   | Ast0.CaseLineTag(d) ->
+diff --git a/parsing_cocci/parse_cocci.ml b/parsing_cocci/parse_cocci.ml
+index 679d213a..886882cc 100644
+--- a/parsing_cocci/parse_cocci.ml
++++ b/parsing_cocci/parse_cocci.ml
+@@ -1887,7 +1887,7 @@ let any_modif rule =
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing in
++      donothing donothing donothing in
+   List.exists fn.VT0.combiner_rec_top_level rule
+ 
+ let eval_virt virt =
+diff --git a/parsing_cocci/unitary_ast0.ml b/parsing_cocci/unitary_ast0.ml
+index a4eed517..f12bef67 100644
+--- a/parsing_cocci/unitary_ast0.ml
++++ b/parsing_cocci/unitary_ast0.ml
+@@ -204,9 +204,10 @@ let get_free checker t =
+       mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+       mcode mcode mcode mcode
+       donothing donothing donothing donothing donothing donothing donothing
+-      donothing
++      donothing donothing
+       ident expression donothing donothing typeC donothing parameter
+-      declaration field statement donothing case_line donothing donothing in
++      declaration field donothing statement donothing case_line donothing
++      donothing in
+ 
+   collect_unitary_nonunitary
+     (List.concat (List.map res.VT0.combiner_rec_top_level t))
+diff --git a/parsing_cocci/unparse_ast0.ml b/parsing_cocci/unparse_ast0.ml
+index 5d450e0e..bfd98ddb 100644
+--- a/parsing_cocci/unparse_ast0.ml
++++ b/parsing_cocci/unparse_ast0.ml
+@@ -321,7 +321,7 @@ and typeC t =
+ 	  print_option (function x -> ident x; print_string " ") name
+       | Ast0.EnumDef(ty,lb,ids,rb) ->
+ 	  typeC ty; mcode print_string lb;
+-	  dots force_newline expression ids;
++	  dots force_newline enum_decl ids;
+ 	  mcode print_string rb
+       | Ast0.StructUnionName(kind,name) ->
+ 	  mcode U.structUnion kind;
+@@ -454,6 +454,24 @@ and field d =
+ 
+ and field_dots l = dots (function _ -> ()) field l
+ 
++and enum_decl d =
++  print_context d
++    (function _ ->
++      match Ast0.unwrap d with
++	Ast0.Enum(name,enum_val) ->
++          (match enum_val with
++            None -> ident name
++          | Some(eq,eval) ->
++              ident name; mcode print_string eq; expression eval)
++      | Ast0.EnumComma(cm) ->
++          mcode print_string cm; force_newline()
++      | Ast0.EnumDots(dots,Some (_,_,whencode)) ->
++	  mcode print_string dots; print_string "   when != ";
++	  enum_decl whencode
++      | Ast0.EnumDots(dots,None) -> mcode print_string dots)
++
++and enum_decl_dots l = dots (function _ -> ()) enum_decl l
++
+ (* --------------------------------------------------------------------- *)
+ (* Initialiser *)
+ 
+@@ -781,6 +799,7 @@ let rec unparse_anything x =
+       statement_dots d
+   | Ast0.DotsDeclTag(d) -> declaration_dots d
+   | Ast0.DotsFieldTag(d) -> field_dots d
++  | Ast0.DotsEnumDeclTag(d) -> enum_decl_dots d
+   | Ast0.DotsCaseTag(d) -> case_dots d
+   | Ast0.DotsDefParamTag(d) -> define_param_dots d
+   | Ast0.IdentTag(d)    -> ident d
+@@ -796,6 +815,7 @@ let rec unparse_anything x =
+   | Ast0.InitTag(d)  -> initialiser d
+   | Ast0.DeclTag(d)  -> declaration d
+   | Ast0.FieldTag(d)  -> field d
++  | Ast0.EnumDeclTag(d)  -> enum_decl d
+   | Ast0.StmtTag(d)  ->
+       print_string "Stm:"; force_newline();
+       statement "" d
 -- 
 2.21.1
 
