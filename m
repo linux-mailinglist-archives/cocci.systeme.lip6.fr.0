@@ -2,63 +2,63 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19C718688B
-	for <lists+cocci@lfdr.de>; Mon, 16 Mar 2020 11:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67764186888
+	for <lists+cocci@lfdr.de>; Mon, 16 Mar 2020 11:04:29 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02GA3sWv000593;
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02GA3s8h006731;
 	Mon, 16 Mar 2020 11:03:54 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id BB76C7809;
+	by systeme.lip6.fr (Postfix) with ESMTP id 4988B781F;
 	Mon, 16 Mar 2020 11:03:54 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 0042E7809
- for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:53 +0100 (CET)
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:543])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02GA3krP011138
+ by systeme.lip6.fr (Postfix) with ESMTPS id B71817802
+ for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:52 +0100 (CET)
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:444])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02GA3okF028874
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:47 +0100 (CET)
-Received: by mail-pg1-x543.google.com with SMTP id 7so9471730pgr.2
- for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 03:03:47 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:51 +0100 (CET)
+Received: by mail-pf1-x444.google.com with SMTP id 2so9627171pfg.12
+ for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 03:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=so2jJuxsUbe7bFw/ZHcXeCSOvtnxUQw4U4/ZWa5QNnI=;
- b=BX2FZIw1jLDHl3RJXXnnTiRqtirELvNnZFq8LxZBxm/6Rg8YbKvxbsIalacvAVULgs
- PJi+BvuJxrqOHpYhMwnkgy6E9vKlyqOD26Ejlg5RUB2dq5KLE2dGIi5jfktkGhrJV1uM
- lSkywAWCMEqqGCELhrAGPmNe5drDi78YeSdI/f/iV43/80uF7Z+O4ohcWZKXuTMVneGK
- 2pjufT/exmB6PDtv4RfX0SbBMEXsCiNMtGg/JUpAoN325tZqDfpcS7QXR22brBLRvR7k
- RUOESXqBL4bp55cVFAwb91lNuXgPLgfuOCXk9N+CdSu5us3fk4r7reUlMq2nPOma/zSf
- CONw==
+ bh=wc/ouDmQcpoUdKtqYW09f9QABpL2Tr3bOwlqrqm68xY=;
+ b=nwpSVSAc0E/qkwwcNKzaq0uzwBRszBcoCrvj2hDLKMKUk4yy0vqG50i0WmlLjI7yKh
+ xveyrA4F+W5KTwyq5ZhJbtDN4Qx9WJlO4oegZGUqTQmrb2b758Bn0lCMRudsaFn1HlFO
+ eIPWLbFn2XPczVpY4kj+RUXQcPk8LDKudEBzQxlvAdqtmwvcSfX4ZTNKR3Tjqwn6sryV
+ sbEM7bPJmq77ynxPD3hR1Xe7VH0KzFu0IKyOWh6VcBETZvCsbcH6e/aD4Qmc0419NxAv
+ gWNq9icm9nWtWDhKGUcXNeYCaqFacJwXIUir4Z7GBLVp2rUiVLTgWMq1Utd+e4zKK/Xo
+ 1jUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=so2jJuxsUbe7bFw/ZHcXeCSOvtnxUQw4U4/ZWa5QNnI=;
- b=ByHOnT6TmJbuqB0gfyXMjJQksmlCtHnsrHBue9kF1oBA0DcvCG6da86N3+adc0rzAB
- 0NqAA6+xB6NkJLCvsdiLMxAfunZt4m1Zi7YHojY1yp+3lXG3cYs8aSvkDSmSfn/x5Y9s
- aWCj0axpHpFT6i5zIAuguMK9egejTJG4Jnvt7frWTg1H/A9dkpNZPizlmxiYrxq83kQ1
- yujKRz9RNYVMiqoFZWHakLkgG3R1Xze5RuNRSzBdTFx3+YhSjay+pMF+sC2mrzFbKkSV
- w8tFa3EMBJUBOeA70DZcAuhFGtvEWWb+R4YOKTMDpbZnLHTpWeBax3uDTTlb2btrJeep
- TjEQ==
-X-Gm-Message-State: ANhLgQ3TQZeFey9w7/Nqw4OC2Hfp99uXhs9z7u9n5Flp1qENCAo9feU9
- rvrv6pH7VHKgTyffiJ3sAADDHefV
-X-Google-Smtp-Source: ADFU+vs47Vh+Legb/ydDVkLzEn3qt0Vo5K3w405gIKl/mIaNLWyDtuo+DyhOsp82ac5/62ywoNIKEw==
-X-Received: by 2002:a63:f450:: with SMTP id p16mr26969901pgk.211.1584353026045; 
- Mon, 16 Mar 2020 03:03:46 -0700 (PDT)
+ bh=wc/ouDmQcpoUdKtqYW09f9QABpL2Tr3bOwlqrqm68xY=;
+ b=KsW1JMynw+XpDVQv0z5O5VpL14NojC7H20o6ELEpsQHIXFqEIZoNi9hdTHlheUDNal
+ ylpSDIDPDPzR4W9NSf4HZsbwRtJFfvArN124FQ7YERPbJS4SKIb3CmpkwSgW1dPlt/T5
+ XHn28oHyPtnU4HZJbN2PBd5CbMt9GNY3jOjXEF2I19EXNsRhvVvLjRtIfXTcQWkzopWf
+ jAlgd08pIa8efY4wL9AuNlnfTy2YgHUag7hGglW6Vx/xFi8DGVRMJC9TnHOOTb0Uej8G
+ O9RV4Fco2flyxaBt70wgnjobqWHiIQLgqv6oi9bl3O2gp8Etqm9ccHxTGAgOO3c8kDNA
+ 58zA==
+X-Gm-Message-State: ANhLgQ2JQ90wCULMvFEdnwzOEPGz0vvRf6Z2xO+4+q2gCqbMzsiu9tta
+ Zj9nrAnGIPU8vlDdN4opFyiby0BZ
+X-Google-Smtp-Source: ADFU+vsQ74MNrnP+adcvHvLKv54f8bAJ6j66s1K9X5UiNIVQgo0+cpngkVSSH/iApP9OEPhwRx6p9w==
+X-Received: by 2002:a63:c40a:: with SMTP id h10mr25701509pgd.291.1584353029587; 
+ Mon, 16 Mar 2020 03:03:49 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:284:a4f2:cc63:b7fc:551c:dce5])
  by smtp.gmail.com with ESMTPSA id
- u3sm19803374pjv.32.2020.03.16.03.03.43
+ u3sm19803374pjv.32.2020.03.16.03.03.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Mar 2020 03:03:45 -0700 (PDT)
+ Mon, 16 Mar 2020 03:03:49 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Mon, 16 Mar 2020 15:32:57 +0530
-Message-Id: <20200316100319.27935-5-jaskaransingh7654321@gmail.com>
+Date: Mon, 16 Mar 2020 15:32:58 +0530
+Message-Id: <20200316100319.27935-6-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200316100319.27935-1-jaskaransingh7654321@gmail.com>
 References: <20200316100319.27935-1-jaskaransingh7654321@gmail.com>
@@ -66,11 +66,11 @@ MIME-Version: 1.0
 X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 16 Mar 2020 11:03:54 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Mon, 16 Mar 2020 11:03:48 +0100 (CET)
+ Mon, 16 Mar 2020 11:03:52 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 04/26] parsing_cocci: visitor_ast0: Add cases for
+Subject: [Cocci] [PATCH 05/26] parsing_cocci: visitor_ast0: Add cases for
 	ParenType/FunctionType
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -99,211 +99,116 @@ ParenType in Pretty_print_c.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/visitor_ast0.ml | 163 ++++++++++++++++++++++++++++++++++
- 1 file changed, 163 insertions(+)
+ parsing_cocci/visitor_ast.ml | 75 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
 
-diff --git a/parsing_cocci/visitor_ast0.ml b/parsing_cocci/visitor_ast0.ml
-index c282e1f8..c56cd7a7 100644
---- a/parsing_cocci/visitor_ast0.ml
-+++ b/parsing_cocci/visitor_ast0.ml
-@@ -339,6 +339,12 @@ let visitor mode bind option_default
- 	| Ast0.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
- 	    let (t,id) =
-               function_pointer (ty,lp1,star,None,rp1,lp2,params,rp2) in t
-+        | Ast0.ParenType(lp,ty,rp) ->
-+	    let (t,id) =
-+              parentype_type (lp,ty,None,rp) in t
-+        | Ast0.FunctionType(ty,lp,params,rp) ->
-+	    let (t,id) =
-+              functiontype_type (ty,None,lp,params,rp) in t
- 	| Ast0.Array(ty,lb,size,rb) ->
-             let (t,id) = array_type (ty,None,lb,size,rb) in t
- 	| Ast0.Decimal(dec,lp,length,comma,precision_opt,rp) ->
-@@ -435,6 +441,76 @@ let visitor mode bind option_default
-     ((multibind ([ty_n] @ idl @ [lb_n;size_n;rb_n]),
-      Ast0.Array(ty,lb,size,rb)), idu)
+diff --git a/parsing_cocci/visitor_ast.ml b/parsing_cocci/visitor_ast.ml
+index 3d5de794..99af7652 100644
+--- a/parsing_cocci/visitor_ast.ml
++++ b/parsing_cocci/visitor_ast.ml
+@@ -318,6 +318,61 @@ let combiner bind option_default
+     let lrb = string_mcode rb in
+     multibind ([lty] @ lid @ [lb; lsize; lrb])
  
-+  and parentype_type (lp,ty,(id : Ast0.ident option),rp) =
-+    match Ast0.unwrap ty with
-+      Ast0.Pointer(ty1,star) ->
-+        (match Ast0.unwrap ty1 with
-+          Ast0.FunctionType(ty2,lp2,params,rp2) ->
-+            let (ty_n,typ) = typeC ty2 in
-+            let (lp_n,lp) = string_mcode lp in
-+            let (star_n,star) = string_mcode star in
-+            let (idl,idu) = (match id with
-+              | Some a -> let (b,c) = ident a in ([b],Some c)
-+              | None -> ([],None)) in
-+            let (rp_n,rp) = string_mcode rp in
-+            let (lp2_n,lp2) = string_mcode lp2 in
-+            let (params_n,params) = parameter_dots params in
-+            let (rp2_n,rp2) = string_mcode rp2 in
-+            ((multibind ([ty_n;lp_n;star_n] @ idl @
-+              [rp_n;lp2_n;params_n;rp2_n]),
-+               Ast0.ParenType
-+                 (lp,
-+                  Ast0.rewrap ty1 (Ast0.Pointer
-+                   (Ast0.rewrap ty2 (Ast0.FunctionType
-+                     (typ,lp2,params,rp2)),star)),rp)), idu)
-+	| _ -> failwith "ParenType Visitor_ast0")
-+    | Ast0.Array(ty1,lb1,size1,rb1) ->
-+        (match Ast0.unwrap ty1 with
-+          Ast0.Pointer(ty2,star) ->
-+            (match Ast0.unwrap ty2 with
-+              Ast0.FunctionType(ty3,lp3,params,rp3) ->
-+                let (ty_n,typ) = typeC ty3 in
-+                let (lp_n,lp) = string_mcode lp in
-+                let (star_n,star) = string_mcode star in
-+                let (idl,idu) = (match id with
-+                  | Some a -> let (b,c) = ident a in ([b],Some c)
-+                  | None -> ([],None)) in
-+                let (lb1_n,lb1) = string_mcode lb1 in
-+                let (size_n,size1) = get_option expression size1 in
-+                let (rb1_n,rb1) = string_mcode rb1 in
-+                let (rp_n,rp) = string_mcode rp in
-+                let (lp3_n,lp3) = string_mcode lp3 in
-+                let (params_n,params) = parameter_dots params in
-+                let (rp3_n,rp3) = string_mcode rp3 in
-+                ((multibind ([ty_n;lp_n;star_n] @ idl @
-+                  [lb1_n;size_n;rb1_n;rp_n;lp3_n;params_n;rp3_n]),
-+                   Ast0.ParenType
-+                     (lp,
-+                      Ast0.rewrap ty1
-+                       (Ast0.Array
-+                         (Ast0.rewrap ty2
-+                           (Ast0.Pointer
-+                             (Ast0.rewrap ty3
-+                               (Ast0.FunctionType(typ,lp3,params,rp3)),
-+                              star)),
-+                        lb1,size1,rb1)),
-+                   rp)),
-+                 idu)
-+    	    | _ -> failwith "ParenType Visitor_ast0")
-+        | _ -> failwith "ParenType Visitor_ast0")
-+    | _ -> failwith "ParenType Visitor_ast0"
++  and parentype_type (lp, ty, (id : Ast.ident option), rp) =
++    match Ast.unwrap ty with
++     Ast.Type(_,_,fty1) ->
++      (match Ast.unwrap fty1 with
++         Ast.Pointer(ty1,star) ->
++          (match Ast.unwrap ty1 with
++             Ast.Type(_,_,fty2) ->
++              (match Ast.unwrap fty2 with
++                Ast.FunctionType(ty2,lp2,params,rp2) ->
++                  let typ = fullType ty2 in
++                  let lp = string_mcode lp in
++                  let star = string_mcode star in
++                  let idl = match id with
++                    | Some idd -> [ident idd]
++                    | None -> [] in
++                  let rp = string_mcode rp in
++                  let lp2 = string_mcode lp2 in
++                  let params = parameter_dots params in
++                  let rp2 = string_mcode rp2 in
++                  multibind
++                    ([typ;lp;star] @ idl @ [rp;lp2;params;rp2])
++                | _ -> failwith "ParenType Visitor_ast")
++           | _ -> failwith "ParenType Visitor_ast")
++       | Ast.Array(ty1,lb1,size1,rb1) ->
++          (match Ast.unwrap ty1 with
++            Ast.Type(_,_,fty2) ->
++             (match Ast.unwrap fty2 with
++               Ast.Pointer(ty2,star) ->
++                (match Ast.unwrap ty2 with
++                  Ast.Type(_,_,fty3) ->
++                   (match Ast.unwrap fty3 with
++                     Ast.FunctionType(ty3,lp3,params,rp3) ->
++                     let typ = fullType ty3 in
++                     let lp = string_mcode lp in
++                     let star = string_mcode star in
++                     let idl = match id with
++                       | Some idd -> [ident idd]
++                       | None -> [] in
++                     let lb1 = string_mcode lb1 in
++                     let size1 = get_option expression size1 in
++                     let rb1 = string_mcode rb1 in
++                     let rp = string_mcode rp in
++                     let lp3 = string_mcode lp3 in
++                     let params = parameter_dots params in
++                     let rp3 = string_mcode rp3 in
++                     multibind
++                       ([typ;lp;star] @ idl @
++                        [lb1;size1;rb1;rp;lp3;params;rp3])
++   	           | _ -> failwith "ParenType Visitor_ast")
++                | _ -> failwith "ParenType Visitor_ast")
++             | _ -> failwith "ParenType Visitor_ast")
++          | _ -> failwith "ParenType Visitor_ast")
++       | _ -> failwith "ParenType Visitor_ast")
++    | _ -> failwith "ParenType Visitor_ast"
 +
-+  and functiontype_type (ty,(id : Ast0.ident option),lp,params,rp) =
-+    let (ty_n,ty) = typeC ty in
-+    let (idl,idu) = (match id with
-+      | Some a -> let (b,c) = ident a in ([b],Some c)
-+      | None -> ([],None)) in
-+    let (lp_n,lp) = string_mcode lp in
-+    let (params_n,params) = parameter_dots params in
-+    let (rp_n,rp) = string_mcode rp in
-+    ((multibind ([ty_n] @ idl @ [lp_n; params_n; rp_n]),
-+     Ast0.FunctionType(ty,lp,params,rp)), idu)
-+
-   and named_type ty id =
-     match Ast0.unwrap ty with
-       Ast0.FunctionPointer(rty,lp1,star,rp1,lp2,params,rp2) ->
-@@ -446,6 +522,14 @@ let visitor mode bind option_default
- 	let (tyres, idn) = array_type (rty,Some id,lb,size,rb) in
-         let idn = match idn with Some i -> i | None -> failwith "Impossible" in
- 	(rewrap ty tyres, idn)
-+    | Ast0.ParenType(lp,rty,rp) ->
-+	let (tyres, idn) = parentype_type (lp,rty,Some id,rp) in
-+        let idn = match idn with Some i -> i | None -> failwith "Impossible" in
-+	(rewrap ty tyres, idn)
-+    | Ast0.FunctionType(rty,lp,params,rp) ->
-+	let (tyres, idn) = functiontype_type (rty,Some id,lp,params,rp) in
-+        let idn = match idn with Some i -> i | None -> failwith "Impossible" in
-+	(rewrap ty tyres, idn)
-     | _ -> let (ty_n,ty) = typeC ty in
-            let (id_n,id) = ident id in
-              ((bind ty_n id_n, ty), id)
-@@ -479,6 +563,77 @@ let visitor mode bind option_default
-     ((multibind ([ty_n] @ idl @ [lb_n;size_n;rb_n]),
-      Ast0.Array(ty,lb,size,rb)), idu)
- 
-+  (* returns ((bind value,original value),id) since id may have been updated*)
-+  and parentype_typedef (lp,ty,id,rp) =
-+    match Ast0.unwrap ty with
-+      Ast0.Pointer(ty1,star) ->
-+        (match Ast0.unwrap ty1 with
-+          Ast0.FunctionType(ty2,lp2,params,rp2) ->
-+            let (ty_n,typ) = typeC ty2 in
-+            let (lp_n,lp) = string_mcode lp in
-+            let (star_n,star) = string_mcode star in
-+            let (idl,idu) = (match id with
-+              | Some a -> let (b,c) = typeC a in ([b],Some c)
-+              | None -> ([],None)) in
-+            let (rp_n,rp) = string_mcode rp in
-+            let (lp2_n,lp2) = string_mcode lp2 in
-+            let (params_n,params) = parameter_dots params in
-+            let (rp2_n,rp2) = string_mcode rp2 in
-+            ((multibind ([ty_n;lp_n;star_n] @ idl @
-+              [rp_n;lp2_n;params_n;rp2_n]),
-+               Ast0.ParenType
-+                 (lp,
-+                  Ast0.rewrap ty1 (Ast0.Pointer
-+                   (Ast0.rewrap ty2 (Ast0.FunctionType
-+                     (typ,lp2,params,rp2)),star)),rp)), idu)
-+	| _ -> failwith "ParenType Visitor_ast0")
-+    | Ast0.Array(ty1,lb1,size1,rb1) ->
-+        (match Ast0.unwrap ty with
-+          Ast0.Pointer(ty2,star) ->
-+            (match Ast0.unwrap ty1 with
-+              Ast0.FunctionType(ty3,lp3,params,rp3) ->
-+                let (ty_n,typ) = typeC ty3 in
-+                let (lp_n,lp) = string_mcode lp in
-+                let (star_n,star) = string_mcode star in
-+                let (idl,idu) = (match id with
-+                  | Some a -> let (b,c) = typeC a in ([b],Some c)
-+                  | None -> ([],None)) in
-+                let (lb1_n,lb1) = string_mcode lb1 in
-+                let (size_n,size1) = get_option expression size1 in
-+                let (rb1_n,rb1) = string_mcode rb1 in
-+                let (rp_n,rp) = string_mcode rp in
-+                let (lp3_n,lp3) = string_mcode lp3 in
-+                let (params_n,params) = parameter_dots params in
-+                let (rp3_n,rp3) = string_mcode rp3 in
-+                ((multibind ([ty_n;lp_n;star_n] @ idl @
-+                  [lb1_n;size_n;rb1_n;rp_n;lp3_n;params_n;rp3_n]),
-+                   Ast0.ParenType
-+                     (lp,
-+                      Ast0.rewrap ty1
-+                       (Ast0.Array
-+                         (Ast0.rewrap ty2 
-+                           (Ast0.Pointer
-+                             (Ast0.rewrap ty3
-+                               (Ast0.FunctionType(typ,lp3,params,rp3)),
-+                              star)),
-+                        lb1,size1,rb1)),
-+                   rp)),
-+                 idu)
-+    	    | _ -> failwith "ParenType Visitor_ast0")
-+        | _ -> failwith "ParenType Visitor_ast0")
-+    | _ -> failwith "ParenType Visitor_ast0"
-+
-+  and functiontype_typedef (ty,id,lp,params,rp) =
-+    let (ty_n,ty) = typeC ty in
-+    let (idl,idu) = (match id with
-+      | Some a -> let (b,c) = typeC a in ([b],Some c)
-+      | None -> ([],None)) in
-+    let (lp_n,lp) = string_mcode lp in
-+    let (params_n,params) = parameter_dots params in
-+    let (rp_n,rp) = string_mcode rp in
-+    ((multibind ([ty_n] @ idl @ [lp_n; params_n; rp_n]),
-+     Ast0.FunctionType(ty,lp,params,rp)), idu)
-+
-   and named_type_typedef ty id =
-     match Ast0.unwrap ty with
-       Ast0.FunctionPointer(rty,lp1,star,rp1,lp2,params,rp2) ->
-@@ -490,6 +645,14 @@ let visitor mode bind option_default
- 	let (tyres, idn) = array_type_typedef (rty,Some id,lb,size,rb) in
-         let idn = match idn with Some i -> i | None -> failwith "Impossible" in
- 	(rewrap ty tyres, idn)
-+    | Ast0.ParenType(lp,rty,rp) ->
-+	let (tyres, idn) = parentype_typedef (lp,rty,Some id,rp) in
-+        let idn = match idn with Some i -> i | None -> failwith "Impossible" in
-+	(rewrap ty tyres, idn)
-+    | Ast0.FunctionType(rty,lp,params,rp) ->
-+	let (tyres, idn) = functiontype_typedef (rty,Some id,lp,params,rp) in
-+        let idn = match idn with Some i -> i | None -> failwith "Impossible" in
-+	(rewrap ty tyres, idn)
-     | _ -> let (ty_n,ty) = typeC ty in
-            let (id_n,id) = typeC id in
-              ((bind ty_n id_n, ty), id)
+   and typeC ty =
+     let k ty =
+       match Ast.unwrap ty with
+@@ -332,6 +387,14 @@ let combiner bind option_default
+ 	  bind lty lstar
+       | Ast.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
+ 	  function_pointer (ty,lp1,star,None,rp1,lp2,params,rp2)
++      | Ast.ParenType(lp,ty,rp) ->
++          parentype_type (lp,ty,None,rp)
++      | Ast.FunctionType(ty,lp,params,rp) ->
++          let lty = fullType ty in
++          let llp = string_mcode lp in
++          let lparams = parameter_dots params in
++          let lrp = string_mcode rp in
++          multibind [lty; llp; lparams; lrp]
+       | Ast.Array(ty,lb,size,rb) -> array_type (ty,None,lb,size,rb)
+       | Ast.Decimal(dec,lp,length,comma,precision_opt,rp) ->
+ 	  let ldec = string_mcode dec in
+@@ -384,6 +447,7 @@ let combiner bind option_default
+ 	  Ast.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
+ 	    function_pointer (ty, lp1, star, Some id, rp1, lp2, params, rp2)
+ 	| Ast.Array(ty,lb,size,rb) -> array_type (ty, Some id, lb, size, rb)
++        | Ast.ParenType(lp,ty,rp) -> parentype_type (lp, ty, Some id, rp)
+ 	| _ -> let lty = fullType ty in
+ 	       let lid = ident id in
+ 	       bind lty lid)
+@@ -1253,6 +1317,17 @@ let rebuilder
+ 	    let lparams = parameter_dots params in
+ 	    let lrp2 = string_mcode rp2 in
+ 	    Ast.FunctionPointer(lty, llp1, lstar, lrp1, llp2, lparams, lrp2)
++        | Ast.ParenType(lp,ty,rp) ->
++            let llp = string_mcode lp in
++            let lty = fullType ty in
++            let lrp = string_mcode rp in
++            Ast.ParenType(llp,lty,lrp)
++        | Ast.FunctionType(ty,lp,params,rp) ->
++            let lty = fullType ty in
++            let llp = string_mcode lp in
++            let lparams = parameter_dots params in
++            let lrp = string_mcode rp in
++            Ast.FunctionType(lty,llp,lparams,lrp)
+ 	| Ast.Array(ty,lb,size,rb) ->
+ 	    let lty = fullType ty in
+ 	    let llb = string_mcode lb in
 -- 
 2.21.1
 
