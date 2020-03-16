@@ -2,75 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67764186888
-	for <lists+cocci@lfdr.de>; Mon, 16 Mar 2020 11:04:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 247E118688D
+	for <lists+cocci@lfdr.de>; Mon, 16 Mar 2020 11:04:50 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02GA3s8h006731;
-	Mon, 16 Mar 2020 11:03:54 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02GA3vtG024557;
+	Mon, 16 Mar 2020 11:03:57 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 4988B781F;
-	Mon, 16 Mar 2020 11:03:54 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 318EF7802;
+	Mon, 16 Mar 2020 11:03:57 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id B71817802
- for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:52 +0100 (CET)
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:444])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02GA3okF028874
+ by systeme.lip6.fr (Postfix) with ESMTPS id DF50C781A
+ for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:54 +0100 (CET)
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:541])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02GA3r4r011092
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:51 +0100 (CET)
-Received: by mail-pf1-x444.google.com with SMTP id 2so9627171pfg.12
- for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 03:03:51 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 11:03:54 +0100 (CET)
+Received: by mail-pg1-x541.google.com with SMTP id 37so9452195pgm.11
+ for <cocci@systeme.lip6.fr>; Mon, 16 Mar 2020 03:03:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wc/ouDmQcpoUdKtqYW09f9QABpL2Tr3bOwlqrqm68xY=;
- b=nwpSVSAc0E/qkwwcNKzaq0uzwBRszBcoCrvj2hDLKMKUk4yy0vqG50i0WmlLjI7yKh
- xveyrA4F+W5KTwyq5ZhJbtDN4Qx9WJlO4oegZGUqTQmrb2b758Bn0lCMRudsaFn1HlFO
- eIPWLbFn2XPczVpY4kj+RUXQcPk8LDKudEBzQxlvAdqtmwvcSfX4ZTNKR3Tjqwn6sryV
- sbEM7bPJmq77ynxPD3hR1Xe7VH0KzFu0IKyOWh6VcBETZvCsbcH6e/aD4Qmc0419NxAv
- gWNq9icm9nWtWDhKGUcXNeYCaqFacJwXIUir4Z7GBLVp2rUiVLTgWMq1Utd+e4zKK/Xo
- 1jUw==
+ bh=OV/gLGY/NmJycahJnWnGTZEGnDcl13EtNi5n5P7gq2I=;
+ b=LdIXojF4AEBLwrKSe93EZWDWVYYpZQyOuighxeDAClAz3875iNebFlJySGd70hNxHA
+ Xs7WwFPdSwmXPrjd/vv99iKk9/xUjWpTUFNBuRyqOSMSpggE29EDjIamSuQyZkxY0fAN
+ Tj3/X6t7lKAmITa4gN5oxEP3J9FIoby9Rr/mLTcYJrIlXCXA/53Hckix7/ffyY2u5zl+
+ eAdKvWDoZz+x9DjJ/JVfY8nySi06KLSyI7qVtrM4oNu0I2Lht2OwC/hRJZbtPQbPRwL4
+ K7b9k3lT42mrGkVh5majpe6ltHFgSUZc63asSjcMhoDH0UD4Ein4LsXqJhLux4Wi8kBY
+ aQJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wc/ouDmQcpoUdKtqYW09f9QABpL2Tr3bOwlqrqm68xY=;
- b=KsW1JMynw+XpDVQv0z5O5VpL14NojC7H20o6ELEpsQHIXFqEIZoNi9hdTHlheUDNal
- ylpSDIDPDPzR4W9NSf4HZsbwRtJFfvArN124FQ7YERPbJS4SKIb3CmpkwSgW1dPlt/T5
- XHn28oHyPtnU4HZJbN2PBd5CbMt9GNY3jOjXEF2I19EXNsRhvVvLjRtIfXTcQWkzopWf
- jAlgd08pIa8efY4wL9AuNlnfTy2YgHUag7hGglW6Vx/xFi8DGVRMJC9TnHOOTb0Uej8G
- O9RV4Fco2flyxaBt70wgnjobqWHiIQLgqv6oi9bl3O2gp8Etqm9ccHxTGAgOO3c8kDNA
- 58zA==
-X-Gm-Message-State: ANhLgQ2JQ90wCULMvFEdnwzOEPGz0vvRf6Z2xO+4+q2gCqbMzsiu9tta
- Zj9nrAnGIPU8vlDdN4opFyiby0BZ
-X-Google-Smtp-Source: ADFU+vsQ74MNrnP+adcvHvLKv54f8bAJ6j66s1K9X5UiNIVQgo0+cpngkVSSH/iApP9OEPhwRx6p9w==
-X-Received: by 2002:a63:c40a:: with SMTP id h10mr25701509pgd.291.1584353029587; 
- Mon, 16 Mar 2020 03:03:49 -0700 (PDT)
+ bh=OV/gLGY/NmJycahJnWnGTZEGnDcl13EtNi5n5P7gq2I=;
+ b=lqRWHE9fCEurrZ0Nv1OBMVyVvqcHpp7R03/AdQejKKSqjr/OyRowzRJueWCU3Xh7le
+ ohLGgeLueNaTQNms8vPMlg9LK3LkMbrZ99H7FZuI41Il+274GE3XUgEfgJBBYSNVCVhm
+ FnrXQO0lrH+dpSUV/4TjtKR/KmG4UIY+t6OL62B8Acv4OyNo9omzP8M6fzVRhYXEXgBW
+ 3R+lRzSKNh8ZvVXfR0Kpb0wnj692M6Gq19lAWW4Kwlz9a+d0bQNsoYgWTSQrNGF9B53f
+ /YGjfCNII6X4PbAbaGSePJHHtLUysDeY8EcT9dNXdOXLj6EOyO8v5flKpEV8RFN6XTIE
+ k59Q==
+X-Gm-Message-State: ANhLgQ0dyJAShrTQDD+ltpjbFqjl6Co+Z/qPe1HtW40O4hJdaylLwuM+
+ oDZXuDY5bb8tJkLor8whCw27Vscc
+X-Google-Smtp-Source: ADFU+vuN/4QeJpwFXrMRTXdG+rQ3zXWdlfjwiqpQ3hI8HLFII+BXHQKXrEJXNoVtxZzmlFT9UCr3YQ==
+X-Received: by 2002:a63:215a:: with SMTP id s26mr26646837pgm.339.1584353032489; 
+ Mon, 16 Mar 2020 03:03:52 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:284:a4f2:cc63:b7fc:551c:dce5])
  by smtp.gmail.com with ESMTPSA id
- u3sm19803374pjv.32.2020.03.16.03.03.46
+ u3sm19803374pjv.32.2020.03.16.03.03.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Mar 2020 03:03:49 -0700 (PDT)
+ Mon, 16 Mar 2020 03:03:52 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Mon, 16 Mar 2020 15:32:58 +0530
-Message-Id: <20200316100319.27935-6-jaskaransingh7654321@gmail.com>
+Date: Mon, 16 Mar 2020 15:32:59 +0530
+Message-Id: <20200316100319.27935-7-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200316100319.27935-1-jaskaransingh7654321@gmail.com>
 References: <20200316100319.27935-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 16 Mar 2020 11:03:54 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 16 Mar 2020 11:03:57 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Mon, 16 Mar 2020 11:03:52 +0100 (CET)
+ Mon, 16 Mar 2020 11:03:54 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 05/26] parsing_cocci: visitor_ast0: Add cases for
+Subject: [Cocci] [PATCH 06/26] parsing_cocci: arity: Add cases for
 	ParenType/FunctionType
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -88,127 +88,42 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-The order of the terms in ParenType require implementing a special
-case for ParenType. This case handles only the following:
-
-	<type> ( * id [ .* ] ) ( params )
-
-i.e., a function pointer or an array of function pointers, and will fail
-for any other cases. This is similar to the function used to print
-ParenType in Pretty_print_c.
+ParenType and FunctionType are added to the SmPL ASTs. Add
+cases for these types in arity.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/visitor_ast.ml | 75 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+ parsing_cocci/arity.ml | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/parsing_cocci/visitor_ast.ml b/parsing_cocci/visitor_ast.ml
-index 3d5de794..99af7652 100644
---- a/parsing_cocci/visitor_ast.ml
-+++ b/parsing_cocci/visitor_ast.ml
-@@ -318,6 +318,61 @@ let combiner bind option_default
-     let lrb = string_mcode rb in
-     multibind ([lty] @ lid @ [lb; lsize; lrb])
- 
-+  and parentype_type (lp, ty, (id : Ast.ident option), rp) =
-+    match Ast.unwrap ty with
-+     Ast.Type(_,_,fty1) ->
-+      (match Ast.unwrap fty1 with
-+         Ast.Pointer(ty1,star) ->
-+          (match Ast.unwrap ty1 with
-+             Ast.Type(_,_,fty2) ->
-+              (match Ast.unwrap fty2 with
-+                Ast.FunctionType(ty2,lp2,params,rp2) ->
-+                  let typ = fullType ty2 in
-+                  let lp = string_mcode lp in
-+                  let star = string_mcode star in
-+                  let idl = match id with
-+                    | Some idd -> [ident idd]
-+                    | None -> [] in
-+                  let rp = string_mcode rp in
-+                  let lp2 = string_mcode lp2 in
-+                  let params = parameter_dots params in
-+                  let rp2 = string_mcode rp2 in
-+                  multibind
-+                    ([typ;lp;star] @ idl @ [rp;lp2;params;rp2])
-+                | _ -> failwith "ParenType Visitor_ast")
-+           | _ -> failwith "ParenType Visitor_ast")
-+       | Ast.Array(ty1,lb1,size1,rb1) ->
-+          (match Ast.unwrap ty1 with
-+            Ast.Type(_,_,fty2) ->
-+             (match Ast.unwrap fty2 with
-+               Ast.Pointer(ty2,star) ->
-+                (match Ast.unwrap ty2 with
-+                  Ast.Type(_,_,fty3) ->
-+                   (match Ast.unwrap fty3 with
-+                     Ast.FunctionType(ty3,lp3,params,rp3) ->
-+                     let typ = fullType ty3 in
-+                     let lp = string_mcode lp in
-+                     let star = string_mcode star in
-+                     let idl = match id with
-+                       | Some idd -> [ident idd]
-+                       | None -> [] in
-+                     let lb1 = string_mcode lb1 in
-+                     let size1 = get_option expression size1 in
-+                     let rb1 = string_mcode rb1 in
-+                     let rp = string_mcode rp in
-+                     let lp3 = string_mcode lp3 in
-+                     let params = parameter_dots params in
-+                     let rp3 = string_mcode rp3 in
-+                     multibind
-+                       ([typ;lp;star] @ idl @
-+                        [lb1;size1;rb1;rp;lp3;params;rp3])
-+   	           | _ -> failwith "ParenType Visitor_ast")
-+                | _ -> failwith "ParenType Visitor_ast")
-+             | _ -> failwith "ParenType Visitor_ast")
-+          | _ -> failwith "ParenType Visitor_ast")
-+       | _ -> failwith "ParenType Visitor_ast")
-+    | _ -> failwith "ParenType Visitor_ast"
-+
-   and typeC ty =
-     let k ty =
-       match Ast.unwrap ty with
-@@ -332,6 +387,14 @@ let combiner bind option_default
- 	  bind lty lstar
-       | Ast.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
- 	  function_pointer (ty,lp1,star,None,rp1,lp2,params,rp2)
-+      | Ast.ParenType(lp,ty,rp) ->
-+          parentype_type (lp,ty,None,rp)
-+      | Ast.FunctionType(ty,lp,params,rp) ->
-+          let lty = fullType ty in
-+          let llp = string_mcode lp in
-+          let lparams = parameter_dots params in
-+          let lrp = string_mcode rp in
-+          multibind [lty; llp; lparams; lrp]
-       | Ast.Array(ty,lb,size,rb) -> array_type (ty,None,lb,size,rb)
-       | Ast.Decimal(dec,lp,length,comma,precision_opt,rp) ->
- 	  let ldec = string_mcode dec in
-@@ -384,6 +447,7 @@ let combiner bind option_default
- 	  Ast.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
- 	    function_pointer (ty, lp1, star, Some id, rp1, lp2, params, rp2)
- 	| Ast.Array(ty,lb,size,rb) -> array_type (ty, Some id, lb, size, rb)
-+        | Ast.ParenType(lp,ty,rp) -> parentype_type (lp, ty, Some id, rp)
- 	| _ -> let lty = fullType ty in
- 	       let lid = ident id in
- 	       bind lty lid)
-@@ -1253,6 +1317,17 @@ let rebuilder
- 	    let lparams = parameter_dots params in
- 	    let lrp2 = string_mcode rp2 in
- 	    Ast.FunctionPointer(lty, llp1, lstar, lrp1, llp2, lparams, lrp2)
-+        | Ast.ParenType(lp,ty,rp) ->
-+            let llp = string_mcode lp in
-+            let lty = fullType ty in
-+            let lrp = string_mcode rp in
-+            Ast.ParenType(llp,lty,lrp)
-+        | Ast.FunctionType(ty,lp,params,rp) ->
-+            let lty = fullType ty in
-+            let llp = string_mcode lp in
-+            let lparams = parameter_dots params in
-+            let lrp = string_mcode rp in
-+            Ast.FunctionType(lty,llp,lparams,lrp)
- 	| Ast.Array(ty,lb,size,rb) ->
- 	    let lty = fullType ty in
- 	    let llb = string_mcode lb in
+diff --git a/parsing_cocci/arity.ml b/parsing_cocci/arity.ml
+index f29b86eb..3b408554 100644
+--- a/parsing_cocci/arity.ml
++++ b/parsing_cocci/arity.ml
+@@ -419,6 +419,23 @@ and top_typeC tgt opt_allowed typ =
+       let params = parameter_list tgt params in
+       make_typeC typ tgt arity
+ 	(Ast0.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2))
++  | Ast0.ParenType(lp,ty,rp) ->
++      let arity =
++        all_same opt_allowed tgt (mcode2line lp)
++        [mcode2arity lp; mcode2arity rp] in
++      let lp = mcode lp in
++      let ty = typeC arity ty in
++      let rp = mcode rp in
++      make_typeC typ tgt arity (Ast0.ParenType(lp,ty,rp))
++  | Ast0.FunctionType(ty,lp,params,rp) ->
++      let arity =
++        all_same opt_allowed tgt (mcode2line lp)
++        [mcode2arity lp; mcode2arity rp] in
++      let ty = typeC arity ty in
++      let lp = mcode lp in
++      let params = parameter_list tgt params in
++      let rp = mcode rp in
++      make_typeC typ tgt arity (Ast0.FunctionType(ty,lp,params,rp))
+   | Ast0.Array(ty,lb,size,rb) ->
+       let arity =
+ 	all_same opt_allowed tgt (mcode2line lb)
 -- 
 2.21.1
 
