@@ -2,48 +2,48 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9DF18A275
-	for <lists+cocci@lfdr.de>; Wed, 18 Mar 2020 19:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4580218A281
+	for <lists+cocci@lfdr.de>; Wed, 18 Mar 2020 19:37:03 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02IIZhCL018897;
-	Wed, 18 Mar 2020 19:35:43 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02IIaoOh014539;
+	Wed, 18 Mar 2020 19:36:50 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 1CE9A781F;
-	Wed, 18 Mar 2020 19:35:43 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 8D46B781F;
+	Wed, 18 Mar 2020 19:36:50 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id DD54177F9
- for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:35:41 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 9FDE277F9
+ for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:36:48 +0100 (CET)
 Received: from mail2-relais-roc.national.inria.fr
  (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02IIZfDr008497
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02IIakdE023510
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:35:41 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.70,568,1574118000"; d="scan'208";a="441035902"
+ for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:36:46 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.70,568,1574118000"; d="scan'208";a="441036062"
 Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 19:35:41 +0100
-Date: Wed, 18 Mar 2020 19:35:40 +0100 (CET)
+ 18 Mar 2020 19:36:46 +0100
+Date: Wed, 18 Mar 2020 19:36:46 +0100 (CET)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
 To: Jaskaran Singh <jaskaransingh7654321@gmail.com>
-In-Reply-To: <20200316100319.27935-8-jaskaransingh7654321@gmail.com>
-Message-ID: <alpine.DEB.2.21.2003181935030.2979@hadrien>
+In-Reply-To: <20200316100319.27935-10-jaskaransingh7654321@gmail.com>
+Message-ID: <alpine.DEB.2.21.2003181936210.2979@hadrien>
 References: <20200316100319.27935-1-jaskaransingh7654321@gmail.com>
- <20200316100319.27935-8-jaskaransingh7654321@gmail.com>
+ <20200316100319.27935-10-jaskaransingh7654321@gmail.com>
 User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:35:45 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:36:50 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:35:41 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:36:46 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: linux-kernel-mentees@lists.linuxfoundation.org, cocci@systeme.lip6.fr
-Subject: Re: [Cocci] [PATCH 07/26] parsing_cocci: index: Add cases for
- ParenType/FunctionType
+Subject: Re: [Cocci] [PATCH 09/26] parsing_cocci: unparse_ast0: Add cases
+ for ParenType/FunctionType
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,35 +60,91 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+
+
 On Mon, 16 Mar 2020, Jaskaran Singh wrote:
 
-> ParenType and FunctionType are now added to the SmPL ASTs. Add
-> cases for these types in index.ml.
+> ParenType/FunctionType are now types in the SmPL ASTs. Add
+> cases for these types in unparse_ast0.ml.
 >
 > Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 > ---
->  parsing_cocci/index.ml | 2 ++
->  1 file changed, 2 insertions(+)
+>  parsing_cocci/unparse_ast0.ml | 43 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
 >
-> diff --git a/parsing_cocci/index.ml b/parsing_cocci/index.ml
-> index a1103503..5c91f620 100644
-> --- a/parsing_cocci/index.ml
-> +++ b/parsing_cocci/index.ml
-> @@ -93,6 +93,8 @@ let typeC t =
->    | Ast0.Signed(sign,ty) -> [129]
->    | Ast0.Pointer(ty,star) -> [49]
->    | Ast0.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) -> [131]
-> +  | Ast0.ParenType(lp,ty,rp) -> [138]
-> +  | Ast0.FunctionType(ty,lp,params,rp) -> [139]
+> diff --git a/parsing_cocci/unparse_ast0.ml b/parsing_cocci/unparse_ast0.ml
+> index 5d450e0e..f8684dd2 100644
+> --- a/parsing_cocci/unparse_ast0.ml
+> +++ b/parsing_cocci/unparse_ast0.ml
+> @@ -292,6 +292,40 @@ and print_function_pointer (ty,lp1,star,rp1,lp2,params,rp2) fn =
+>    mcode print_string rp1; mcode print_string lp2;
+>    parameter_list params; mcode print_string rp2
+>
+> +and print_parentype (lp,ty,rp) fn =
+> + match Ast0.unwrap ty with
+> +   Ast0.Pointer(ty1,star) ->
+> +     (match Ast0.unwrap ty1 with
+> +       Ast0.FunctionType(ty2,lp2,params,rp2) ->
+> +         typeC ty2;
+> +         mcode print_string lp;
+> +         mcode print_string star;
+> +         fn();
+> +         mcode print_string rp;
+> +         mcode print_string lp2;
+> +         parameter_list params;
+> +         mcode print_string rp2;
+> +       | _ -> failwith "ParenType Unparse_ast0")
+> + | Ast0.Array(ty1,lb1,size1,rb1) ->
+> +     (match Ast0.unwrap ty1 with
+> +       Ast0.Pointer(ty2,star) ->
+> +         (match Ast0.unwrap ty2 with
+> +           Ast0.FunctionType(ty3,lp3,params,rp3) ->
+> +             typeC ty3;
+> +             mcode print_string lp;
+> +             mcode print_string star;
+> +             fn();
+> +             mcode print_string lb1;
+> +             print_option expression size1;
+> +             mcode print_string rb1;
+> +             mcode print_string rp;
+> +             mcode print_string lp3;
+> +             parameter_list params;
+> +             mcode print_string rp3;
 
-You should indicate at the top of the file that these numbers aren't
-available any more.
+It should be possible to share some code here.
 
 julia
 
->    | Ast0.Array(ty,lb,size,rb) -> [50]
->    | Ast0.Decimal(dec,lp,length,comma,precision_opt,rp) -> [160]
->    | Ast0.EnumName(kind,name) -> [146]
+> + 	| _ -> failwith "ParenType Unparse_ast0")
+> +     | _ -> failwith "ParenType Unparse_ast0")
+> + | _ -> failwith "ParenType Unparse_ast0"
+> +
+>  and typeC t =
+>    print_context t
+>      (function _ ->
+> @@ -306,6 +340,13 @@ and typeC t =
+>        | Ast0.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
+>  	  print_function_pointer (ty,lp1,star,rp1,lp2,params,rp2)
+>  	    (function _ -> ())
+> +      | Ast0.ParenType(lp,ty,rp) ->
+> +          print_parentype (lp,ty,rp) (function _ -> ())
+> +      | Ast0.FunctionType(ty,lp,params,rp) ->
+> +          typeC ty;
+> +          mcode print_string lp;
+> +          parameter_list params;
+> +          mcode print_string rp
+>        | Ast0.Array(ty,lb,size,rb) ->
+>  	  typeC ty; mcode print_string lb; print_option expression size;
+>  	  mcode print_string rb
+> @@ -367,6 +408,8 @@ and print_named_type ty id =
+>  		mcode print_string rb)
+>  	| _ -> typeC ty; ident id; k () in
+>        loop ty (function _ -> ())
+> +  | Ast0.ParenType(lp,ty,rp) ->
+> +      print_parentype (lp,ty,rp) (function _ -> ident id)
+>    | _ -> typeC ty; ident id
+>
+>  and declaration d =
 > --
 > 2.21.1
 >
