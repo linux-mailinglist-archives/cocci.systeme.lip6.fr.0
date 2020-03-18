@@ -2,47 +2,47 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5060218A290
-	for <lists+cocci@lfdr.de>; Wed, 18 Mar 2020 19:46:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E1B18A292
+	for <lists+cocci@lfdr.de>; Wed, 18 Mar 2020 19:47:26 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02IIjwKf015206;
-	Wed, 18 Mar 2020 19:45:58 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02IIl6O0004218;
+	Wed, 18 Mar 2020 19:47:06 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id E4ADE781F;
-	Wed, 18 Mar 2020 19:45:57 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 7677E781F;
+	Wed, 18 Mar 2020 19:47:06 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id D6E5C77F9
- for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:45:55 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 6FAAD77F9
+ for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:47:05 +0100 (CET)
 Received: from mail2-relais-roc.national.inria.fr
  (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02IIjtur025228
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02IIl4Y6010656
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:45:55 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.70,568,1574118000"; d="scan'208";a="441037184"
+ for <cocci@systeme.lip6.fr>; Wed, 18 Mar 2020 19:47:04 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.70,568,1574118000"; d="scan'208";a="441037351"
 Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 19:45:55 +0100
-Date: Wed, 18 Mar 2020 19:45:54 +0100 (CET)
+ 18 Mar 2020 19:47:04 +0100
+Date: Wed, 18 Mar 2020 19:47:04 +0100 (CET)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
 To: Jaskaran Singh <jaskaransingh7654321@gmail.com>
-In-Reply-To: <20200316100319.27935-22-jaskaransingh7654321@gmail.com>
-Message-ID: <alpine.DEB.2.21.2003181945400.2979@hadrien>
+In-Reply-To: <20200316100319.27935-23-jaskaransingh7654321@gmail.com>
+Message-ID: <alpine.DEB.2.21.2003181946180.2979@hadrien>
 References: <20200316100319.27935-1-jaskaransingh7654321@gmail.com>
- <20200316100319.27935-22-jaskaransingh7654321@gmail.com>
+ <20200316100319.27935-23-jaskaransingh7654321@gmail.com>
 User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:45:58 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:47:06 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:45:55 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Wed, 18 Mar 2020 19:47:04 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: linux-kernel-mentees@lists.linuxfoundation.org, cocci@systeme.lip6.fr
-Subject: Re: [Cocci] [PATCH 21/26] parsing_cocci: pretty_print_cocci: Print
+Subject: Re: [Cocci] [PATCH 22/26] parsing_c: unparse_cocci: Print
  ParenType/FunctionType
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -75,74 +75,14 @@ On Mon, 16 Mar 2020, Jaskaran Singh wrote:
 >
 > Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 > ---
->  parsing_cocci/pretty_print_cocci.ml | 57 +++++++++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
+>  parsing_c/unparse_cocci.ml | 60 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
 >
-> diff --git a/parsing_cocci/pretty_print_cocci.ml b/parsing_cocci/pretty_print_cocci.ml
-> index 6338e464..ef60106c 100644
-> --- a/parsing_cocci/pretty_print_cocci.ml
-> +++ b/parsing_cocci/pretty_print_cocci.ml
-> @@ -403,6 +403,54 @@ and print_function_pointer (ty,lp1,star,rp1,lp2,params,rp2) fn =
->    mcode print_string rp1; mcode print_string lp1;
->    parameter_list params; mcode print_string rp2
->
-> +and print_parentype (lp,ty,rp) fn =
-> +  match Ast.unwrap ty with
-> +   Ast.Type(_,_,fty1) ->
-> +    (match Ast.unwrap fty1 with
-> +      Ast.Pointer(ty1,star) ->
-> +       (match Ast.unwrap ty1 with
-> +         Ast.Type(_,_,fty2) ->
-> +          (match Ast.unwrap fty2 with
-> +            Ast.FunctionType(ty2,lp2,params,rp2) ->
-> +             fullType ty2;
-> +             print_space();
-> +             mcode print_string lp;
-> +             mcode print_string star;
-> +             fn();
-> +             mcode print_string rp;
-> +             mcode print_string lp2;
-> +             parameter_list params;
-> +             mcode print_string rp2
-> +         | _ -> failwith "ParenType Pretty_print_cocci")
-> +       | _ -> failwith "ParenType Pretty_print_cocci")
-> +    | Ast.Array(ty1,lb1,size1,rb1) ->
-> +       (match Ast.unwrap ty1 with
-> +         Ast.Type(_,_,fty2) ->
-> +          (match Ast.unwrap fty2 with
-> +            Ast.Pointer(ty2,star) ->
-> +             (match Ast.unwrap ty2 with
-> +               Ast.Type(_,_,fty3) ->
-> +                (match Ast.unwrap fty3 with
-> +                  Ast.FunctionType(ty3,lp3,params,rp3) ->
-> +                  fullType ty3;
-> +                  print_space();
-> +                  mcode print_string lp;
-> +                  mcode print_string star;
-> +                  fn();
-> +                  mcode print_string lb1;
-> +                  print_option expression size1;
-> +                  mcode print_string rb1;
-> +                  mcode print_string rp;
-> +                  mcode print_string lp3;
-> +                  parameter_list params;
-> +                  mcode print_string rp3
-> +                | _ -> failwith "ParenType Pretty_print_cocci")
-> +             | _ -> failwith "ParenType Pretty_print_cocci")
-> +          | _ -> failwith "ParenType Pretty_print_cocci")
-> +       | _ -> failwith "ParenType Pretty_print_cocci")
-> +    | _ -> failwith "ParenType Pretty_print_cocci")
-> +  | _ -> failwith "ParenType Pretty_print_cocci"
-
-Can some code be shared here?
-
-julia
-
-> +
->  and varargs = function
->    | None -> ()
->    | Some (comma, ellipsis) ->
-> @@ -424,6 +472,13 @@ and typeC ty =
+> diff --git a/parsing_c/unparse_cocci.ml b/parsing_c/unparse_cocci.ml
+> index 30e755e9..9dd84821 100644
+> --- a/parsing_c/unparse_cocci.ml
+> +++ b/parsing_c/unparse_cocci.ml
+> @@ -722,6 +722,13 @@ and typeC ty =
 >    | Ast.FunctionPointer(ty,lp1,star,rp1,lp2,params,rp2) ->
 >        print_function_pointer (ty,lp1,star,rp1,lp2,params,rp2)
 >  	(function _ -> ())
@@ -156,15 +96,81 @@ julia
 >    | Ast.Array(ty,lb,size,rb) ->
 >        fullType ty; mcode print_string lb; print_option expression size;
 >        mcode print_string rb
-> @@ -498,6 +553,8 @@ and print_named_type ty id =
->  		| _ -> failwith "complex array types not supported")
->  	    | _ -> typeC ty; id(); k () in
->  	  loop ty1 (function _ -> ())
+> @@ -786,6 +793,57 @@ and storage = function
+>    | Ast.Register -> print_string "register"
+>    | Ast.Extern -> print_string "extern"
+>
+> +(* --------------------------------------------------------------------- *)
+> +(* ParenType *)
+> +
+> +and print_parentype (lp,ty,rp) fn =
+> +  match Ast.unwrap ty with
+> +   Ast.Type(_,_,fty1) ->
+> +    (match Ast.unwrap fty1 with
+> +      Ast.Pointer(ty1,star) ->
+> +       (match Ast.unwrap ty1 with
+> +         Ast.Type(_,_,fty2) ->
+> +          (match Ast.unwrap fty2 with
+> +            Ast.FunctionType(ty2,lp2,params,rp2) ->
+> +             fullType ty2;
+> +             pr_space();
+> +             mcode print_string lp;
+> +             mcode print_string star;
+> +             fn();
+> +             mcode print_string rp;
+> +             mcode print_string lp2;
+> +             parameter_list params;
+> +             mcode print_string rp2
+> +         | _ -> failwith "ParenType Unparse_cocci")
+> +       | _ -> failwith "ParenType Unparse_cocci")
+> +    | Ast.Array(ty1,lb1,size1,rb1) ->
+> +       (match Ast.unwrap ty1 with
+> +         Ast.Type(_,_,fty2) ->
+> +          (match Ast.unwrap fty2 with
+> +            Ast.Pointer(ty2,star) ->
+> +             (match Ast.unwrap ty2 with
+> +               Ast.Type(_,_,fty3) ->
+> +                (match Ast.unwrap fty3 with
+> +                  Ast.FunctionType(ty3,lp3,params,rp3) ->
+> +                  fullType ty3;
+> +                  pr_space();
+> +                  mcode print_string lp;
+> +                  mcode print_string star;
+> +                  fn();
+> +                  mcode print_string lb1;
+> +                  print_option expression size1;
+> +                  mcode print_string rb1;
+> +                  mcode print_string rp;
+> +                  mcode print_string lp3;
+> +                  parameter_list params;
+> +                  mcode print_string rp3
+> +                | _ -> failwith "ParenType Unparse_cocci")
+> +             | _ -> failwith "ParenType Unparse_cocci")
+> +          | _ -> failwith "ParenType Unparse_cocci")
+> +       | _ -> failwith "ParenType Unparse_cocci")
+> +    | _ -> failwith "ParenType Unparse_cocci")
+> +  | _ -> failwith "ParenType Unparse_cocci"
+
+Can some code be shared?
+
+> +
+>  (* --------------------------------------------------------------------- *)
+>  (* Variable declaration *)
+>
+> @@ -818,6 +876,8 @@ and print_named_type ty id =
+>  		pretty_print_c.Pretty_print_c.type_with_ident ty
+>  		  (function _ -> id())
+>              | _ -> error name ty "type value expected")
 > +      | Ast.ParenType(lp,ty,rp) ->
 > +          print_parentype (lp,ty,rp) (function _ -> id())
->        | _ -> fullType ty; id())
->    | _ -> fullType ty; id()
->
+
+Is it normal that there is no FunctionType case here?
+
+julia
+
+>      (*| should have a case here for pointer to array or function type
+>          that would put ( * ) around the variable.  This makes one wonder
+>          why we really need a special case for function pointer *)
 > --
 > 2.21.1
 >
