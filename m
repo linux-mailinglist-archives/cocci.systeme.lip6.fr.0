@@ -2,76 +2,119 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C91618C7EB
-	for <lists+cocci@lfdr.de>; Fri, 20 Mar 2020 08:04:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC34618C849
+	for <lists+cocci@lfdr.de>; Fri, 20 Mar 2020 08:40:39 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02K73xRA000392;
-	Fri, 20 Mar 2020 08:03:59 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02K7eIoU023149;
+	Fri, 20 Mar 2020 08:40:18 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id D7A817822;
-	Fri, 20 Mar 2020 08:03:59 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 4957A7822;
+	Fri, 20 Mar 2020 08:40:18 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 493523B93
- for <cocci@systeme.lip6.fr>; Fri, 20 Mar 2020 08:03:58 +0100 (CET)
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:1043])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02K73uYr014955
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 20 Mar 2020 08:03:57 +0100 (CET)
-Received: by mail-pj1-x1043.google.com with SMTP id ck23so2060530pjb.4
- for <cocci@systeme.lip6.fr>; Fri, 20 Mar 2020 00:03:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=tmcsVGk4SUFgwf9gcnr4bcFVeXLGhm9CDcwKlVjnNSU=;
- b=seUGDje/JjVz1jVsXGpTHGH18N9++CYlGkDLaJnEymtt6BLoAKl1p7wfLMuZ4cLwaq
- sK4Ndmz1Fb8YNnpTCc/EhE9yGzOdzMNHSOZkY/YDDLCo2IdxJxRV6LBtDRmy/ila/Zf3
- 04MTQQsumHGhdLFG3vPMdo7VFIggMs+K7Rh01T3muDyRJk7m31nyLPJ/s4t9/K3wEMbM
- LcM05jQFcnCoISCQJimjdbjK7nPzJM+2MvHUzCAnZJWeoHZ4Fel8TIJFKzawP+qzxovZ
- +WpAQsnjliDoNaurS43esUsPKtXDo+W3zrYxBJXCB1H7dzQiqzFNpbnLyx81IPv5qW6R
- hbdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=tmcsVGk4SUFgwf9gcnr4bcFVeXLGhm9CDcwKlVjnNSU=;
- b=XbFt6ufu1ykJI9mwtAnWvzm9R1VPlTHao5F/NqBTB8clISJqh8Pyl9KCpTYwqjEA0b
- ozu2Q4YNqsqwN6ssJD570nQUOSGTFsaP1b+K03WgkEOIjtME6N5OVVaoeXbhtzIUys+p
- kbX1o3DpFbdBrzO9QyDkjKL5qQbcJsIo1n/IZDIvrnRtzCp3qAluNcZy37rpOctj2Viw
- WQ1s27yqSiI+PORVrgA7dWVLCb7jkGfQmXyhHT1/yJ4fZXHVWHIalfSxAsauzAJTSJ4H
- Mcq+yED25IPUKAYDWgniv99u1b1c1vCA6ejGJodx1ARUJKlGeDIJMR7HJQ7xqDdRcHhh
- ASsA==
-X-Gm-Message-State: ANhLgQ3calQh686KGbrYldu2BXbnr5k+WJ0uNirqvjmmZEGsm8RROvfp
- 1QSsq7xWQsK6ffqMcK3EJWQS1vea
-X-Google-Smtp-Source: ADFU+vscZajQ9CDH5RyZV707gQojJP4BxF9R15BxCbAmPIQZFK1rxe9nAoNwpjLgyco7aKwyQHfT1g==
-X-Received: by 2002:a17:90a:ab0a:: with SMTP id
- m10mr5451764pjq.173.1584687835923; 
- Fri, 20 Mar 2020 00:03:55 -0700 (PDT)
-Received: from localhost.localdomain ([2405:204:2190:a751:deeb:c09d:833a:659d])
- by smtp.gmail.com with ESMTPSA id l11sm3941232pjy.44.2020.03.20.00.03.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Mar 2020 00:03:55 -0700 (PDT)
-From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
-To: cocci@systeme.lip6.fr
-Date: Fri, 20 Mar 2020 12:31:57 +0530
-Message-Id: <20200320070157.4206-27-jaskaransingh7654321@gmail.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200320070157.4206-1-jaskaransingh7654321@gmail.com>
-References: <20200320070157.4206-1-jaskaransingh7654321@gmail.com>
+ by systeme.lip6.fr (Postfix) with ESMTPS id B85A53B93
+ for <cocci@systeme.lip6.fr>; Fri, 20 Mar 2020 08:40:15 +0100 (CET)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02K7eFQu026209
+ (version=TLSv1.2 cipher=DHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO)
+ for <cocci@systeme.lip6.fr>; Fri, 20 Mar 2020 08:40:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1584690013;
+ bh=uPWc8NRRsF0AEnCvFXtYnyq1fR4Fd/ha4UlR5WsJjfI=;
+ h=X-UI-Sender-Class:Cc:Subject:From:To:Date;
+ b=gWAlUumQAg9wk0Xmsvr1GoqTN80PGPflj91Ww+rs+pmxQwHHC5SoH2Y2QR03GZmFG
+ 6GMpAkdHoWBhbiCyPXL9PQ9UrsSP5J+gtPuqto4gnL15WPpTGvSyDFcGADT0zLhQ9F
+ COybHj7fJ5s6sc2LWf1KtlgLtDtHCf+SmjW+5o+0=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([78.49.75.57]) by smtp.web.de (mrweb102
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0M1o3y-1jZcYh113K-00tmmb; Fri, 20
+ Mar 2020 08:40:13 +0100
+From: Markus Elfring <Markus.Elfring@web.de>
+Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
+ 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 FEE=
+To: Jaskaran Singh <jaskaransingh7654321@gmail.com>, cocci@systeme.lip6.fr
+Message-ID: <4174a7f7-a012-e2c5-72bc-77196f4a16ef@web.de>
+Date: Fri, 20 Mar 2020 08:40:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 20 Mar 2020 08:04:00 +0100 (CET)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 20 Mar 2020 08:03:57 +0100 (CET)
+Content-Language: en-US
+X-Provags-ID: V03:K1:+c/DwuZTQZc7HLBrBsFf4rIQsuxdu8IHT8ZL8RNqQbfmnNG6Tka
+ vHelPGGVJ2IBGf3QHNZS6jLpVxrh7leF2lH5O+/uuwWfws1vWHfOYHuWdO35YIB2EHm/Hmb
+ hg6v0QmHU2JirK8W/pg4CdpV9lxvrPKjTiN8vqASa6MYrS9Lfp8TEz4bMHIUT1HTzgnq0wM
+ Evxt7EQwtPLPtNFoaKoTQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ogGotsT5P54=:a305xLh9aLv1XwLHGTl6bc
+ DTbeWuJBBUeKGdgIoyX6z/i+3cpU0Iu3ecS596WvjPWMo8ti+9RPlcPXu7NpYAdOhb752bsaq
+ uIkZ97wOc8bSr8WX31vq0eAJmK4yzKEMYcJ6J0KrczA9nhJeqykrRUAPGEPnHPutKoCepUUs1
+ i6GCEUcwxAWyvefGlZftHsTarXGQkNixC8uSSyHVEJl01geDrgqQ/EMBdGmRkg7F4JJaIgI/f
+ XMbh3QIkB/SPhuLHMmHGKHGOkG8X8Y/mIdLN5ncpDrTrMVQv79t6N71urwdIXshBmY4AY90rB
+ DvbuFBu1CUnFbRiNxk+lfFi5zfx7bOqIQKFwF6jzwlIjWReVwfUzAiWkOXiwIXaKut48v1WvT
+ 2YMk1dArFexs3MbDOTjYqARzBI88RX5o8EQPgwnq+EoSCYKzdO4hzY4dWwd1DOijMyXbL4u6A
+ FTI/oJ5AIEZJDMbH7A/SzGp0hETHifRvZh1frbSvKMlfuX0NkYGNYbKnQc66LNCwvRmui50fF
+ BmkJPmeW8/qVtg9XnksR5OXCzUY6Du62+dqpTAXrzpe4k88PgvjoZO8rp51qY/pis+qWq9bOD
+ FW51JxvDG1OZvK7BfMWfDv+Ju95j9p5yksJRXjCeBFQHcTaJ2eyVKbUOrYpm403yhHwbeE+Sf
+ j5x2Pbvtw3LzUWrBXqR03k8AV9piS2SDXPKwUfOSYZ5iCF6tz/t0+5XU2w3p0Ind119JOaEP+
+ z42lDe7wMO1j6SinQfZlUPuuxAJ5y4mRpSlVipR5OptdJFW2xN7jFi1F2Hsd6dg7/nIlC+ExO
+ BaLDbAAAxz4+yM7x9tvtC371haruZnVBjdmqb+68LbRy8dHehNrnN++tTL4IGQNKb6jzXL56d
+ FvuiOztP1KhdbH3WBG7MSG7uusM2MwwYdk+AwFaD6uhTUYNJvSmfZDgsgtM2DgU7v548ixv6p
+ wf5ZSh4g84a5DVh6dFOHiFwEmWf9fF+PcBT/8BSucdwtqDAiN2SIhpXM13AIWRE2yPKOR07D4
+ PQJ4XGdYGcUZ0rQaDMNaXtWiwydwVRzdaKc966XzjHibzgrMMu/1ZzTfdEx63x197F0Hu/QVh
+ oN9yKw8fqHKZ5ahhWfNYgJ/EzOMaGlswHOuuHs/f5fxWed4N5MhivFO0x7BgT4K+02eZ0xZoN
+ yRCB9QiYvKzQawYWziDfZHoSNmgmDz8VXs/6xAoiCD8mCnG/Qcxs490LwrvbmNEISIJGLbk/Q
+ uPZGICPrJ9grf5GkJ
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 20 Mar 2020 08:40:18 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Fri, 20 Mar 2020 08:40:15 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v3 26/26] tests: Add test case for array of function
-	pointers
+Subject: Re: [Cocci] [PATCH v3 02/26] parsing_cocci: AST: Add ParenType and
+ FunctionType to SmPL ASTs
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,52 +131,26 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Add a test case to match against an array of function pointers.
-This would previously not work due to differences in the C
-and SmPL ASTs.
+> ParenType and FunctionType are types present in the C AST that
+> are not present in the SmPL AST.
 
-Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
----
- tests/funptr_array.c     | 1 +
- tests/funptr_array.cocci | 9 +++++++++
- tests/funptr_array.res   | 1 +
- 3 files changed, 11 insertions(+)
- create mode 100644 tests/funptr_array.c
- create mode 100644 tests/funptr_array.cocci
- create mode 100644 tests/funptr_array.res
+Can the understanding of mentioned details be improved by reconsidering
+the usage of abbreviations?
 
-diff --git a/tests/funptr_array.c b/tests/funptr_array.c
-new file mode 100644
-index 00000000..dac29ac6
---- /dev/null
-+++ b/tests/funptr_array.c
-@@ -0,0 +1 @@
-+int (*x[2])(int x);
-diff --git a/tests/funptr_array.cocci b/tests/funptr_array.cocci
-new file mode 100644
-index 00000000..8027bcf4
---- /dev/null
-+++ b/tests/funptr_array.cocci
-@@ -0,0 +1,9 @@
-+@@
-+type T;
-+identifier x;
-+@@
-+
-+T (*x[2])(
-+- int
-++ char
-+  x);
-diff --git a/tests/funptr_array.res b/tests/funptr_array.res
-new file mode 100644
-index 00000000..72e1a14a
---- /dev/null
-+++ b/tests/funptr_array.res
-@@ -0,0 +1 @@
-+int (*x[2])(char x);
--- 
-2.21.1
 
+> In the pursuit of aligning both the C and SmPL ASTs,
+
+I find this approach also helpful.
+
+
+> add these types to the SmPL ASTs.
+
+* Does such an extension mean a copy of functionality?
+
+* Can any components be shared between affected software areas?
+
+Regards,
+Markus
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
