@@ -2,65 +2,46 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30EFE195D90
-	for <lists+cocci@lfdr.de>; Fri, 27 Mar 2020 19:24:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA9AF195DBE
+	for <lists+cocci@lfdr.de>; Fri, 27 Mar 2020 19:37:49 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02RIO6SA019404;
-	Fri, 27 Mar 2020 19:24:06 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 02RIbZGx010421;
+	Fri, 27 Mar 2020 19:37:35 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id EA81B781F;
-	Fri, 27 Mar 2020 19:24:05 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 49FF3781F;
+	Fri, 27 Mar 2020 19:37:35 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 03D7D780C
- for <cocci@systeme.lip6.fr>; Fri, 27 Mar 2020 19:19:41 +0100 (CET)
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:331])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02RIJdO0013125
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 27 Mar 2020 19:19:40 +0100 (CET)
-Received: by mail-ot1-x331.google.com with SMTP id c9so10699449otl.12
- for <cocci@systeme.lip6.fr>; Fri, 27 Mar 2020 11:19:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=Zvu0IcolkeOnzMqADYZjSRIfVhhD/AJiAn/BStFVhRY=;
- b=jIQZbTiIEu/oqNPv1yskCEkmDIEhvd1CbjWwmAG6qpf52QKir2gxx6uniOvPoUUIMe
- yi9aJr5IxHKLzAaWjSiLLa0SXhyUgc8RMK9rSnzafcwHhvIud+XnYyESQvFWFAjsIqfq
- AR+Aw3BDJx6EwTK1SIYklHBqpL5bA4hlXAVJzJAJRyqvsQ+Lj8PG+aBRZK4s3az68TrY
- udFfKcGqm+hAsl12hngI8nfgP/r8qH7WPm/x4m7ruawb1aPox3UGj96TerhJ7AfdkvCR
- MzicmmYVnqMnppi192bhWBgHezBbgpRPJsiQUvfHqoTjwlsu8wr8gxbhOl2KFuM4Hbhq
- +PoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=Zvu0IcolkeOnzMqADYZjSRIfVhhD/AJiAn/BStFVhRY=;
- b=YKbgJBS93GE247+/JMgYLL2HftSbFSuTspuF2C5MmSs9S3ezrbSLJQuSD48hX5n9SG
- gfZwDUciZV9YS8k8UfVZw2bEUHTx7HmHXlcikFmDA6dNidK3SaQtRsKDo6EklwADo8K7
- QVU/Kyvq6zWuZ7o8teC8C+hksFPMK3CKobA/2bNAplv3NwXGjzte3FzhFQpeFdzUjXWO
- eU/iAlUkT+S+enOqW8nahTZARFm71/GgSg9gFRXsCWYgsfr0b8iI7qoYC+mZSBjiRCkg
- MQkgxI6uitlB+5E1g+8RRJtCg7BxZkg3d0S+hTCePJ85PsdHgzhsE1azfQlmbIqG+9z6
- 7A/w==
-X-Gm-Message-State: ANhLgQ3a9nTe0NjrEK7y9iQl7p5VLIxsFBZ06LFmVrWSo+tLGsFaZKiP
- mKVgdkCiQ2LVXSqm0GS7QjHnh9NIzoD4wrsHuq3bxqyyzg==
-X-Google-Smtp-Source: ADFU+vtVrPnBezn76Iz7F+6SSR1FWIi1NbRDKs/w5yOD844dcMUMWj3qGrmAcOA49Z/P+8UJJ7yQ25J/FgKhViUO7DY=
-X-Received: by 2002:a9d:6b02:: with SMTP id g2mr11541232otp.340.1585333178464; 
- Fri, 27 Mar 2020 11:19:38 -0700 (PDT)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 2BE1F780C
+ for <cocci@systeme.lip6.fr>; Fri, 27 Mar 2020 19:37:34 +0100 (CET)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 02RIbOu1011737
+ (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Fri, 27 Mar 2020 19:37:24 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.72,313,1580770800"; d="scan'208";a="442686665"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2020 19:37:24 +0100
+Date: Fri, 27 Mar 2020 19:37:24 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: George McCollister <george.mccollister@gmail.com>
+In-Reply-To: <CAFSKS=NXVUcp1KwpidZoFTfyUCmh+8ij2njaGZ7g6h9LvEiYrA@mail.gmail.com>
+Message-ID: <alpine.DEB.2.21.2003271926000.2709@hadrien>
+References: <CAFSKS=NXVUcp1KwpidZoFTfyUCmh+8ij2njaGZ7g6h9LvEiYrA@mail.gmail.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-From: George McCollister <george.mccollister@gmail.com>
-Date: Fri, 27 Mar 2020 13:19:27 -0500
-Message-ID: <CAFSKS=NXVUcp1KwpidZoFTfyUCmh+8ij2njaGZ7g6h9LvEiYrA@mail.gmail.com>
-To: cocci@systeme.lip6.fr
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 27 Mar 2020 19:24:06 +0100 (CET)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 27 Mar 2020 19:19:40 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 27 Mar 2020 19:37:35 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Fri, 27 Mar 2020 19:37:24 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Fri, 27 Mar 2020 19:24:04 +0100
-Subject: [Cocci] using cocci to switch to formatted log/print function
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: cocci@systeme.lip6.fr
+Subject: Re: [Cocci] using cocci to switch to formatted log/print function
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,80 +58,136 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Hello,
 
-I'm working with an old code base that makes excessive use of the
-following sort of construct:
 
-char display[128];
+On Fri, 27 Mar 2020, George McCollister wrote:
 
-...
+> Hello,
+>
+> I'm working with an old code base that makes excessive use of the
+> following sort of construct:
+>
+> char display[128];
+>
+> ...
+>
+> snprintf(display, sizeof(display), "example log message %d", i);
+> log_buffer(level, strlen(display)+1, display);
+>
+> I'd like to replace this mess with a single call to a function named
+> log_formatted(). This involves moving the format string and arguments
+> passed to snprintf into the log_formatted() call, removing snprintf
+> call and (here's where it gets a bit tricky) remove the buffer if it
+> isn't used for anything else.
+>
+> I have this all working with the following script with the caveat that
+> running it on moderately complicated source files makes it never
+> finish (after an hour or so the spatch process crashes with a stack
+> overflow error).
+> I've tried --no-loops which seem to speed things up but complicated
+> source files still result in it never finishing.
+>
+> @r1@
+> type T;
+> identifier disp;
+> expression level;
+> expression list prnt;
+> @@
+>
+> {
+> ... when any
 
-snprintf(display, sizeof(display), "example log message %d", i);
-log_buffer(level, strlen(display)+1, display);
+The above is not necessary.  YOu don't have to start the match from a
+block.  You can just start it from the declaration.
 
-I'd like to replace this mess with a single call to a function named
-log_formatted(). This involves moving the format string and arguments
-passed to snprintf into the log_formatted() call, removing snprintf
-call and (here's where it gets a bit tricky) remove the buffer if it
-isn't used for anything else.
+On the other hand, the declaration may not be needed either.  After your
+metavariable type T, you can put
 
-I have this all working with the following script with the caveat that
-running it on moderately complicated source files makes it never
-finish (after an hour or so the spatch process crashes with a stack
-overflow error).
-I've tried --no-loops which seem to speed things up but complicated
-source files still result in it never finishing.
+local idexpression T[] disp2;
 
-@r1@
-type T;
-identifier disp;
-expression level;
-expression list prnt;
-@@
+Then the match should be:
 
-{
-... when any
-(
-T disp[...];
-|
-T disp[...]="";
-)
-<+...
-  snprintf(disp, sizeof(disp), prnt);
+  snprintf(disp2@disp, sizeof(disp), prnt);
 ... when != disp
 - log_buffer(level, strlen(disp)+1, disp);
 + log_formatted(level, prnt);
-...+>
-}
 
-// Only remove the display variable and snprintf if there are no
-// other references to the variable.
+The notation disp2@disp will match both disp2 (idexpression of a
+particular type) and disp (identifier) against the first argument of
+snprintf.  This is needed because 1) you want to give a type, which
+requires and idexpression, and 2) in later rules you want to change a
+variable declaration, which requires an identifier.
 
-@r2 depends on r1@
-type r1.T;
-identifier r1.disp;
+
+> (
+> T disp[...];
+> |
+> T disp[...]="";
+> )
+> <+...
+>   snprintf(disp, sizeof(disp), prnt);
+> ... when != disp
+> - log_buffer(level, strlen(disp)+1, disp);
+> + log_formatted(level, prnt);
+> ...+>
+> }
+>
+> // Only remove the display variable and snprintf if there are no
+> // other references to the variable.
+>
+> @r2 depends on r1@
+> type r1.T;
+> identifier r1.disp;
+> expression list r1.prnt;
+> @@
+>
+> {
+> ... when any
+> (
+> - T disp[...];
+> |
+> - T disp[...]="";
+> )
+> <+... when != disp
+> - snprintf(disp, sizeof(disp), prnt);
+> ...+>
+> }
+
+Here you could try considering the problem from the opposite point of
+view.
+
+@r2 exists@ // exists is what helps you drop the complexity, by needing to
+type r1.T;  // find only one matching path
+identifier r1.disp;;
 expression list r1.prnt;
+position p;
 @@
 
-{
-... when any
 (
-- T disp[...];
+T@p disp[...];
 |
-- T disp[...]="";
+T@p disp[...]="";
 )
-<+... when != disp
-- snprintf(disp, sizeof(disp), prnt);
-...+>
-}
+...
+snprintf(disp, sizeof(disp), prnt);
+
+@r3@
+position p != r2.p;
+type r1.T;
+identifier r1.disp;;
+@@
+
+(
+- T@p disp[...];
+|
+- T@p disp[...]="";
+)
 
 
-Any suggestions on changes to my script that would make this work on
-lengthy source files would be greatly appreciated!
+Does it matter that the initial value of disp is ""?  In the proposed
+first rule I have dropped that constraint.
 
-Thanks,
-George McCollister
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
