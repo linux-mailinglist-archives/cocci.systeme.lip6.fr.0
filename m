@@ -2,75 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D65241B7088
-	for <lists+cocci@lfdr.de>; Fri, 24 Apr 2020 11:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8F61B7090
+	for <lists+cocci@lfdr.de>; Fri, 24 Apr 2020 11:19:26 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03O9IYwM012344;
-	Fri, 24 Apr 2020 11:18:34 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03O9Ic8n016438;
+	Fri, 24 Apr 2020 11:18:38 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id AF5BB7830;
-	Fri, 24 Apr 2020 11:18:34 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 45F3C7815;
+	Fri, 24 Apr 2020 11:18:38 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 201897815
- for <cocci@systeme.lip6.fr>; Fri, 24 Apr 2020 11:18:32 +0200 (CEST)
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:542])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03O9IUKj009621
+ by systeme.lip6.fr (Postfix) with ESMTPS id 6C3CA7815
+ for <cocci@systeme.lip6.fr>; Fri, 24 Apr 2020 11:18:36 +0200 (CEST)
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:443])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03O9IYIb011112
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 24 Apr 2020 11:18:31 +0200 (CEST)
-Received: by mail-pg1-x542.google.com with SMTP id o10so4361193pgb.6
- for <cocci@systeme.lip6.fr>; Fri, 24 Apr 2020 02:18:31 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Fri, 24 Apr 2020 11:18:35 +0200 (CEST)
+Received: by mail-pf1-x443.google.com with SMTP id 18so4517679pfx.6
+ for <cocci@systeme.lip6.fr>; Fri, 24 Apr 2020 02:18:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=KPCzDPIq2ilnpUksJQzqSvAiCCiGo4aSKa+4vJmVh6Q=;
- b=TD+fg1/dyeeN8VJPRZOeD5E69+UpXGJmyhO7N5rcWYuwTebrPXkV889oIiCoplbEzK
- uytNbxuBch6AtcLNLJsA/VKFzslZ3lMWLAyZ0NzaMH/KnyTldhro2oYmCZYqdqX4NOaj
- +2MZ9GAnFaNsIQpPepyjUl6NrpAoFlIYYRm5Cw+hG0uOxphbHVvPS6lTbA2P6gBxuK0w
- d0up+SdY2YyTfaWvBjxvu/egdrpQNlNulkRVZ8eKddMCYXbzonpgrqC4UFPyDGzMC+KW
- 4U58191pHLvKc7eFWuEgEf/v+Sn1C8jWt+vGV1GPDO6eWFXbSG1vVR8R7pDtqyilLTVu
- LZhg==
+ bh=tIUifw++gcNjsA6xw62XJoWy60jEOtatHZYKBU3ncSk=;
+ b=Rx4q9ME1bsr1iajLU6VwQoUO01cqLUgUgC5A1/G8fIBP1IL9GJQz8snwjAGg3f0TwF
+ e40/zBRJWIOQZaxn+kn/FhcjrC5/aCzu9d3HtAdvQmHkXug18+DwHm8VwFzfUidsuI2P
+ bVbg8w4Ut++rebEFeWdSC+IuRuFzR125APKcs/+45zcvS/TizS7kpV9P64w0QoVs4GdL
+ KF0sfm2soFvGq4lh7Aa57L/dreXNWKb00kdaryUHuBuJnm3YBD+OQAVybpbgdqSYPpan
+ AUtvRTOZlgcQKAqr32EIJcgLAlYFFu3almnXKMCmDQm9+GDUh0IYUhX4oxAQYjpdeyGi
+ EaEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=KPCzDPIq2ilnpUksJQzqSvAiCCiGo4aSKa+4vJmVh6Q=;
- b=LIR39Bpxc8QPbxXYBRp358swUf2eNwdNXX2tzcy4P55hvmVH95kpuQLCJUWinZ/F6x
- 8NDUW0zJBxbEj/a0qRs7BMDGfgKFY/cASKnLbuPxZ2MiEDXnqJ4dlpIx52XkPgvyNyEq
- Qxt+UdxVMYkTVIiEmZ1M0TxL7V1gxIrPAfkW1Yfn9UkLOMzIGXSwxg5szd6P7g8fHSMV
- /d0VA2eoIVVXZtHJ1ztHIBhmy22t4NjPWrSdtIz6lR/OrkKPgz7LoCHdPsUDyZC4a2e8
- 649kGmCNCWD8+JNSqCM+T5klDR74mF/Z2mqv0HwRvGMp5hSBRaI7/y5qGnmVpKYG392J
- VXBw==
-X-Gm-Message-State: AGi0PubzvO/eIwiG0JCdK6McAG2pVr1wdXUdR+FXh5ZJ7Rh697w8tJUH
- VEBHxdBjjcoL9vo8xmTDl6tnrmEPnmk=
-X-Google-Smtp-Source: APiQypLP5k1REnt8hHWoVufkgnuiOLc3+VNUcboM/8edqhEx39DaoRSDh7jtUwmTxGdqGnaTMOR0GQ==
-X-Received: by 2002:aa7:9e10:: with SMTP id y16mr8585461pfq.236.1587719909734; 
- Fri, 24 Apr 2020 02:18:29 -0700 (PDT)
+ bh=tIUifw++gcNjsA6xw62XJoWy60jEOtatHZYKBU3ncSk=;
+ b=TFkw1ZTRSnfZlCqW39ksb+FT15dPjoNi1c13RDGW2rcTnMBUZbLDuvgQ/a6cW3CNAL
+ 3iEpXW9ylR8+B89GaWe1bZt6CrU9WTXS9vB0j9nrzjdYFjbnUT7nr7QLXb1L30pwvVgI
+ u3vOfi6w3d8t47q38Mu9H+7cXjz2Ae481wlwRmQwWfGHgH/cuADVhaAAVj07F90UjMUx
+ kbyikPBv/cNAjYad7j4HILwOGaPH4EnXerOMxqn+J3yaSQ0wyfgSnKe4VKtCRdEBgHnT
+ fqma3+2yVN1fH69IGjk/u8glU9DXEJql/NLs+02e4tNcQ3CxI6QLJpRs+KTFUxVLgEZL
+ ri7Q==
+X-Gm-Message-State: AGi0PuaEUtMgIXapIswG8EmQu/omOYDBEc+ivmb+WfYe64xBPtap2Xzt
+ sZVEUfXSvkV9xbv6YurF0CUl3RujFuI=
+X-Google-Smtp-Source: APiQypKebcgDSTTX5mPn8FxPUilz0qN1hlQ6HiwJ4LUeaFmv9EUK9R6ALNRXnb9eEASP/pOXx/tlWg==
+X-Received: by 2002:a63:e749:: with SMTP id j9mr7981788pgk.319.1587719914063; 
+ Fri, 24 Apr 2020 02:18:34 -0700 (PDT)
 Received: from localhost.localdomain ([1.38.216.60])
- by smtp.gmail.com with ESMTPSA id c80sm5043933pfb.82.2020.04.24.02.18.26
+ by smtp.gmail.com with ESMTPSA id c80sm5043933pfb.82.2020.04.24.02.18.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Apr 2020 02:18:29 -0700 (PDT)
+ Fri, 24 Apr 2020 02:18:33 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Fri, 24 Apr 2020 14:47:40 +0530
-Message-Id: <20200424091801.13871-5-jaskaransingh7654321@gmail.com>
+Date: Fri, 24 Apr 2020 14:47:41 +0530
+Message-Id: <20200424091801.13871-6-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200424091801.13871-1-jaskaransingh7654321@gmail.com>
 References: <20200424091801.13871-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 24 Apr 2020 11:18:35 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 24 Apr 2020 11:18:38 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 24 Apr 2020 11:18:31 +0200 (CEST)
+ Fri, 24 Apr 2020 11:18:36 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [RFC PATCH 04/25] parsing_c: parser: Add rule for multiple
-	end attributes
+Subject: [Cocci] [RFC PATCH 05/25] parsing_c: parser: Add expression
+	statement attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,31 +87,39 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-There is no rule for productions of multiple end attributes. Add a case
-similar to that of attribute_list for end attributes.
+As per GCC's C grammar, the expression statement rule has the following
+production:
+
+	expression-statement:
+  	  gnu-attributes ;
+
+Add this production to the expr_statement rule of Coccinelle's C parser.
+If attributes are recognized, this parses the following code
+successfully:
+
+	label: attribute;
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_c/parser_c.mly | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ parsing_c/parser_c.mly | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/parsing_c/parser_c.mly b/parsing_c/parser_c.mly
-index bfe92e18..d259f12a 100644
+index d259f12a..a858db56 100644
 --- a/parsing_c/parser_c.mly
 +++ b/parsing_c/parser_c.mly
-@@ -2401,8 +2401,11 @@ attribute_list:
+@@ -1082,8 +1082,9 @@ stat_or_decl:
  
- attributes: attribute_list { $1 }
  
--end_attributes:
-+end_attribute_list:
-  | TMacroEndAttr { [Attribute (fst $1), [snd $1]] }
-+ | end_attribute_list TMacroEndAttr { $1 @ [Attribute(fst $2), [snd $2]] }
-+
-+end_attributes: end_attribute_list { $1 }
+ expr_statement:
+- | TPtVirg      { None,    [$1] }
+- | expr TPtVirg { Some $1, [$2] }
++ | TPtVirg                     { None,    [$1] }
++ | end_attributes TPtVirg                     { None,    [$2] }
++ | expr TPtVirg                { Some $1, [$2] }
  
- comma_opt:
-  | TComma {  [$1] }
+ selection:
+  | Tif TOPar expr TCPar cpp_ifdef_statement              %prec SHIFTHERE
 -- 
 2.21.1
 
