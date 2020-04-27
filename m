@@ -2,75 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312561BA336
-	for <lists+cocci@lfdr.de>; Mon, 27 Apr 2020 14:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D22F31BA33A
+	for <lists+cocci@lfdr.de>; Mon, 27 Apr 2020 14:09:49 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03RC96eA016187;
-	Mon, 27 Apr 2020 14:09:06 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03RC93aa008584;
+	Mon, 27 Apr 2020 14:09:10 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id A734D7839;
-	Mon, 27 Apr 2020 14:09:06 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 12701782D;
+	Mon, 27 Apr 2020 14:09:10 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 213677807
- for <cocci@systeme.lip6.fr>; Mon, 27 Apr 2020 14:09:05 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 118967807
+ for <cocci@systeme.lip6.fr>; Mon, 27 Apr 2020 14:09:08 +0200 (CEST)
 Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com
  [IPv6:2607:f8b0:4864:20:0:0:0:643])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03RC93KY028248
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03RC96ZR008322
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 27 Apr 2020 14:09:04 +0200 (CEST)
-Received: by mail-pl1-x643.google.com with SMTP id t4so6906434plq.12
- for <cocci@systeme.lip6.fr>; Mon, 27 Apr 2020 05:09:04 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Mon, 27 Apr 2020 14:09:07 +0200 (CEST)
+Received: by mail-pl1-x643.google.com with SMTP id k18so6925616pll.6
+ for <cocci@systeme.lip6.fr>; Mon, 27 Apr 2020 05:09:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=WAbYcI+ddLC4sIyW6AKwmLufMWLaaZ3sTc/dozO6PhM=;
- b=auYFOoIeQK74uwOMT0Lie7LxcWEvPB0eP9aHRHzAaRuqBVXTuQa8J7zZ7V8v9vka/e
- uFfYfXe1XQBJyGKxCRTK1Bab86MGsimJ4DUlX1AmqtF1igUl682LpdyCjwmb0vWoIuEI
- seiHV3Vk1VSqVvlTmYn5TKhG3B44DfInzusObAPaOb3Fh2B3gyzP+XoySRhz6QOdDqst
- KjzmWo+YTDbXv4IKINPhY+rEl5IniGR6xqeUz1vV3tNLLHN/Su6sz9ofcTJWO1U7WJmg
- Ca4CUINT4bOhJzvNUnZV7sS2c/wsaXoPyoCOyFTOjTh812ETO6pdsMIcq6VwGg0PJQAf
- 5LKg==
+ bh=CZ5votp7iJyEHJkIeJl40honWeZHULCEBP3YDk5oiHU=;
+ b=GTHO8k7iHz56GYP1fwrcKp/QXst5IcAXmU+Z67BRa/0oWhKQRe7EgRU4BzWhgQOZve
+ W2MvbdJ1VvWELqF7iATr1Phl3zjXzlsHS9wfY+FFRjdAt3Qb+04KPAQVvKMB4kFZGAmb
+ f0T68ye0RcCX2rlroI04KgZob26ktFGBziXA3fjNajcByWrWebBwFli/uLVwIGRp2P0r
+ AqFyYcFDyyBQmdV8ZSAal9jR3C4/kr5Bc06etmIJmhvUWRApw75LVwQLVHUShRWLhKEY
+ G+jQYNTcZDe9rlUB/1wciK6FIU4Az2vAMLw1VHjR+p1AKgCH2iW/rtonrQmRrkRmZ5H0
+ XzGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=WAbYcI+ddLC4sIyW6AKwmLufMWLaaZ3sTc/dozO6PhM=;
- b=g4E76Rc+gRE5ERBPzzsdgBtteq9mGmmLOB+/cRNdLKvOX5Pl1Tf50Wn1+03mjGjToY
- IAsrye0/dY9cytD92ScVFBfiaYqzq4FznttglGsVkg/3PyIR21vevqO66r+SMhUfC9ZD
- t4Qdyfs/ma14DF768w1g7Ii59+9LjfL81PWdib/Fqgdg9NaldVgvkF72/NtRqaeHjNKG
- y9a5Jwjd0yasEOtgiNIYQPOr5dx+oQD4bCh8rahvu86hQSXPkhhWYQW4vaLUiQb7N9b1
- kUpgIYWDBro0cKGnKbCIOH04jM1ISr/rCQWMSEWELMyU5CpRYj64ZbdbbT/oZG6Pbi9f
- 8XWw==
-X-Gm-Message-State: AGi0PuZHobfu1WF7HPvOGRfTUkCpJgJby5yLfFt7eNSq1sMk7QEAyCsl
- kqXCtSG9FPs5dhhcNEwTpBbIhmRcbbs=
-X-Google-Smtp-Source: APiQypKzshW3RlyzHQtEz3tIMJ9R/BMlk8j0XAJd1X417bZfgm1TkajeWt3eTfBso2ZZBjeUEEo/Rg==
-X-Received: by 2002:a17:902:784c:: with SMTP id
- e12mr22715929pln.191.1587989342094; 
- Mon, 27 Apr 2020 05:09:02 -0700 (PDT)
+ bh=CZ5votp7iJyEHJkIeJl40honWeZHULCEBP3YDk5oiHU=;
+ b=l4E30+vYWAwOgLH+EBHRd7ICxxH9QAky3DhkF/byhJaHpbBgDTvQvoVcaQpC2ivqtq
+ qfWXbWrWN7emJ5DE8IsID7CsDqvAZJHS++jeRN6YtrGzajtAB4UnAaLQ5E4UTiRdxAn8
+ Gp23uPDp/9mJyjQ/4IA4GoeuSM1Beme1drAfF3r3DWXDERxQrhgfo1Z55btzybDO4PU/
+ x9i76FdnBsPwiLSHR8Ylf+C5R61Xdihog7HQMkkNtGIFKoIl2OIVXzkG2nkKzUPsv4ik
+ 3oqHtDJngYn+OQP53g2kxrXlG4dqI5iRK75w2bSDHINRNtQ6PonHyievAj6MIl9dwfZU
+ 6NJg==
+X-Gm-Message-State: AGi0Pubg9hEl1MgqT2/ZbmDasiftRMiMReAf6+S4Rtyiq5dXdw7xlAGM
+ 4STpD+YBrHwkb811eSXgMei+dlbCGfs=
+X-Google-Smtp-Source: APiQypISpS71+6HrTkWFfrZLGMg6hgh3o+1fUy9OVqpCGbdtRgfrwxWwNc4EcvIlDLQ7voqkO6+d0w==
+X-Received: by 2002:a17:902:d697:: with SMTP id
+ v23mr21008191ply.262.1587989345694; 
+ Mon, 27 Apr 2020 05:09:05 -0700 (PDT)
 Received: from localhost.localdomain ([1.38.220.114])
- by smtp.gmail.com with ESMTPSA id r17sm9623885pgn.35.2020.04.27.05.08.58
+ by smtp.gmail.com with ESMTPSA id r17sm9623885pgn.35.2020.04.27.05.09.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Apr 2020 05:09:01 -0700 (PDT)
+ Mon, 27 Apr 2020 05:09:05 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Mon, 27 Apr 2020 17:38:15 +0530
-Message-Id: <20200427120834.380-5-jaskaransingh7654321@gmail.com>
+Date: Mon, 27 Apr 2020 17:38:16 +0530
+Message-Id: <20200427120834.380-6-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200427120834.380-1-jaskaransingh7654321@gmail.com>
 References: <20200427120834.380-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 27 Apr 2020 14:09:06 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 27 Apr 2020 14:09:10 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Mon, 27 Apr 2020 14:09:04 +0200 (CEST)
+ Mon, 27 Apr 2020 14:09:07 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 04/23] parsing_cocci: arity: Reflect Parameter
+Subject: [Cocci] [PATCH 05/23] parsing_cocci: check_meta: Reflect Parameter
 	attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -89,54 +89,26 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 Parameter attributes are added to the SmPL AST. Reflect these changes in
-arity.ml.
+check_meta.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/arity.ml | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+ parsing_cocci/check_meta.ml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/parsing_cocci/arity.ml b/parsing_cocci/arity.ml
-index 8ee6d33f..0f64c113 100644
---- a/parsing_cocci/arity.ml
-+++ b/parsing_cocci/arity.ml
-@@ -812,26 +812,29 @@ and make_param =
- and parameterTypeDef tgt param =
-   let param_same = all_same true tgt in
+diff --git a/parsing_cocci/check_meta.ml b/parsing_cocci/check_meta.ml
+index 5a348ba3..ab1d357e 100644
+--- a/parsing_cocci/check_meta.ml
++++ b/parsing_cocci/check_meta.ml
+@@ -374,7 +374,7 @@ and initialiser_list old_metas table minus =
+ 
+ and parameterTypeDef old_metas table minus param =
    match Ast0.unwrap param with
--    Ast0.VoidParam(ty) -> Ast0.rewrap param (Ast0.VoidParam(typeC tgt ty))
--  | Ast0.Param(ty,Some id) ->
-+    Ast0.VoidParam(ty,attr) ->
-+      Ast0.rewrap param (Ast0.VoidParam(typeC tgt ty,List.map mcode attr))
-+  | Ast0.Param(ty,Some id,attr) ->
-       let ty = top_typeC tgt true ty in
-       let id = ident true tgt id in
-+      let attr = List.map mcode attr in
-       Ast0.rewrap param
- 	(match (Ast0.unwrap ty,Ast0.unwrap id) with
- 	  (Ast0.OptType(ty),Ast0.OptIdent(id)) ->
--	    Ast0.OptParam(Ast0.rewrap param (Ast0.Param(ty,Some id)))
-+	    Ast0.OptParam(Ast0.rewrap param (Ast0.Param(ty,Some id,attr)))
- 	| (Ast0.OptType(ty),_) ->
- 	    fail param "arity mismatch in param declaration"
- 	| (_,Ast0.OptIdent(id)) ->
- 	    fail param "arity mismatch in param declaration"
--	| _ -> Ast0.Param(ty,Some id))
--  | Ast0.Param(ty,None) ->
-+	| _ -> Ast0.Param(ty,Some id,attr))
-+  | Ast0.Param(ty,None,attr) ->
-       let ty = top_typeC tgt true ty in
-+      let attr = List.map mcode attr in
-       Ast0.rewrap param
- 	(match Ast0.unwrap ty with
- 	  Ast0.OptType(ty) ->
--	    Ast0.OptParam(Ast0.rewrap param (Ast0.Param(ty,None)))
--	| _ -> Ast0.Param(ty,None))
-+	    Ast0.OptParam(Ast0.rewrap param (Ast0.Param(ty,None,attr)))
-+	| _ -> Ast0.Param(ty,None,attr))
-   | Ast0.MetaParam(name,cstr,pure) ->
-       let arity = param_same (mcode2line name) [mcode2arity name] in
-       let name = mcode name in
+-    Ast0.Param(ty,id) ->
++    Ast0.Param(ty,id,attr) ->
+       get_opt (ident ID old_metas table minus) id;
+       typeC old_metas table minus ty
+   | Ast0.MetaParam(name,_,_) ->
 -- 
 2.21.1
 
