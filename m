@@ -2,77 +2,72 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F8C1BBDC8
-	for <lists+cocci@lfdr.de>; Tue, 28 Apr 2020 14:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C66E31BC5FB
+	for <lists+cocci@lfdr.de>; Tue, 28 Apr 2020 19:03:23 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03SChmG1011363;
-	Tue, 28 Apr 2020 14:43:48 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03SH2mfG012172;
+	Tue, 28 Apr 2020 19:02:48 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id BEDF1782D;
-	Tue, 28 Apr 2020 14:43:48 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 20CDC782D;
+	Tue, 28 Apr 2020 19:02:48 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 9B7283DC8
- for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 14:43:46 +0200 (CEST)
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:441])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03SChisY016794
+ by systeme.lip6.fr (Postfix) with ESMTPS id 3EACB3DC8
+ for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 19:02:46 +0200 (CEST)
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:543])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03SH2ij9006500
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 14:43:45 +0200 (CEST)
-Received: by mail-pf1-x441.google.com with SMTP id y25so10631890pfn.5
- for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 05:43:45 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 19:02:45 +0200 (CEST)
+Received: by mail-pg1-x543.google.com with SMTP id d3so3392303pgj.6
+ for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 10:02:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=gBw3cYXB1JrScHWOou+H7b6Q+VxWVe4/1UMFoF1kxow=;
- b=FaPoyij6X6iGa1zkiaXI/2nSQXol/oboQc6mhyhNPE27EoK9HRllPGKuNqZNx8/2R+
- zXbi4/jKWEi4hxpYVcqDgs3/W+zFaYToCTQXJb6ZyZe4MwCW5WTHQiXFYlCCoDaDw69h
- Kq9EZ+xgC5miVgH8ne2UlN1E0zXIpP6kJtsga5YNAOs61LPS6AT+yl1cI0o3sC37rweD
- rJPZ0K5FCjcG08pufWTICvl58ra8bo5XojZ+GazGZchkLxFs4bQEBGD4yMBg/ih2fCim
- 6Cbs92dQahfr7pgoEMU/zNEBU0EonftSHjJZ3JfP0tgtHs6LrBbAN0clNawVQDPsuAAf
- Ko8w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ez01Gw1WJxkkT7XwlHmwndQkn6baSCeUPSIZZX1HO0o=;
+ b=qotrKHk2mHA4KWegTBKSILvhQz/dGAJZwB73M/zcmoquR0J632sAyeuyeI+WCddcV3
+ SD3RsDpmo+zV+X11bd72GGnKe26qvnrggyEbbNzgYL2mtx9fTdTj4c3jPlxLUO7HDrgK
+ ddH5rYlUY2GXPZwCI/fh5giM6m/MlhE6EOMnksO7qynRyFZ7995FCBE3JErO1dLpmm+O
+ NoAozlbJOqsacpl0AVu98VEIAGhmBgNKDhi9MRD8c76MqrS28Xd4i9gQShn885lwq6xu
+ di4zQXY1dID69wXVArkllqulo2PfL+NYt08CVqDKyITbpfbCuUfGhSzGfIAuhxA/fNj2
+ 4PqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=gBw3cYXB1JrScHWOou+H7b6Q+VxWVe4/1UMFoF1kxow=;
- b=KjI/cbobRC9kYuzK0OaSmc2qDrmyUCT4O0FJGSL07rf8+FNkUy8SM4gtpc1cvJSSUY
- 9HXOzcHTovw+p6Uj8t3OdUMkVoA+8bBeUOuIV785OBB5srYRfd4ZhEH9igHc8S5hDAQD
- oki/udbVEw+2tfKfFr6pfk8DRQrQ/mu+BJpN5+51sIX0ZSUcvDlLYiGG/Wtnkf30P6Qm
- sjvJsGrSVZjmql6oo50lJrcUO9dGKLBtLC+sZqqjJTBFWVa2+msibpeVkfuNmgl8aOos
- luDe3kYENYjA/yBeQB7SfZ/iQPyOteq3jP8aBAq1JsiEXgFMOWxA5XISA6Nk8XluMrCi
- ew9A==
-X-Gm-Message-State: AGi0Pub/en5ghJkJJOs0dZnp5HY1tmEDMpdrVrUaX1GSDzVHr9y+1uy+
- v3S3ZfCD2cpJuXWFhOxr3fY=
-X-Google-Smtp-Source: APiQypLhV/8SSvecEP/GhNHbUZCHYDyPBtVy80wyIS+4VE5m7GZtwj/36nkXFHvU4YkBECtnmpr/zA==
-X-Received: by 2002:a63:2a92:: with SMTP id q140mr6815461pgq.20.1588077824087; 
- Tue, 28 Apr 2020 05:43:44 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ez01Gw1WJxkkT7XwlHmwndQkn6baSCeUPSIZZX1HO0o=;
+ b=drQeT2UZKgxSDa86WPpsqmCsMxVwzZyN3LB4Ue8LvB1jGMI5ba6WI8ksM8XS7UPRjd
+ gW/RQD5xtiiGsIsFLA0bNp7DjJaGwqhryzlNnzBI0eAL86gU2UuJbaRAH8qs/+FvXMPG
+ e6QnLtKOr1usBQxHcys3iKNj80vzEzmwJ9Uf4yxXNvLkhdKVqyBDPA2vsmwwL1zV1zJV
+ C34A3xCwIVdMFuseY/s7I+YO18nBybyztrbleeZVD+2lkumLVNIAJr8RgYUgBx80aAQx
+ Her5EZ9ThL/EROgfhH9MuqzXNd4EgK+nixiM3lkbiBu+esYdvTAAqeAnkP9cNpDAICas
+ xAnQ==
+X-Gm-Message-State: AGi0PubMwyI6mAoR1thKVuKzlsGKjinQ6+cUzPk+OWfAZzOsQRS/dFHl
+ DfPxBSyVCsXm1yEPsY8O9FdvnU6dLb4=
+X-Google-Smtp-Source: APiQypKS//eqPV74yb/jgwqv7Ykwiaqo7cAAcBgXMHze8NuvTv8Iy+tX759MCoElZDt7lgsMoDAIVA==
+X-Received: by 2002:a62:24a:: with SMTP id 71mr11607378pfc.98.1588093363134;
+ Tue, 28 Apr 2020 10:02:43 -0700 (PDT)
 Received: from localhost.localdomain ([1.38.220.163])
- by smtp.gmail.com with ESMTPSA id p62sm14824780pfb.93.2020.04.28.05.43.41
+ by smtp.gmail.com with ESMTPSA id u15sm2505097pjm.47.2020.04.28.10.02.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2020 05:43:43 -0700 (PDT)
-Message-ID: <60aa6040df72a8ada9107e9e36673e82bf673bcd.camel@gmail.com>
+ Tue, 28 Apr 2020 10:02:42 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Tue, 28 Apr 2020 18:13:39 +0530
-In-Reply-To: <alpine.DEB.2.21.2004271931170.12657@hadrien>
-References: <20200427120834.380-1-jaskaransingh7654321@gmail.com>
- <20200427120834.380-23-jaskaransingh7654321@gmail.com>
- <alpine.DEB.2.21.2004271931170.12657@hadrien>
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+To: cocci@systeme.lip6.fr
+Date: Tue, 28 Apr 2020 22:31:56 +0530
+Message-Id: <20200428170228.7002-1-jaskaransingh7654321@gmail.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 28 Apr 2020 14:43:52 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 28 Apr 2020 19:02:51 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Tue, 28 Apr 2020 14:43:46 +0200 (CEST)
+ Tue, 28 Apr 2020 19:02:45 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
-Cc: linux-kernel-mentees@lists.linuxfoundation.org, cocci@systeme.lip6.fr
-Subject: Re: [Cocci] [PATCH 22/23] tests: Add test case for removing
- parameter attributes
+Cc: linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [Cocci] [PATCH 00/32] cocci: Add cast attributes to C and SmPL ASTs
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,100 +84,99 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Mon, 2020-04-27 at 19:31 +0200, Julia Lawall wrote:
-> 
-> On Mon, 27 Apr 2020, Jaskaran Singh wrote:
-> 
-> > Add a test case for removing Parameter attributes. The test case
-> > checks
-> > correct removal of the attribute when it is:
-> > 
-> > - before the parameter type.
-> > - after the parameter type and before the parameter identifier.
-> > - after the parameter identifier.
-> > 
-> > Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
-> > ---
-> >  tests/remove_param_attrs.c     | 11 +++++++++++
-> >  tests/remove_param_attrs.cocci | 13 +++++++++++++
-> >  tests/remove_param_attrs.res   | 11 +++++++++++
-> >  3 files changed, 35 insertions(+)
-> >  create mode 100644 tests/remove_param_attrs.c
-> >  create mode 100644 tests/remove_param_attrs.cocci
-> >  create mode 100644 tests/remove_param_attrs.res
-> > 
-> > diff --git a/tests/remove_param_attrs.c
-> > b/tests/remove_param_attrs.c
-> > new file mode 100644
-> > index 00000000..8ec1ffde
-> > --- /dev/null
-> > +++ b/tests/remove_param_attrs.c
-> > @@ -0,0 +1,11 @@
-> > +int func1(int x, __nocast int y) {
-> > +	return 0;
-> > +}
-> > +
-> > +int func2(int x, int __nocast y) {
-> > +	return 0;
-> > +}
-> > +
-> > +int func3(int x, int y __nocast) {
-> > +	return 0;
-> > +}
-> > diff --git a/tests/remove_param_attrs.cocci
-> > b/tests/remove_param_attrs.cocci
-> > new file mode 100644
-> > index 00000000..43f5a204
-> > --- /dev/null
-> > +++ b/tests/remove_param_attrs.cocci
-> > @@ -0,0 +1,13 @@
-> > +@@
-> > +type T,U;
-> > +attribute name __nocast;
-> > +identifier x,y;
-> > +@@
-> > +
-> > +T x(
-> > +    ...,
-> > +    U y
-> > +-	__nocast
-> 
-> So the idea is that the attribute is removed no matter where it
-> occurs?
-> 
+This patch series aims to add cast attributes to the C and SmPL ASTs, and
+match them in C source code. This is a continuation of the series "cocci:
+Improve C parsing of attributes"[1].
 
-Yes, if the attribute occurs in the parameter.
+Three test cases are included:
 
-Cheers,
-Jaskaran.
+- detect_cast_attr: Test case to detect a parameter attribute.
 
-> julia
-> 
-> > +    ,
-> > +    ...
-> > +  ) {...}
-> > diff --git a/tests/remove_param_attrs.res
-> > b/tests/remove_param_attrs.res
-> > new file mode 100644
-> > index 00000000..3705e814
-> > --- /dev/null
-> > +++ b/tests/remove_param_attrs.res
-> > @@ -0,0 +1,11 @@
-> > +int func1(int x, int y) {
-> > +	return 0;
-> > +}
-> > +
-> > +int func2(int x, int y) {
-> > +	return 0;
-> > +}
-> > +
-> > +int func3(int x, int y) {
-> > +	return 0;
-> > +}
-> > --
-> > 2.21.1
-> > 
-> > 
+- remove_cast_attr: Test case to remove a parameter attribute as per the
+  given SmPL.
+
+- remove_cast_attr_allminus: Test case to replace a type in a cast and
+  checking if the attribute is removed as well.
+
+[1]https://www.mail-archive.com/cocci@systeme.lip6.fr/msg07133.html
+
+Jaskaran Singh (32):
+      parsing_c: parser: Pass attribute list from type_name
+      parsing_cocci: ast0_cocci: Add cast attributes
+      parsing_cocci: parser: Parse cast attributes
+      parsing_cocci: visitor_ast0: Visit cast attributes
+      parsing_cocci: unparse_ast0: Reflect cast attributes
+      parsing_cocci: index: Reflect Cast attributes
+      parsing_cocci: iso_pattern: Reflect Cast attributes
+      parsing_cocci: type_infer: Reflect Cast attributes
+      parsing_cocci: arity: Reflect Cast attributes
+      parsing_cocci: check_meta: Reflect Cast attributes
+      parsing_cocci: compute_lines: Reflect Cast attributes
+      parsing_cocci: context_neg: Reflect Cast attributes
+      parsing_cocci: single_statement: Reflect Cast attributes
+      parsing_cocci: ast_cocci: Add cast attributes
+      parsing_cocci: visitor_ast: Visit cast attributes
+      parsing_cocci: pretty_print_cocci: Print cast attributes
+      parsing_cocci: ast0toast: Reflect Cast attributes
+      parsing_cocci: disjdistr: Reflect Cast attributes
+      parsing_cocci: unify_ast: Reflect Cast attributes
+      parsing_c: ast_c: Add Cast attributes
+      parsing_c: parser: Parse Cast attributes
+      parsing_c: pretty_print_c: Reflect Cast attributes
+      parsing_c: type_annoter_c: Reflect Cast attributes
+      parsing_c: unparse_cocci: Reflect Cast attributes
+      parsing_c: visitor_c: Visit Cast attributes
+      engine: check_exhaustive_pattern: Reflect Cast attributes
+      engine: cocci_vs_c: Match Cast attributes
+      ocaml: coccilib: Reflect Cast attributes
+      tools: spgen: Reflect Cast attrs
+      tests: Add test case to check cast attribute allminus
+      tests: Add test case to remove cast attributes
+      tests: Add test case to detect cast attributes
+
+ engine/check_exhaustive_pattern.ml       |    2 +-
+ engine/cocci_vs_c.ml                     |   24 +++++++++++++++++-------
+ ocaml/coccilib.mli                       |    9 +++++----
+ parsing_c/ast_c.ml                       |    2 +-
+ parsing_c/ast_c.mli                      |    2 +-
+ parsing_c/parse_c.ml                     |    4 +++-
+ parsing_c/parser_c.mly                   |   19 ++++++++++---------
+ parsing_c/pretty_print_c.ml              |    7 ++++---
+ parsing_c/type_annoter_c.ml              |    4 ++--
+ parsing_c/unparse_cocci.ml               |    6 ++++--
+ parsing_c/visitor_c.ml                   |   10 ++++++++--
+ parsing_cocci/arity.ml                   |    5 +++--
+ parsing_cocci/ast0_cocci.ml              |    4 ++--
+ parsing_cocci/ast0_cocci.mli             |    4 ++--
+ parsing_cocci/ast0toast.ml               |    5 +++--
+ parsing_cocci/ast_cocci.ml               |    4 ++--
+ parsing_cocci/ast_cocci.mli              |    4 ++--
+ parsing_cocci/check_meta.ml              |    3 ++-
+ parsing_cocci/compute_lines.ml           |    5 +++--
+ parsing_cocci/context_neg.ml             |    2 +-
+ parsing_cocci/disjdistr.ml               |    5 +++--
+ parsing_cocci/index.ml                   |    2 +-
+ parsing_cocci/iso_pattern.ml             |   12 +++++++++---
+ parsing_cocci/parser_cocci_menhir.mly    |    9 +++++----
+ parsing_cocci/pretty_print_cocci.ml      |    4 +++-
+ parsing_cocci/single_statement.ml        |    2 +-
+ parsing_cocci/type_infer.ml              |    2 +-
+ parsing_cocci/unify_ast.ml               |    6 ++++--
+ parsing_cocci/unparse_ast0.ml            |    4 +++-
+ parsing_cocci/visitor_ast.ml             |   10 ++++++----
+ parsing_cocci/visitor_ast0.ml            |    6 ++++--
+ tests/detect_cast_attr.c                 |   10 ++++++++++
+ tests/detect_cast_attr.cocci             |   11 +++++++++++
+ tests/detect_cast_attr.res               |   10 ++++++++++
+ tests/remove_cast_attr.c                 |   10 ++++++++++
+ tests/remove_cast_attr.cocci             |   10 ++++++++++
+ tests/remove_cast_attr.res               |   10 ++++++++++
+ tests/remove_cast_attr_allminus.c        |   10 ++++++++++
+ tests/remove_cast_attr_allminus.cocci    |    9 +++++++++
+ tests/remove_cast_attr_allminus.res      |   10 ++++++++++
+ tools/spgen/source/position_generator.ml |    4 ++--
+ 41 files changed, 208 insertions(+), 73 deletions(-)
+
 
 _______________________________________________
 Cocci mailing list
