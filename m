@@ -2,74 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA441BC600
-	for <lists+cocci@lfdr.de>; Tue, 28 Apr 2020 19:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFBA11BC602
+	for <lists+cocci@lfdr.de>; Tue, 28 Apr 2020 19:03:51 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03SH315t022396;
-	Tue, 28 Apr 2020 19:03:03 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03SH37u5015502;
+	Tue, 28 Apr 2020 19:03:07 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 0A35C783A;
-	Tue, 28 Apr 2020 19:03:03 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6A6EE7831;
+	Tue, 28 Apr 2020 19:03:07 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 37E463DC8
- for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 19:03:00 +0200 (CEST)
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:544])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03SH2wuV018213
+ by systeme.lip6.fr (Postfix) with ESMTPS id 8B3447807
+ for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 19:03:05 +0200 (CEST)
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:642])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03SH33Nl016718
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 19:02:59 +0200 (CEST)
-Received: by mail-pg1-x544.google.com with SMTP id n11so2526191pgl.9
- for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 10:02:59 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 19:03:04 +0200 (CEST)
+Received: by mail-pl1-x642.google.com with SMTP id n24so8610649plp.13
+ for <cocci@systeme.lip6.fr>; Tue, 28 Apr 2020 10:03:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=mDnBPl3qIHtqg930rr9qdZdP5Uw3rvrHwoa1ZEd6TMs=;
- b=rNyoY/rXdi9R/wAiFTn7R3mfeNe3ziEbo3RjNgxitCbRCNX8t81tPLJtfQQ9+RoKov
- NV/pFZ1AP1oj3/2K9NlGB1JFtlL9oeNFnr9G9sgIbGUYu2Haup8bA8nZAXckdWriYfV6
- 9Bvn3xeOlstS9fjJZAb/xAT3eVbmAPPXFEn8FUm1cUljWJIZuTmmVBP9iK942J9+3AgH
- wTX/IcPQTD3W6kyanQu0XE1NJtmLWQMJw6d4yzutbqqB+f18/dketrA6RwBCrXOzk2DT
- /4DeDoQ22shIPgcT+evKxryC2Ox3EOkgUWl8XxaMUD/dMnfES5KAv5jXY72uqIDtYYwu
- fjNg==
+ bh=lwqNogG8vHxP252WZiCGBfjwezgxLB4uDA3affNqJMs=;
+ b=Ziby3/naw6SZNptK0ZCBVret6THiTk8NCdfOVQcL5pEDkMbyA1d7jUSkxWmk0HXY5a
+ jJHoKYpNRlBD7203vjBRGyoFScDVApy335ZCctijofMroleVwbUBcFExE4Bh8qKB7Fvs
+ xOM2d2hVIw5s8oQkDNs4dqMrOdZqcU37y9YbA8ltmHtyLO5lgMc6GjecVo+qg2uSnoqa
+ rUbV8h+/5Ep67626NCrJXtaOl7/IlcFeGeryJSEQpCpIvrqwOzg4yhqpSfgXgYXczIhw
+ Qxj77NtLP/mxuZAIPE2bfXsPX0wEblxwXCKo4CaN9OlZxTPGRLd7mWVpc5TrTUCYFuXR
+ yv8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=mDnBPl3qIHtqg930rr9qdZdP5Uw3rvrHwoa1ZEd6TMs=;
- b=eTLyxmXPxjoZlVe/5lZtJhsyRT3YXr8+lKdRMc5LdJCwwKGUFX2Zv/FXk/cpoophsx
- kS7nH+nmZJM4z+WItrUhPBDaSbj3lQRERM9H803r0sAFFEXwMpY0mBbctrUTFUxO17mL
- Vs/lbJ2rKGDZWOuJbz1JrEvZlJb38yUgv2RNXSM8+9zJkP0DP7Q01KhAtZdpwRSnFhjf
- UY04r/+aJEnnOiUvzF40ofIA0Ohlwc0GyvqSCfLHy2t4nacmxyMfszT5L9RJA34xVUJw
- JZLY9UIvai+kfCL5yQCzWdoZSbKxJPAJLfEWdmUqUhKPFYF1z7GRpNmOaFp/s5tw6qIG
- JJ2g==
-X-Gm-Message-State: AGi0PuabTN4brBxyAUp/ppMNY5vzvmqdTPIjBgbHcuFfMMnu4LQ1y/xm
- dvRvCU2o0z3BBVWv7NMp8IkDtApzMlY=
-X-Google-Smtp-Source: APiQypLsXOCeyVl2qilIHPM4I1AaCJ+iV+9qhwBEoEM9B/qRaL3HpiUQYe9nGtjv75Cb9CtQ+rkHMQ==
-X-Received: by 2002:a62:3857:: with SMTP id f84mr32523134pfa.56.1588093377757; 
- Tue, 28 Apr 2020 10:02:57 -0700 (PDT)
+ bh=lwqNogG8vHxP252WZiCGBfjwezgxLB4uDA3affNqJMs=;
+ b=BRvqWYp9ZZRTBmL40eQdx0bPP8zUz6TFShIdsGTj8s93UALu47f34krJx8UOP+q5S/
+ ncgKRFTZE8n7OhxcF8CZwljL7bzo2Wozhs9D6DB8yx5CttktPf+++O2pqBOlzHsqSJS/
+ p92e9LKynf27MWJyrCWSKdrPb27RCNB5lVSKs0/81JmBR54NGtKYVuQ6wFX8Jpemu3Ik
+ DgBVn7/F8wLtFhJTt5S7QSlLG83GmpdXjwQELIJ/uN7k9sX1ut3gqGL9MDj8HP53N+bv
+ qdUh2G6hnhUUUpx5wMFxYmRVcG1ENUBXfQymSQYCnJe6mENg84ZfykHju+ib8g7ql11/
+ zewg==
+X-Gm-Message-State: AGi0PuYaeKAHY1AISUEwSWFr8OCO//avfkPInc/ogrM5623kGkGInZLY
+ 1VoQwHuJhgWKzcXJLtPJJcUjrA/dXgE=
+X-Google-Smtp-Source: APiQypLqDo69KGOp9D2CpPc5C6DkVAEWYZSECiOGBRVjy40VelsGnjmcTYJWLy4Hl9WyIlNhn77BCA==
+X-Received: by 2002:a17:90a:c297:: with SMTP id
+ f23mr6397287pjt.21.1588093382259; 
+ Tue, 28 Apr 2020 10:03:02 -0700 (PDT)
 Received: from localhost.localdomain ([1.38.220.163])
- by smtp.gmail.com with ESMTPSA id u15sm2505097pjm.47.2020.04.28.10.02.54
+ by smtp.gmail.com with ESMTPSA id u15sm2505097pjm.47.2020.04.28.10.02.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2020 10:02:57 -0700 (PDT)
+ Tue, 28 Apr 2020 10:03:01 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Tue, 28 Apr 2020 22:32:00 +0530
-Message-Id: <20200428170228.7002-5-jaskaransingh7654321@gmail.com>
+Date: Tue, 28 Apr 2020 22:32:01 +0530
+Message-Id: <20200428170228.7002-6-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200428170228.7002-1-jaskaransingh7654321@gmail.com>
 References: <20200428170228.7002-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 28 Apr 2020 19:03:03 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 28 Apr 2020 19:03:07 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Tue, 28 Apr 2020 19:02:59 +0200 (CEST)
+ Tue, 28 Apr 2020 19:03:05 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH 04/32] parsing_cocci: visitor_ast0: Visit cast
+Subject: [Cocci] [PATCH 05/32] parsing_cocci: unparse_ast0: Reflect cast
 	attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -87,35 +88,30 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Cast attributes are added to AST0 of SmPL. Visit these attributes in the
-AST0 visitor of SmPL.
+Cast attributes are added to the SmPL AST. Reflect these changes in
+unparse_ast0.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/visitor_ast0.ml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ parsing_cocci/unparse_ast0.ml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/parsing_cocci/visitor_ast0.ml b/parsing_cocci/visitor_ast0.ml
-index d9e340ed..2ccdb0bb 100644
---- a/parsing_cocci/visitor_ast0.ml
-+++ b/parsing_cocci/visitor_ast0.ml
-@@ -184,12 +184,14 @@ let visitor mode bind option_default
- 	    let (ar_n,ar) = string_mcode ar in
- 	    let (field_n,field) = ident field in
- 	    (multibind [exp_n;ar_n;field_n], Ast0.RecordPtAccess(exp,ar,field))
--	| Ast0.Cast(lp,ty,rp,exp) ->
-+	| Ast0.Cast(lp,ty,attr,rp,exp) ->
- 	    let (lp_n,lp) = string_mcode lp in
- 	    let (ty_n,ty) = typeC ty in
-+	    let (attr_n,attr) = map_split_bind string_mcode attr in
- 	    let (rp_n,rp) = string_mcode rp in
- 	    let (exp_n,exp) = expression exp in
--	    (multibind [lp_n;ty_n;rp_n;exp_n], Ast0.Cast(lp,ty,rp,exp))
-+            (multibind [lp_n;ty_n;attr_n;rp_n;exp_n],
-+             Ast0.Cast(lp,ty,attr,rp,exp))
- 	| Ast0.SizeOfExpr(szf,exp) ->
- 	    let (szf_n,szf) = string_mcode szf in
- 	    let (exp_n,exp) = expression exp in
+diff --git a/parsing_cocci/unparse_ast0.ml b/parsing_cocci/unparse_ast0.ml
+index fdaf6cfa..7f554b37 100644
+--- a/parsing_cocci/unparse_ast0.ml
++++ b/parsing_cocci/unparse_ast0.ml
+@@ -221,8 +221,10 @@ let rec expression e =
+ 	  expression exp; mcode print_string pt; ident field
+       | Ast0.RecordPtAccess(exp,ar,field) ->
+ 	  expression exp; mcode print_string ar; ident field
+-      | Ast0.Cast(lp,ty,rp,exp) ->
++      | Ast0.Cast(lp,ty,attr,rp,exp) ->
+ 	  mcode print_string_box lp; typeC ty; close_box();
++	  (if not (attr = []) then print_string " ");
++	  print_between (fun _ -> print_string " ") (mcode print_string) attr;
+ 	  mcode print_string rp; expression exp
+       | Ast0.SizeOfExpr(szf,exp) ->
+ 	  mcode print_string szf; expression exp
 -- 
 2.21.1
 
