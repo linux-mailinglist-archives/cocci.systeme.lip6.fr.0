@@ -2,76 +2,45 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE07D1BE28E
-	for <lists+cocci@lfdr.de>; Wed, 29 Apr 2020 17:25:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6638B1BE29C
+	for <lists+cocci@lfdr.de>; Wed, 29 Apr 2020 17:26:32 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03TFPCwR011355;
-	Wed, 29 Apr 2020 17:25:12 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 03TFQ2KB008938;
+	Wed, 29 Apr 2020 17:26:02 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id AB6B27831;
-	Wed, 29 Apr 2020 17:25:12 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 366037831;
+	Wed, 29 Apr 2020 17:26:02 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 7057E7807
- for <cocci@systeme.lip6.fr>; Wed, 29 Apr 2020 17:16:14 +0200 (CEST)
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20:0:0:0:444])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03TFGAap006826
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 29 Apr 2020 17:16:10 +0200 (CEST)
-Received: by mail-wr1-x444.google.com with SMTP id j2so2983301wrs.9
- for <cocci@systeme.lip6.fr>; Wed, 29 Apr 2020 08:16:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cilium-io.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=GT8ZFlA6KUMBN3bdS5amCkpU018min1l19o9AcN00bs=;
- b=NPW2cgmzwpEhku4J1NfGHYwqxqpHWrs+v1RewLI/pycL87UC2Wegg8pBfwg/lsJv2c
- LPsBpiLNCJ1t+jVv7Tazo+yHZe3OuU7/+zjBe8/qsiMlOm5WFRFNLv0om2SPu8CvMn1o
- M8sINqBQ3tQDSkk7LL784J6aFXYC6HQ/09GEXWGEeHRHU8+RMhEbKNw8PnP1Jehh+bZk
- JYstvUGs313y0uABVoBlsC3NPwo++Q1m8Ok/t+FDO0KRNqbiaf183i857PirLRpx3WSl
- F9vXXJ1pXlc32KNuIM3boH2Ev83wq4qkE9IewLHd7lBSXSHaVBh4RgWjKxzlJPLXaesY
- LYaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=GT8ZFlA6KUMBN3bdS5amCkpU018min1l19o9AcN00bs=;
- b=bok0F1Rctj7FMES4B5wxdoSh3HD7Xuwj1Qu4DFEYxEEY2g6X38oxhdfU/FES77ZE8x
- PsGz0s9iqtjhruGT8G2vrL1Fp1Md1kRuFBjBTJ/6xP3P7/jWmk26YC0dr3idoEH8UvmW
- jAKprkMKNpCPUwrevJuqQWSGVCVEuOxE7le1kOjs8o3kNRdY4T+SE/sUefOd11qTUTue
- ww72XtVX3ZAupSlgdoyhtRFq6nF2JHr1hxV9xeFmfCsUKSj+M7PlSU7o0L7Nm1uPwiDF
- Ya/8y/EggpbTNrNAJhjG+1PzKzOODOSnTf9GnOEbVKeQMMgM35xKhY0ifrFWYwGgSTGa
- mmMQ==
-X-Gm-Message-State: AGi0PuZ9q8agutK8cSt76NrAKEDvQ2Kxgjvm2Vchf+PF36qn8LTAZvNk
- QzbFwTBMhJRXGRWFMjqFVH32bYaQHcL9
-X-Google-Smtp-Source: APiQypLVHuzX9vuwiUHnmBrMx2Zgd3kkkEE6kNFsqinhGTZnB7AvS96z64YaIKsQQeSd0RuHJCJ5NA==
-X-Received: by 2002:adf:e704:: with SMTP id c4mr38417755wrm.181.1588173370270; 
- Wed, 29 Apr 2020 08:16:10 -0700 (PDT)
-Received: from Mem ([145.136.49.157])
- by smtp.gmail.com with ESMTPSA id 60sm31784439wrr.7.2020.04.29.08.16.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Apr 2020 08:16:09 -0700 (PDT)
-Date: Wed, 29 Apr 2020 17:16:09 +0200
-From: Paul Chaignon <paul@cilium.io>
-To: Julia Lawall <julia.lawall@inria.fr>
-Message-ID: <20200429151608.GA5703@Mem>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 9933D7807
+ for <cocci@systeme.lip6.fr>; Wed, 29 Apr 2020 17:26:00 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 03TFQ0PN016751
+ (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Wed, 29 Apr 2020 17:26:00 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.73,332,1583190000"; d="scan'208";a="447492191"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2020 17:25:59 +0200
+Date: Wed, 29 Apr 2020 17:25:59 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Paul Chaignon <paul@cilium.io>
+In-Reply-To: <20200429151608.GA5703@Mem>
+Message-ID: <alpine.DEB.2.21.2004291725160.2450@hadrien>
 References: <20200429143926.GA24738@Mem>
- <alpine.DEB.2.21.2004291704240.2450@hadrien>
+ <alpine.DEB.2.21.2004291704240.2450@hadrien> <20200429151608.GA5703@Mem>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2004291704240.2450@hadrien>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 29 Apr 2020 17:25:13 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Wed, 29 Apr 2020 17:16:10 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 29 Apr 2020 17:26:02 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 29 Apr 2020 17:26:00 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Wed, 29 Apr 2020 17:25:11 +0200
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr
 Subject: Re: [Cocci] Exit with non-zero status
 X-BeenThere: cocci@systeme.lip6.fr
@@ -90,45 +59,48 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Wed, Apr 29, 2020 at 05:07:56PM +0200, Julia Lawall wrote:
-> 
-> 
-> On Wed, 29 Apr 2020, Paul Chaignon wrote:
-> 
-> > Hi everyone,
-> >
-> > I am trying to exit spatch with a non-zero exit status when required
-> > changes have been found. I have tried to add a rule with finalize:python
-> > and the following code:
-> >
-> >   @finalize:python@
-> >   @@
-> >   exit(cnt)
-> >
-> > where cnt is incremented by another Python rule everytime a required
-> > change is found. This works as expected except for the --in-place option
-> > which becomes ineffective.
-> >
-> > Is this a bug, or is finalize:python not intended to be used in that
-> > manner? Is it possible to overwrite spatch's exit status?
-> 
-> I'm actually surprised that this would ever work...
-> 
-> Finalize was intended for processing information in general, eg printing
-> some statistics about what was matched.
-> 
-> Would it be feasible to print cnt instead?
 
-Sure. I can easily get around this issue by e.g. grepping for spatch's
-messages in a wrapper script. Getting spatch to return a non-zero exit
-status is just a convenience. I thought that would be a fairly common
-use case.
 
-Thanks for the quick answer as always :)
-Paul
+On Wed, 29 Apr 2020, Paul Chaignon wrote:
 
-> 
-> julia
+> On Wed, Apr 29, 2020 at 05:07:56PM +0200, Julia Lawall wrote:
+> >
+> >
+> > On Wed, 29 Apr 2020, Paul Chaignon wrote:
+> >
+> > > Hi everyone,
+> > >
+> > > I am trying to exit spatch with a non-zero exit status when required
+> > > changes have been found. I have tried to add a rule with finalize:python
+> > > and the following code:
+> > >
+> > >   @finalize:python@
+> > >   @@
+> > >   exit(cnt)
+> > >
+> > > where cnt is incremented by another Python rule everytime a required
+> > > change is found. This works as expected except for the --in-place option
+> > > which becomes ineffective.
+> > >
+> > > Is this a bug, or is finalize:python not intended to be used in that
+> > > manner? Is it possible to overwrite spatch's exit status?
+> >
+> > I'm actually surprised that this would ever work...
+> >
+> > Finalize was intended for processing information in general, eg printing
+> > some statistics about what was matched.
+> >
+> > Would it be feasible to print cnt instead?
+>
+> Sure. I can easily get around this issue by e.g. grepping for spatch's
+> messages in a wrapper script. Getting spatch to return a non-zero exit
+> status is just a convenience. I thought that would be a fairly common
+> use case.
+
+I'll add it to the "list of features someone has asked for and might get
+implemented some day in the future"...
+
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
