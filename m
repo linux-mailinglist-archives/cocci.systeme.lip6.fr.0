@@ -2,74 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B6B1CD624
-	for <lists+cocci@lfdr.de>; Mon, 11 May 2020 12:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A88E01CD622
+	for <lists+cocci@lfdr.de>; Mon, 11 May 2020 12:13:42 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04BADM07006826;
-	Mon, 11 May 2020 12:13:22 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04BADRmI017141;
+	Mon, 11 May 2020 12:13:27 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 08D68782B;
-	Mon, 11 May 2020 12:13:22 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 7D573783B;
+	Mon, 11 May 2020 12:13:24 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id ABE643DC8
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:13:20 +0200 (CEST)
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:62b])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04BADFIB007261
+ by systeme.lip6.fr (Postfix) with ESMTPS id 1B2627831
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:13:22 +0200 (CEST)
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:444])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04BADJ6A019133
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:13:16 +0200 (CEST)
-Received: by mail-pl1-x62b.google.com with SMTP id t16so3738286plo.7
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 03:13:16 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:13:20 +0200 (CEST)
+Received: by mail-pf1-x444.google.com with SMTP id x15so3946494pfa.1
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 03:13:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pldW5gvicUgS4QimDza0ZFlQhGmyATN8hupTPC2v+AI=;
- b=NV0Uvg/U5MPfiXMiNGZUXqK0fHHeJLzBTqnCAZStb3USIwlW3vK00V1qZoJR3tlAv9
- q1tnWu30kNvMSPGmnO/f9OSOX9NQsldG+5rJ+nu89ihUlJhVMvU+51g83jo/5kDIOj7x
- ZNZrcTf3/TR3Qa+i8vMj9xUhuD4BeM8EZ48NCcrWbB8r9ByW9awix2FngaMsQi+R+QyC
- rdL+rAWFdTK6hnPj8w+unxwpK79w+u2VQ7FcH1Y0pgGg3W6oGEd85sJ7tvNbV9HVVeG0
- x6YN2+lihlHmnyTmsCPtgrKuBu+L9g17RKaGsdEPGx1jXg28Q3f2FtQnf1SoaRucwR8t
- 5CmQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=bpLTgt82Ti31oCPVD1pdgcNX51JVNVAJJuqnmPIy5S0=;
+ b=Fprue9XP2QnYFuMFJj8BXSBOpeZAXQlYWa6NLP0bkkD5T1du46XQ1CD4QyN/guXkwj
+ pLRHCxEqlHlHmJMefUnEvqZJ7d7Qtov7uaqW7lfQPCaXNXD/gAp471ex7NJTUGpG78i7
+ 8EXhTBWu4B067LB9t/IT+nnedqg+DndFK67KYtk6fAsBhWgl1i23ZhyI8Gp6R+pZSePM
+ 6lK0T55t1rFKNkwtNcIk9hUFJnp/JqAW2rvI3cSQ21cJIhRKOfku2Ro9X867mVRetlFl
+ 0YYaSYyTnxgUItE2kovfUHUNh0eBJOOOajXstBNLrfU7LMGNARj5JQMr6oBYaN58jklW
+ KVwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pldW5gvicUgS4QimDza0ZFlQhGmyATN8hupTPC2v+AI=;
- b=tqvNTO7akjMc7yoINQ8Gx3MU7nSZ43vQoW+O2AGS/+WTu/ww+CWabrvdHNNUtGxtx6
- tB7ej8G9K9cVEh3ZmdOp6lrLOBL5G2PCWZBrCxGImC0hsv1gFFlaiFQShs2fJepXf7D/
- H6mcLc8qH37u12Bz1S2uEuJAA4VQD/XmfXRJ3FWmgN874CXICM6eINX8iUfIDoZPf8me
- 1P7S3Mt44r/K/eulyQFQuenMq1fG90uLvirL+PxQkuGA8kkHJL/Cp9iwz7VfJBeSxutH
- ARdKfTIyADqc80TanCynubiFEgdNLY7KLzav+rtDC5lWE5sBrAM/H4nRa4ReovjGISzh
- 0GZg==
-X-Gm-Message-State: AGi0PuZbZ1zyM6clRwb4DCoxWwMJj6iTeElI46NIWVEE9F4pRqJ6IgB5
- gSGuRvh0RFqMCKMtKTFmrRNpZYYpFR0=
-X-Google-Smtp-Source: APiQypLMhqzHDFqf3msjTOxqBNDbD3J8ZUVTEFesETeB1viH7143cut6ZlsbgvgivldUNrwIXlEVbA==
-X-Received: by 2002:a17:902:8f8b:: with SMTP id
- z11mr14252108plo.208.1589191994454; 
- Mon, 11 May 2020 03:13:14 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=bpLTgt82Ti31oCPVD1pdgcNX51JVNVAJJuqnmPIy5S0=;
+ b=gVO2Awco96YRhP1uqnIPZxOndqBeAcgIdFenYFKiBtKxJCmiAqSBkY2t3m8YtB1G6z
+ IAYoBqumc2Ip8OuVilWpXfNMJylPqOoxlW9NaMRKClTdwcFQ6YEu2aVz+6yyUKzwKCt7
+ GGuoQMfw0NNObuRFj3dui0r9yNxgKhDypG0WUBBJU3R+3+byeXQCLzRha4OicauL6KKd
+ 5E087HOVWtI0e38lyUTe6KArgWSK2kj4ukHPp7umyF2FC6dENRRSYq579sCeeqZsOWV4
+ hVd5Ep0szVHqCF0cyr4+XCFaGKtvK3bhzZHoPENNUSyXO8ekh1W/EFr9mdB8aCJrA7CI
+ FcQg==
+X-Gm-Message-State: AGi0PuaZI7kpHiP2ZBvwSseuFXzVPHS6DgBJIPt4Lp77ikU7V1MhYHzA
+ zDCXIjSOOF7/r42yf3VQzLR6k3AJdYg=
+X-Google-Smtp-Source: APiQypJdoB2y17RAIqS9YA61EKWWv60wkx64JOT6VCfsf9yPUbTwWFYw/W4H7sjfXkMcQvMhvwInjg==
+X-Received: by 2002:aa7:979d:: with SMTP id o29mr15789608pfp.90.1589191998963; 
+ Mon, 11 May 2020 03:13:18 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:382:66db:4729:1ab8:2139:8945])
  by smtp.gmail.com with ESMTPSA id
- j14sm10021121pjm.27.2020.05.11.03.13.10
+ j14sm10021121pjm.27.2020.05.11.03.13.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 May 2020 03:13:14 -0700 (PDT)
+ Mon, 11 May 2020 03:13:18 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Mon, 11 May 2020 15:42:37 +0530
-Message-Id: <20200511101300.11101-1-jaskaransingh7654321@gmail.com>
+Date: Mon, 11 May 2020 15:42:38 +0530
+Message-Id: <20200511101300.11101-2-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
+In-Reply-To: <20200511101300.11101-1-jaskaransingh7654321@gmail.com>
+References: <20200511101300.11101-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 11 May 2020 12:13:22 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 11 May 2020 12:13:27 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Mon, 11 May 2020 12:13:16 +0200 (CEST)
+ Mon, 11 May 2020 12:13:20 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v3 00/23] cocci: Add parameter attributes to SmPL
+Subject: [Cocci] [PATCH v3 01/23] parsing_cocci: ast0_cocci: Add parameter
+	attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,104 +88,47 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-This patch series aims to add parameter attributes to SmPL, and is a
-continuation of the series "cocci: Improve C parsing of attributes"[1].
-In [1], parameter attributes were added to the C AST of Coccinelle, but
-not to SmPL.
+Add parameter attributes to AST0 of SmPL. This is a list of attributes
+in the VoidParam and Param types of AST0.
 
-Two test cases are included:
+Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
+---
+ parsing_cocci/ast0_cocci.ml  | 4 ++--
+ parsing_cocci/ast0_cocci.mli | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-- detect_param_attr: Test case to detect a parameter attribute.
-
-- remove_param_attr: Test case to remove a parameter attribute as per the
-  given SmPL.
-
-[1]https://www.mail-archive.com/cocci@systeme.lip6.fr/msg07133.html
-
-
-Changes in v3:
---------------
-
-parsing_cocci: check_meta: Reflect Parameter attributes
-- Add comment about the absence of a meta attribute.
-
-parsing_cocci: compute_lines: Reflect Parameter attributes
-- Pass the correct last element to mkres.
-
-parsing_cocci: iso_pattern: Reflect Parameter attributes
-- Place opening paranthesis to the right of the if.
-
-parsing_cocci: unparse_ast0: Reflect Parameter attributes
-- Fix wacky indentation.
-
-parsing_cocci: visitor_ast: Visit Parameter attributes
-- Fix wacky indentation.
-
-
-Changes in v2:
---------------
-
-parsing_cocci: function_prototypes: Reflect Parameter attributes
-- Remove unnecessary function name change.
-
-
-Jaskaran Singh (23):
-      parsing_cocci: ast0_cocci: Add parameter attributes
-      parsing_cocci: parser: Parse Parameter attributes
-      parsing_cocci: visitor_ast0: Visit Parameter attributes
-      parsing_cocci: arity: Reflect Parameter attributes
-      parsing_cocci: check_meta: Reflect Parameter attributes
-      parsing_cocci: compute_lines: Reflect Parameter attributes
-      parsing_cocci: context_neg: Reflect Parameter attributes
-      parsing_cocci: function_prototypes: Reflect Parameter attributes
-      parsing_cocci: index: Reflect Parameter attributes
-      parsing_cocci: iso_pattern: Reflect Parameter attributes
-      parsing_cocci: type_infer: Reflect Parameter attributes
-      parsing_cocci: unparse_ast0: Reflect Parameter attributes
-      parsing_c: unparse_cocci: Reflect Parameter attributes
-      parsing_cocci: ast_cocci: Add Parameter attributes
-      parsing_cocci: visitor_ast: Visit Parameter attributes
-      parsing_cocci: ast0toast: Reflect Parameter attributes
-      parsing_cocci: disjdistr: Reflect Parameter attributes
-      parsing_cocci: pretty_print_cocci: Reflect Parameter attributes
-      parsing_cocci: unify_ast: Reflect Parameter attributes
-      engine: cocci_vs_c: Match Parameter attributes
-      ocaml: coccilib: Reflect Parameter attributes
-      tests: Add test case for removing parameter attributes
-      tests: Add test case to detect parameter attributes
-
- engine/cocci_vs_c.ml                  |   18 +++++++++---------
- ocaml/coccilib.mli                    |    8 ++++----
- parsing_c/unparse_cocci.ml            |   16 ++++++++++++----
- parsing_cocci/arity.ml                |   17 ++++++++++-------
- parsing_cocci/ast0_cocci.ml           |    4 ++--
- parsing_cocci/ast0_cocci.mli          |    4 ++--
- parsing_cocci/ast0toast.ml            |    7 ++++---
- parsing_cocci/ast_cocci.ml            |    4 ++--
- parsing_cocci/ast_cocci.mli           |    4 ++--
- parsing_cocci/check_meta.ml           |    3 ++-
- parsing_cocci/compute_lines.ml        |   30 ++++++++++++++++++++++++------
- parsing_cocci/context_neg.ml          |   10 ++++++----
- parsing_cocci/disjdistr.ml            |    6 +++---
- parsing_cocci/function_prototypes.ml  |    8 ++++----
- parsing_cocci/index.ml                |    4 ++--
- parsing_cocci/iso_pattern.ml          |   20 ++++++++++++++++----
- parsing_cocci/parser_cocci_menhir.mly |    7 ++++---
- parsing_cocci/pretty_print_cocci.ml   |   15 ++++++++++++---
- parsing_cocci/type_infer.ml           |    2 +-
- parsing_cocci/unify_ast.ml            |   14 ++++++++++----
- parsing_cocci/unparse_ast0.ml         |   15 ++++++++++++---
- parsing_cocci/visitor_ast.ml          |   22 +++++++++++++++++-----
- parsing_cocci/visitor_ast0.ml         |   16 ++++++++++------
- tests/detect_param_attr.c             |    3 +++
- tests/detect_param_attr.cocci         |   13 +++++++++++++
- tests/detect_param_attr.res           |    3 +++
- tests/remove_param_attrs.c            |   11 +++++++++++
- tests/remove_param_attrs.cocci        |   13 +++++++++++++
- tests/remove_param_attrs.res          |   11 +++++++++++
- 29 files changed, 224 insertions(+), 84 deletions(-)
-
-
+diff --git a/parsing_cocci/ast0_cocci.ml b/parsing_cocci/ast0_cocci.ml
+index a06d99ae..8d30daea 100644
+--- a/parsing_cocci/ast0_cocci.ml
++++ b/parsing_cocci/ast0_cocci.ml
+@@ -334,8 +334,8 @@ and initialiser_list = initialiser dots
+ (* Parameter *)
+ 
+ and base_parameterTypeDef =
+-    VoidParam     of typeC
+-  | Param         of typeC * ident option
++    VoidParam     of typeC * attr list
++  | Param         of typeC * ident option * attr list
+   | MetaParam     of Ast.meta_name mcode * constraints * pure
+   | MetaParamList of Ast.meta_name mcode * listlen * constraints * pure
+   | AsParam       of parameterTypeDef * expression (* expr, always metavar *)
+diff --git a/parsing_cocci/ast0_cocci.mli b/parsing_cocci/ast0_cocci.mli
+index 5c2520be..f66a1fac 100644
+--- a/parsing_cocci/ast0_cocci.mli
++++ b/parsing_cocci/ast0_cocci.mli
+@@ -320,8 +320,8 @@ and initialiser_list = initialiser dots
+ (* Parameter *)
+ 
+ and base_parameterTypeDef =
+-    VoidParam     of typeC
+-  | Param         of typeC * ident option
++    VoidParam     of typeC * attr list
++  | Param         of typeC * ident option * attr list
+   | MetaParam     of Ast_cocci.meta_name mcode * constraints * pure
+   | MetaParamList of Ast_cocci.meta_name mcode * listlen * constraints * pure
+   | AsParam       of parameterTypeDef * expression (* expr, always metavar *)
+-- 
+2.21.1
 
 _______________________________________________
 Cocci mailing list
