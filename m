@@ -2,75 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B131CD608
-	for <lists+cocci@lfdr.de>; Mon, 11 May 2020 12:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B731CD60A
+	for <lists+cocci@lfdr.de>; Mon, 11 May 2020 12:10:22 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04BA9jCh015527;
-	Mon, 11 May 2020 12:09:46 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04BA9oKt004563;
+	Mon, 11 May 2020 12:09:50 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id DCC05782B;
-	Mon, 11 May 2020 12:09:45 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 3F79B782B;
+	Mon, 11 May 2020 12:09:50 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 835E83DC8
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:09:43 +0200 (CEST)
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:429])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04BA9fud023944
+ by systeme.lip6.fr (Postfix) with ESMTPS id EE2A23DC8
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:09:48 +0200 (CEST)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:631])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04BA9lgM024077
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:09:42 +0200 (CEST)
-Received: by mail-pf1-x429.google.com with SMTP id w65so4519057pfc.12
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 03:09:42 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:09:48 +0200 (CEST)
+Received: by mail-pl1-x631.google.com with SMTP id t7so3747667plr.0
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 03:09:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=yNcRDX9hmzicpYrIzSR1d5L189a5/jLnt2HECCkQKP0=;
- b=lntl4s2CDHie7lnxp/l+nPSEFmhCXANsCn5Lo6rNkpHECO8WHeqbs7E4+cPy/9YuTv
- rDKtkWEbDbEu6ljgHIlbQLQwB0ZLVVwckGuW8UQskQbHCCM0QaZSkYifYSjon136ZeoC
- P1rVxUzmBLVIeLfrddvbjtBIdvkL2m4yC2QTlRL1xFxWn/29pIbiwUwc9FCqp+GhNQwj
- T3SsLuOT+qYJvFQezVqgEfND04csIqGqIQDOOOgGAO+pMHkjNBzBvEQWxcmax7qWMGew
- NNtA7kpVkoCGH/MKccOGFRqN3l/YEgKsKbGlXyt+6V40A2opdMf7iQ9e2w73J5X1qw/o
- Vu/w==
+ bh=Ji5NtgAzooxdhdMeMZ3zeDyqNKeDtDsiR9XjjkqT74Q=;
+ b=GhPm2u4fPdNZc93NpaePX9P26r6A2DjhsJ6gsZAPS0deT+8LdaBtHoqI4sr2QOw0y3
+ WyCBEC6SfyBUEsaMP+bWWaAyIGs13xBsu0FI3nYRgH1X50026nTAOnsbubLlmkycsIMO
+ Wo5ZocZVooc6oTa4Sw7psH5Lx9ZCxIv/itcRI7CUhpZT5FEo1QrxlHZWXCjF2nTIgzrq
+ JfhJ8ejaxKFGiVP9k3k32VZCOpRUuWQ8j49Vixv3eTMC/I9Y8VoAd5HtESy3DxgdUCgP
+ +B7BHyqBF0rq2U35TSOd1CQ1aAqNznD1vMa5A1FaK+lB5TsGkAK6T/15diWqbqtEZMFD
+ 6A8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=yNcRDX9hmzicpYrIzSR1d5L189a5/jLnt2HECCkQKP0=;
- b=TpS+c8MhLSPLQa28VAtXys4I8kPJgHmueq7AtFx/NMiTv9ngRuYfdKFebXtTdWZfxw
- 0syny/58IbBW9FroCB5v2x71m8BfVPLcYXlKhYgZ980SH4RKacdMf8YSJJuVJk3xG5A8
- lAH5VZAK10Ce1pYLcvMiVIzVdqkN4vG916YmVYOph7toSnbwba5d+VcufUr3sVrahuzo
- ZZRCtOfzcpVQmq7y6SxlgYsaK77oxAhY+eciO967ZpMS1++1RgQo0Ka3d4u/Arykiz3T
- m8NtQf8TolhSwcC3BbeDsrYzp44C5wYcVVTFe4QsAew6Y4V08wNBBt4gH35yuaGEjs3f
- 1CdA==
-X-Gm-Message-State: AGi0PuaVD7yRZIMgxBxIvpowXYPALcwhHgae9cgpm7Jh1XHhHqvbUzjx
- mF5BrcvGGU4PwXusWmhTT2fNMrMvQ64=
-X-Google-Smtp-Source: APiQypL5XGgTAA+kvZjmuf+gSS7294obD7rRnP9loUThyoxrejIlhEypgkyQht2dm+Pi3zYDLOJDMQ==
-X-Received: by 2002:aa7:8bdc:: with SMTP id s28mr15227599pfd.57.1589191781164; 
- Mon, 11 May 2020 03:09:41 -0700 (PDT)
+ bh=Ji5NtgAzooxdhdMeMZ3zeDyqNKeDtDsiR9XjjkqT74Q=;
+ b=oZ3NbkZyYrPx3rlUBkFgoIiNiMlfEmdFYAXQsPSF7NmpFefdQxl0pX68ApX+zqmMj1
+ nbUxQt61seHiRAuu62kBl8vN1gehqBd22Q/216mjGHO4GSJ7xGmZqVXMeIoo7xdaguH8
+ KiR/ezIQGVl+es+5YThRv9MvPmKJRSEeZ/qs67IomSnrSKNQ7VB6Q8cCP4rJkGI8Aq4w
+ +KQGTAz1nU6Wn93muPJcG3/yXE5zpUFl84VY/LbBXE1ZF/vB1+OAwKRN9gBaxSgD09Yv
+ CBsYlph1NnIVR9RcOZVFzscVW0xVLv62aj+8mz06n2Jiagr9d6Q/nJDL1hwCAPx4gE/2
+ XsBw==
+X-Gm-Message-State: AGi0PubSDEYfC4hA4pXpO/6ujChGPiMzG1g59Nr78CHPX+QTc1DYiXdP
+ YedPgHBp34tWA7YWDbHdE7VlE1XGGOY=
+X-Google-Smtp-Source: APiQypIa0gA2Qm+qem8vcDZvuuccVeXB2/QeNhCw43E0XH8XIHrcUwX6Yn/f7qYvsQ+xTmRX/gm7Og==
+X-Received: by 2002:a17:902:d30a:: with SMTP id
+ b10mr14386897plc.3.1589191786535; 
+ Mon, 11 May 2020 03:09:46 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:382:66db:4729:1ab8:2139:8945])
  by smtp.gmail.com with ESMTPSA id
- o99sm9772994pjo.8.2020.05.11.03.09.38
+ o99sm9772994pjo.8.2020.05.11.03.09.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 May 2020 03:09:40 -0700 (PDT)
+ Mon, 11 May 2020 03:09:46 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Mon, 11 May 2020 15:37:14 +0530
-Message-Id: <20200511100715.19819-32-jaskaransingh7654321@gmail.com>
+Date: Mon, 11 May 2020 15:37:15 +0530
+Message-Id: <20200511100715.19819-33-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200511100715.19819-1-jaskaransingh7654321@gmail.com>
 References: <20200511100715.19819-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 11 May 2020 12:09:46 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 11 May 2020 12:09:50 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Mon, 11 May 2020 12:09:43 +0200 (CEST)
+ Mon, 11 May 2020 12:09:48 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v2 31/32] tests: Add test case to remove cast
+Subject: [Cocci] [PATCH v2 32/32] tests: Add test case to detect cast
 	attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -88,7 +89,7 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Add a test case to remove a cast attribute. The following cases are
+Add a test case to detect a cast attribute. The following cases are
 covered for when a attribute is:
 
 - Before the cast type.
@@ -98,36 +99,36 @@ covered for when a attribute is:
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- tests/remove_cast_attr.c     | 10 ++++++++++
- tests/remove_cast_attr.cocci | 10 ++++++++++
- tests/remove_cast_attr.res   | 10 ++++++++++
- 3 files changed, 30 insertions(+)
- create mode 100644 tests/remove_cast_attr.c
- create mode 100644 tests/remove_cast_attr.cocci
- create mode 100644 tests/remove_cast_attr.res
+ tests/detect_cast_attr.c     | 10 ++++++++++
+ tests/detect_cast_attr.cocci | 11 +++++++++++
+ tests/detect_cast_attr.res   | 10 ++++++++++
+ 3 files changed, 31 insertions(+)
+ create mode 100644 tests/detect_cast_attr.c
+ create mode 100644 tests/detect_cast_attr.cocci
+ create mode 100644 tests/detect_cast_attr.res
 
-diff --git a/tests/remove_cast_attr.c b/tests/remove_cast_attr.c
+diff --git a/tests/detect_cast_attr.c b/tests/detect_cast_attr.c
 new file mode 100644
-index 00000000..4f6da3e4
+index 00000000..2458ef05
 --- /dev/null
-+++ b/tests/remove_cast_attr.c
++++ b/tests/detect_cast_attr.c
 @@ -0,0 +1,10 @@
 +#define __cast_attr MACROANNOTATION
 +
 +int func()
 +{
-+	int *a = (int __cast_attr) x;
-+	int *a = (__cast_attr int) x;
-+	int *a = (int __cast_attr *) x;
-+	int *a = (int *__cast_attr) x;
-+	int *a = (int) x;
++	char *a = (int __cast_attr) x;
++	char *a = (__cast_attr int) x;
++	char *a = (int __cast_attr *) x;
++	char *a = (int *__cast_attr) x;
++	char *a = (int) x;
 +}
-diff --git a/tests/remove_cast_attr.cocci b/tests/remove_cast_attr.cocci
+diff --git a/tests/detect_cast_attr.cocci b/tests/detect_cast_attr.cocci
 new file mode 100644
-index 00000000..f171d44d
+index 00000000..d626048f
 --- /dev/null
-+++ b/tests/remove_cast_attr.cocci
-@@ -0,0 +1,10 @@
++++ b/tests/detect_cast_attr.cocci
+@@ -0,0 +1,11 @@
 +@r0@
 +type T;
 +attribute name __cast_attr;
@@ -135,24 +136,25 @@ index 00000000..f171d44d
 +@@
 +
 +  (
-+	T
-+-	__cast_attr
++-	T
+++	char *
++ 	__cast_attr
 +  ) x
-diff --git a/tests/remove_cast_attr.res b/tests/remove_cast_attr.res
+diff --git a/tests/detect_cast_attr.res b/tests/detect_cast_attr.res
 new file mode 100644
-index 00000000..fb5001b9
+index 00000000..2a273316
 --- /dev/null
-+++ b/tests/remove_cast_attr.res
++++ b/tests/detect_cast_attr.res
 @@ -0,0 +1,10 @@
 +#define __cast_attr MACROANNOTATION
 +
 +int func()
 +{
-+	int *a = (int) x;
-+	int *a = (int) x;
-+	int *a = (int *) x;
-+	int *a = (int *) x;
-+	int *a = (int) x;
++	char *a = (char *__cast_attr) x;
++	char *a = (__cast_attr char *) x;
++	char *a = (char *__cast_attr) x;
++	char *a = (char *__cast_attr) x;
++	char *a = (int) x;
 +}
 -- 
 2.21.1
