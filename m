@@ -2,75 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E0A1CD62E
-	for <lists+cocci@lfdr.de>; Mon, 11 May 2020 12:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C711CD62F
+	for <lists+cocci@lfdr.de>; Mon, 11 May 2020 12:14:23 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04BAE6kU002083;
-	Mon, 11 May 2020 12:14:06 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04BAE9SE003693;
+	Mon, 11 May 2020 12:14:09 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id EC907782B;
-	Mon, 11 May 2020 12:14:05 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 584BB782B;
+	Mon, 11 May 2020 12:14:09 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 17EA93DC8
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:14:04 +0200 (CEST)
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:443])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04BAE2sv025430
+ by systeme.lip6.fr (Postfix) with ESMTPS id 538C53DC8
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:14:07 +0200 (CEST)
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:1042])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04BAE5vN029159
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:14:03 +0200 (CEST)
-Received: by mail-pf1-x443.google.com with SMTP id x77so4545633pfc.0
- for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 03:14:03 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 12:14:06 +0200 (CEST)
+Received: by mail-pj1-x1042.google.com with SMTP id mq3so7632769pjb.1
+ for <cocci@systeme.lip6.fr>; Mon, 11 May 2020 03:14:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=x2LB1W7SZNovzatDWHiYGdfEM78OJ6e3zHBVrPfzpJE=;
- b=eFLfuCp5+OUhXiLdPkHKYzO3SCm06LG9T59ps0nkpnRiqKY62J624/Y0QKL8k/d7HF
- mPDZLK8l19jZZZ6EV6eInM0KK5BrTuMtWns8l4ikpCkwWLtJ9Zk/FWLAheieIEUOGSw1
- 52rf1o+4PFHRqNGX1G2W0JgvdHYH5hP0Bo9YWF0Jm4h0CNL7Lh1b38HcquScX63xUPCn
- M5jfRickxRxu7RYNM5htR7rlHmpcEnrKkxYWBABNlhZOEu5iUAhChZWhXiVVuG32Fitj
- Qx+S4f+Xqq3To0QrWCBnnwFzh+l9EKXevlXHWJRBhy1XaCK6VwZsKsba1t7VrLuI6hmt
- 1zXQ==
+ bh=8Gk3ffGaKEx6MgGnn2QBnBC8UunZy5aBosraxgOTrGU=;
+ b=JxoCjvbVF6cBcmJPjxWZaSLMUOpjJtwvjetOiN/0pG5UT9gIh8R1DiIppJe0u4Q3hz
+ 5hg+kYjgBgArYkDRXhBUk94ZCo0tYhE9iNdb7w4Pd6d0IoipR5ShgEpdw8SowswQfT3Z
+ SlJL4Xt9ZqeXrexUOT2O2GGzWbfk3byby3QMheW77GVbSltoVMM1oudQUuqxtrAxFDt2
+ OWq9vUvkMegyyD6Mt3a/aRy1miMdNpwNCQPrxsbBJHW1dWc8GuYSmB3VRH/MdB1txMKH
+ 348/c0ldKqab8WofPw8U9e+Bm8+t6/cByewYNLdEaprZa5eXOsrpx//zZkUDdna7v+4O
+ lhaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=x2LB1W7SZNovzatDWHiYGdfEM78OJ6e3zHBVrPfzpJE=;
- b=lZHPoKl85Src2bJRup/VgHp5sRtMz1oTwwtvxApGtNOCdMGNm2c0K7dD5hOBNFq59E
- BRieFd9LxvkhS/lsC25PoOKdRKXlSB7BEspA1TfiM+oXBUA3NyB/+Qt65Wxqy+UZaBgo
- Yl5BYwtr+naeBMsV75AgVKhYJCVSE/HUMvGGCtH1dpK/QyXJEJ9danuU/q5emjIcGySy
- gz9mofwCQL3bPdO1Y/tz5Lu8nzSrNnlzFuNkrBRuFJFFIskDVmG1q4oMIlCqRFe+r4i0
- T3Mq968DH3d+qyvaLtzxRRqXDvTFRrra4nEisiVyep5IXUmjzYQkKIqAYcy9fMUFQeqA
- UhJQ==
-X-Gm-Message-State: AGi0PubK6bw/ztqeR3It/uHmMtvScCyeSJfroVtOw2B+wEvZqT5Z2/L8
- RkMjozZDYzJEHiVqybkQSz82rWKcXt8=
-X-Google-Smtp-Source: APiQypJrFIJUFJhSqXnYxGMvBtY9LcZB5HgDgWCPOK1T9ccJ0LTQZbWmZOFzBG+r6/lkH+wgxPkwLg==
-X-Received: by 2002:a62:1415:: with SMTP id 21mr15108170pfu.203.1589192041556; 
- Mon, 11 May 2020 03:14:01 -0700 (PDT)
+ bh=8Gk3ffGaKEx6MgGnn2QBnBC8UunZy5aBosraxgOTrGU=;
+ b=O3YXjeBzUrxcFwiOvuzBnJG+DqCtewFi4lBxa2MfeXpIxXppSU3vxkNxICusRp+eu0
+ sNWq6kK5yRfoujjiBihfSCpE7fjRl+6V9kIekbJ1fsZDhcSFxN12WqFABqoKMtaUF18c
+ 9H9umgYSs4d1uU/9h/9QnMP8jKqS0LqNRXy2cBTYEDHC9dfCNKrczbDNmSo5XPnN52Rz
+ 4y1eGpypfBoDINS3n+PAvRB8OVAP0ZRx6Y+tjKjT648ffxju11TbxZn8We361Gg/6zEk
+ YJJP7pAEtdfGoYgDIbu/UgMU/1WDsNiyaqgeY7qihxNBGPXksCq6B++5YHdKfMNGlH44
+ disQ==
+X-Gm-Message-State: AGi0PubAlUnxEGFcqDs0MOH8vAYMVo0BeUzBrm3GUqS7vaVhtWrBS6e8
+ wRC/Y8IZbe4mC7YP0ulNXRLvB/XXWJM=
+X-Google-Smtp-Source: APiQypKjL0EwS22e12sdGvxiEVuNdRO3tWydlcsynh/IZgIAmcCvq1RTx2TSpBDc/EjR4o79oBcqyw==
+X-Received: by 2002:a17:902:a408:: with SMTP id
+ p8mr11439871plq.36.1589192044920; 
+ Mon, 11 May 2020 03:14:04 -0700 (PDT)
 Received: from localhost.localdomain ([2405:204:382:66db:4729:1ab8:2139:8945])
  by smtp.gmail.com with ESMTPSA id
- j14sm10021121pjm.27.2020.05.11.03.13.58
+ j14sm10021121pjm.27.2020.05.11.03.14.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 11 May 2020 03:14:01 -0700 (PDT)
+ Mon, 11 May 2020 03:14:04 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Mon, 11 May 2020 15:42:49 +0530
-Message-Id: <20200511101300.11101-13-jaskaransingh7654321@gmail.com>
+Date: Mon, 11 May 2020 15:42:50 +0530
+Message-Id: <20200511101300.11101-14-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200511101300.11101-1-jaskaransingh7654321@gmail.com>
 References: <20200511101300.11101-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 11 May 2020 12:14:06 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 11 May 2020 12:14:09 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Mon, 11 May 2020 12:14:03 +0200 (CEST)
+ Mon, 11 May 2020 12:14:06 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v3 12/23] parsing_cocci: unparse_ast0: Reflect
+Subject: [Cocci] [PATCH v3 13/23] parsing_c: unparse_cocci: Reflect
 	Parameter attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -88,40 +89,41 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Parameter attributes are added to the SmPL AST. Reflect these changes in
-unparse_ast0.ml.
+Parameter attributes are added to the SmPL AST. Print these attributes
+correctly in unparse_cocci.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_cocci/unparse_ast0.ml | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ parsing_c/unparse_cocci.ml | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/parsing_cocci/unparse_ast0.ml b/parsing_cocci/unparse_ast0.ml
-index fdaf6cfa..86b545b9 100644
---- a/parsing_cocci/unparse_ast0.ml
-+++ b/parsing_cocci/unparse_ast0.ml
-@@ -546,9 +546,18 @@ and parameterTypeDef p =
-   print_context p
-     (function _ ->
-       match Ast0.unwrap p with
--	Ast0.VoidParam(ty) -> typeC ty
--      | Ast0.Param(ty,Some id) -> print_named_type ty id
--      |	Ast0.Param(ty,None) -> typeC ty
-+        Ast0.VoidParam(ty,attr) ->
-+          typeC ty;
-+          (if (attr = []) then print_string " ");
-+          print_between (fun _ -> print_string " ") (mcode print_string) attr;
-+      | Ast0.Param(ty,Some id,attr) ->
-+          print_named_type ty id;
-+          (if (attr = []) then print_string " ");
-+          print_between (fun _ -> print_string " ") (mcode print_string) attr;
-+      | Ast0.Param(ty,None,attr) ->
-+          typeC ty;
-+          (if (attr = []) then print_string " ");
-+          print_between (fun _ -> print_string " ") (mcode print_string) attr;
-       | Ast0.MetaParam(name,_,_) -> mcode print_meta name
-       | Ast0.MetaParamList(name,_,_,_) -> mcode print_meta name
-       | Ast0.PComma(cm) -> mcode print_string cm; print_space()
+diff --git a/parsing_c/unparse_cocci.ml b/parsing_c/unparse_cocci.ml
+index 395b3a3c..d3f97bf7 100644
+--- a/parsing_c/unparse_cocci.ml
++++ b/parsing_c/unparse_cocci.ml
+@@ -1089,10 +1089,18 @@ and designator = function
+ 
+ and parameterTypeDef p =
+   match Ast.unwrap p with
+-    Ast.VoidParam(ty) -> fullType ty
+-  | Ast.Param(ty,Some id) -> print_named_type ty (fun _ -> ident id)
+-  | Ast.Param(ty,None) -> fullType ty
+-
++    Ast.VoidParam(ty,attr) ->
++      fullType ty;
++      (if not (attr = []) then pr_space());
++      print_between pr_space (mcode print_string) attr;
++  | Ast.Param(ty,Some id,attr) ->
++      print_named_type ty (fun _ -> ident id);
++      (if not (attr = []) then pr_space());
++      print_between pr_space (mcode print_string) attr;
++  | Ast.Param(ty,None,attr) ->
++      fullType ty;
++      (if not (attr = []) then pr_space());
++      print_between pr_space (mcode print_string) attr;
+   | Ast.MetaParam(name,_,_,_) ->
+       handle_metavar name
+ 	(function
 -- 
 2.21.1
 
