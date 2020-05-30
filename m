@@ -2,61 +2,64 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4DBC1E93B9
-	for <lists+cocci@lfdr.de>; Sat, 30 May 2020 22:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9B81E93BB
+	for <lists+cocci@lfdr.de>; Sat, 30 May 2020 22:54:48 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04UKs9d1008645;
-	Sat, 30 May 2020 22:54:09 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04UKsVZm005527;
+	Sat, 30 May 2020 22:54:31 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 2ECC27807;
-	Sat, 30 May 2020 22:54:09 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 8A9C87807;
+	Sat, 30 May 2020 22:54:31 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id CDE573C89
- for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 22:54:06 +0200 (CEST)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
- [209.85.167.41])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04UKs6mh017926
+ by systeme.lip6.fr (Postfix) with ESMTPS id A3AF23C89
+ for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 22:54:29 +0200 (CEST)
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
+ [209.85.167.67])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04UKsSbk020768
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 22:54:06 +0200 (CEST)
-Received: by mail-lf1-f41.google.com with SMTP id r125so1683678lff.13
- for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 13:54:06 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 22:54:29 +0200 (CEST)
+Received: by mail-lf1-f67.google.com with SMTP id w15so1689548lfe.11
+ for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 13:54:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=xw605j63H08pFbKFHsgPllo2g2mBV5dsiKNt9j9qDLc=;
- b=OH0jEJDgx9qiw7UPITBYPV1YOTt0fMRm3wgm96c06qhT21/538InIPEmf9QCqbbXfL
- /P69tbQ0oU9tmFO2PTFwppMIm8kL+ui79PMl/DbkbsXdKfW+G8uyWyZ7Aj11oGzcpnqG
- zwWHJfYOznBQGwm1Yrpg4RnnKnPWiN17KiYBU+Sl11UTBJ0IKLf8OL+035PVdSfcwpgq
- hFm/vTuDXmJsx6NqqVXe9ZZLEHYY1D6YCc8VVr2thLuyGhZm49IcnuYqYdgNmNOeHFVo
- OZ5vhvikzUJsqw6rbPjGXu01/uOkqfDUCwWdYFsJxd7hSg5MPxYi27V448/3UYHYYGLt
- keVg==
-X-Gm-Message-State: AOAM532Q0XM/8t8m1wxEXysOY/fSLXK4mUMTAwVs5cVRHorLCyJOGqLx
- jAnqWjvPC2aW8Xo9eWS/9RQ=
-X-Google-Smtp-Source: ABdhPJzSEX8QyOMAA1V//YoNaGqRWRM7xSXsjtYzlT6TUuXeEa9s4HUs0M09UkMHrrAXbFMqG0jCJw==
-X-Received: by 2002:a19:be55:: with SMTP id o82mr7363818lff.168.1590872045818; 
- Sat, 30 May 2020 13:54:05 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=x1LVz2RKLdTewPVi7JzuKq6wTk2wWGIzWE4uj9Rz3Oo=;
+ b=NP/D6XYGKhpcLr4iIs9xSGWPwa4FgDAMTC5VRXmQXO/XjTjwsgUi2CiViq1p8O+RXl
+ TUTcMYIrD02I3pNXdyE/B70C+CExSjU4uqp7rnLw8249GF1MrxeiDfnHEduwfwwey3CP
+ ORCo49pWgPph31oDPZVeJX9dSMkG6X5zf3R5rNpRIeI2ZsOllR040btGyd3wh2KOb8NY
+ urQFXF8YvoiJTzjI8EtqeMSv74RS6d+6h075Fsm8uhHLMUL+qGhFbHhskb8qAqsMkyrz
+ VFMTGYGpWpmaDMcmTM4dB0loMX+KMVOeBG8tI9trm+9sReARgLs1eOchMoCvUy352Q2Y
+ A89w==
+X-Gm-Message-State: AOAM532Ju3TChHOLB7y3zvWvnrXpkm2aDUJhWQxfBcQRrmvJwRXjAy74
+ TsCGLh5pS1gqa3z7urA8M7E=
+X-Google-Smtp-Source: ABdhPJy80CEmSIpmFE4qQC/NX9BXx1VXOkCwwIEjYO9wC7axPGWRTs6T7T71Vum0XD0dGpz+JcQCFQ==
+X-Received: by 2002:ac2:48a3:: with SMTP id u3mr7595076lfg.115.1590872068706; 
+ Sat, 30 May 2020 13:54:28 -0700 (PDT)
 Received: from localhost.localdomain ([213.87.147.196])
- by smtp.googlemail.com with ESMTPSA id f6sm2816670ljn.91.2020.05.30.13.54.04
+ by smtp.googlemail.com with ESMTPSA id f6sm2816670ljn.91.2020.05.30.13.54.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 30 May 2020 13:54:05 -0700 (PDT)
+ Sat, 30 May 2020 13:54:28 -0700 (PDT)
 From: Denis Efremov <efremov@linux.com>
 To: Julia Lawall <Julia.Lawall@lip6.fr>, Joe Perches <joe@perches.com>
-Date: Sat, 30 May 2020 23:53:46 +0300
-Message-Id: <20200530205348.5812-1-efremov@linux.com>
+Date: Sat, 30 May 2020 23:53:47 +0300
+Message-Id: <20200530205348.5812-2-efremov@linux.com>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200530205348.5812-1-efremov@linux.com>
+References: <20200530205348.5812-1-efremov@linux.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 30 May 2020 22:54:13 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 30 May 2020 22:54:31 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 30 May 2020 22:54:06 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sat, 30 May 2020 22:54:29 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: [Cocci] [PATCH 0/2] Update memdup_user.cocci
+Subject: [Cocci] [PATCH 1/2] Coccinelle: extend memdup_user transformation
+	with GFP_USER
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,15 +76,40 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Add GFP_USER to the allocation flags and handle vmemdup_user().
+Match GFP_USER allocations with memdup_user.cocci rule.
+Commit 6c2c97a24f09 ("memdup_user(): switch to GFP_USER") switched
+memdup_user() from GFP_KERNEL to GFP_USER. In most cases it is still
+a good idea to use memdup_user() for GFP_KERNEL allocations. The
+motivation behind altering memdup_user() to GFP_USER is here:
+https://lkml.org/lkml/2018/1/6/333
 
-Denis Efremov (2):
-  Coccinelle: extend memdup_user transformation with GFP_USER
-  Coccinelle: extend memdup_user rule with vmemdup_user()
+Signed-off-by: Denis Efremov <efremov@linux.com>
+---
+ scripts/coccinelle/api/memdup_user.cocci | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- scripts/coccinelle/api/memdup_user.cocci | 53 ++++++++++++++++++++++--
- 1 file changed, 49 insertions(+), 4 deletions(-)
-
+diff --git a/scripts/coccinelle/api/memdup_user.cocci b/scripts/coccinelle/api/memdup_user.cocci
+index c809ab10bbce..49f487e6a5c8 100644
+--- a/scripts/coccinelle/api/memdup_user.cocci
++++ b/scripts/coccinelle/api/memdup_user.cocci
+@@ -20,7 +20,7 @@ expression from,to,size;
+ identifier l1,l2;
+ @@
+ 
+--  to = \(kmalloc\|kzalloc\)(size,GFP_KERNEL);
++-  to = \(kmalloc\|kzalloc\)(size,\(GFP_KERNEL\|GFP_USER\));
+ +  to = memdup_user(from,size);
+    if (
+ -      to==NULL
+@@ -43,7 +43,7 @@ position p;
+ statement S1,S2;
+ @@
+ 
+-*  to = \(kmalloc@p\|kzalloc@p\)(size,GFP_KERNEL);
++*  to = \(kmalloc@p\|kzalloc@p\)(size,\(GFP_KERNEL\|GFP_USER\));
+    if (to==NULL || ...) S1
+    if (copy_from_user(to, from, size) != 0)
+    S2
 -- 
 2.26.2
 
