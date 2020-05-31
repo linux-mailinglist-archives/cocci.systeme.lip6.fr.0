@@ -2,64 +2,73 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CFF51E93BC
-	for <lists+cocci@lfdr.de>; Sat, 30 May 2020 22:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0C51E9878
+	for <lists+cocci@lfdr.de>; Sun, 31 May 2020 17:27:52 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04UKsZPR007771;
-	Sat, 30 May 2020 22:54:35 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 04VFR9Os011424;
+	Sun, 31 May 2020 17:27:09 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 0C4AB7807;
-	Sat, 30 May 2020 22:54:35 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 169E5781F;
+	Sun, 31 May 2020 17:27:09 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id C00D53C89
- for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 22:54:32 +0200 (CEST)
-Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
- [209.85.208.195])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04UKsWig015842
+ by systeme.lip6.fr (Postfix) with ESMTPS id 709FC3C89
+ for <cocci@systeme.lip6.fr>; Sun, 31 May 2020 17:27:06 +0200 (CEST)
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:642])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 04VFR4f2024284
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 22:54:32 +0200 (CEST)
-Received: by mail-lj1-f195.google.com with SMTP id z18so3427856lji.12
- for <cocci@systeme.lip6.fr>; Sat, 30 May 2020 13:54:32 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Sun, 31 May 2020 17:27:05 +0200 (CEST)
+Received: by mail-pl1-x642.google.com with SMTP id m7so3234051plt.5
+ for <cocci@systeme.lip6.fr>; Sun, 31 May 2020 08:27:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=QLCn+hu3XyMfTe5JXU0MfTa2zkxECdy10Y5As/RVP0E=;
+ b=FCj++rnjW+cYPTyeP0hfMv4C7d4Ot071iIIIghq1lASRiIZdXCTarosduBzeARAW3C
+ PxqgBRzv6ezdChBkskaATLTf3GsoFfx+oYw9VUa0oluagg+exAgnXFr+X1DLvTvHhJss
+ XsbxiAnKwO6kYLBG++tyFuW9S2YG8Xz7T1lZTLyHgHnpZrC9ofqCSkTDZRVuDLIb5YLc
+ UoP4Q1sQZh7o1S3U23Q02mJK4nwTQNjLBbCyB/swRNluiEszace0TyGxBw1OfVxZduWo
+ 0iecXsT/w2zfLVmS77xpr2Dc1GUZRLnFdwypYQ9ssj/VD26g6w5SxxjAzGBp+V6ujY9Z
+ WfDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=aMfolX8wThjJ39hizZseRxSztCFPO1pn1hg6I+CItf8=;
- b=a3MGXBzAJIa1OIPKXuCoi15/fByFCwYAw/iq43AVK1yKAwpk9bu4Te4mD3SeO8v9sy
- lzuZyj55nS+YtJ6+ZNhVGmQSMoFA5cv11wm2eIs2Rz55+otJZYJ5s6EberXAmkFG4yIz
- DJ/ygcd4er9NBpmTDjVnCZG3q5GApejsNhC/7nLPKsi1IXVf2o1ByV6B0Z8BGLkwdQGK
- s3qkCHgLGX1FLyNZd18p8gtUTfaWrlL0HVZIE5akQkccFzsl57pC+i4UwnSvHjpdk0lh
- fcdpu7YAr8tqnSkJ5jw4sPiLFmvXUwx5B8exR0lMRApv1Za3zuatzgFfUNy+mFcY1zvM
- hTTA==
-X-Gm-Message-State: AOAM5326WhgeZf+b1WquG2iF2TMxk9I9cBBATj88Q33BNSSkVg+zoqll
- S7+C6TcV56rVV+krGbIgx0OvGaNv
-X-Google-Smtp-Source: ABdhPJxPYaHknn01FnFquKivQn0/VA1YjDLPZh9Tb3gOcaZpaPaTlV6q/zNvgSXIbNVQcvAlBeFFhg==
-X-Received: by 2002:a2e:b0f9:: with SMTP id h25mr7425165ljl.18.1590872071790; 
- Sat, 30 May 2020 13:54:31 -0700 (PDT)
-Received: from localhost.localdomain ([213.87.147.196])
- by smtp.googlemail.com with ESMTPSA id f6sm2816670ljn.91.2020.05.30.13.54.30
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=QLCn+hu3XyMfTe5JXU0MfTa2zkxECdy10Y5As/RVP0E=;
+ b=qR3cw3E8wooFS87oBmZKiA26ZDIoYfDqt4xgVSC0jvSseWC8yBtxMgU99ZJyDW2Bk3
+ Fe0gQBpjZtHBcXKA56C+4T1yfkzSwOghiNbIYojUFK2ER3RRj+g3gjM7WBv5838c0bTL
+ D8EYrozftN4jK8zubz9f7IeU6FPZ5YtwUla8KUimm6T6X2Ej5sJtiPc6uS2tII1sSPWn
+ Y73yrjEJRFlI1CQAlisURgZkZIm9iXPQ9p8xyKMZWo/ERz9vjvziwxFiua57ItQPqDnC
+ wVcXpVSMbKfuwV9TiVD5Tj8O7VyUhMS1lSE3cjo+hoRA9AnUYFvnPD5inspLKnykIFXU
+ EZLg==
+X-Gm-Message-State: AOAM531ynjAwiClxHMg0Q4tmQsdOsSDSDoJ1GDcg9WSWAYXEvRfIELMu
+ byEufpc58vrFWXNGnPyzHmZ3GhKp
+X-Google-Smtp-Source: ABdhPJyqEqbSif+P4NiW+Er22CL/vN/Wc7Ubor6yJbRVzye7UcLeh20qtUYcfH0q7z5X/aavuAlhBA==
+X-Received: by 2002:a17:902:7618:: with SMTP id
+ k24mr16971641pll.167.1590938823208; 
+ Sun, 31 May 2020 08:27:03 -0700 (PDT)
+Received: from localhost.localdomain ([2402:3a80:1863:fef5:a170:128b:8ef:499d])
+ by smtp.gmail.com with ESMTPSA id 131sm12310443pfv.139.2020.05.31.08.27.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 30 May 2020 13:54:31 -0700 (PDT)
-From: Denis Efremov <efremov@linux.com>
-To: Julia Lawall <Julia.Lawall@lip6.fr>, Joe Perches <joe@perches.com>
-Date: Sat, 30 May 2020 23:53:48 +0300
-Message-Id: <20200530205348.5812-3-efremov@linux.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200530205348.5812-1-efremov@linux.com>
-References: <20200530205348.5812-1-efremov@linux.com>
+ Sun, 31 May 2020 08:27:02 -0700 (PDT)
+From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
+To: cocci@systeme.lip6.fr
+Date: Sun, 31 May 2020 20:55:54 +0530
+Message-Id: <20200531152621.2886-1-jaskaransingh7654321@gmail.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 30 May 2020 22:54:35 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 31 May 2020 17:27:11 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 30 May 2020 22:54:32 +0200 (CEST)
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sun, 31 May 2020 17:27:05 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: [Cocci] [PATCH 2/2] Coccinelle: extend memdup_user rule with
-	vmemdup_user()
+X-Scanned-By: MIMEDefang 2.78
+Cc: linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [Cocci] [PATCH 00/27] cocci: Add struct end attributes to SmPL
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,90 +85,98 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Add vmemdup_user() transformations to the memdup_user.cocci rule.
-Commit 50fd2f298bef ("new primitive: vmemdup_user()") introduced
-vmemdup_user(). The function uses kvmalloc with GPF_USER flag.
+This patch series aims to add struct/union end attributes to SmPL, and is a
+continuation of the series "cocci: Improve C parsing of attributes"[1].
 
-Signed-off-by: Denis Efremov <efremov@linux.com>
----
- scripts/coccinelle/api/memdup_user.cocci | 49 +++++++++++++++++++++++-
- 1 file changed, 47 insertions(+), 2 deletions(-)
+Two test cases are included:
 
-diff --git a/scripts/coccinelle/api/memdup_user.cocci b/scripts/coccinelle/api/memdup_user.cocci
-index 49f487e6a5c8..a50def35136e 100644
---- a/scripts/coccinelle/api/memdup_user.cocci
-+++ b/scripts/coccinelle/api/memdup_user.cocci
-@@ -37,6 +37,28 @@ identifier l1,l2;
- -    ...+>
- -  }
- 
-+@depends on patch@
-+expression from,to,size;
-+identifier l1,l2;
-+@@
-+
-+-  to = \(kvmalloc\|kvzalloc\)(size,\(GFP_KERNEL\|GFP_USER\));
-++  to = vmemdup_user(from,size);
-+   if (
-+-      to==NULL
-++      IS_ERR(to)
-+                 || ...) {
-+   <+... when != goto l1;
-+-  -ENOMEM
-++  PTR_ERR(to)
-+   ...+>
-+   }
-+-  if (copy_from_user(to, from, size) != 0) {
-+-    <+... when != goto l2;
-+-    -EFAULT
-+-    ...+>
-+-  }
-+
- @r depends on !patch@
- expression from,to,size;
- position p;
-@@ -48,14 +70,37 @@ statement S1,S2;
-    if (copy_from_user(to, from, size) != 0)
-    S2
- 
--@script:python depends on org@
-+@rv depends on !patch@
-+expression from,to,size;
-+position p;
-+statement S1,S2;
-+@@
-+
-+*  to = \(kvmalloc@p\|kvzalloc@p\)(size,\(GFP_KERNEL\|GFP_USER\));
-+   if (to==NULL || ...) S1
-+   if (copy_from_user(to, from, size) != 0)
-+   S2
-+
-+@script:python depends on org && r@
- p << r.p;
- @@
- 
- coccilib.org.print_todo(p[0], "WARNING opportunity for memdup_user")
- 
--@script:python depends on report@
-+@script:python depends on report && r@
- p << r.p;
- @@
- 
- coccilib.report.print_report(p[0], "WARNING opportunity for memdup_user")
-+
-+@script:python depends on org && rv@
-+p << rv.p;
-+@@
-+
-+coccilib.org.print_todo(p[0], "WARNING opportunity for vmemdup_user")
-+
-+@script:python depends on report && rv@
-+p << rv.p;
-+@@
-+
-+coccilib.report.print_report(p[0], "WARNING opportunity for vmemdup_user")
--- 
-2.26.2
+- detect_struct_endattr: Test case to detect a struct end attribute.
+
+- remove_struct_endattr: Test case to remove a struct end attribute as per the
+  given SmPL.
+
+- remove_struct_endattr_allminus: Test case to remove a struct definition and
+  check if the end attribute is removed as well.
+
+This series is rebased on [2].
+
+
+[1]:
+[RFC PATCH 00/25] cocci: Improve C parsing of attributes
+https://lore.kernel.org/cocci/20200424091801.13871-1-jaskaransingh7654321@gmail.com/
+
+[2]:
+[PATCH 00/30] cocci: Add macrodecl attributes to C and SmPL ASTs
+https://lore.kernel.org/cocci/20200524171935.2504-1-jaskaransingh7654321@gmail.com/
+
+
+Jaskaran Singh (27):
+      parsing_cocci: ast0_cocci: Add struct end attributes
+      parsing_cocci: parser: Reflect struct end attributes
+      parsing_cocci: visitor_ast0: Visit struct end attributes
+      parsing_cocci: unparse_ast0: Reflect struct end attributes
+      parsing_cocci: index: Reflect struct end attributes
+      parsing_cocci: iso_pattern: Reflect struct end attributes
+      parsing_cocci: type_infer: Reflect struct end attributes
+      parsing_cocci: arity: Reflect struct end attributes
+      parsing_cocci: check_meta: Reflect struct end attributes
+      parsing_cocci: compute_lines: Reflect struct end attributes
+      parsing_cocci: context_neg: Reflect struct end attributes
+      parsing_cocci: single_statement: Reflect struct end attributes
+      parsing_cocci: ast_cocci: Add struct end attributes
+      parsing_cocci: visitor_ast: Visit struct end attributes
+      parsing_cocci: pretty_print_cocci: Reflect struct end attributes
+      parsing_cocci: disjdistr: Reflect struct end attributes
+      parsing_cocci: adjust_pragmas: Reflect struct end attributes
+      parsing_cocci: unify_ast: Reflect struct end attributes
+      parsing_cocci: ast0toast: Reflect struct end attributes
+      parsing_c: unparse_cocci: Reflect struct end attributes
+      engine: check_exhaustive_pattern: Reflect struct end attributes
+      engine: cocci_vs_c: Match struct end attributes
+      ocaml: coccilib: Reflect struct end attributes
+      tools: spgen: Reflect struct end attributes
+      tests: Add test case to remove a struct end attribute
+      tests: Add test case to detect a struct end attribute
+      tests: Add test case to check struct endattr allminus
+
+ engine/check_exhaustive_pattern.ml         |    4 ++--
+ engine/cocci_vs_c.ml                       |   17 ++++++++++-------
+ ocaml/coccilib.mli                         |    4 ++--
+ parsing_c/unparse_cocci.ml                 |    6 +++++-
+ parsing_cocci/adjust_pragmas.ml            |    8 ++++----
+ parsing_cocci/arity.ml                     |    8 +++++---
+ parsing_cocci/ast0_cocci.ml                |    2 +-
+ parsing_cocci/ast0_cocci.mli               |    2 +-
+ parsing_cocci/ast0toast.ml                 |    5 +++--
+ parsing_cocci/ast_cocci.ml                 |    2 +-
+ parsing_cocci/ast_cocci.mli                |    2 +-
+ parsing_cocci/check_meta.ml                |    2 +-
+ parsing_cocci/compute_lines.ml             |    5 +++--
+ parsing_cocci/context_neg.ml               |    3 ++-
+ parsing_cocci/disjdistr.ml                 |    4 ++--
+ parsing_cocci/index.ml                     |    2 +-
+ parsing_cocci/iso_pattern.ml               |    9 +++++++--
+ parsing_cocci/parser_cocci_menhir.mly      |    8 ++++----
+ parsing_cocci/pretty_print_cocci.ml        |    6 +++++-
+ parsing_cocci/single_statement.ml          |    4 ++--
+ parsing_cocci/type_infer.ml                |    2 +-
+ parsing_cocci/unify_ast.ml                 |    5 ++++-
+ parsing_cocci/unparse_ast0.ml              |    6 +++++-
+ parsing_cocci/visitor_ast.ml               |   10 ++++++----
+ parsing_cocci/visitor_ast0.ml              |    5 +++--
+ tests/detect_struct_endattr.c              |   13 +++++++++++++
+ tests/detect_struct_endattr.cocci          |    9 +++++++++
+ tests/detect_struct_endattr.res            |   12 ++++++++++++
+ tests/remove_struct_endattr.c              |    7 +++++++
+ tests/remove_struct_endattr.cocci          |    7 +++++++
+ tests/remove_struct_endattr.res            |    7 +++++++
+ tests/remove_struct_endattr_allminus.c     |   13 +++++++++++++
+ tests/remove_struct_endattr_allminus.cocci |    6 ++++++
+ tests/remove_struct_endattr_allminus.res   |    1 +
+ tools/spgen/source/position_generator.ml   |    4 ++--
+ 35 files changed, 158 insertions(+), 52 deletions(-)
+
+
 
 _______________________________________________
 Cocci mailing list
