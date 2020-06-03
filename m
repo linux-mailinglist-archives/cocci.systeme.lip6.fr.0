@@ -2,63 +2,90 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9B71EEB79
-	for <lists+cocci@lfdr.de>; Thu,  4 Jun 2020 22:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 922C61EEC3E
+	for <lists+cocci@lfdr.de>; Thu,  4 Jun 2020 22:42:09 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 054K2ruH025678;
-	Thu, 4 Jun 2020 22:02:53 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 054KfoUL000988;
+	Thu, 4 Jun 2020 22:41:50 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 402577828;
-	Thu,  4 Jun 2020 22:02:53 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id EE53A7828;
+	Thu,  4 Jun 2020 22:41:49 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
-Received: from osiris.lip6.fr (osiris.lip6.fr [132.227.60.30])
+Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 18C575D47
- for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 22:02:52 +0200 (CEST)
-Received: from smtprelay.hostedemail.com (smtprelay0238.hostedemail.com
- [216.40.44.238])
- by osiris.lip6.fr (8.15.2/8.15.2) with ESMTPS id 054K2nVK022207
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
- for <cocci@systeme.lip6.fr>; Thu, 4 Jun 2020 22:02:51 +0200 (CEST)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
- [10.5.19.251])
- by smtpgrave01.hostedemail.com (Postfix) with ESMTP id 2BA3918043DDF
- for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 17:37:02 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay08.hostedemail.com (Postfix) with ESMTP id EBE1F181B2466;
- Thu,  4 Jun 2020 17:36:58 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:965:966:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:1801:2196:2199:2393:2559:2562:2693:2828:2892:2894:3138:3139:3140:3141:3142:3352:3622:3653:3870:3871:3872:3876:4321:4385:4390:4395:4605:5007:7875:7903:10004:10400:10848:11026:11232:11658:11914:12043:12296:12297:12740:12760:12895:13069:13311:13357:13439:14096:14097:14659:14721:21080:21324:21451:21627:30054:30070:30075:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: bulb68_170feaa26d99
-X-Filterd-Recvd-Size: 1947
-Received: from XPS-9350.home (unknown [47.151.136.130])
- (Authenticated sender: joe@perches.com)
- by omf10.hostedemail.com (Postfix) with ESMTPA;
- Thu,  4 Jun 2020 17:36:58 +0000 (UTC)
-Message-ID: <7ea2fe7105006f74337498549f167e01d0fd5fc3.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: efremov@linux.com, Julia Lawall <Julia.Lawall@lip6.fr>
-Date: Thu, 04 Jun 2020 10:36:56 -0700
-In-Reply-To: <d0fced31-f1d7-9e0b-1a58-f441891fcbc7@linux.com>
-References: <20200604140805.111613-1-efremov@linux.com>
- <e4981fd76a88e18376c4e634c235501b57d321e7.camel@perches.com>
- <d0fced31-f1d7-9e0b-1a58-f441891fcbc7@linux.com>
-User-Agent: Evolution 3.36.2-0ubuntu1 
+ by systeme.lip6.fr (Postfix) with ESMTPS id 6B78B3BAB
+ for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 00:09:48 +0200 (CEST)
+Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.45])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 053M9l2j004458
+ for <cocci@systeme.lip6.fr>; Thu, 4 Jun 2020 00:09:47 +0200 (CEST)
+Received: from [10.68.32.147] (broadband-37-110-38-130.ip.moscow.rt.ru
+ [37.110.38.130])
+ by mail.ispras.ru (Postfix) with ESMTPSA id A43DACD465;
+ Thu,  4 Jun 2020 01:09:46 +0300 (MSK)
+To: Julia Lawall <julia.lawall@inria.fr>
+References: <5149c7dd-2771-e592-c5da-f36cca725a4e@ispras.ru>
+ <alpine.DEB.2.21.2006032128480.2548@hadrien>
+From: Denis Efremov <efremov@ispras.ru>
+Autocrypt: addr=efremov@ispras.ru; keydata=
+ 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
+Message-ID: <8e45d3b0-61d5-3e3a-b93e-8ffc67462476@ispras.ru>
+Date: Thu, 4 Jun 2020 01:09:46 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.1
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 22:02:53 +0200 (CEST)
-X-Greylist: Delayed for 02:16:52 by milter-greylist-4.4.3 (osiris.lip6.fr
- [132.227.60.30]); Thu, 04 Jun 2020 22:02:51 +0200 (CEST)
+In-Reply-To: <alpine.DEB.2.21.2006032128480.2548@hadrien>
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 22:41:51 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 00:09:47 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.30
-Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: Re: [Cocci] [PATCH] coccinelle: api: add kzfree script
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Thu, 04 Jun 2020 22:41:48 +0200
+Cc: Coccinelle <cocci@systeme.lip6.fr>
+Subject: Re: [Cocci] How to match a part of a rule expression (documentation)
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,37 +97,22 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Thu, 2020-06-04 at 20:30 +0300, Denis Efremov wrote:
-> 
-> On 6/4/20 7:27 PM, Joe Perches wrote:
-> > On Thu, 2020-06-04 at 17:08 +0300, Denis Efremov wrote:
-> > > Check for memset() with 0 followed by kfree().
-> > 
-> > Perhaps those uses should be memzero_explicit or kvfree_sensitive.
-> 
-> Thanks, I will add memzero_explicit(). However, I can't find kvfree_sensitive().
-> Is it in next already?
-
-Yes
-
-$ git grep kvfree_sensitive
-include/linux/mm.h:extern void kvfree_sensitive(const void *addr, size_t len);
-mm/util.c: * kvfree_sensitive - Free a data object containing sensitive information.
-mm/util.c:void kvfree_sensitive(const void *addr, size_t len)
-mm/util.c:EXPORT_SYMBOL(kvfree_sensitive);
-security/keys/keyctl.c: kvfree_sensitive(payload, plen);
-security/keys/keyctl.c: kvfree_sensitive(payload, plen);
-security/keys/keyctl.c:                         kvfree_sensitive(key_data, key_data_len);
-security/keys/keyctl.c: kvfree_sensitive(key_data, key_data_len);
-security/keys/keyctl.c: kvfree_sensitive(payload, plen);
-
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+T24gNi8zLzIwIDEwOjQ1IFBNLCBKdWxpYSBMYXdhbGwgd3JvdGU6Cj4gc3ViRSBpcyBhIGV4cHJl
+c3Npb25vZiB3aGF0ZXZlciBleHByZXNzaW9uIHdhcyBwcmV2aW91c2x5IG1hdGNoZWQgdG8gRSBp
+bgo+IHRoZSBydWxlIGlmbS4gIDw9IGNhbiBvbmx5IGJlIHVzZWQgd2hlbiB0aGUgbWV0YXZhcmlh
+YmxlIG9uIHRoZSByaWdodCBzaWRlCj4gaXMgaW5oZXJpdGVkIGZyb20gYW5vdGhlciBydWxlLiAg
+VGhzIGlzIHByb2JhYmx5IHdoYXQgeW91IHdhbnQgZm9yIHlvdXIKPiBwcm9ibGVtLgoKSW4gdGhp
+cyBjYXNlIEkgZG9uJ3QgdW5kZXJzdGFuZCB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuOgoKImV4cHJl
+c3Npb24gaWZtLkUiIGFuZCAiZXhwcmVzc2lvbiBzdWJFIDw9IGlmbS5FIgoKRm9yIGV4YW1wbGUs
+IGluIGtmcmVlLmNvY2NpOgoKQHIgZXhpc3RzQApleHByZXNzaW9uIGZyZWUuRSwgc3ViRTw9ZnJl
+ZS5FLCBFMjsKZXhwcmVzc2lvbiBFMTsKLi4uCkBACgooCioga2ZyZWVAcDEoRSwuLi4pCnwKKiBr
+emZyZWVAcDEoRSwuLi4pCikKLi4uCigKwqBpdGVyKC4uLixzdWJFLC4uLikgUyAvLyBubyB1c2UK
+fArCoGxpc3RfcmVtb3ZlX2hlYWQoRTEsc3ViRSwuLi4pCnwKwqBzdWJFID0gRTIKCgpSZWdhcmRz
+LAoKRGVuaXMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkNvY2NpIG1haWxpbmcgbGlzdApDb2NjaUBzeXN0ZW1lLmxpcDYuZnIKaHR0cHM6Ly9zeXN0ZW1l
+LmxpcDYuZnIvbWFpbG1hbi9saXN0aW5mby9jb2NjaQo=
