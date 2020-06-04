@@ -2,63 +2,46 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4EB1EE658
-	for <lists+cocci@lfdr.de>; Thu,  4 Jun 2020 16:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00FD1EE66D
+	for <lists+cocci@lfdr.de>; Thu,  4 Jun 2020 16:15:47 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 054E8NhM010144;
-	Thu, 4 Jun 2020 16:08:23 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 054EFVlY019975;
+	Thu, 4 Jun 2020 16:15:31 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 0EDC47828;
-	Thu,  4 Jun 2020 16:08:23 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 088577828;
+	Thu,  4 Jun 2020 16:15:31 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 3900D5D47
- for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 16:08:21 +0200 (CEST)
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
- [209.85.208.193])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 054E8KrJ014981
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Thu, 4 Jun 2020 16:08:20 +0200 (CEST)
-Received: by mail-lj1-f193.google.com with SMTP id 9so7443246ljc.8
- for <cocci@systeme.lip6.fr>; Thu, 04 Jun 2020 07:08:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=8XEypNhNnT+UKcy1b1PvwbnH+QucPWD84O3G9vxNRDY=;
- b=P8nNN4zgsjG47SQ4GorjrmYAEOCU+e7/ZOBsKuXpmru/j8tw10HDSFEeuifNSYzHF5
- 9LNguYaE+JAp28Ix5/vS98Es3HZyksrJZ1CRlWNyDjSzKT3/vDIZ+dENjSLwWIwBsI7J
- VtlS/ABZQ6KQkvF3yVO01NPzj3GNBjAC6eVCjG0XyGAiRKrRG8HNB6cRZ9ReRPHi1tZm
- dpHgwKoh2yvnOtUfvCvk2iLm+kXtZj4ENPoc0L/fzreVBb+eKYH4agT0WzTMeucbuDaq
- qcYmTQfb7pC6lBrf0a2ltJ9BVBQuryi/NiuVGkvgDsD+TdYIARfWyRrc3wudH9Ul3xWe
- QENQ==
-X-Gm-Message-State: AOAM531zgbPWERnftnS+43ozPBddHNYwsPLZH9eSt7x87vTZrX9wfO8a
- jY17LXqQeJFVe7qAttQ85gA=
-X-Google-Smtp-Source: ABdhPJz9HUDfF6IfPeO7FOB6cVHTiPQE+UUfUHaNhd/awncMoLi7YDormQhrTauiRh6hIjY5qcIxvw==
-X-Received: by 2002:a05:651c:547:: with SMTP id
- q7mr2054309ljp.437.1591279700104; 
- Thu, 04 Jun 2020 07:08:20 -0700 (PDT)
-Received: from localhost.localdomain (broadband-37-110-38-130.ip.moscow.rt.ru.
- [37.110.38.130])
- by smtp.googlemail.com with ESMTPSA id w6sm1142864ljw.11.2020.06.04.07.08.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Jun 2020 07:08:19 -0700 (PDT)
-From: Denis Efremov <efremov@linux.com>
-To: Julia Lawall <Julia.Lawall@lip6.fr>
-Date: Thu,  4 Jun 2020 17:08:04 +0300
-Message-Id: <20200604140805.111613-1-efremov@linux.com>
-X-Mailer: git-send-email 2.26.2
+ by systeme.lip6.fr (Postfix) with ESMTPS id 0F5B55D47
+ for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 16:15:30 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 054EFTsB017346
+ (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Thu, 4 Jun 2020 16:15:29 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.73,472,1583190000"; d="scan'208";a="453003555"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2020 16:15:29 +0200
+Date: Thu, 4 Jun 2020 16:15:29 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Denis Efremov <efremov@linux.com>
+In-Reply-To: <20200604140805.111613-1-efremov@linux.com>
+Message-ID: <alpine.DEB.2.21.2006041614300.2577@hadrien>
+References: <20200604140805.111613-1-efremov@linux.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 16:08:24 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 16:08:20 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 16:15:31 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 16:15:29 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: [Cocci] [PATCH] coccinelle: api: add kzfree script
+Subject: Re: [Cocci] [PATCH] coccinelle: api: add kzfree script
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,81 +58,94 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Check for memset() with 0 followed by kfree().
 
-Signed-off-by: Denis Efremov <efremov@linux.com>
----
-Patches:
-1. kzfree in drivers/w1 https://lkml.org/lkml/2020/6/4/438
-2. kzfree in drivers/iommu/ https://lkml.org/lkml/2020/6/4/421
-3. kzfree in drivers/scsi/ https://lkml.org/lkml/2020/6/4/442
 
- scripts/coccinelle/api/kzfree.cocci | 53 +++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 scripts/coccinelle/api/kzfree.cocci
+On Thu, 4 Jun 2020, Denis Efremov wrote:
 
-diff --git a/scripts/coccinelle/api/kzfree.cocci b/scripts/coccinelle/api/kzfree.cocci
-new file mode 100644
-index 000000000000..c6b8f7676af4
---- /dev/null
-+++ b/scripts/coccinelle/api/kzfree.cocci
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+///
-+/// Use kzfree rather than memset with 0 followed by kfree
-+///
-+// Confidence: High
-+// Copyright: (C) 2020 Denis Efremov ISPRAS
-+// Options: --no-includes --include-headers
-+//
-+// Keywords: kzfree
-+//
-+
-+virtual context
-+virtual org
-+virtual report
-+virtual patch
-+
-+// Ignore kzfree definition
-+// Ignore kasan test
-+@r depends on !patch && !(file in "lib/test_kasan.c") && !(file in "mm/slab_common.c")@
-+expression E;
-+position p;
-+@@
-+
-+(
-+* memset(E, 0, ...);
-+|
-+* memset(E, '\0', ...);
-+)
-+* kfree(E)@p;
-+
-+@r1 depends on patch && !(file in "lib/test_kasan.c") && !(file in "mm/slab_common.c")@
-+expression E;
-+@@
-+
-+(
-+- memset(E, 0, ...);
-+|
-+- memset(E, '\0', ...);
-+)
-+- kfree(E);
-++ kzfree(E);
-+
-+@script:python depends on report@
-+p << r.p;
-+@@
-+
-+coccilib.report.print_report(p[0], "WARNING opportunity for kzfree")
-+
-+@script:python depends on org@
-+p << r.p;
-+@@
-+
-+coccilib.org.print_todo(p[0], "WARNING opportunity for kzfree")
--- 
-2.26.2
+> Check for memset() with 0 followed by kfree().
+>
+> Signed-off-by: Denis Efremov <efremov@linux.com>
+> ---
+> Patches:
+> 1. kzfree in drivers/w1 https://lkml.org/lkml/2020/6/4/438
+> 2. kzfree in drivers/iommu/ https://lkml.org/lkml/2020/6/4/421
+> 3. kzfree in drivers/scsi/ https://lkml.org/lkml/2020/6/4/442
+>
+>  scripts/coccinelle/api/kzfree.cocci | 53 +++++++++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 scripts/coccinelle/api/kzfree.cocci
+>
+> diff --git a/scripts/coccinelle/api/kzfree.cocci b/scripts/coccinelle/api/kzfree.cocci
+> new file mode 100644
+> index 000000000000..c6b8f7676af4
+> --- /dev/null
+> +++ b/scripts/coccinelle/api/kzfree.cocci
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +///
+> +/// Use kzfree rather than memset with 0 followed by kfree
+> +///
+> +// Confidence: High
+> +// Copyright: (C) 2020 Denis Efremov ISPRAS
+> +// Options: --no-includes --include-headers
+> +//
+> +// Keywords: kzfree
+> +//
+> +
+> +virtual context
+> +virtual org
+> +virtual report
+> +virtual patch
+> +
+> +// Ignore kzfree definition
+> +// Ignore kasan test
+> +@r depends on !patch && !(file in "lib/test_kasan.c") && !(file in "mm/slab_common.c")@
+> +expression E;
+> +position p;
+> +@@
+> +
+> +(
+> +* memset(E, 0, ...);
+> +|
+> +* memset(E, '\0', ...);
+> +)
 
+You shouldn't need both cases.  0 should be enough.
+
+Did you try ... here but find that some subexpressions of E could be
+modified in between?
+
+julia
+
+> +* kfree(E)@p;
+> +
+> +@r1 depends on patch && !(file in "lib/test_kasan.c") && !(file in "mm/slab_common.c")@
+> +expression E;
+> +@@
+> +
+> +(
+> +- memset(E, 0, ...);
+> +|
+> +- memset(E, '\0', ...);
+> +)
+> +- kfree(E);
+> ++ kzfree(E);
+> +
+> +@script:python depends on report@
+> +p << r.p;
+> +@@
+> +
+> +coccilib.report.print_report(p[0], "WARNING opportunity for kzfree")
+> +
+> +@script:python depends on org@
+> +p << r.p;
+> +@@
+> +
+> +coccilib.org.print_todo(p[0], "WARNING opportunity for kzfree")
+> --
+> 2.26.2
+>
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
