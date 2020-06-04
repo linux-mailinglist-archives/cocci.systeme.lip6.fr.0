@@ -2,82 +2,66 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F381EEC3F
-	for <lists+cocci@lfdr.de>; Thu,  4 Jun 2020 22:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 235421EEC5F
+	for <lists+cocci@lfdr.de>; Thu,  4 Jun 2020 22:49:36 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 054KfoKH027325;
-	Thu, 4 Jun 2020 22:41:51 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 054KnLsG027036;
+	Thu, 4 Jun 2020 22:49:21 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 70B8A782F;
-	Thu,  4 Jun 2020 22:41:50 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6B9397828;
+	Thu,  4 Jun 2020 22:49:21 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 645095D47
- for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 22:39:22 +0200 (CEST)
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:341])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 054KdKpt003047
+ by systeme.lip6.fr (Postfix) with ESMTPS id AE0465D47
+ for <cocci@systeme.lip6.fr>; Thu,  4 Jun 2020 22:49:19 +0200 (CEST)
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
+ [209.85.167.67])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 054KnIrL017981
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Thu, 4 Jun 2020 22:39:21 +0200 (CEST)
-Received: by mail-ot1-x341.google.com with SMTP id v17so5884144ote.0
- for <cocci@systeme.lip6.fr>; Thu, 04 Jun 2020 13:39:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=n4qcFbrYrQboDsoGvWR4IKKjkBw2HOoEx50CuF4/sRg=;
- b=X+1urrchhlAJ6Ly5eKLEwlLZBlos/tPMbW2qcDX2ccbNN0J0XQByplLqMfeDaRcNHQ
- EvnZLIGtALIexNJWE7WZhaFK5yQsyRt8/i1DxNLSpK+1LzHPWpUKOETN1BYjFdCjB+Vl
- /AP5kdUUtAL9HKi1PmPBX5OXwcuOL94Gi6dhk=
+ for <cocci@systeme.lip6.fr>; Thu, 4 Jun 2020 22:49:18 +0200 (CEST)
+Received: by mail-lf1-f67.google.com with SMTP id d7so4444124lfi.12
+ for <cocci@systeme.lip6.fr>; Thu, 04 Jun 2020 13:49:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=n4qcFbrYrQboDsoGvWR4IKKjkBw2HOoEx50CuF4/sRg=;
- b=mJhl2EX5OHr+IoVmB6iu8e3ClC5jn+a5bIy6NLtUiuVxOZ2rix21gP2pynpPoN15kk
- yOffF5S7xx4DFIyRXU0ijtqLTmQNj9z3UlbdVIUosWnvYywSh6cJMZvj+qjFt+9I0u85
- 7uBIluU+Gz5bXCWwlcmO7Kov23VdCVRsauSKUrMcbxoKDF1zFgGOt/9NpD7FPavT6nhs
- GCs2pAkhcWCCZOMjbmNJYyteSQlPxhwOGcZ/zVk1hQtkgsXqqvc+3jtrdW0XF4Z6ud3x
- wD9KnE7iuiZzks8UaMrqS/fcU3R+2d+zrZewUFaBBLFtZcGz4PSqZhFCFUWj5Oqo+r8H
- M0aQ==
-X-Gm-Message-State: AOAM532RCtNjlQ8/6iThAG3VvF7Q1BIslr7Lf4z6tPjDcH6V3VVFlrfp
- r0A1CEJToWk2D9rLi7Ww7B0d5Q==
-X-Google-Smtp-Source: ABdhPJy7AdFjBepNhW8xq/grKYoy25Pw+/agwirtqSpnQR9W3AmaDRAKSPoazBhBoL3dX678SmP4sw==
-X-Received: by 2002:a9d:7f8c:: with SMTP id t12mr2603935otp.66.1591303160057; 
- Thu, 04 Jun 2020 13:39:20 -0700 (PDT)
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net.
- [24.9.64.241])
- by smtp.gmail.com with ESMTPSA id f2sm1527259otc.45.2020.06.04.13.39.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 04 Jun 2020 13:39:19 -0700 (PDT)
-To: Julia Lawall <julia.lawall@inria.fr>,
-        Matthias Maennich <maennich@google.com>
-References: <20200604164145.173925-1-maennich@google.com>
- <alpine.DEB.2.21.2006042130080.2577@hadrien>
-From: Shuah Khan <skhan@linuxfoundation.org>
-Message-ID: <bf757b9d-6a67-598b-ed6e-7ee24464abfa@linuxfoundation.org>
-Date: Thu, 4 Jun 2020 14:39:18 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=KGhAdvcQJQ2qMPulVRPuuC9wYcPzRQ4SOxiHdw45kYM=;
+ b=G/rIHZ0GTjacoiYbZ0L6VBw8htMaBMuDGt8JPo9g87SSlsN2k2m9Co66t1BUNcU9UN
+ FoGzqgWpihnT0DlFIrx2FFPnStLvYmB06ctePKTydbYhHVUHlS5qi6RNL2mpBrz4Wq9H
+ AKo3Iy8CV0sntyqfWxWiT5o1Sg2unV1rlHm/DD8AG7XwCwIH4diHZqtWDuTkxTLIdRdl
+ ddzKt30o4dlobyL31KwcBhC2x3ZANpwc49pgZrunFKH10A5azqo/tcrL+57igLoDL1aE
+ GpbWevcBnKJnyFDJPLxilp0/UjRC+3QcmM+ovTyHOQcDe3o0qT9c//l22RopDqeaAuOU
+ eEAg==
+X-Gm-Message-State: AOAM533h97XGc5NyIJ2D2BeAT+O3PRRl6BNvxFE2fyGc39wZcl+QR18j
+ WuSvQ/bsAAILU8UaWxObZQM=
+X-Google-Smtp-Source: ABdhPJyMSXyrh8zAP1X2eBLQS0LzwEa5XF3RYVMhR17BKJpMawdEDFDPGOJ0CTh+/xaOHWtXK/1zUA==
+X-Received: by 2002:a05:6512:110e:: with SMTP id
+ l14mr3258264lfg.25.1591303757728; 
+ Thu, 04 Jun 2020 13:49:17 -0700 (PDT)
+Received: from localhost.localdomain (broadband-37-110-38-130.ip.moscow.rt.ru.
+ [37.110.38.130])
+ by smtp.googlemail.com with ESMTPSA id b144sm155718lfg.82.2020.06.04.13.49.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 04 Jun 2020 13:49:15 -0700 (PDT)
+From: Denis Efremov <efremov@linux.com>
+To: Julia Lawall <Julia.Lawall@lip6.fr>
+Date: Thu,  4 Jun 2020 23:48:46 +0300
+Message-Id: <20200604204846.15897-1-efremov@linux.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200604140805.111613-1-efremov@linux.com>
+References: <20200604140805.111613-1-efremov@linux.com>
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.2006042130080.2577@hadrien>
-Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 22:41:51 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 22:49:21 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Thu, 04 Jun 2020 22:39:21 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Thu, 04 Jun 2020 22:49:18 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Thu, 04 Jun 2020 22:41:48 +0200
-Cc: Shuah Khan <skhan@linuxfoundation.org>, YueHaibing <yuehaibing@huawei.com>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org, jeyu@kernel.org,
-        kernel-team@android.com, cocci@systeme.lip6.fr
-Subject: Re: [Cocci] [PATCH] scripts: add dummy report mode to
-	add_namespace.cocci
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: Joe Perches <joe@perches.com>, cocci@systeme.lip6.fr,
+        linux-kernel@vger.kernel.org
+Subject: [Cocci] [PATCH v2] coccinelle: api: add kzfree script
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,54 +73,108 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On 6/4/20 1:31 PM, Julia Lawall wrote:
-> 
-> 
-> On Thu, 4 Jun 2020, Matthias Maennich wrote:
-> 
->> When running `make coccicheck` in report mode using the
->> add_namespace.cocci file, it will fail for files that contain
->> MODULE_LICENSE. Those match the replacement precondition, but spatch
->> errors out as virtual.ns is not set.
->>
->> In order to fix that, add the virtual rule nsdeps and only do search and
->> replace if that rule has been explicitly requested.
->>
->> In order to make spatch happy in report mode, we also need a dummy rule,
->> as otherwise it errors out with "No rules apply". Using a script:python
->> rule appears unrelated and odd, but this is the shortest I could come up
->> with.
->>
->> Adjust scripts/nsdeps accordingly to set the nsdeps rule when run trough
->> `make nsdeps`.
->>
->> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
->> Fixes: c7c4e29fb5a4 ("scripts: add_namespace: Fix coccicheck failed")
->> Cc: YueHaibing <yuehaibing@huawei.com>
->> Cc: jeyu@kernel.org
->> Cc: cocci@systeme.lip6.fr
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Matthias Maennich <maennich@google.com>
-> 
-> Acked-by: Julia Lawall <julia.lawall@inria.fr>
-> 
-> Shuah reported the problem to me, so you could add
-> 
-> Reported-by: Shuah Khan <skhan@linuxfoundation.org>
-> 
+Check for memset()/memset_explicit() with 0 followed by
+kfree()/vfree()/kvfree().
 
-Very cool. No errors with this patch. Thanks for fixing it
-quickly.
+Signed-off-by: Denis Efremov <efremov@linux.com>
+---
+Changes in v2:
+- memset_explicit() added
+- kvfree_sensitive() added
+- forall added to r1
+- ... between memset and kfree added
+  Unfortunately, it doesn't work as I would expect it to in "patch"
+  mode. I've added my comment about it in the rule. It can be safely
+  removed from the patch if I misunderstood something.
 
-thanks,
--- Shuah
+Another "strange" behaviour that I faced that r2 rule works only if I
+write 2 expression lines:
+expression *E;
+expression size;
+If I try to use a single line "expression *E, size;" then r2 matches nothing.
 
+ scripts/coccinelle/api/kzfree.cocci | 65 +++++++++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+ create mode 100644 scripts/coccinelle/api/kzfree.cocci
 
+diff --git a/scripts/coccinelle/api/kzfree.cocci b/scripts/coccinelle/api/kzfree.cocci
+new file mode 100644
+index 000000000000..5c7e4bb13bb7
+--- /dev/null
++++ b/scripts/coccinelle/api/kzfree.cocci
+@@ -0,0 +1,65 @@
++// SPDX-License-Identifier: GPL-2.0-only
++///
++/// Use kzfree, kvfree_sensitive rather than memset or
++/// memset_explicit with 0 followed by kfree
++///
++// Confidence: High
++// Copyright: (C) 2020 Denis Efremov ISPRAS
++// Options: --no-includes --include-headers
++//
++// Keywords: kzfree, kvfree_sensitive
++//
++
++virtual context
++virtual patch
++virtual org
++virtual report
++
++
++// Ignore kzfree definition
++// Ignore kasan test
++@r depends on !patch && !(file in "lib/test_kasan.c") && !(file in "mm/slab_common.c") forall@
++expression *E;
++position p;
++@@
++
++* \(memset\|memset_explicit\)(E, 0, ...);
++  ... when != E
++      when strict
++* \(kfree\|vfree\|kvfree\)(E)@p;
++
++@r1 depends on patch && !(file in "lib/test_kasan.c") && !(file in "mm/slab_common.c")@
++expression *E;
++expression size;
++@@
++
++- \(memset\|memset_explicit\)(E, 0, size);
++/// Unfortunately, it doesn't work as in !patch mode.
++/// spatch (v1.0.8) should patch 4 functions in linux 5.7 with this rule
++/// and uncommented "when" lines. With only "... when != E" line 2 functions
++/// are patched, none with "when strict". 3 functions patch is produced by the
++/// rule with "when" lines commented out.
++//  ... when != E
++//      when strict
++(
++- kfree(E);
+++ kzfree(E);
++|
++- vfree(E);
+++ kvfree_sensitive(E, size);
++|
++- kvfree(E);
+++ kvfree_sensitive(E, size);
++)
++
++@script:python depends on report@
++p << r.p;
++@@
++
++coccilib.report.print_report(p[0], "WARNING opportunity for kzfree/kvfree_sensitive")
++
++@script:python depends on org@
++p << r.p;
++@@
++
++coccilib.org.print_todo(p[0], "WARNING opportunity for kzfree/kvfree_sensitive")
+-- 
+2.26.2
 
 _______________________________________________
 Cocci mailing list
