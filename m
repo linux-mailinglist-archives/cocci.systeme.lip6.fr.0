@@ -2,76 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31151EF97E
-	for <lists+cocci@lfdr.de>; Fri,  5 Jun 2020 15:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B421C1EF985
+	for <lists+cocci@lfdr.de>; Fri,  5 Jun 2020 15:45:09 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 055DiHx3023917;
-	Fri, 5 Jun 2020 15:44:17 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 055DiMAb005479;
+	Fri, 5 Jun 2020 15:44:22 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id D3F517828;
-	Fri,  5 Jun 2020 15:44:17 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id C10F03F9A;
+	Fri,  5 Jun 2020 15:44:22 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 2CA3C3F9A
- for <cocci@systeme.lip6.fr>; Fri,  5 Jun 2020 15:44:15 +0200 (CEST)
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:1042])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 055DiCWi022604
+ by systeme.lip6.fr (Postfix) with ESMTPS id 3B8AC7567
+ for <cocci@systeme.lip6.fr>; Fri,  5 Jun 2020 15:44:21 +0200 (CEST)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:42d])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 055DiGoU013109
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 5 Jun 2020 15:44:13 +0200 (CEST)
-Received: by mail-pj1-x1042.google.com with SMTP id nm22so2603999pjb.4
- for <cocci@systeme.lip6.fr>; Fri, 05 Jun 2020 06:44:13 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Fri, 5 Jun 2020 15:44:17 +0200 (CEST)
+Received: by mail-pf1-x42d.google.com with SMTP id 23so4039710pfw.10
+ for <cocci@systeme.lip6.fr>; Fri, 05 Jun 2020 06:44:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=p7rZYxRe2Sz/SF1CBsPRfrtZT5FjMYD5co3xZ8oxX9U=;
- b=YS9BPeoWVT3NAE1MgqyMIR06Eh4I3EvYtq3EtdvgFiFrhX1M+EQvKLR/LuqrWCKIDD
- I0WN9FEvhRp/DYIjxfBjd/OmzAsfK70Vp0GN8vWQg48sgUojc82S6GYDFETcHMgsinAU
- ZYMrBbX00HUu4YhlOcYvdIUZ2Fin17qNpavgOBRNiiSIXXZxXklsCESSZ28s6RJ6U/NQ
- /yRe3TSpH6vwUln4PiFYqIIFKovt3Pb0lVNQ3riORaN8pQx13wlBwGGzIoDEvAxDFpwO
- 0uIMlQKAayxpbP+zCQabK1lwt4ERl2QUZ0L/+RtMY2uMVKEaN4VpPpBwSD64EH53Xxwu
- oUxg==
+ bh=KPCzDPIq2ilnpUksJQzqSvAiCCiGo4aSKa+4vJmVh6Q=;
+ b=l+x2rMt0uSRnCU7Z/zakb9jtgj+idMJpmHfjmugvHlUV4QCGZrM5U3ClQv+XGjoq1H
+ 4kFWttofNA12VRd5IMpxmqvFKOrH8diszMu78UBuAQmkBJSnBwnhQuJRBpHoh2FHmNnm
+ uTvETUb2qzAfTSIPWTzIUo3xDeAxeis8rvA5Oju86S7Poabktk2lRQkZYV6aUq9BzVx5
+ HB4sHZbiT205H8rDeR1E2RHSuIqfYwUw1JE1H3ZSZgBByVvYcASYUlVos1JaGkOWvDiA
+ DXeiQm0UcIdXKetv0qwVD6Cgt1Vi4LLaRA/wx5DW0T1sNqG3SBmhXBPZ3o14zxqMa3ve
+ XAEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=p7rZYxRe2Sz/SF1CBsPRfrtZT5FjMYD5co3xZ8oxX9U=;
- b=dxAi6FEV8KYnDLYZ/kcE0mRpMvXp5wndaEgIJHoH0pckkEXRfXjl0mPwHc0y1TuLjq
- /2ANidwxkNWd11Yt7Gi1U1Uaea3xba4rMNjXIraFLeMlCEJnsWf0hL0NdbOdqi92GxOY
- QYVM470eaeURG8iagK8ZKPzV+c4oUDkfnmSZYyAdzcvtpuCG/jnb2HbQtlo3yVFIkMwN
- wZt/YktyREPpHgg2Ui1+Kb2ajBgDNQX3APcYIqOOchC7e2lNAKtem2PmhqxM6W5qgo6Q
- 2tY5cDHEVLAvsJuhdx+5ByQm8qMng5JT2vNW3In7kbeLqxcfXNAOoIGr0fzC7IUPsEo5
- QI0A==
-X-Gm-Message-State: AOAM530cYSDV7FVgMCpFR9oRPlyAQ4IaPWRmBNuZX7cRjO+IutxfTBxn
- hCvNnlDWgyPuOCVdbhnX/Xlt901kux8=
-X-Google-Smtp-Source: ABdhPJzGheh4AVb8ZYVfQkI/pD4GHqiLUqaM63mhwwGFci3WdxFylQeOD5JkNhtNfKoSo+ABM+84ng==
-X-Received: by 2002:a17:902:b18b:: with SMTP id
- s11mr9672263plr.160.1591364651467; 
- Fri, 05 Jun 2020 06:44:11 -0700 (PDT)
+ bh=KPCzDPIq2ilnpUksJQzqSvAiCCiGo4aSKa+4vJmVh6Q=;
+ b=XCJKLKAi3vVYKYuOZ8S/CVbn0ZVDCBXsXBJcn3QmNmQpy1vKCLDHLJ4uzsm+jmVI1n
+ Jx3QyUuSKppiWwJvLzlfYrP81pFO6hclAe4QLvMil3D2Tm62ROlENnXD49WtKTfsJm/A
+ jG+prb/xvgrDohBGlVWWnHkK1ROzbd4AtLEN4UgJYL1P8Qn7AZ5lI4GZvpEE2uNv/4/A
+ mNMeiM3Ay+NrZVXDnJFslF6Af+bxSmjlfSFDajyDi4zUdTHZZG7YG5YMcioz95dR0DGe
+ nXZDGxsm/KdVsAX4Sfdugp2WS15ozpfxlyK2BgOeD7VtAsz3qaUMoenWV+lgU9iKKwjg
+ 1M5A==
+X-Gm-Message-State: AOAM532yOWVR+fZHwClkR2ZkCAXTIAT/rYuDOY1DrBbmx0PjCtZuEtmB
+ XEAf0YhTiCfAYmzQZ1xvSIRZ0Irdjt4=
+X-Google-Smtp-Source: ABdhPJzkCao1PPslxtrs/vozZzIkDhz/UsjFzjPQIa9CcOAizSDw17EshdoTxjnf96PPptC/ulXaWQ==
+X-Received: by 2002:a05:6a00:807:: with SMTP id
+ m7mr10050379pfk.246.1591364655970; 
+ Fri, 05 Jun 2020 06:44:15 -0700 (PDT)
 Received: from localhost.localdomain ([1.38.221.125])
- by smtp.gmail.com with ESMTPSA id w186sm7861353pff.83.2020.06.05.06.44.09
+ by smtp.gmail.com with ESMTPSA id w186sm7861353pff.83.2020.06.05.06.44.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Jun 2020 06:44:10 -0700 (PDT)
+ Fri, 05 Jun 2020 06:44:13 -0700 (PDT)
 From: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 To: cocci@systeme.lip6.fr
-Date: Fri,  5 Jun 2020 19:13:11 +0530
-Message-Id: <20200605134322.15307-4-jaskaransingh7654321@gmail.com>
+Date: Fri,  5 Jun 2020 19:13:12 +0530
+Message-Id: <20200605134322.15307-5-jaskaransingh7654321@gmail.com>
 X-Mailer: git-send-email 2.21.1
 In-Reply-To: <20200605134322.15307-1-jaskaransingh7654321@gmail.com>
 References: <20200605134322.15307-1-jaskaransingh7654321@gmail.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 05 Jun 2020 15:44:17 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 05 Jun 2020 15:44:22 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 05 Jun 2020 15:44:13 +0200 (CEST)
+ Fri, 05 Jun 2020 15:44:18 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: linux-kernel-mentees@lists.linuxfoundation.org
-Subject: [Cocci] [PATCH v4 03/14] parsing_c: parsing_hacks: Commentize
-	attributes before qualif/type
+Subject: [Cocci] [PATCH v4 04/14] parsing_c: parser: Add rule for multiple
+	end attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,75 +88,31 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-For the following example from fs/btrfs/ctree.h in Linux v5.6-rc7:
-
-__cold __noreturn
-static inline void assertfail(const char *expr, const char *file, int line)
-{
-	pr_err("assertion failed: %s, in %s:%d\n", expr, file, line);
-	BUG();
-}
-
-__cold and __noreturn are not labeled correctly, leading to C parsing
-errors. Add a case to commentize attributes before a storage
-qualifier/type qualifier/type correctly.
+There is no rule for productions of multiple end attributes. Add a case
+similar to that of attribute_list for end attributes.
 
 Signed-off-by: Jaskaran Singh <jaskaransingh7654321@gmail.com>
 ---
- parsing_c/parsing_hacks.ml | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ parsing_c/parser_c.mly | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/parsing_c/parsing_hacks.ml b/parsing_c/parsing_hacks.ml
-index 74c3ba60..0254fc7f 100644
---- a/parsing_c/parsing_hacks.ml
-+++ b/parsing_c/parsing_hacks.ml
-@@ -1952,6 +1952,29 @@ let is_type = function
-   | Tshort _ -> true
-   | _ -> false
+diff --git a/parsing_c/parser_c.mly b/parsing_c/parser_c.mly
+index bfe92e18..d259f12a 100644
+--- a/parsing_c/parser_c.mly
++++ b/parsing_c/parser_c.mly
+@@ -2401,8 +2401,11 @@ attribute_list:
  
-+let is_type_qualif = function
-+  | Tconst _
-+  | Tvolatile _ -> true
-+  | _ -> false
-+
-+let is_storage_spec = function
-+  | Tstatic _
-+  | Tregister _
-+  | Textern _
-+  | Tauto _ -> true
-+  | _ -> false
-+
-+let rec is_idents ?(followed_by=fun _ -> true) ts =
-+  let rec loop l =
-+    match l with
-+    | x::xs when ident x -> loop xs
-+    | x::xs -> followed_by x
-+    | [] -> failwith "unexpected end of token stream" in
-+  match ts with
-+  | x::xs when ident x -> loop xs
-+  | x::xs -> followed_by x
-+  | _ -> false
-+
- let is_cparen = function (TCPar _) -> true | _ -> false
- let is_oparen = function (TOPar _) -> true | _ -> false
+ attributes: attribute_list { $1 }
  
-@@ -2134,6 +2157,16 @@ let lookahead2 ~pass next before =
- 	  else
- 	    TCommentCpp (Token_c.CppDirective, i1)
- 
-+	(* tt xx yy *)
-+  | (TIdent (s, i1)::rest, _)
-+    when not_struct_enum before
-+	&& is_idents
-+           ~followed_by:
-+             (function x ->
-+                is_type x || is_storage_spec x || is_type_qualif x) rest
-+        && s ==~ regexp_annot ->
-+	    TCommentCpp (Token_c.CppMacro, i1)
+-end_attributes:
++end_attribute_list:
+  | TMacroEndAttr { [Attribute (fst $1), [snd $1]] }
++ | end_attribute_list TMacroEndAttr { $1 @ [Attribute(fst $2), [snd $2]] }
 +
-   | (TIdent (s2, i2)::_  , TIdent (s, i1)::seen::_)
-     when not_struct_enum before
- 	&& is_macro s2 && is_type seen ->
++end_attributes: end_attribute_list { $1 }
+ 
+ comma_opt:
+  | TComma {  [$1] }
 -- 
 2.21.1
 
