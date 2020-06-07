@@ -2,77 +2,85 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFB71F0F68
-	for <lists+cocci@lfdr.de>; Sun,  7 Jun 2020 22:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0840C1F0F67
+	for <lists+cocci@lfdr.de>; Sun,  7 Jun 2020 22:02:05 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 057K1uCI000281;
-	Sun, 7 Jun 2020 22:01:56 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 057K1giv015154;
+	Sun, 7 Jun 2020 22:01:42 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id AD7DE7794;
-	Sun,  7 Jun 2020 22:01:56 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 3566E7794;
+	Sun,  7 Jun 2020 22:01:42 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 913B03F9A
- for <cocci@systeme.lip6.fr>; Fri,  5 Jun 2020 05:04:14 +0200 (CEST)
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05534CRN012244
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
- Fri, 5 Jun 2020 05:04:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1591326251;
- bh=mpINj1KwByMO1KKdJlJWvUCeORzynM/wkwVpAy35eLs=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
- b=bA+S4VqQyF6mNzBW0YJXISEUnOIxkhwh3vM8LKMl/YMG+UUnGornrcoFzu4lCAzz8
- S9xnfmmCg2EbtH0JsQ4UGfO0Fac/OyzX7L0YvrwZAPapAbmHFWfDreYl49tW6urlRt
- AfPVCBmgYUP4zM1D3klz2cWkO45ZqTM+K0D15Yjo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from LT02.fritz.box ([88.152.145.75]) by mail.gmx.com (mrgmx005
- [212.227.17.184]) with ESMTPSA (Nemesis) id 1M72oH-1jbnrI0NaB-008dDL; Fri, 05
- Jun 2020 05:04:11 +0200
-From: Heinrich Schuchardt <xypron.glpk@gmx.de>
-To: Julia Lawall <Julia.Lawall@lip6.fr>
-Date: Fri,  5 Jun 2020 05:04:05 +0200
-Message-Id: <20200605030405.6479-1-xypron.glpk@gmx.de>
-X-Mailer: git-send-email 2.26.2
+ by systeme.lip6.fr (Postfix) with ESMTPS id 053713BAB
+ for <cocci@systeme.lip6.fr>; Sun,  7 Jun 2020 17:05:47 +0200 (CEST)
+Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.45])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 057F5jHs004487
+ for <cocci@systeme.lip6.fr>; Sun, 7 Jun 2020 17:05:46 +0200 (CEST)
+Received: from [192.168.1.8] (unknown [213.87.137.116])
+ by mail.ispras.ru (Postfix) with ESMTPSA id A860CCD463
+ for <cocci@systeme.lip6.fr>; Sun,  7 Jun 2020 18:05:44 +0300 (MSK)
+To: Coccinelle <cocci@systeme.lip6.fr>
+From: Denis Efremov <efremov@ispras.ru>
+Autocrypt: addr=efremov@ispras.ru; keydata=
+ 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
+Message-ID: <b273ce70-5527-6e79-9e1e-7a6c3f83eda4@ispras.ru>
+Date: Sun, 7 Jun 2020 18:05:43 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:3s5T/IQAmPGdmmYoPPG2S6A5XKsqSFM9bCF4a56hyILj+j8BqJS
- 2Y3ctYhXEEt5igjR37mJJGoO0+c8Cih/Nht790x9PLsOx+iKsp45l7qLv1CdO2xT/Rw1PwT
- E71x2sv8e2aKqkGFDc8Uj4nZ9Xz2x5WL7GyNM+pB2e4hA/HLes6NymiHiu1FZZby/DHIZ4m
- v2Y2eF6vE5dWmVrurTvpw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hue4DUo+I+o=:7EVRn8VLxVI1G2RxIaVtsL
- caBxYP4LqlINeokpHjvu6/efpn6CbLBWQgskGfQAv6lqLZDZZUQOMiLGowZHZaWfBza5UwgjN
- fFfCGOInMKe+I82EV1KVtmaTDBl2NER+dvDD0iXdutZKvysmRVpF+6AS4WG8BD18F4W8GIF4J
- hHFF3UtFMSp1C8JCd6aLI0FFBUR9t9i3UE6I1qnTDEN5JcfPFuaIPPhK4C3A+yA0JLR7Oisx/
- gIx0EmwoInhd7zcvGPRp3P0/jUrIkHttxa3s7gH1IBqzsKLVbILohg8LfFrkQv0JSvCA06TP4
- ZEP5s+MdQxEa/X9/vjg+/rn9P2BPKW8SmLCKwO06oZA5jOsHZM4XvP4zYsTHjPlKkJhBkFgAW
- hGkZGBSXCkqPYlOzByd7XShxKCNyMSb/q2e823mGTip3su9/UKI+KzkxXFTIi7Y0paXWZ/fQD
- v1IxMOnm1VZmbG5Z2YUZe0l1ick57/AiZuXiDAiwSKMLHfI07unajIZoWXIkMPd4hq/LJlAQO
- RMMxA8jm8cAS6Tl+Ne1OFiiHceQ+jToZZ4dmtd0Gnafv4vqx3EVEfCnY+wOlXnSCBlkotif8l
- SzIJ4SBHzMc12MoI29SQtzHjTEf3N7xNrFjUN1ISmycY8mVxLE4PqzNU+Rm3RQGmPnuuZS3uM
- C176H/Bb8G+oSJ11xjsALLxxUbUgEG98j+x7S/XcDpXrMxJ1kKHzu6d9r2Zg2XEgijliz70Eh
- eUM2opu8wAfEXaTzsTsAgxtnyP1rYm3U+aZLyDat65RDVnv/pt79gC0XFtD58Ptmcyrfb1kIh
- pavHjJ8tQR5ava0Cg/P8wERkjn9KVg2ESMU1a0mDG+Z3GGQF99PXaQOWSlT2ncoh5smC9nN1L
- jJXuQ7caqjlwJZavCFGOzeOSZMWq+FS+uowqBWGuktLtI66R+jk3ZSGJSIijnmu2iFqc9n+eR
- fhAh0nC8MD1bfC2dRWTiqSjV5dQLehdDgifr+umYl6R4lHIq46sE80gcIoS4L+Gb4CsesxUy9
- 0rHtv7hxlOElPrHfIbZkKl9JxbioMQ2gkvFwr+iYzDu/g+s3oX12hNO2VaC/S05s4Kvp+CpKV
- ydW1yzxoE7VKYht8koap9dgxx71up/8f0Jk0xFg/jAoFwXwts33JQa76UKmTCbLOwqx/Q9PZJ
- 2HcncrKIZK1GaJ2ZKBQs0rU3h2sPZ0VraL/q92i2lfB3YcL0dd0qBxiAGwgq0j8799nAlMEF9
- gzFq2nNVqQxj/+F0X
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 07 Jun 2020 22:01:56 +0200 (CEST)
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 07 Jun 2020 22:01:43 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Fri, 05 Jun 2020 05:04:13 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 07 Jun 2020 17:05:46 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 07 Jun 2020 22:01:55 +0200
-Cc: Michal Marek <michal.lkml@markovi.net>, Jonathan Corbet <corbet@lwn.net>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>, linux-doc@vger.kernel.org,
-        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
-        Gilles Muller <Gilles.Muller@lip6.fr>, cocci@systeme.lip6.fr
-Subject: [Cocci] [PATCH 1/1] docs: dev-tools: coccinelle: underlines
+X-Mailman-Approved-At: Sun, 07 Jun 2020 22:01:40 +0200
+Subject: [Cocci] Python interface
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,57 +97,72 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Underline lengths should match the lengths of headings to avoid build
-warnings with Sphinx.
+I've got a couple of questions about python interface.
+Let us suppose that I want to suppress a couple of matches because they are false-positives.
+However, I still want to check they exists in finalize block and print a warning otherwise.
+This is some kind of self-check for a rule.
 
-Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
----
- Documentation/dev-tools/coccinelle.rst | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+For example, there is "test.c" file with:
+extern int function1(void);
+extern int function2(void);
 
-diff --git a/Documentation/dev-tools/coccinelle.rst b/Documentation/dev-tools/coccinelle.rst
-index 00a3409b0c28..70274c3f5f5a 100644
---- a/Documentation/dev-tools/coccinelle.rst
-+++ b/Documentation/dev-tools/coccinelle.rst
-@@ -14,7 +14,7 @@ many uses in kernel development, including the application of complex,
- tree-wide patches and detection of problematic programming patterns.
+int test(void)
+{
+        return function1();
+}
 
- Getting Coccinelle
---------------------
-+------------------
+And the rule test.cocci with:
 
- The semantic patches included in the kernel use features and options
- which are provided by Coccinelle version 1.0.0-rc11 and above.
-@@ -56,7 +56,7 @@ found at:
- https://github.com/coccinelle/coccinelle/blob/master/install.txt
+virtual context
+virtual org
+virtual patch
+virtual report
 
- Supplemental documentation
-----------------------------
-+--------------------------
+@initialize:python@
+@@
+matches = [] # global list of all positions to check in finalize
+blacklist = frozenset(['test'])
 
- For supplemental documentation refer to the wiki:
+# Always prints []. Is it normal?
+#print(cocci.files())
 
-@@ -128,7 +128,7 @@ To enable verbose messages set the V= variable, for example::
-    make coccicheck MODE=report V=1
+def relevant(p): # suppress functions from blacklist
+	matches.extend(p) # It doesn't work in position script, so I do it here
+	return False if blacklist & { el.current_element for el in p } else True # intersection
 
- Coccinelle parallelization
-----------------------------
-+--------------------------
+@r depends on !patch@
+// It doesn't work. Is it normal?
+//position p: script:python() { matches.extend(p); relevant(p) };
+position p: script:python() { relevant(p) };
+@@
 
- By default, coccicheck tries to run as parallel as possible. To change
- the parallelism, set the J= variable. For example, to run across 4 CPUs::
-@@ -333,7 +333,7 @@ as an example if requiring at least Coccinelle >= 1.0.5::
- 	// Requires: 1.0.5
+* function1@p();
 
- Proposing new semantic patches
---------------------------------
-+------------------------------
+@rp depends on patch@
+position p: script:python() { relevant(p) };
+@@
 
- New semantic patches can be proposed and submitted by kernel
- developers. For sake of clarity, they should be organized in the
---
-2.26.2
+- function1@p();
++ function2();
 
+// Self-check for the rule
+@finalize:python depends on !patch@
+@@
+
+# Always prints []. Is it normal?
+#print(cocci.files())
+
+if 'test.c' in cocci.files(): # I know that we should match test definition in test.c
+	not_matched = blacklist - { el.current_element for el in matches }; # set difference
+	if not_matched:
+		print('SELF-CHECK: patterns no longer match definitions for: ' + ','.join(not_matched))
+
+I want to implement this kind of self-check for memdup_user function. I need check that the patterns
+match the function definition, but suppress these diagnostics. And print a warning about changed
+implementation if there is no matches for the patterns in mm/util.c
+
+Thanks,
+Denis
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
