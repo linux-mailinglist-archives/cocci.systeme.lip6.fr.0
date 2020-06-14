@@ -2,78 +2,47 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4275F1F87AE
-	for <lists+cocci@lfdr.de>; Sun, 14 Jun 2020 10:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2704B1F87AF
+	for <lists+cocci@lfdr.de>; Sun, 14 Jun 2020 10:43:25 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05E8fQ18008321;
-	Sun, 14 Jun 2020 10:41:28 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05E8hAHp012348;
+	Sun, 14 Jun 2020 10:43:10 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id C4749777D;
-	Sun, 14 Jun 2020 10:41:28 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 5BA8C7814;
+	Sun, 14 Jun 2020 10:43:10 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id A3C4844A7
- for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 10:32:49 +0200 (CEST)
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05E8WnuF019538
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
- for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 10:32:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1592123567;
- bh=LOOr61he59OlknC29uNscWYrc+BGSU0yyhwDAC9Er3g=;
- h=X-UI-Sender-Class:Subject:From:To:Cc:Date:In-Reply-To:References;
- b=JqhBI3PoOxUvLjBdCtW9mPCU0GE5uJURlZZ3vJF25x+ScJaWnfTt9rkcYIuhiTRgn
- /MQII55WmAmEuGJ5OA9+kamwGY/I7FwY9dNUKpkzDo40SACo/PebJo1yVQ3dCpNFbC
- MoRLWAieAu6cAmwMogRYgflWphmfO3RwT+OgZ4XY=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from homer.simpson.net ([185.221.151.23]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N6bfw-1iqdFI3gcw-0184ka; Sun, 14
- Jun 2020 10:32:46 +0200
-Message-ID: <1592123565.2129.21.camel@gmx.de>
-From: Mike Galbraith <efault@gmx.de>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Sun, 14 Jun 2020 10:32:45 +0200
-In-Reply-To: <1592122310.2129.14.camel@gmail.com>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 2C29E44A7
+ for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 10:43:09 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05E8h8Vx004385
+ (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 10:43:08 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.73,510,1583190000"; d="scan'208";a="351533106"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2020 10:43:08 +0200
+Date: Sun, 14 Jun 2020 10:43:08 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Mike Galbraith <umgwanakikbuti@gmail.com>
+In-Reply-To: <1592121432.2129.9.camel@gmail.com>
+Message-ID: <alpine.DEB.2.22.394.2006141042270.2849@hadrien>
 References: <b14e6d1d-afa0-5c28-547a-9bb1a987f6fd@infradead.org>
  <1592115803.27290.33.camel@gmail.com>
  <alpine.DEB.2.22.394.2006140940000.2849@hadrien>
- <1592121432.2129.9.camel@gmail.com> <1592121650.2129.11.camel@gmail.com>
- <1592122310.2129.14.camel@gmail.com>
-X-Mailer: Evolution 3.26.6 
-Mime-Version: 1.0
-X-Provags-ID: V03:K1:COkShJHs0QeZdJW+kIQFBq7Yb8+3TAqUXROrJW0pFjaSM8Wb2Dc
- 9bfsZ7dh/ZxweELgb2eUfOfwnt+m6al2B14s3gm0aDsVqcE9Z8ns6XHlhO1fMMpasX7sG42
- eCHaWamN4B8ipg+8XirfLzpNwfWeJi+jD/g3uTOSftAvxCsNl3NiQiwe/ithUbVPGmU+JL+
- rrffd+jZIPrdTKpKZnb7A==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:/yRnXQ4I/tg=:wQNHGkTyyhQgte2wiYhq9L
- jdEGkAHzCDIENWE0VQol0z/i7wNgapA/FPd7aK7qwuW8XQx/tC9f5+v2HbpfoUcgbDbNdAEg/
- OBmS+MB9VRCDdvVOFgz2k0AC38I8rBEq/jmWRWSnqeNYVKz6F6GH1W6fObr7CIGlL4F35FhMo
- qMdfzeoknsonww3socLHE6dzLlR1I3pxMf9Ip3j3Yt0FJQNp6FQxHxS9+lfuhIsrZewKi2YYT
- lKXMRSTgmnoHCU7LXfrzaRUcDoehyc3NxB725lZ0ee49FbEk7MMhMf/mUBwZDvqmoIWpAqPYT
- pvfgZQrm1nxHro2NgjplOcKXK1xcaIrAlpiXjeTC+UUXHFwNgfTITFC3U814TLO2CnuRjYbEP
- 1jC9DYN3Whwt9TVFAqQZMMk8W6E4CjRO1RzLdNLDX8nVyj5muU8yJV+WA7Ayo0ZMjboNFUVOy
- apxBbViM+DX708DdSSXF4JcsNfUgtbtfisAPzknzv4idZZX/OEUJMmdgdz60K2Nx28uKunsZJ
- 5eXDLOpezb5lPu3e38oD3wuLX1PTyJ7SKd1GYlSslWJ5i7JAwaR/kA2O6QaXxYFuoe6dfCRla
- w0AqoIcSzOTCbLKbBLoYYUql+xVufdkwL1mOc0dubRc+0dKoUIZZTEtqJ1I9IBWcfk1dt0FxL
- QA5XtxeS6LwK1z1zZsq7i05ByWcCHqEFmcQzuSwLTc5N/K7wFNH+QYOEjxwAIFX2moUf40uZx
- aMfQUOUh+YTtuhcLRufHsaSqbr8BBDbk7Azx80ozn7RbOuN3Z+CeFbqUACRuUBTs2Z2QTTSv4
- RfHcFOwK1XJquDyYPqaD9noXIeFjfbGUt5yrTtDdD3a6xCGqmD7oB/psplU5kL1mJl/Xbts4a
- cDQf2RO0bROaOQqQQAT2X31FPwLX9GKsB2AkzdxP0jfXWk/Lsk0St/TdhbU1uaQHciVucQ42D
- wDWrm1E+NUlWp6Gg6ghbEcq4vi2XRDuf9qMLuowFJ6FKtrCIpMXttUUdRNrOt18l+YFQj75Bw
- 9qa9iyQQpG/VO/NNLfxYBsU+hJ91ObPBSliiP/my1L2ClnXrEtwZq9ewebbtM72D5j0wHqz0m
- aODeEtkO8sim/27Jaz7Ln6rMhB/r1JzfNBrFIW0nzhgxjDEe5WDk4F/I7fCJw6Czrz2nMtTF8
- ssAbUwY3Iof1XKecOYqkSKSM3yQ8AZRQZchxcnzKWX4ns1f1lZAEXTY2ioEQacjSZ1QJ1jRUO
- FNrOEZ3+v/Mr0H84j
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 10:41:28 +0200 (CEST)
+ <1592121432.2129.9.camel@gmail.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+MIME-Version: 1.0
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 10:43:10 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 10:32:49 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 10:43:08 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 14 Jun 2020 10:41:23 +0200
 Cc: Randy Dunlap <rdunlap@infradead.org>, cocci@systeme.lip6.fr
 Subject: Re: [Cocci] coccinelle issues
 X-BeenThere: cocci@systeme.lip6.fr
@@ -93,18 +62,31 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 
-Aha, trying a fresh build/install of 1.0.7 reproduced Randy's problem..
 
-/usr/local/bin/spatch -D report --no-show-diff --very-quiet --cocci-file ./scripts/coccinelle/api/alloc/alloc_cast.cocci --no-includes --include-headers --dir . -I ./arch/x86/include -I ./arch/x86/include/generated -I ./include -I ./arch/x86/include/uapi -I ./arch/x86/include/generated/uapi -I ./include/uapi -I ./include/generated/uapi --include ./include/linux/kconfig.h --jobs 8 --chunksize 1
-Python error: No module named coccilib.elems
+On Sun, 14 Jun 2020, Mike Galbraith wrote:
 
-..and creating /usr/local/coccinelle/lib -> /usr/local/coccinelle/lib64
-fixed it up for me.
+> On Sun, 2020-06-14 at 09:42 +0200, Julia Lawall wrote:
+> >
+> > On Sun, 14 Jun 2020, Mike Galbraith wrote:
+> >
+> >
+> > > I didn't download, rather pulled/built.  I didn't have the same issue
+> > > you did, but make coccicheck was a bust here until I backed down to
+> > > version 1.0.6.  Neither HEAD, 1.0.8 or 1.0.7 ran, and following its
+> > > MODE=blah suggestion helped not at all.
+> >
+> > Did you get a segmentation fault?
+>
+> Nope.  Turned out to be a dinky install gotcha.  Creating a symlink..
+>
+> lrwxrwxrwx 1 root root 27 Jun 14 09:40 /usr/local/coccinelle/lib -> /usr/local/coccinelle/lib64
+>
+> ..seems to have fixed 1.0.8 all up.  The very first time I installed, I
+> had to create one directory (forget which) by hand as well.
 
-Note: I configured --prefix=/usr/local/coccinelle to keep things
-contained, and added a couple symlinks in /usr/local/bin for the
-binaries.
+What is your Linux distribution?
 
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
