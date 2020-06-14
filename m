@@ -2,50 +2,57 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2721F88D6
-	for <lists+cocci@lfdr.de>; Sun, 14 Jun 2020 15:00:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6723F1F8958
+	for <lists+cocci@lfdr.de>; Sun, 14 Jun 2020 16:41:15 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05ECxcXG015547;
-	Sun, 14 Jun 2020 14:59:38 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05EEePDO012430;
+	Sun, 14 Jun 2020 16:40:25 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id E883D7814;
-	Sun, 14 Jun 2020 14:59:37 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id DE1337814;
+	Sun, 14 Jun 2020 16:40:24 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 8353344A7
- for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 14:59:34 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05ECxXVC021211
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 14:59:34 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.73,511,1583190000"; d="scan'208";a="454625986"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2020 14:59:33 +0200
-Date: Sun, 14 Jun 2020 14:59:33 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Mike Galbraith <umgwanakikbuti@gmail.com>
-In-Reply-To: <1592124280.2129.22.camel@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2006141456520.2849@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 5828F44A7
+ for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 16:40:22 +0200 (CEST)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e:0:0:0:133])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05EEeK9s009887
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO)
+ for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 16:40:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=Mr+YAzLD99XJJr7FqlLfOzEn6BvtdNusuprn3XV2Rvc=; b=HJpq5dfLZkPD8vSjn03StGVsVx
+ +rpnzrhiNwX890IOUzCZ82hNyByeK0oDCBdAA9hae4vBl2glafmbmek7KcQc3qZ8Dm/OQciZR0D0/
+ cl3+Hs+sVrAOowB/hBm5OvIcYLDVqpokJI0NNF5DSwMWuJ017kvR3koz/Idi0gn4vBd8S379NSSNR
+ 57QBvi50iFPXfE46ZcCcXn9wxc3LpAR6GNf/ClKpz9vdSlK2Y/5mxdP3yEX5hwaGouJ9iAN8FUnLp
+ CKD19pdTCmggZJwyuCsTG61YmDefAbFmLHj0v3HoxW5IlwgHBy5MIkq1G1bdyotsA+Bw9+kn0ADdc
+ ptE5SzXw==;
+Received: from [2601:1c0:6280:3f0::19c2]
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jkTo0-0000Ep-PX; Sun, 14 Jun 2020 14:40:16 +0000
+To: Julia Lawall <julia.lawall@inria.fr>
 References: <b14e6d1d-afa0-5c28-547a-9bb1a987f6fd@infradead.org>
- <1592115803.27290.33.camel@gmail.com>
- <alpine.DEB.2.22.394.2006140940000.2849@hadrien>
- <1592121432.2129.9.camel@gmail.com>
- <alpine.DEB.2.22.394.2006141042270.2849@hadrien>
- <1592124280.2129.22.camel@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ <alpine.DEB.2.22.394.2006140932490.2849@hadrien>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <dadeaa1d-1146-c4b1-e757-14e9791dac59@infradead.org>
+Date: Sun, 14 Jun 2020 07:40:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 14:59:40 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 14:59:34 +0200 (CEST)
+In-Reply-To: <alpine.DEB.2.22.394.2006140932490.2849@hadrien>
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 16:40:25 +0200 (CEST)
+X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
+ milter-greylist-4.4.3 (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sun, 14 Jun 2020 16:40:21 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Randy Dunlap <rdunlap@infradead.org>, cocci@systeme.lip6.fr
+X-Scanned-By: MIMEDefang 2.78
+Cc: LKML <linux-kernel@vger.kernel.org>, cocci@systeme.lip6.fr
 Subject: Re: [Cocci] coccinelle issues
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -63,21 +70,93 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+On 6/14/20 12:39 AM, Julia Lawall wrote:
+> 
+> 
+> On Sat, 13 Jun 2020, Randy Dunlap wrote:
+> 
+>> Hi,
+>>
+>> OK, I've not used Coccinelle and now I am trying to use it.
+>> It seems that I am having a few issues.
+>> The primary one is when I run spatch (via 'make coccicheck' in
+>> the kernel source tree), it tells me:
+>>
+>> Python error: No module named coccilib.elems
+>>
+>> I do see "elems.py" in /usr/local/lib64/coccinelle/python/coccilib.
+>>
+>> I am using coccinelle-master downloaded from github on
+>> Friday June 12, 2020.
+>>
+>>
+>> I have also made the following notes while building/installing it.
+>>
+>>
+>> Note1: The latest coccinelle tarball is not actually available
+>> at the coccinelle home page although the kernel documentation says it is.
+> 
+> Yes, I'm aware of this problem.  We're not able to update the home page at
+> the moment.  This problem is being worked on.
+> 
+>>
+>> Note2: https://github.com/coccinelle/coccinelle/blob/master/install.txt
+>> says that 'spatch' is a script, but it seems to be a binary executable
+>> file.
+> 
+> Actually, it is a script, and the fact that you say it is a binary may be
+> the reason for your python problem.  Normally there is a script
+> (scripts/spatch) that make install puts in place that refers back to where
+> your Coccinelle is installed.
+
+Yes, I saw scripts/spatch, but that script is not what is installed in
+/usr/local/bin.
+(see more below)
+
+>> Note3: https://github.com/coccinelle/coccinelle/blob/master/install.txt
+>> probably should say to use 'sudo make install' instead of just
+>> 'make install', just like 'coccinelle.rst' file in the kernel tree says.
+> 
+> OK.  A lot of documentation for a lot of projects seems to omit the sudo,
+> but I have indeed never understood why.
+> 
+> Maybe try again with make distclean, ./autogen, ./configure, sudo make
+> install?
+
+OK, I did all of those.
+
+Is this expected?
+
+$ ./autogen
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
+cat: VERSION: No such file or directory
 
 
-On Sun, 14 Jun 2020, Mike Galbraith wrote:
+spatch is installed in /usr/local/bin/spatch:
 
-> On Sun, 2020-06-14 at 10:43 +0200, Julia Lawall wrote:
-> >
-> > What is your Linux distribution?
->
-> openSUSE Leap-15.1
+$ ll /usr/local/bin/spatch
+-rwxr-xr-x 1 root root 15547736 Jun 14 07:32 /usr/local/bin/spatch*
 
-Our CI already has an entry for openSUSE Leap.  We will look into it, but
-if you have any further information about the problem, please let us know.
+$ file /usr/local/bin/spatch
+/usr/local/bin/spatch: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, BuildID[sha1]=2b658c12a1a49deae24010b71d22d262988ce041, for GNU/Linux 3.2.0, with debug_info, not stripped
 
-thanks,
-julia
+
+I still get this runtime error:
+
+Python error: No module named coccilib.elems
+
+-- 
+~Randy
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
