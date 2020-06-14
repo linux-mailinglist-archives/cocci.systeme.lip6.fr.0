@@ -2,55 +2,77 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F1B1F877A
-	for <lists+cocci@lfdr.de>; Sun, 14 Jun 2020 09:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6E61F8779
+	for <lists+cocci@lfdr.de>; Sun, 14 Jun 2020 09:26:57 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05E7QlQd011526;
-	Sun, 14 Jun 2020 09:26:47 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05E7QDXB021792;
+	Sun, 14 Jun 2020 09:26:13 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id EE1327814;
-	Sun, 14 Jun 2020 09:26:46 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6A5EC7814;
+	Sun, 14 Jun 2020 09:26:13 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 5B19944A7
- for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 06:24:04 +0200 (CEST)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e:0:0:0:133])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05E4O2KG008982
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Sun, 14 Jun 2020 06:24:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Date:Message-ID:Subject:From:To:Sender:Reply-To:Cc:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=KdZmbzKkPmpckL1U4hYFdBeoi6DJ0np+Y8xoq7vH/6U=; b=h5GmWLsQcvIt/aEFDPHoCu8ffg
- Frz3xLShxk9mFYQWuFp3Y6KEFZB4nQbRjX7B1rsJm89483x01gYTwVDhvZOEKHC0DaF0+KCQ7ne0U
- CW0bAUt1hDj7iy5MYLjaXrMmy3Mh+hmw3d0p5Eq8HYA1E6iWzY2U53wn2g8vctUeTMXLUj3K8yYOm
- 5XIUMliuj8JGLsl7KZIkGnxsyfMTnsokk6TAtaM3ysqB1Jae5tDr/yj8Tp29eAWZEVt9U0QSUmxqL
- /+wcsePnLXmN8fZRVbiJ8SdhM9wi9z/+YHZldthUI+cRew592MnegtmtI54Fkb8RKvtDFMKZxUY4q
- YXXmqU7w==;
-Received: from [2601:1c0:6280:3f0::19c2]
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jkJvZ-000403-3b; Sun, 14 Jun 2020 04:07:25 +0000
-To: LKML <linux-kernel@vger.kernel.org>, cocci@systeme.lip6.fr,
-        Julia Lawall <julia.lawall@lip6.fr>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <b14e6d1d-afa0-5c28-547a-9bb1a987f6fd@infradead.org>
-Date: Sat, 13 Jun 2020 21:07:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-MIME-Version: 1.0
-Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 09:26:47 +0200 (CEST)
-X-Greylist: Delayed for 00:16:26 by milter-greylist-4.4.3 (isis.lip6.fr
- [IPv6:2001:660:3302:283c:0:0:0:2]); Sun, 14 Jun 2020 06:24:03 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id DA87244A7
+ for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 08:23:29 +0200 (CEST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20:0:0:0:344])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05E6NPwe007463
+ (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
+ for <cocci@systeme.lip6.fr>; Sun, 14 Jun 2020 08:23:25 +0200 (CEST)
+Received: by mail-wm1-x344.google.com with SMTP id l26so11551058wme.3
+ for <cocci@systeme.lip6.fr>; Sat, 13 Jun 2020 23:23:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=message-id:subject:from:to:date:in-reply-to:references:mime-version
+ :content-transfer-encoding;
+ bh=N1Il4xoBAYB6lrYOu3YcPFEnwJ6e8hDdQ9lMllcuG9Y=;
+ b=poAfA8qmym4rYJdB3stjZDtiZpaDtnYqyka4MnGnEskXyU84c46tiixAu+86jqvUmN
+ j1untMiJ6Mu3xjgwpuTXmrtD5bo3zeqcv/BECGLJ4S5FDrVrl1A+D1EgQ6J53xyAREya
+ v32RSRAJoAMKB+LnWuiG1GH6OEv0TSU/gijpKB6UUFCz+CeMm6SxJgnot67U2cJGIcpb
+ EkP6jLAn1GCjGcSfbFjoN5Isk/EOM3lCPodkyhhRfGiwMRPx8WVz8bM1sLzHSMJVUNhk
+ INC1Z4KZUoMc4SF1rXiDBy58FxhAtUQZUVIoFrJ4O/0CSYBY4AZg9SIFkKTf+IUw+gRG
+ NeVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=N1Il4xoBAYB6lrYOu3YcPFEnwJ6e8hDdQ9lMllcuG9Y=;
+ b=Zr5Be/TuDK8bjrEI/kkat/vWWTOfzkC/rSvqmxVf27e3G3vGkU03FrWkeYH6tE5K8i
+ F6V9DJoFWJk0rqsjmQ8n2zSjESTJ3lPzSIghyawKR/OBLmIKNpoWW6hzjJX4fnO9RxUl
+ KRYPMmXZyWmUHz/2B2De3dID7878mLvcGUHGnjl1fk1SKfAklJcZZjttQhiIkLz8GUWy
+ qz8A2h1IEItcNX6II7HA41RmqHuREl9do+khxH6eTMoGJ+vbIaXAOFLs4lnsbamjMl6Q
+ 25CN0IvHuedPpfN1xRbvkaxqs1b+Hx/aHjJSA2LghRrPTFnA0bg4ZUKIeVyQbwvpKfpj
+ KqfQ==
+X-Gm-Message-State: AOAM532KdJFQL1q0q1VJb5RQb45ipSY6NbI/nUhu8j9EowcCl2IiSprT
+ 2+Ulq8EeB4E4NzqDZhI9Hcs=
+X-Google-Smtp-Source: ABdhPJxULrdAk6E8dtV25ET2u+P9wFrPndeaqahsaKJzMLUGzY8AdG6s0Ujh+UsaXdwr5dZVIV4vTg==
+X-Received: by 2002:a05:600c:2147:: with SMTP id
+ v7mr6927026wml.101.1592115804881; 
+ Sat, 13 Jun 2020 23:23:24 -0700 (PDT)
+Received: from homer.simpson.net ([185.221.151.23])
+ by smtp.googlemail.com with ESMTPSA id g18sm17078831wme.17.2020.06.13.23.23.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 13 Jun 2020 23:23:24 -0700 (PDT)
+Message-ID: <1592115803.27290.33.camel@gmail.com>
+From: Mike Galbraith <umgwanakikbuti@gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>, cocci@systeme.lip6.fr,
+        Julia
+ Lawall <julia.lawall@lip6.fr>
+Date: Sun, 14 Jun 2020 08:23:23 +0200
+In-Reply-To: <b14e6d1d-afa0-5c28-547a-9bb1a987f6fd@infradead.org>
+References: <b14e6d1d-afa0-5c28-547a-9bb1a987f6fd@infradead.org>
+X-Mailer: Evolution 3.26.6 
+Mime-Version: 1.0
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Jun 2020 09:26:15 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sun, 14 Jun 2020 08:23:25 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Sun, 14 Jun 2020 09:26:45 +0200
-Subject: [Cocci] coccinelle issues
+X-Mailman-Approved-At: Sun, 14 Jun 2020 09:26:11 +0200
+Subject: Re: [Cocci] coccinelle issues
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,41 +89,36 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Hi,
+On Sat, 2020-06-13 at 21:07 -0700, Randy Dunlap wrote:
+> Hi,
+> 
+> OK, I've not used Coccinelle and now I am trying to use it.
 
-OK, I've not used Coccinelle and now I am trying to use it.
-It seems that I am having a few issues.
-The primary one is when I run spatch (via 'make coccicheck' in
-the kernel source tree), it tells me:
+I've never used it either, or intend to really, but seeing that it
+lives on github and more importantly, it's raining outside....
 
-Python error: No module named coccilib.elems
+> It seems that I am having a few issues.
+> The primary one is when I run spatch (via 'make coccicheck' in
+> the kernel source tree), it tells me:
+> 
+> Python error: No module named coccilib.elems
+> 
+> I do see "elems.py" in /usr/local/lib64/coccinelle/python/coccilib.
+> 
+> I am using coccinelle-master downloaded from github on
+> Friday June 12, 2020.
 
-I do see "elems.py" in /usr/local/lib64/coccinelle/python/coccilib.
+I didn't download, rather pulled/built.  I didn't have the same issue
+you did, but make coccicheck was a bust here until I backed down to
+version 1.0.6.  Neither HEAD, 1.0.8 or 1.0.7 ran, and following its
+MODE=blah suggestion helped not at all.
 
-I am using coccinelle-master downloaded from github on
-Friday June 12, 2020.
+No idea if 1.0.6 will work for you, but it did for me, and doesn't take
+long at all to build once you get the ocaml goop it wants installed.
 
+Hohum, now to whack all that, and find something else to do ;-)
 
-I have also made the following notes while building/installing it.
-
-
-Note1: The latest coccinelle tarball is not actually available
-at the coccinelle home page although the kernel documentation says it is.
-
-Note2: https://github.com/coccinelle/coccinelle/blob/master/install.txt
-says that 'spatch' is a script, but it seems to be a binary executable
-file.
-
-Note3: https://github.com/coccinelle/coccinelle/blob/master/install.txt
-probably should say to use 'sudo make install' instead of just
-'make install', just like 'coccinelle.rst' file in the kernel tree says.
-
-
-thanks for any help that you can provide.
-
--- 
-~Randy
-
+	-Mike
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
