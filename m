@@ -2,47 +2,50 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6931FD4F1
-	for <lists+cocci@lfdr.de>; Wed, 17 Jun 2020 20:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB751FD5BE
+	for <lists+cocci@lfdr.de>; Wed, 17 Jun 2020 22:08:46 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05HIsOG3009298;
-	Wed, 17 Jun 2020 20:54:24 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05HK8N5q024848;
+	Wed, 17 Jun 2020 22:08:23 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 86922781F;
-	Wed, 17 Jun 2020 20:54:24 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id E1862781F;
+	Wed, 17 Jun 2020 22:08:22 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id EC0913D0F
- for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 20:54:22 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05HIsL43016408
+ by systeme.lip6.fr (Postfix) with ESMTPS id 7D2193D0F
+ for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 22:08:21 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05HK8KJK007411
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 20:54:21 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.73,523,1583190000"; d="scan'208";a="455246752"
+ for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 22:08:20 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.73,523,1583190000"; d="scan'208";a="351904042"
 Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2020 20:54:03 +0200
-Date: Wed, 17 Jun 2020 20:54:03 +0200 (CEST)
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2020 22:08:19 +0200
+Date: Wed, 17 Jun 2020 22:08:19 +0200 (CEST)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
-To: Kees Cook <keescook@chromium.org>
-In-Reply-To: <202006171103.327F86B1C@keescook>
-Message-ID: <alpine.DEB.2.22.394.2006172051280.3083@hadrien>
+To: Denis Efremov <efremov@linux.com>
+In-Reply-To: <e34b7e26-6f07-19b6-39ad-e3bc939551fc@linux.com>
+Message-ID: <alpine.DEB.2.22.394.2006172154040.3083@hadrien>
 References: <20200615102045.4558-1-efremov@linux.com>
- <202006171103.327F86B1C@keescook>
+ <202006151123.3C2CB7782@keescook>
+ <a28543e5-4f93-bf16-930b-42d7b24ab902@linux.com>
+ <4dd9c371-0c37-a4bb-e957-3848cb1a13ff@embeddedor.com>
+ <e34b7e26-6f07-19b6-39ad-e3bc939551fc@linux.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 20:54:27 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 22:08:23 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 20:54:21 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 22:08:20 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Julia Lawall <Julia.Lawall@lip6.fr>, cocci@systeme.lip6.fr,
-        linux-kernel@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+        cocci@systeme.lip6.fr
 Subject: Re: [Cocci] [PATCH] coccinelle: misc: add array_size_dup script to
  detect missed overlow checks
 X-BeenThere: cocci@systeme.lip6.fr
@@ -63,71 +66,109 @@ Errors-To: cocci-bounces@systeme.lip6.fr
 
 
 
-On Wed, 17 Jun 2020, Kees Cook wrote:
+On Wed, 17 Jun 2020, Denis Efremov wrote:
 
-> On Mon, Jun 15, 2020 at 01:20:45PM +0300, Denis Efremov wrote:
-> > +@as@
-> > +expression E1, E2;
-> > +@@
-> > +
-> > +array_size(E1, E2)
 >
-> BTW, is there a way yet in Coccinelle to match a fully qualified (?)
-> identifier? For example, if I have two lines in C:
+> >
+> > Awesome! I'll take a look into this. :)
+> >
+> Here is another script for your #83 ticket.
+> Currently, it issues 598 warnings.
 >
-> A)
-> 	array_size(variable, 5);
-> B)
-> 	array_size(instance->member.size, 5);
-> C)
-> 	array_size(instance->member.size + 1, 5);
-> D)
-> 	array_size(function_call(variable), 5);
+> // SPDX-License-Identifier: GPL-2.0-only
+> ///
+> /// Check for missing overflow checks in allocation functions.
+> /// Low confidence because it's pointless to check for overflow
+> /// relatively small allocations.
+> ///
+> // Confidence: Low
+> // Copyright: (C) 2020 Denis Efremov ISPRAS
+> // Options: --no-includes --include-headers
 >
+> virtual patch
+> virtual context
+> virtual org
+> virtual report
 >
-> This matches A, B, C, and D:
->
-> @@
-> expression ARG1;
-> expression ARG2;
-> @@
->
-> array_size(ARG1, ARG2);
->
->
-> This matches only A:
->
-> @@
-> identifier ARG1;
-> expression ARG2;
+> @depends on patch@
+> expression E1, E2, E3, E4, size;
 > @@
 >
-> array_size(ARG1, ARG2);
->
->
-> How do I get something to match A and B but not C and D (i.e. I do not
-> want to match any operations, function calls, etc, only a variable,
-> which may be identified through dereference, array index, or struct
-> member access.)
+> (
+> - size = E1 * E2;
+> + size = array_size(E1, E2);
+> |
+> - size = E1 * E2 * E3;
+> + size = array3_size(E1, E2, E3);
+> |
+> - size = E1 * E2 + E3;
+> + size = struct_size(E1, E2, E3);
 
-\(i\|e.fld\|e->fld\)
+Should the arguments be checked to see if they have something to do with
+arrays and structures?
 
-would probably do what you want.  It will also match cases where e is a
-function/macr call, but that is unlikely.
+> )
+>   ... when != size = E4
+>       when != size += E4
+>       when != size -= E4
+>       when != size *= E4
 
-If you want a single metavariable that contains the whole thing, you can
-have an expression metavariable E and then write:
+Here you can have a metavariable
 
-\(\(i\|e.fld\|e->fld\) \& E\)
+assignment operator aop;
+
+and then say size aop E4
+
+It doesn't really look like an assignment any more, but it could be a
+little safer.
 
 julia
 
-
-
+>       when != &size
+>   \(kmalloc\|krealloc\|kzalloc\|kzalloc_node\|
+>     vmalloc\|vzalloc\|vzalloc_node\|
+>     kvmalloc\|kvzalloc\|kvzalloc_node\|
+>     sock_kmalloc\|
+>     f2fs_kmalloc\|f2fs_kzalloc\|f2fs_kvmalloc\|f2fs_kvzalloc\|
+>     devm_kmalloc\|devm_kzalloc\)
+>   (..., size, ...)
 >
+> @r depends on !patch@
+> expression E1, E2, E3, E4, size;
+> position p;
+> @@
 >
-> --
-> Kees Cook
+> (
+> * size = E1 * E2;@p
+> |
+> * size = E1 * E2 * E3;@p
+> |
+> * size = E1 * E2 + E3;@p
+> )
+>   ... when != size = E4
+>       when != size += E4
+>       when != size -= E4
+>       when != size *= E4
+>       when != &size
+> * \(kmalloc\|krealloc\|kzalloc\|kzalloc_node\|
+>     vmalloc\|vzalloc\|vzalloc_node\|
+>     kvmalloc\|kvzalloc\|kvzalloc_node\|
+>     sock_kmalloc\|
+>     f2fs_kmalloc\|f2fs_kzalloc\|f2fs_kvmalloc\|f2fs_kvzalloc\|
+>     devm_kmalloc\|devm_kzalloc\)
+>   (..., size, ...)
+>
+> @script:python depends on report@
+> p << r.p;
+> @@
+>
+> coccilib.report.print_report(p[0], "WARNING: missing overflow check")
+>
+> @script:python depends on org@
+> p << r.p;
+> @@
+>
+> coccilib.org.print_todo(p[0], "WARNING: missing overflow check")
 > _______________________________________________
 > Cocci mailing list
 > Cocci@systeme.lip6.fr
