@@ -2,49 +2,49 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33D21FC9E4
-	for <lists+cocci@lfdr.de>; Wed, 17 Jun 2020 11:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 289FC1FCB7C
+	for <lists+cocci@lfdr.de>; Wed, 17 Jun 2020 12:56:20 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05H9WRB3023216;
-	Wed, 17 Jun 2020 11:32:27 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05HAtqpx008573;
+	Wed, 17 Jun 2020 12:55:52 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id AB31E781F;
-	Wed, 17 Jun 2020 11:32:27 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id BE5AD781F;
+	Wed, 17 Jun 2020 12:55:52 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 067093D0F
- for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 11:32:26 +0200 (CEST)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
- [209.85.208.179])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05H9WPVr023572
+ by systeme.lip6.fr (Postfix) with ESMTPS id 02CE73D0F
+ for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 12:55:51 +0200 (CEST)
+Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
+ [209.85.208.196])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05HAtofC001111
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 11:32:25 +0200 (CEST)
-Received: by mail-lj1-f179.google.com with SMTP id i27so1971999ljb.12
- for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 02:32:25 -0700 (PDT)
+ for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 12:55:50 +0200 (CEST)
+Received: by mail-lj1-f196.google.com with SMTP id 9so2296273ljv.5
+ for <cocci@systeme.lip6.fr>; Wed, 17 Jun 2020 03:55:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:to:cc:references:from:autocrypt:subject
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eBz4j/zSI/XsqDRp/TAPf7zhl9YarKBt3BzTx9V7e2Q=;
- b=YU2GueaFHO7SUWlQPV73RbvRhvSy1KhRmV+tZ82lFrwzfhr8F/BS/ODFbGlqkV1VQa
- s6F1X9KvqlTNwtTvNcDQ/ZwHhzn6CJ2pr6rHIUXJMqsj3Bgmk7whLKzyxV+iUl+anOqE
- Rd5fXa/mdEpGniMa0Doe8xJA+1pcZyYZjS8HOgXbaC3gTXrIkt/m2EBvKZZkgITdacMs
- nF+D4jdfrp6e0g7UJTxnsLh01dj0dbeaqM+X56JEdwgJ3298QY41oY86BIGX3v5JIKtI
- IjzapbRRpsIkb39GfNGdmzuXyM0sQ1HGykqsMWBRdrNw8SUAQh7tVjzvIExJQEIwAO2M
- 7q1Q==
-X-Gm-Message-State: AOAM531QJWxdLX31gMc5XGe+6m7+Bo8F1Tk6Vx2/A2NzqvtM4+sZWVr+
- Xv3p6T6NaQa4ZWLu1Ayx55k=
-X-Google-Smtp-Source: ABdhPJwxrtn31wwVenRwR1CY2PFRs2D5KbRbGrV4lpslfKhXGTJmmSFl0iqo43kwcFillkY3Pdr67A==
-X-Received: by 2002:a2e:b0d0:: with SMTP id g16mr3741722ljl.130.1592386344927; 
- Wed, 17 Jun 2020 02:32:24 -0700 (PDT)
+ bh=JrfBwovCMQQXE4o8ZBM0HxvtHwg6l4AForm5G8s9pCg=;
+ b=h+wzga1RTAWxIQaomaA33eEyccpr1l560mRa8wIbIJGdnz+W+AWgKPUtuytHxoV5cJ
+ Y5lsl0qopsPhRZiXFWyqjdZBk81/eTjCO2uLbKGhVPR2ONHFGRxd31N8hvO7My7aeF5c
+ AVcvVbsPHOFVkdL38IIAb7FOt+i7uAhPsqENlFrc9h4ZVmwFL/KxwxaxMGYKwUcTqfsp
+ pwShaf3PyJJEmZSoQK+nGgWI6kjb7Z/gj8qFLZ2AiuWY4bS4w1pbsVoYZRGveBCeUStx
+ eIv6XgOW6hbkh+V7y3zHIvwPcTdkIU5OIoAlbt3wv6UZ/TpjvqMOFr3M8B0tfNFOYvdk
+ sp9g==
+X-Gm-Message-State: AOAM5338xK8u104uxC66Jo87qwtCkLaup08lD6QSiuBx3KF+vh4mlaR2
+ JE+sDNGIE5P87uGqk8zH6ZI=
+X-Google-Smtp-Source: ABdhPJzw+JPNRIjYitELAZZrisc7CZ1wM0Dw3qwAL4cyh/xmfanSmJ0Ob5Tyxuz1oAPlXi0SoxuVBg==
+X-Received: by 2002:a2e:3218:: with SMTP id y24mr3789133ljy.97.1592391349781; 
+ Wed, 17 Jun 2020 03:55:49 -0700 (PDT)
 Received: from [192.168.1.8] ([213.87.137.195])
- by smtp.gmail.com with ESMTPSA id z15sm4899858ljo.102.2020.06.17.02.32.23
+ by smtp.gmail.com with ESMTPSA id i8sm5917681lfo.62.2020.06.17.03.55.47
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Jun 2020 02:32:24 -0700 (PDT)
+ Wed, 17 Jun 2020 03:55:49 -0700 (PDT)
 To: "Gustavo A. R. Silva" <garsilva@embeddedor.com>,
         Kees Cook <keescook@chromium.org>
 References: <20200615102045.4558-1-efremov@linux.com>
@@ -95,16 +95,16 @@ Autocrypt: addr=efremov@linux.com; keydata=
  EahrGMfRngbdp/mKs9aBR56ECMfFFUPyI3VJsNbgpcIJjV/0N+JdJKQpJ/4uQ2zNm0wH/RU8
  CRJvEwtKemX6fp/zLI36Gvz8zJIjSBIEqCb7vdgvWarksrhmi6/Jay5zRZ03+k6YwiqgX8t7
  ANwvYa1h1dQ36OiTqm1cIxRCGl4wrypOVGx3OjCar7sBLD+NkwO4RaqFvdv0xuuy4x01VnOF
-Message-ID: <32248ed1-69fe-a1b1-89da-44cd4ae54804@linux.com>
-Date: Wed, 17 Jun 2020 12:32:22 +0300
+Message-ID: <e34b7e26-6f07-19b6-39ad-e3bc939551fc@linux.com>
+Date: Wed, 17 Jun 2020 13:55:47 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.9.0
 MIME-Version: 1.0
 In-Reply-To: <4dd9c371-0c37-a4bb-e957-3848cb1a13ff@embeddedor.com>
 Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 11:32:28 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 12:55:54 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 11:32:25 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Wed, 17 Jun 2020 12:55:50 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: Julia Lawall <Julia.Lawall@lip6.fr>, cocci@systeme.lip6.fr,
@@ -127,18 +127,91 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-> 
+
 > 
 > Awesome! I'll take a look into this. :)
 > 
+Here is another script for your #83 ticket.
+Currently, it issues 598 warnings.
 
-It would be helpful to get a feedback from you after.
-What kind of warnings are helpful and what are not?
-"duplicate calls" and "opencoded expression after array_size()" look doubtful to me.
-I think that maintainers will not like these patches.
+// SPDX-License-Identifier: GPL-2.0-only
+///
+/// Check for missing overflow checks in allocation functions.
+/// Low confidence because it's pointless to check for overflow
+/// relatively small allocations.
+///
+// Confidence: Low
+// Copyright: (C) 2020 Denis Efremov ISPRAS
+// Options: --no-includes --include-headers
 
-Thanks,
-Denis
+virtual patch
+virtual context
+virtual org
+virtual report
+
+@depends on patch@
+expression E1, E2, E3, E4, size;
+@@
+
+(
+- size = E1 * E2;
++ size = array_size(E1, E2);
+|
+- size = E1 * E2 * E3;
++ size = array3_size(E1, E2, E3);
+|
+- size = E1 * E2 + E3;
++ size = struct_size(E1, E2, E3);
+)
+  ... when != size = E4
+      when != size += E4
+      when != size -= E4
+      when != size *= E4
+      when != &size
+  \(kmalloc\|krealloc\|kzalloc\|kzalloc_node\|
+    vmalloc\|vzalloc\|vzalloc_node\|
+    kvmalloc\|kvzalloc\|kvzalloc_node\|
+    sock_kmalloc\|
+    f2fs_kmalloc\|f2fs_kzalloc\|f2fs_kvmalloc\|f2fs_kvzalloc\|
+    devm_kmalloc\|devm_kzalloc\)
+  (..., size, ...)
+
+@r depends on !patch@
+expression E1, E2, E3, E4, size;
+position p;
+@@
+
+(
+* size = E1 * E2;@p
+|
+* size = E1 * E2 * E3;@p
+|
+* size = E1 * E2 + E3;@p
+)
+  ... when != size = E4
+      when != size += E4
+      when != size -= E4
+      when != size *= E4
+      when != &size
+* \(kmalloc\|krealloc\|kzalloc\|kzalloc_node\|
+    vmalloc\|vzalloc\|vzalloc_node\|
+    kvmalloc\|kvzalloc\|kvzalloc_node\|
+    sock_kmalloc\|
+    f2fs_kmalloc\|f2fs_kzalloc\|f2fs_kvmalloc\|f2fs_kvzalloc\|
+    devm_kmalloc\|devm_kzalloc\)
+  (..., size, ...)
+
+@script:python depends on report@
+p << r.p;
+@@
+
+coccilib.report.print_report(p[0], "WARNING: missing overflow check")
+
+@script:python depends on org@
+p << r.p;
+@@
+
+coccilib.org.print_todo(p[0], "WARNING: missing overflow check")
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
