@@ -2,48 +2,86 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511D8207C53
-	for <lists+cocci@lfdr.de>; Wed, 24 Jun 2020 21:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E226C20A189
+	for <lists+cocci@lfdr.de>; Thu, 25 Jun 2020 17:06:23 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05OJgcd2029098;
-	Wed, 24 Jun 2020 21:42:38 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 05PF61hT023768;
+	Thu, 25 Jun 2020 17:06:01 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id BE8BA7825;
-	Wed, 24 Jun 2020 21:42:38 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id DF2D17825;
+	Thu, 25 Jun 2020 17:06:00 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 2FC953BAB
- for <cocci@systeme.lip6.fr>; Wed, 24 Jun 2020 21:42:36 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05OJgYAZ003068
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 24 Jun 2020 21:42:34 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.75,276,1589234400"; d="scan'208";a="352641912"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2020 21:42:34 +0200
-Date: Wed, 24 Jun 2020 21:42:34 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Denis Efremov <efremov@linux.com>
-In-Reply-To: <20200622221056.34241-1-efremov@linux.com>
-Message-ID: <alpine.DEB.2.22.394.2006242142240.2433@hadrien>
-References: <20200615102045.4558-1-efremov@linux.com>
- <20200622221056.34241-1-efremov@linux.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 530073BAB
+ for <cocci@systeme.lip6.fr>; Mon, 22 Jun 2020 16:46:22 +0200 (CEST)
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:241])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 05MEkKR7028830
+ (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
+ for <cocci@systeme.lip6.fr>; Mon, 22 Jun 2020 16:46:21 +0200 (CEST)
+Received: by mail-oi1-x241.google.com with SMTP id i74so15839711oib.0
+ for <cocci@systeme.lip6.fr>; Mon, 22 Jun 2020 07:46:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=bibVHEU3JMl6WYz1eGuG4xe8py8Hpo9EpfUixb5KAwQ=;
+ b=X0FJOcp6+5/IGDlD6069Y26SKrjwT9WG1ad1kqnco1dtIv1V8IFOU64KGlgAFym0ni
+ XZH3Of/dCoZzu26HH6veTfiZ8GxyXu9vXBHnW3T2aysKegvAlbVDwC9oRES7uzRXO3lf
+ zXhwqPTlC9wfbWpFsdq80ygL5J3kmemq8JWos=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=bibVHEU3JMl6WYz1eGuG4xe8py8Hpo9EpfUixb5KAwQ=;
+ b=ocBmFtDzakpBzCvBElSof8Amiwv7BtBVlYwYpYpXsCYvurBL5ufeIotBnXDfDkrfer
+ 6ipBVhc8fE0hAjvZrmQqreSLTGAfV3sujcXNNMabxt06d/5djNkjYWftYbkhfsCLEICN
+ zHTqp/9qEXp5NR6NIpdX1gOjHWMzQQJemOkv3T2rdTPOXAClFRg0aMQp/DGDAt9uvI92
+ cbiPPD4vWUmkaVMrl7bn+GKrei+xseM6t98+CDFV9iOriZpvg8btb92sYz0CtaYlXJDn
+ wUd9sg92cYW1489oIjHMO6h1iT4LvMGOGJWL+Py2UkF5zWvhycZueMekqaUY4IXoMglH
+ ldNg==
+X-Gm-Message-State: AOAM533WgSXeKJTGgtvxIWqvvMY6fiyrJnPitYkV3I40MCXJmAXqlh61
+ Z7ysTO4luyRHo90eawmVD19sgw==
+X-Google-Smtp-Source: ABdhPJxoDeOi/h22SFplMsaTYfOqsWxP58QzPKlvnYmt5yxokfMtFgLKIV40/BxXqkjjsMjZkvu4Fw==
+X-Received: by 2002:aca:eb12:: with SMTP id j18mr12510057oih.28.1592837180117; 
+ Mon, 22 Jun 2020 07:46:20 -0700 (PDT)
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net.
+ [24.9.64.241])
+ by smtp.gmail.com with ESMTPSA id u80sm3272937oia.5.2020.06.22.07.46.18
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 22 Jun 2020 07:46:19 -0700 (PDT)
+To: Matthias Maennich <maennich@google.com>,
+        Julia Lawall <julia.lawall@inria.fr>
+References: <20200604164145.173925-1-maennich@google.com>
+ <alpine.DEB.2.21.2006042130080.2577@hadrien>
+ <bf757b9d-6a67-598b-ed6e-7ee24464abfa@linuxfoundation.org>
+ <20200622080345.GD260206@google.com>
+From: Shuah Khan <skhan@linuxfoundation.org>
+Message-ID: <0eda607e-4083-46d2-acb8-63cfa2697a71@linuxfoundation.org>
+Date: Mon, 22 Jun 2020 08:46:18 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 24 Jun 2020 21:42:42 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 24 Jun 2020 21:42:34 +0200 (CEST)
+In-Reply-To: <20200622080345.GD260206@google.com>
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 25 Jun 2020 17:06:01 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Mon, 22 Jun 2020 16:46:21 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: Re: [Cocci] [PATCH v4] coccinelle: misc: add array_size_dup script
- to detect missed overflow checks
+X-Scanned-By: MIMEDefang 2.78
+X-Mailman-Approved-At: Thu, 25 Jun 2020 17:06:00 +0200
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shuah Khan <skhan@linuxfoundation.org>,
+        YueHaibing <yuehaibing@huawei.com>, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, jeyu@kernel.org, kernel-team@android.com,
+        cocci@systeme.lip6.fr
+Subject: Re: [Cocci] [PATCH] scripts: add dummy report mode to
+	add_namespace.cocci
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,264 +93,73 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+On 6/22/20 2:03 AM, Matthias Maennich wrote:
+> On Thu, Jun 04, 2020 at 02:39:18PM -0600, Shuah Khan wrote:
+>> On 6/4/20 1:31 PM, Julia Lawall wrote:
+>>>
+>>>
+>>> On Thu, 4 Jun 2020, Matthias Maennich wrote:
+>>>
+>>>> When running `make coccicheck` in report mode using the
+>>>> add_namespace.cocci file, it will fail for files that contain
+>>>> MODULE_LICENSE. Those match the replacement precondition, but spatch
+>>>> errors out as virtual.ns is not set.
+>>>>
+>>>> In order to fix that, add the virtual rule nsdeps and only do search 
+>>>> and
+>>>> replace if that rule has been explicitly requested.
+>>>>
+>>>> In order to make spatch happy in report mode, we also need a dummy 
+>>>> rule,
+>>>> as otherwise it errors out with "No rules apply". Using a script:python
+>>>> rule appears unrelated and odd, but this is the shortest I could 
+>>>> come up
+>>>> with.
+>>>>
+>>>> Adjust scripts/nsdeps accordingly to set the nsdeps rule when run 
+>>>> trough
+>>>> `make nsdeps`.
+>>>>
+>>>> Suggested-by: Julia Lawall <julia.lawall@inria.fr>
+>>>> Fixes: c7c4e29fb5a4 ("scripts: add_namespace: Fix coccicheck failed")
+>>>> Cc: YueHaibing <yuehaibing@huawei.com>
+>>>> Cc: jeyu@kernel.org
+>>>> Cc: cocci@systeme.lip6.fr
+>>>> Cc: stable@vger.kernel.org
+>>>> Signed-off-by: Matthias Maennich <maennich@google.com>
+>>>
+>>> Acked-by: Julia Lawall <julia.lawall@inria.fr>
+>>>
+>>> Shuah reported the problem to me, so you could add
+>>>
+>>> Reported-by: Shuah Khan <skhan@linuxfoundation.org>
+>>>
+>>
+>> Very cool. No errors with this patch. Thanks for fixing it
+>> quickly.
+> 
+> I am happy I could fix that and thanks for confirming. I assume your
+> Tested-by could be added?
+
+Yes
+
+Tested-by: Shuah Khan <skhan@linuxfoundation.org>
+> 
+> Is somebody willing to take this patch through their tree?
+> 
+
+My guess is that these go through kbuild git??
 
 
-On Tue, 23 Jun 2020, Denis Efremov wrote:
+thanks,
+-- Shuah
 
-> Detect an opencoded expression that is used before or after
-> array_size()/array3_size()/struct_size() to compute the same size.
->
-> Signed-off-by: Denis Efremov <efremov@linux.com>
 
-Applied, thanks.
-
-julia
-
-> ---
-> Changes in v2:
->  - python rules moved next to SmPL patterns
->  - assignment operator used
->  - struct_size patterns fixed to check only E3, since
->    E1, E2 are sizeofs of a structure and a member
->    of a structure
-> Changes in v3:
->  - s/overlow/overflow/ typo fixed (thanks, Markus)
->  - \(&E1\|&E2\) changed to &\(E1\|E2\)
->  - print strings breaks removed
-> Changes in v4:
->  - duplicates warning removed
->  - python2 compatability in report&&org modes added
->  - s/down the code/later/ warning changed
->  - \(E1\|E2\|subE1\|subE2\) patterns simplified to \(subE1\|subE2\)
->
->  scripts/coccinelle/misc/array_size_dup.cocci | 209 +++++++++++++++++++
->  1 file changed, 209 insertions(+)
->  create mode 100644 scripts/coccinelle/misc/array_size_dup.cocci
->
-> diff --git a/scripts/coccinelle/misc/array_size_dup.cocci b/scripts/coccinelle/misc/array_size_dup.cocci
-> new file mode 100644
-> index 000000000000..d3d635b2d4fc
-> --- /dev/null
-> +++ b/scripts/coccinelle/misc/array_size_dup.cocci
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +///
-> +/// Check for array_size(), array3_size(), struct_size() duplicates.
-> +/// Three types of patterns for these functions:
-> +///  1. An opencoded expression is used before array_size() to compute the same size
-> +///  2. An opencoded expression is used after array_size() to compute the same size
-> +/// From security point of view only first case is relevant. These functions
-> +/// perform arithmetic overflow check. Thus, if we use an opencoded expression
-> +/// before a call to the *_size() function we can miss an overflow.
-> +///
-> +// Confidence: High
-> +// Copyright: (C) 2020 Denis Efremov ISPRAS
-> +// Options: --no-includes --include-headers --no-loops
-> +
-> +virtual context
-> +virtual report
-> +virtual org
-> +
-> +@as@
-> +expression E1, E2;
-> +@@
-> +
-> +array_size(E1, E2)
-> +
-> +@as_next@
-> +expression subE1 <= as.E1;
-> +expression subE2 <= as.E2;
-> +expression as.E1, as.E2, E3;
-> +assignment operator aop;
-> +position p1, p2;
-> +@@
-> +
-> +* E1 * E2@p1
-> +  ... when != \(subE1\|subE2\) aop E3
-> +      when != &\(subE1\|subE2\)
-> +* array_size(E1, E2)@p2
-> +
-> +@script:python depends on report@
-> +p1 << as_next.p1;
-> +p2 << as_next.p2;
-> +@@
-> +
-> +msg = "WARNING: array_size is used later (line %s) to compute the same size" % (p2[0].line)
-> +coccilib.report.print_report(p1[0], msg)
-> +
-> +@script:python depends on org@
-> +p1 << as_next.p1;
-> +p2 << as_next.p2;
-> +@@
-> +
-> +msg = "WARNING: array_size is used later (line %s) to compute the same size" % (p2[0].line)
-> +coccilib.org.print_todo(p1[0], msg)
-> +
-> +@as_prev@
-> +expression subE1 <= as.E1;
-> +expression subE2 <= as.E2;
-> +expression as.E1, as.E2, E3;
-> +assignment operator aop;
-> +position p1, p2;
-> +@@
-> +
-> +* array_size(E1, E2)@p1
-> +  ... when != \(subE1\|subE2\) aop E3
-> +      when != &\(subE1\|subE2\)
-> +* E1 * E2@p2
-> +
-> +@script:python depends on report@
-> +p1 << as_prev.p1;
-> +p2 << as_prev.p2;
-> +@@
-> +
-> +msg = "WARNING: array_size is already used (line %s) to compute the same size" % (p1[0].line)
-> +coccilib.report.print_report(p2[0], msg)
-> +
-> +@script:python depends on org@
-> +p1 << as_prev.p1;
-> +p2 << as_prev.p2;
-> +@@
-> +
-> +msg = "WARNING: array_size is already used (line %s) to compute the same size" % (p1[0].line)
-> +coccilib.org.print_todo(p2[0], msg)
-> +
-> +@as3@
-> +expression E1, E2, E3;
-> +@@
-> +
-> +array3_size(E1, E2, E3)
-> +
-> +@as3_next@
-> +expression subE1 <= as3.E1;
-> +expression subE2 <= as3.E2;
-> +expression subE3 <= as3.E3;
-> +expression as3.E1, as3.E2, as3.E3, E4;
-> +assignment operator aop;
-> +position p1, p2;
-> +@@
-> +
-> +* E1 * E2 * E3@p1
-> +  ... when != \(subE1\|subE2\|subE3\) aop E4
-> +      when != &\(subE1\|subE2\|subE3\)
-> +* array3_size(E1, E2, E3)@p2
-> +
-> +@script:python depends on report@
-> +p1 << as3_next.p1;
-> +p2 << as3_next.p2;
-> +@@
-> +
-> +msg = "WARNING: array3_size is used later (line %s) to compute the same size" % (p2[0].line)
-> +coccilib.report.print_report(p1[0], msg)
-> +
-> +@script:python depends on org@
-> +p1 << as3_next.p1;
-> +p2 << as3_next.p2;
-> +@@
-> +
-> +msg = "WARNING: array3_size is used later (line %s) to compute the same size" % (p2[0].line)
-> +coccilib.org.print_todo(p1[0], msg)
-> +
-> +@as3_prev@
-> +expression subE1 <= as3.E1;
-> +expression subE2 <= as3.E2;
-> +expression subE3 <= as3.E3;
-> +expression as3.E1, as3.E2, as3.E3, E4;
-> +assignment operator aop;
-> +position p1, p2;
-> +@@
-> +
-> +* array3_size(E1, E2, E3)@p1
-> +  ... when != \(subE1\|subE2\|subE3\) aop E4
-> +      when != &\(subE1\|subE2\|subE3\)
-> +* E1 * E2 * E3@p2
-> +
-> +@script:python depends on report@
-> +p1 << as3_prev.p1;
-> +p2 << as3_prev.p2;
-> +@@
-> +
-> +msg = "WARNING: array3_size is already used (line %s) to compute the same size" % (p1[0].line)
-> +coccilib.report.print_report(p2[0], msg)
-> +
-> +@script:python depends on org@
-> +p1 << as3_prev.p1;
-> +p2 << as3_prev.p2;
-> +@@
-> +
-> +msg = "WARNING: array3_size is already used (line %s) to compute the same size" % (p1[0].line)
-> +coccilib.org.print_todo(p2[0], msg)
-> +
-> +@ss@
-> +expression E1, E2, E3;
-> +@@
-> +
-> +struct_size(E1, E2, E3)
-> +
-> +@ss_next@
-> +expression subE3 <= ss.E3;
-> +expression ss.E1, ss.E2, ss.E3, E4;
-> +assignment operator aop;
-> +position p1, p2;
-> +@@
-> +
-> +* E1 * E2 + E3@p1
-> +  ... when != subE3 aop E4
-> +      when != &subE3
-> +* struct_size(E1, E2, E3)@p2
-> +
-> +@script:python depends on report@
-> +p1 << ss_next.p1;
-> +p2 << ss_next.p2;
-> +@@
-> +
-> +msg = "WARNING: struct_size is used later (line %s) to compute the same size" % (p2[0].line)
-> +coccilib.report.print_report(p1[0], msg)
-> +
-> +@script:python depends on org@
-> +p1 << ss_next.p1;
-> +p2 << ss_next.p2;
-> +@@
-> +
-> +msg = "WARNING: struct_size is used later (line %s) to compute the same size" % (p2[0].line)
-> +coccilib.org.print_todo(p1[0], msg)
-> +
-> +@ss_prev@
-> +expression subE3 <= ss.E3;
-> +expression ss.E1, ss.E2, ss.E3, E4;
-> +assignment operator aop;
-> +position p1, p2;
-> +@@
-> +
-> +* struct_size(E1, E2, E3)@p1
-> +  ... when != subE3 aop E4
-> +      when != &subE3
-> +* E1 * E2 + E3@p2
-> +
-> +@script:python depends on report@
-> +p1 << ss_prev.p1;
-> +p2 << ss_prev.p2;
-> +@@
-> +
-> +msg = "WARNING: struct_size is already used (line %s) to compute the same size" % (p1[0].line)
-> +coccilib.report.print_report(p2[0], msg)
-> +
-> +@script:python depends on org@
-> +p1 << ss_prev.p1;
-> +p2 << ss_prev.p2;
-> +@@
-> +
-> +msg = "WARNING: struct_size is already used (line %s) to compute the same size" % (p1[0].line)
-> +coccilib.org.print_todo(p2[0], msg)
-> --
-> 2.26.2
->
->
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
