@@ -2,39 +2,39 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC912210E6B
-	for <lists+cocci@lfdr.de>; Wed,  1 Jul 2020 17:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 057B3210EF9
+	for <lists+cocci@lfdr.de>; Wed,  1 Jul 2020 17:19:57 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 061F7J7P005842;
-	Wed, 1 Jul 2020 17:07:19 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 061FJboN008786;
+	Wed, 1 Jul 2020 17:19:37 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 58A43781E;
-	Wed,  1 Jul 2020 17:07:19 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 5D49E781E;
+	Wed,  1 Jul 2020 17:19:37 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 832A1742B
- for <cocci@systeme.lip6.fr>; Wed,  1 Jul 2020 17:07:17 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 5D126742B
+ for <cocci@systeme.lip6.fr>; Wed,  1 Jul 2020 17:19:35 +0200 (CEST)
 Received: from merlin.infradead.org (merlin.infradead.org
  [IPv6:2001:8b0:10b:1231:0:0:0:1])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 061F7GKw023527
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 061FJV7V005929
  (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
- Wed, 1 Jul 2020 17:07:16 +0200 (CEST)
+ Wed, 1 Jul 2020 17:19:32 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
  In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
  :Reply-To:Content-ID:Content-Description;
- bh=L3kKHrtugZdZaaaEA+9AzSKVijtsEP+fouPlZ1lpYfo=; b=M3oGG8PMqN8K4FAu523qeKzcLi
- tHyOZRIc6eTPCI0K6yfu4vYkiSWAvtg202r3Vgi3ToycReduqU3rLS7McoJ/IuVVNyIO0YkjoZvmR
- emSVuipiCA9+6KQfBEXqwTm2+at/qnA/R/45dtwZPohMzoqcaxFf34qSWq3PrwTabTLNPIsoaz3Dq
- Gwuxns2WspMRje0MiJs1H4yQi6N2qMaXJ4Vg3YMN72sbB1cLSEKyIlRBoeeK81tF/aVsC1uPwl18F
- cY5EIypqviPOAqksyBeYzoWXVA1u0gH2A8tztZHuoQGnHAeTk+cbdWzOJIkkPZeDKm7vDweKRy2XX
- tRKt7rqg==;
+ bh=RMq+iE1LUPENeNcgBeF0Dm87bPYKtg4gXNNVgu26xNQ=; b=C71K5/fQGisGL/dr162sd1/BB0
+ PKXUXMzoOs1afRIhld7BQ9X7Pr4/y1MLjs8gQLGV98nh88bgZ+pw2CnwPL2I6DoGrBt4SfCuJAAAG
+ Pbceya8bm8et3ppzsfP50Wvq/oYOsVgqyFo5BK1gm47jR1/SeiqtHL7E1uSIqRP3ol+8eUm2K8jaV
+ RcKZR8XfcKONRxcIRVyd6WaPpfjCHJRSvjxe+UkOETlAlE2laAv2k9yPX0dwWOM0YC83jwEnr2My/
+ PkNAvhmO2EZhzSFBzyX2BrWqufyNegvBKJWrUEHfZ2RFpKKcNJ+nDVl4U7AsHWZD66vIjR/cTDZm9
+ 14ntrsQg==;
 Received: from [2601:1c0:6280:3f0::19c2]
  by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jqeKO-00064z-3z; Wed, 01 Jul 2020 15:07:12 +0000
+ id 1jqeWF-00086O-TU; Wed, 01 Jul 2020 15:19:28 +0000
 To: Markus Elfring <Markus.Elfring@web.de>, linux-doc@vger.kernel.org,
         Coccinelle <cocci@systeme.lip6.fr>
 References: <0616dd0c-bb86-be2b-3dc6-1c695a92c3ca@infradead.org>
@@ -45,18 +45,20 @@ References: <0616dd0c-bb86-be2b-3dc6-1c695a92c3ca@infradead.org>
  <2f80fb10-dc7f-29be-dc3e-2715f8bafc6d@web.de>
  <dfa2ed9f-fe68-58d1-c3d0-ac436f9bee09@infradead.org>
  <648d287e-3636-1858-1439-103d317f8571@web.de>
+ <34065299-03cf-5b62-db37-0acc9830be72@infradead.org>
+ <65db3f88-1ac8-374d-e3fe-2ea0970ffd67@web.de>
 From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <34065299-03cf-5b62-db37-0acc9830be72@infradead.org>
-Date: Wed, 1 Jul 2020 08:07:06 -0700
+Message-ID: <30b722ca-1bd8-2b96-ca41-1e9bc7212b66@infradead.org>
+Date: Wed, 1 Jul 2020 08:19:22 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.9.0
 MIME-Version: 1.0
-In-Reply-To: <648d287e-3636-1858-1439-103d317f8571@web.de>
+In-Reply-To: <65db3f88-1ac8-374d-e3fe-2ea0970ffd67@web.de>
 Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 01 Jul 2020 17:07:19 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 01 Jul 2020 17:19:37 +0200 (CEST)
 X-Greylist: IP, sender and recipient auto-whitelisted, not delayed by
  milter-greylist-4.4.3 (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Wed, 01 Jul 2020 17:07:17 +0200 (CEST)
+ Wed, 01 Jul 2020 17:19:32 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
 Cc: Michal Marek <michal.lkml@markovi.net>,
@@ -78,54 +80,23 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On 7/1/20 8:02 AM, Markus Elfring wrote:
->>>>> How do you think about to use the following command variant
->>>>> for the adjustment of the software documentation?
->>>>>
->>>>> +    make C=1 CHECK='scripts/coccicheck' 'path/to/file.o'
->>>>
->>>> I don't understand the reason for that change...
->>
->> IOW, your "patch" needs justification and/or explanation. It was missing that info.
-> 
-> I hope that the clarification of the presented questions can result into
-> relevant information.
-> 
-> 
->>> Is our understanding still incomplete for the support of source code checking parameters
->>> by the make script?
->>>
->>> * Will software analysis be performed in addition to the desired compilation
->>>   of a source file (according to the selected object file)?
->>>
->>> * How do you think about to trigger only the generation of analysis results
->>>   for a single file?
->>
->> Do I need to remove that line from the patch?
-> 
-> I propose to adjust it another bit.
-> The desired change agreement might need further communication efforts.
-> 
-> 
->> Feel free to submit patches, not just comments.
-> 
-> Would you like to integrate any more details from the running patch review?
-
-I am satisfied with the current patch.
-
-No doubt that any documentation can be improved, almost ad infinitum,
-but I'm not trying to do that. I'm trying not to do that.
-
-
--- 
-~Randy
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+T24gNy8xLzIwIDg6MTUgQU0sIE1hcmt1cyBFbGZyaW5nIHdyb3RlOgo+Pj4gV291bGQgeW91IGxp
+a2UgdG8gaW50ZWdyYXRlIGFueSBtb3JlIGRldGFpbHMgZnJvbSB0aGUgcnVubmluZyBwYXRjaCBy
+ZXZpZXc/Cj4+Cj4+IEkgYW0gc2F0aXNmaWVkIHdpdGggdGhlIGN1cnJlbnQgcGF0Y2guCj4gCj4g
+SSBnb3QgYW4gb3RoZXIgc29mdHdhcmUgZGV2ZWxvcG1lbnQgaW1wcmVzc2lvbi4KPiAKPiAKPj4g
+Tm8gZG91YnQgdGhhdCBhbnkgZG9jdW1lbnRhdGlvbiBjYW4gYmUgaW1wcm92ZWQsIGFsbW9zdCBh
+ZCBpbmZpbml0dW0sCj4+IGJ1dCBJJ20gbm90IHRyeWluZyB0byBkbyB0aGF0Lgo+IAo+IERvIHdl
+IHN0dW1ibGUgb24gYSB0YXJnZXQgY29uZmxpY3QgYWNjb3JkaW5nIHRvIGEgc3BlY2lmaWMgdGVj
+aG5pY2FsIGRldGFpbD8KPiAKPiBIb3cgZG8geW91IHRoaW5rIGFib3V0IHRvIGNvbXBhcmUgc291
+cmNlIGNvZGUgYW5hbHlzaXMgcmVzdWx0cwo+IGZyb20gcHJvZ3JhbXMgbGlrZSDigJxzcGFyc2Xi
+gJ0gYW5kIOKAnHNwYXRjaOKAnSAoYnkgdGhlIG1lbnRpb25lZCBtYWtlIGNvbW1hbmQpPwoKTm9u
+ZSBvZiB0aGF0IGhhcyBhbnl0aGluZyB0byBkbyB3aXRoIHRoZSBjdXJyZW50IHBhdGNoLgoKSnVs
+aWEsIGRvIHlvdSBoYXZlIGFueSBjb21tZW50cyBhYm91dCB0aGUgY3VycmVudCBwYXRjaD8gKHYy
+KQoKdGhhbmtzLgoKLS0gCn5SYW5keQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5mcgpo
+dHRwczovL3N5c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
