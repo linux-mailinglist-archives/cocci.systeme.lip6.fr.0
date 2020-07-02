@@ -2,61 +2,61 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6041211B9F
-	for <lists+cocci@lfdr.de>; Thu,  2 Jul 2020 07:40:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4422122B2
+	for <lists+cocci@lfdr.de>; Thu,  2 Jul 2020 13:53:30 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0625eNen028909;
-	Thu, 2 Jul 2020 07:40:23 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 062BqxLa008619;
+	Thu, 2 Jul 2020 13:52:59 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 93582781E;
-	Thu,  2 Jul 2020 07:40:23 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id EBF54781E;
+	Thu,  2 Jul 2020 13:52:58 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 0CB444084
- for <cocci@systeme.lip6.fr>; Thu,  2 Jul 2020 07:40:21 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0625eJtJ003416
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Thu, 2 Jul 2020 07:40:19 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.75,303,1589234400"; d="scan'208";a="457763334"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2020 07:40:18 +0200
-Date: Thu, 2 Jul 2020 07:40:18 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Matthew Wilcox <willy@infradead.org>
-In-Reply-To: <20200702000843.GV25523@casper.infradead.org>
-Message-ID: <alpine.DEB.2.22.394.2007020739270.2478@hadrien>
-References: <0616dd0c-bb86-be2b-3dc6-1c695a92c3ca@infradead.org>
- <c2c1dec0-2bd1-b0e2-1aa4-38d0e954d5ba@web.de>
- <efc8b0c9-db3b-3c9c-d876-897b53a9e278@infradead.org>
- <2a3940de-6a81-1aff-8109-53c1c5a6aa1b@web.de>
- <f2aaa91a-f935-bc2d-26f2-712576c1bbd7@infradead.org>
- <2f80fb10-dc7f-29be-dc3e-2715f8bafc6d@web.de>
- <dfa2ed9f-fe68-58d1-c3d0-ac436f9bee09@infradead.org>
- <20200702000843.GV25523@casper.infradead.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 155B84084
+ for <cocci@systeme.lip6.fr>; Thu,  2 Jul 2020 13:52:57 +0200 (CEST)
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236:0:0:0:1])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 062BqsUQ007235
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Thu, 2 Jul 2020 13:52:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=2LYlRU7JyrrAAhL6kWTw5as9ctpjIL2vXkhqlV5CM/E=; b=S5GUDaE5JvUqQIPOl1eeQuBCS8
+ umysz5K1Nthmw6mgoG+czq0B+QKng0w6vkTjXPQI56Ntfmp+/5ljciG1tOY4U7g75CKuMZOXLnpMK
+ q36t49YZaXD0gpkuFWEk9seK1ASXD4xuJ558ONNZ6sDJwz0k4pKunw943/I9mslrPck9JOJFvNOKe
+ ew5wYag8RUgQrZWAvHjJmqd47WkcaRseCmpETgzq9pLS4b8IQbMp+btEbBCPqknZh7J2SRnjasP8b
+ IoU0NYLrF3R0FR1awyfcBvVNfnFAvhBGbGqPNcalm/vkDyyAYOy7Mea7QyE7ui0/DPGq18p3fIlCJ
+ 6gScIk2g==;
+Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1jqxlq-0002WG-FE; Thu, 02 Jul 2020 11:52:50 +0000
+Date: Thu, 2 Jul 2020 12:52:50 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+Message-ID: <20200702115250.GX25523@casper.infradead.org>
+References: <def28907-18b9-5b7a-e743-79b0418c946c@infradead.org>
+ <63450b02-93f1-1ea0-9e39-c5bb14086ce2@web.de>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 02 Jul 2020 07:40:26 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Thu, 02 Jul 2020 07:40:19 +0200 (CEST)
+Content-Disposition: inline
+In-Reply-To: <63450b02-93f1-1ea0-9e39-c5bb14086ce2@web.de>
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 02 Jul 2020 13:53:00 +0200 (CEST)
+X-Greylist: Delayed for 11:44:06 by milter-greylist-4.4.3 (isis.lip6.fr
+ [IPv6:2001:660:3302:283c:0:0:0:2]); Thu, 02 Jul 2020 13:52:56 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Jonathan Corbet <corbet@lwn.net>, Michal Marek <michal.lkml@markovi.net>,
-        linux-doc@vger.kernel.org, Nicolas Palix <nicolas.palix@imag.fr>,
-        Randy Dunlap <rdunlap@infradead.org>, kernel-janitors@vger.kernel.org,
+X-Scanned-By: MIMEDefang 2.78
+Cc: Michal Marek <michal.lkml@markovi.net>, Jonathan Corbet <corbet@lwn.net>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        Randy Dunlap <rdunlap@infradead.org>, linux-doc@vger.kernel.org,
         LKML <linux-kernel@vger.kernel.org>,
         Julia Lawall <julia.lawall@lip6.fr>,
-        Markus Elfring <Markus.Elfring@web.de>,
         Gilles Muller <Gilles.Muller@lip6.fr>,
         Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] [v2] Documentation: Coccinelle: fix typos and command
-	example
+Subject: Re: [Cocci] [PATCH v3] Documentation: Coccinelle: fix various typos
+	etc.
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,34 +68,24 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-
-
-On Thu, 2 Jul 2020, Matthew Wilcox wrote:
-
-> On Wed, Jul 01, 2020 at 07:52:58AM -0700, Randy Dunlap wrote:
-> > On 7/1/20 6:32 AM, Markus Elfring wrote:
-> > >>> How do you think about to use the following command variant
-> > >>> for the adjustment of the software documentation?
-> > >>>
-> > >>> +    make C=1 CHECK='scripts/coccicheck' 'path/to/file.o'
-> > >>
-> > >> I don't understand the reason for that change...
-> >
-> > IOW, your "patch" needs justification and/or explanation. It was missing that info.
->
-> What Markus is trying so completely ineptly to say is that
->   make C=1 CHECK=scripts/coccicheck path/to/file.c
-> doesn't work.  You need to use the .o suffix to check the .c file.
-
-Thanks Matthew for this very helpful information.
-
-julia
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+T24gVGh1LCBKdWwgMDIsIDIwMjAgYXQgMDg6NTY6MjRBTSArMDIwMCwgTWFya3VzIEVsZnJpbmcg
+d3JvdGU6Cj4g4oCmCj4gPiArKysgbGludXgtbmV4dC0yMDIwMDYyOS9Eb2N1bWVudGF0aW9uL2Rl
+di10b29scy9jb2NjaW5lbGxlLnJzdAo+IOKApgo+ID4gQEAgLTI2MCwxMyArMjYwLDEzIEBAIElm
+IG5vdCB1c2luZyB0aGUga2VybmVsJ3MgY29jY2ljaGVjayB0YXIKPiDigKYKPiA+IC1XZSBoZWxw
+IENvY2NpbmVsbGUgd2hlbiB1c2VkIGFnYWluc3QgTGludXggd2l0aCBhIHNldCBvZiBzZW5zaWJs
+ZSBkZWZhdWx0cwo+ID4gK1dlIGhlbHAgQ29jY2luZWxsZSB3aGVuIHVzZWQgYWdhaW5zdCBMaW51
+eCB3aXRoIGEgc2V0IG9mIHNlbnNpYmxlIGRlZmF1bHQKPiA+ICBvcHRpb25zIGZvciBMaW51eCB3
+aXRoIG91ciBvd24gTGludXggLmNvY2NpY29uZmlnLiBUaGlzIGhpbnRzIHRvIGNvY2NpbmVsbGUK
+PiAKPiBBbm90aGVyIHNtYWxsIHdvcmRpbmcgYWRqdXN0bWVudDoKPiAgIOKApiBUaGVzZSBoaW50
+cyDigKYKClRoYXQgd291bGQgYmUgYW4gaW5jb3JyZWN0IGFkanVzdG1lbnQuICBVbmZvcnR1bmF0
+ZWx5LCB5b3Ugc25pcHBlZCB0aGUKcmVzdCBvZiB0aGUgc2VudGVuY2UgdGhhdCBwdXRzIHRob3Nl
+IHR3byB3b3JkcyBpbiBjb250ZXh0LiAgQmFzaWNhbGx5IGl0J3MKc2hvcnRlciBmb3IgIkJ5IGRv
+aW5nIHRoaXMsIHdlIGhpbnQgdG8gY29jY2luZWxsZSIgcmF0aGVyIHRoYW4gIlRoZXNlCnRoaW5n
+cyBhcmUgaGludHMgdG8gY29jY2luZWxsZSIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5m
+cgpodHRwczovL3N5c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
