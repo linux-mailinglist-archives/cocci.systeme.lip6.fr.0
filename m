@@ -2,44 +2,48 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09FA4213F23
-	for <lists+cocci@lfdr.de>; Fri,  3 Jul 2020 20:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE46215FD6
+	for <lists+cocci@lfdr.de>; Mon,  6 Jul 2020 22:04:22 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 063I2xcw002309;
-	Fri, 3 Jul 2020 20:03:02 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 066K3nmq015063;
+	Mon, 6 Jul 2020 22:03:49 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 68A777892;
-	Fri,  3 Jul 2020 20:02:54 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id A8E0B781D;
+	Mon,  6 Jul 2020 22:03:49 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id DDFF3777D
- for <cocci@systeme.lip6.fr>; Fri,  3 Jul 2020 20:00:19 +0200 (CEST)
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 063I0JQ9024345
+ by systeme.lip6.fr (Postfix) with ESMTPS id 919283D0F
+ for <cocci@systeme.lip6.fr>; Mon,  6 Jul 2020 22:03:48 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 066K3l6e023756
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 3 Jul 2020 20:00:19 +0200 (CEST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id 507642A6516
-From: Jaskaran Singh <jaskaran.singh@collabora.com>
-To: cocci@systeme.lip6.fr
-Date: Fri,  3 Jul 2020 23:29:31 +0530
-Message-Id: <20200703175931.1693-21-jaskaran.singh@collabora.com>
-X-Mailer: git-send-email 2.21.3
-In-Reply-To: <20200703175931.1693-1-jaskaran.singh@collabora.com>
+ for <cocci@systeme.lip6.fr>; Mon, 6 Jul 2020 22:03:47 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.75,321,1589234400"; d="scan'208";a="458580204"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2020 22:03:47 +0200
+Date: Mon, 6 Jul 2020 22:03:47 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Jaskaran Singh <jaskaran.singh@collabora.com>
+In-Reply-To: <20200703175931.1693-3-jaskaran.singh@collabora.com>
+Message-ID: <alpine.DEB.2.22.394.2007062203360.2521@hadrien>
 References: <20200703175931.1693-1-jaskaran.singh@collabora.com>
+ <20200703175931.1693-3-jaskaran.singh@collabora.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 03 Jul 2020 20:03:02 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 06 Jul 2020 22:03:53 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 03 Jul 2020 20:00:19 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Mon, 06 Jul 2020 22:03:47 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Fri, 03 Jul 2020 20:02:41 +0200
-Subject: [Cocci] [PATCH 20/20] ocaml: coccilib: Wrap SmPL Attributes
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: cocci@systeme.lip6.fr
+Subject: Re: [Cocci] [PATCH 02/20] parsing_cocci: parser: Wrap SmPL
+	Attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,45 +60,113 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Attributes are wrapped in the SmPL AST. Reflect these changes in
-coccilib.mli.
 
-Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
----
- ocaml/coccilib.mli | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/ocaml/coccilib.mli b/ocaml/coccilib.mli
-index 24b5f1ae..010b8aab 100644
---- a/ocaml/coccilib.mli
-+++ b/ocaml/coccilib.mli
-@@ -2925,7 +2925,10 @@ module Ast_cocci :
-       | FType of fullType
-       | FInline of string mcode
-       | FAttr of attr
--    and attr = string mcode
-+    and base_attr =
-+      Ast_cocci.base_attr =
-+        Attribute of string mcode
-+    and attr = base_attr wrap
-     and metaStmtInfo =
-       Ast_cocci.metaStmtInfo =
-         NotSequencible
-@@ -3553,7 +3556,10 @@ module Ast0_cocci :
-       | FType of typeC
-       | FInline of string mcode
-       | FAttr of attr
--    and attr = string mcode
-+    and base_attr =
-+      Ast0_cocci.base_attr =
-+        Attribute of string mcode
-+    and attr = base_attr wrap
-     and ('a, 'b) whencode =
-       ('a, 'b) Ast0_cocci.whencode =
-         WhenNot of string mcode * string mcode * 'a
--- 
-2.21.3
+On Fri, 3 Jul 2020, Jaskaran Singh wrote:
 
+> Attributes are wrapped in the SmPL AST. Reciprocate this and wrap
+> attributes in the SmPL parser.
+
+This doesn't apply for me.
+
+julia
+
+
+>
+> Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
+> ---
+>  parsing_cocci/parse_aux.ml            |  3 +++
+>  parsing_cocci/parse_aux.mli           |  7 +++++++
+>  parsing_cocci/parser_cocci_menhir.mly | 18 ++++++++++--------
+>  3 files changed, 20 insertions(+), 8 deletions(-)
+>
+> diff --git a/parsing_cocci/parse_aux.ml b/parsing_cocci/parse_aux.ml
+> index b5d1afb4..f2036bfc 100644
+> --- a/parsing_cocci/parse_aux.ml
+> +++ b/parsing_cocci/parse_aux.ml
+> @@ -152,6 +152,9 @@ let logic_op ast_op left op right =
+>  let make_cv cv ty =
+>    match cv with None -> ty | Some x -> Ast0.wrap (Ast0.ConstVol(x,ty))
+>
+> +let make_attr attr =
+> +  Ast0.wrap(Ast0.Attribute(id2mcode attr))
+> +
+>  let top_dots l = Ast0.wrap l
+>
+>  (* here the offset is that of the first in the sequence of *s, not that of
+> diff --git a/parsing_cocci/parse_aux.mli b/parsing_cocci/parse_aux.mli
+> index 91d7cb26..0ecf10b0 100644
+> --- a/parsing_cocci/parse_aux.mli
+> +++ b/parsing_cocci/parse_aux.mli
+> @@ -151,6 +151,13 @@ val logic_op :
+>    string -> Ast0_cocci.expression -> Ast0_cocci.base_expression Ast0_cocci.wrap
+>  val make_cv :
+>    Ast_cocci.const_vol Ast0_cocci.mcode option -> Ast0_cocci.typeC -> Ast0_cocci.typeC
+> +val make_attr:
+> +  string *
+> +  (Data.line_type * int * int * int * int * int *
+> +   (Ast_cocci.added_string * Ast0_cocci.position_info) list *
+> +   (Ast_cocci.added_string * Ast0_cocci.position_info) list *
+> +   Ast0_cocci.anything list * string) ->
+> +   Ast0_cocci.attr
+>  val top_dots : 'a -> 'a Ast0_cocci.wrap
+>  val pointerify :
+>    Ast0_cocci.typeC ->
+> diff --git a/parsing_cocci/parser_cocci_menhir.mly b/parsing_cocci/parser_cocci_menhir.mly
+> index 63cb8b5e..32bcd63c 100644
+> --- a/parsing_cocci/parser_cocci_menhir.mly
+> +++ b/parsing_cocci/parser_cocci_menhir.mly
+> @@ -1495,11 +1495,11 @@ fninfo:
+>  	let _ = List.find (function Ast0.FInline(_) -> true | _ -> false) $2 in
+>  	raise (Semantic_cocci.Semantic "duplicate inline")
+>        with Not_found -> (Ast0.FInline(P.clt2mcode "inline" $1))::$2 }
+> -  | Tattr    fninfo
+> +  | a=Tattr    fninfo
+>        { try
+>  	let _ = List.find (function Ast0.FAttr(_) -> true | _ -> false) $2 in
+>  	raise (Semantic_cocci.Semantic "multiple attributes")
+> -      with Not_found -> (Ast0.FAttr(P.id2mcode $1))::$2 }
+> +      with Not_found -> (Ast0.FAttr(P.make_attr a))::$2 }
+>
+>  fninfo_nt:
+>      /* empty */ { [] }
+> @@ -1514,11 +1514,11 @@ fninfo_nt:
+>  	let _ = List.find (function Ast0.FInline(_) -> true | _ -> false) $2 in
+>  	raise (Semantic_cocci.Semantic "duplicate inline")
+>        with Not_found -> (Ast0.FInline(P.clt2mcode "inline" $1))::$2 }
+> -  | Tattr    fninfo_nt
+> +  | a=Tattr    fninfo_nt
+>        { try
+>  	let _ = List.find (function Ast0.FAttr(_) -> true | _ -> false) $2 in
+>  	raise (Semantic_cocci.Semantic "duplicate init")
+> -      with Not_found -> (Ast0.FAttr(P.id2mcode $1))::$2 }
+> +      with Not_found -> (Ast0.FAttr(P.make_attr a))::$2 }
+>
+>  storage:
+>           s=Tstatic      { P.clt2mcode Ast.Static s }
+> @@ -3227,12 +3227,14 @@ script_virt_name_decl:
+>
+>  %inline
+>  attr_list:
+> -                        { [] }
+> - | a=Tattr f=full_attr_list {P.id2mcode a::f}
+> +                           { [] }
+> + | Tattr f=full_attr_list
+> +    { let a = P.make_attr $1 in a::f }
+>
+>  full_attr_list:
+> -                        { [] }
+> - | Tattr full_attr_list {P.id2mcode $1::$2}
+> +                           { [] }
+> + | Tattr f=full_attr_list
+> +    { let a = P.make_attr $1 in a::f }
+>
+>  anything: /* used for script code */
+>     TIdentifier { "identifier" }
+> --
+> 2.21.3
+>
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
