@@ -2,32 +2,32 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E011218850
-	for <lists+cocci@lfdr.de>; Wed,  8 Jul 2020 15:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C79B921884A
+	for <lists+cocci@lfdr.de>; Wed,  8 Jul 2020 15:01:36 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 068D1KO5008186;
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 068D1Kpe022845;
 	Wed, 8 Jul 2020 15:01:21 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 709A97827;
+	by systeme.lip6.fr (Postfix) with ESMTP id DC970782B;
 	Wed,  8 Jul 2020 15:01:20 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 084617859
- for <cocci@systeme.lip6.fr>; Wed,  8 Jul 2020 15:01:17 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 6B0B5785D
+ for <cocci@systeme.lip6.fr>; Wed,  8 Jul 2020 15:01:18 +0200 (CEST)
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
  [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 068D1GdU016134
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 068D1Hsg008590
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Wed, 8 Jul 2020 15:01:16 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Wed, 8 Jul 2020 15:01:17 +0200 (CEST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id 208022A07C0
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id 701F62A18F5
 From: Jaskaran Singh <jaskaran.singh@collabora.com>
 To: cocci@systeme.lip6.fr
-Date: Wed,  8 Jul 2020 18:30:21 +0530
-Message-Id: <20200708130035.26687-7-jaskaran.singh@collabora.com>
+Date: Wed,  8 Jul 2020 18:30:22 +0530
+Message-Id: <20200708130035.26687-8-jaskaran.singh@collabora.com>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200708130035.26687-1-jaskaran.singh@collabora.com>
 References: <20200708130035.26687-1-jaskaran.singh@collabora.com>
@@ -35,10 +35,10 @@ MIME-Version: 1.0
 X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 08 Jul 2020 15:01:21 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Wed, 08 Jul 2020 15:01:16 +0200 (CEST)
+ Wed, 08 Jul 2020 15:01:17 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
-Subject: [Cocci] [PATCH v2 RESEND 06/20] parsing_cocci: compute_lines: Wrap
+Subject: [Cocci] [PATCH v2 RESEND 07/20] parsing_cocci: context_neg: Wrap
 	SmPL Attributes
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -57,145 +57,128 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 Attributes are wrapped in the SmPL AST. Reflect these changes in
-compute_lines.ml.
+context_neg.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
 ---
- parsing_cocci/compute_lines.ml | 42 +++++++++++++++++++---------------
- 1 file changed, 24 insertions(+), 18 deletions(-)
+ parsing_cocci/context_neg.ml | 31 ++++++++++++++++++++-----------
+ 1 file changed, 20 insertions(+), 11 deletions(-)
 
-diff --git a/parsing_cocci/compute_lines.ml b/parsing_cocci/compute_lines.ml
-index 4f273307..4420e952 100644
---- a/parsing_cocci/compute_lines.ml
-+++ b/parsing_cocci/compute_lines.ml
-@@ -428,7 +428,7 @@ let rec expression e =
-   | Ast0.Cast(lp,ty,attr,rp,exp) ->
-       let lp = normal_mcode lp in
-       let exp = expression exp in
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let rp = normal_mcode rp in
-       mkres e (Ast0.Cast(lp,typeC ty,attr,rp,exp)) (promote_mcode lp) exp
-   | Ast0.SizeOfExpr(szf,exp) ->
-@@ -672,7 +672,7 @@ and declaration d =
-   | Ast0.Init(stg,ty,id,attr,eq,exp,sem) ->
-       let ty = typeC ty in
-       let id = ident id in
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let eq = normal_mcode eq in
-       let exp = initialiser exp in
-       let sem = normal_mcode sem in
-@@ -686,7 +686,7 @@ and declaration d =
-   | Ast0.UnInit(stg,ty,id,attr,sem) ->
-       let ty = typeC ty in
-       let id = ident id in
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let sem = normal_mcode sem in
-       (match stg with
- 	None ->
-@@ -715,13 +715,13 @@ and declaration d =
- 	| Ast0.FStorage(stg)::_ -> mkres d res (promote_mcode stg) right
- 	| Ast0.FType(ty)::_ -> mkres d res ty right
- 	| Ast0.FInline(inline)::_ -> mkres d res (promote_mcode inline) right
--	| Ast0.FAttr(attr)::_ -> mkres d res (promote_mcode attr) right)
-+	| Ast0.FAttr(attr)::_ -> mkres d res attr right)
-   | Ast0.MacroDecl(stg,name,lp,args,rp,attr,sem) ->
-       let name = ident name in
-       let lp = normal_mcode lp in
-       let args = dots is_exp_dots (Some(promote_mcode lp)) expression args in
-       let rp = normal_mcode rp in
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let sem = normal_mcode sem in
-       (match stg with
- 	None ->
-@@ -749,7 +749,7 @@ and declaration d =
- 	    (promote_mcode x) (promote_mcode sem))
-   | Ast0.TyDecl(ty,attr,sem) ->
-       let ty = typeC ty in
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let sem = normal_mcode sem in
-       mkres d (Ast0.TyDecl(ty,attr,sem)) ty (promote_mcode sem)
-   | Ast0.Typedef(stg,ty,id,sem) ->
-@@ -907,6 +907,13 @@ and initialiser_list prev = dots is_init_dots prev initialiser
- (* for export *)
- and initialiser_dots x = dots is_init_dots None initialiser x
+diff --git a/parsing_cocci/context_neg.ml b/parsing_cocci/context_neg.ml
+index 6e992245..6a04f49b 100644
+--- a/parsing_cocci/context_neg.ml
++++ b/parsing_cocci/context_neg.ml
+@@ -400,6 +400,10 @@ let classify is_minus all_marked table code =
+ 	  disj_cases e starter expr_list r.VT0.combiner_rec_expression ender
+       |	_ -> k e) in
  
-+and attribute a =
-+  match Ast0.unwrap a with
-+    Ast0.Attribute(attr) ->
-+      let ln = promote_mcode attr in
-+      mkres a (Ast0.Attribute(attr)) ln ln
++  let attribute a =
++    match Ast0.unwrap a with
++      Ast0.Attribute(attr) -> mcode attr in
 +
+   (* not clear why we have the next cases, since DisjDecl and
+   as it only comes from isos *)
+   (* actually, DisjDecl now allowed in source struct decls *)
+@@ -423,7 +427,7 @@ let classify is_minus all_marked table code =
+ 	    (bind (r.VT0.combiner_rec_typeC ty)
+ 	       (bind (r.VT0.combiner_rec_ident id)
+                   (bind
+-                     (List.fold_right bind (List.map mcode attr)
++                     (List.fold_right bind (List.map attribute attr)
+ 			option_default)
+ 		     (bind (mcode eq)
+ 			(bind (r.VT0.combiner_rec_initialiser ini)
+@@ -433,7 +437,7 @@ let classify is_minus all_marked table code =
+ 	    (bind (r.VT0.combiner_rec_typeC ty)
+ 	       (bind (r.VT0.combiner_rec_ident id)
+                   (bind
+-                     (List.fold_right bind (List.map mcode attr)
++                     (List.fold_right bind (List.map attribute attr)
+ 			option_default)
+ 		     (mcode sem))))
+       |	_ -> k e) in
+@@ -470,7 +474,7 @@ let classify is_minus all_marked table code =
+ 	  (* needed for the same reason as in the Init and UnInit cases *)
+ 	  bind (r.VT0.combiner_rec_typeC ty)
+            (bind (r.VT0.combiner_rec_ident id)
+-              (List.fold_right bind (List.map mcode attr) option_default))
++              (List.fold_right bind (List.map attribute attr) option_default))
+       |	_ -> k e) in
+ 
+   let typeC r k e =
+@@ -585,6 +589,11 @@ let equal_option e1 e2 =
+ let dots fn d1 d2 =
+   List.length (Ast0.unwrap d1) = List.length (Ast0.unwrap d2)
+ 
++let equal_attribute a1 a2 =
++  match (Ast0.unwrap a1, Ast0.unwrap a2) with
++    (Ast0.Attribute(attr1),Ast0.Attribute(attr2)) ->
++      equal_mcode attr1 attr2
 +
- (* --------------------------------------------------------------------- *)
- (* Parameter *)
+ let equal_ident i1 i2 =
+   match (Ast0.unwrap i1,Ast0.unwrap i2) with
+     (Ast0.Id(name1),Ast0.Id(name2)) -> equal_mcode name1 name2
+@@ -632,7 +641,7 @@ let rec equal_expression e1 e2 =
+       equal_mcode ar1 ar2
+   | (Ast0.Cast(lp1,_,ar1,rp1,_),Ast0.Cast(lp2,_,ar2,rp2,_)) ->
+       equal_mcode lp1 lp2 &&
+-      List.for_all2 equal_mcode ar1 ar2 &&
++      List.for_all2 equal_attribute ar1 ar2 &&
+       equal_mcode rp1 rp2
+   | (Ast0.SizeOfExpr(szf1,_),Ast0.SizeOfExpr(szf2,_)) ->
+       equal_mcode szf1 szf2
+@@ -731,7 +740,7 @@ let equal_fninfo x y =
+     (Ast0.FStorage(s1),Ast0.FStorage(s2)) -> equal_mcode s1 s2
+   | (Ast0.FType(_),Ast0.FType(_)) -> true
+   | (Ast0.FInline(i1),Ast0.FInline(i2)) -> equal_mcode i1 i2
+-  | (Ast0.FAttr(i1),Ast0.FAttr(i2)) -> equal_mcode i1 i2
++  | (Ast0.FAttr(i1),Ast0.FAttr(i2)) -> equal_attribute i1 i2
+   | _ -> false
  
-@@ -918,30 +925,30 @@ and is_param_dots p =
- and parameterTypeDef p =
-   match Ast0.unwrap p with
-     Ast0.VoidParam(ty,attr) ->
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let ty = typeC ty in
-       (match attr with
-         [] -> mkres p (Ast0.VoidParam(ty,attr)) ty ty
-       | l ->
-           let lattr = List.hd (List.rev l) in
--          mkres p (Ast0.VoidParam(ty,attr)) ty (promote_mcode lattr))
-+          mkres p (Ast0.VoidParam(ty,attr)) ty lattr)
-   | Ast0.Param(ty,Some id,attr) ->
-       let id = ident id in
-       let ty = typeC ty in
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       (match attr with
-         [] -> mkres p (Ast0.Param(ty,Some id,attr)) ty id
-       | l ->
-           let lattr = List.hd (List.rev l) in
--          mkres p (Ast0.Param(ty,Some id,attr)) ty (promote_mcode lattr))
-+          mkres p (Ast0.Param(ty,Some id,attr)) ty lattr)
-   | Ast0.Param(ty,None,attr) ->
--      let attr = List.map normal_mcode attr in
-+      let attr = List.map attribute attr in
-       let ty = typeC ty in
-       (match attr with
-         [] -> mkres p (Ast0.Param(ty,None,attr)) ty ty
-       | l ->
-           let lattr = List.hd (List.rev l) in
--          mkres p (Ast0.Param(ty,None,attr)) ty (promote_mcode lattr))
-+          mkres p (Ast0.Param(ty,None,attr)) ty lattr)
-   | Ast0.MetaParam(name,a,b) ->
-       let name = normal_mcode name in
-       let ln = promote_mcode name in
-@@ -1297,7 +1304,7 @@ let rec statement s =
- 	| Ast0.FStorage(stg)::_ -> mkres s res (promote_mcode stg) right
- 	| Ast0.FType(ty)::_ -> mkres s res ty right
- 	| Ast0.FInline(inline)::_ -> mkres s res (promote_mcode inline) right
--	| Ast0.FAttr(attr)::_ -> mkres s res (promote_mcode attr) right)
-+	| Ast0.FAttr(attr)::_ -> mkres s res attr right)
- 
-     | Ast0.Include(inc,stm) ->
- 	let inc = normal_mcode inc in
-@@ -1359,11 +1366,10 @@ and leftfninfo fninfo name bef = (* cases on what is leftmost *)
-        Ast0.FInline(set_mcode_info inline (Ast0.get_info inlinfo))::rest,
-        name)
-   | Ast0.FAttr(attr)::rest ->
--      let (leftinfo,attrinfo) =
--	promote_to_statement_start (promote_mcode attr) bef in
--      (leftinfo,
--       Ast0.FAttr(set_mcode_info attr (Ast0.get_info attrinfo))::rest,
--       name)
-+      let attr = attribute attr in
-+      let (leftinfo,attr) =
-+	promote_to_statement_start attr bef in
-+      (leftinfo,Ast0.FAttr(attr)::rest,name)
- 
- and pragmainfo pi =
-   match Ast0.unwrap pi with
+ let equal_declaration d1 d2 =
+@@ -740,10 +749,10 @@ let equal_declaration d1 d2 =
+       equal_mcode name1 name2
+   | (Ast0.Init(stg1,_,_,attr1,eq1,_,sem1),
+      Ast0.Init(stg2,_,_,attr2,eq2,_,sem2)) ->
+-      equal_option stg1 stg2 && List.for_all2 equal_mcode attr1 attr2 &&
++      equal_option stg1 stg2 && List.for_all2 equal_attribute attr1 attr2 &&
+       equal_mcode eq1 eq2 && equal_mcode sem1 sem2
+   | (Ast0.UnInit(stg1,_,_,attr1,sem1),Ast0.UnInit(stg2,_,_,attr2,sem2)) ->
+-      equal_option stg1 stg2 && List.for_all2 equal_mcode attr1 attr2 &&
++      equal_option stg1 stg2 && List.for_all2 equal_attribute attr1 attr2 &&
+       equal_mcode sem1 sem2
+   | (Ast0.FunProto(fninfo1,name1,lp1,p1,va1,rp1,sem1),
+      Ast0.FunProto(fninfo2,name2,lp2,p2,va2,rp2,sem2)) ->
+@@ -758,7 +767,7 @@ let equal_declaration d1 d2 =
+        equal_mcode rp1 rp2 && equal_mcode sem1 sem2
+   | (Ast0.MacroDecl(stg1,nm1,lp1,_,rp1,attr1,sem1),
+      Ast0.MacroDecl(stg2,nm2,lp2,_,rp2,attr2,sem2)) ->
+-      equal_option stg1 stg2 && List.for_all2 equal_mcode attr1 attr2 &&
++      equal_option stg1 stg2 && List.for_all2 equal_attribute attr1 attr2 &&
+       equal_mcode lp1 lp2 && equal_mcode rp1 rp2 && equal_mcode sem1 sem2
+   | (Ast0.MacroDeclInit(stg1,nm1,lp1,_,rp1,eq1,_,sem1),
+      Ast0.MacroDeclInit(stg2,nm2,lp2,_,rp2,eq2,_,sem2)) ->
+@@ -766,7 +775,7 @@ let equal_declaration d1 d2 =
+        equal_mcode lp1 lp2 && equal_mcode rp1 rp2 && equal_mcode eq1 eq2
+ 	 && equal_mcode sem1 sem2
+   | (Ast0.TyDecl(_,attr1,sem1),Ast0.TyDecl(_,attr2,sem2)) ->
+-       List.for_all2 equal_mcode attr1 attr2 && equal_mcode sem1 sem2
++       List.for_all2 equal_attribute attr1 attr2 && equal_mcode sem1 sem2
+   | (Ast0.OptDecl(_),Ast0.OptDecl(_)) -> true
+   | (Ast0.DisjDecl(starter1,_,mids1,ender1),
+      Ast0.DisjDecl(starter2,_,mids2,ender2))
+@@ -845,9 +854,9 @@ let equal_initialiser i1 i2 =
+ let equal_parameterTypeDef p1 p2 =
+   match (Ast0.unwrap p1,Ast0.unwrap p2) with
+     (Ast0.VoidParam(_,ar1),Ast0.VoidParam(_,ar2)) ->
+-      List.for_all2 equal_mcode ar1 ar2
++      List.for_all2 equal_attribute ar1 ar2
+   | (Ast0.Param(_,_,ar1),Ast0.Param(_,_,ar2)) ->
+-      List.for_all2 equal_mcode ar1 ar2
++      List.for_all2 equal_attribute ar1 ar2
+   | (Ast0.MetaParam(name1,_,_),Ast0.MetaParam(name2,_,_))
+   | (Ast0.MetaParamList(name1,_,_,_),Ast0.MetaParamList(name2,_,_,_)) ->
+       equal_mcode name1 name2
 -- 
 2.21.3
 
