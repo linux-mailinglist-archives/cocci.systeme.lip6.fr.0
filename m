@@ -2,47 +2,40 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122DE21C321
-	for <lists+cocci@lfdr.de>; Sat, 11 Jul 2020 10:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B15222344
+	for <lists+cocci@lfdr.de>; Thu, 16 Jul 2020 15:02:19 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06B82Lhh027860;
-	Sat, 11 Jul 2020 10:02:21 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06GD1htF011179;
+	Thu, 16 Jul 2020 15:01:43 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id BE7DC781D;
-	Sat, 11 Jul 2020 10:02:21 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 1842A7815;
+	Thu, 16 Jul 2020 15:01:43 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id B14CB3D0F
- for <cocci@systeme.lip6.fr>; Sat, 11 Jul 2020 10:02:19 +0200 (CEST)
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06B82IQL003087
+ by systeme.lip6.fr (Postfix) with ESMTPS id B94913F6C
+ for <cocci@systeme.lip6.fr>; Thu, 16 Jul 2020 15:01:40 +0200 (CEST)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06GD1dIj004933
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sat, 11 Jul 2020 10:02:18 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Thu, 16 Jul 2020 15:01:40 +0200 (CEST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id 198F62A506D
-Message-ID: <c73a6d331759585788c72d3a7c7cdac28916857e.camel@collabora.com>
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id 945942A570D
 From: Jaskaran Singh <jaskaran.singh@collabora.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Sat, 11 Jul 2020 13:32:12 +0530
-In-Reply-To: <alpine.DEB.2.22.394.2007110956170.2364@hadrien>
-References: <20200711070035.8483-1-jaskaran.singh@collabora.com>
- <alpine.DEB.2.22.394.2007110956170.2364@hadrien>
-Organization: Collabora
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+To: cocci@systeme.lip6.fr
+Date: Thu, 16 Jul 2020 18:29:51 +0530
+Message-Id: <20200716130016.23729-1-jaskaran.singh@collabora.com>
+X-Mailer: git-send-email 2.21.3
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 11 Jul 2020 10:02:23 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 16 Jul 2020 15:01:46 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sat, 11 Jul 2020 10:02:18 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Thu, 16 Jul 2020 15:01:40 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Cc: cocci@systeme.lip6.fr
-Subject: Re: [Cocci] [PATCH] parsing_cocci: parse_cocci: Extend
- is_permissible_proto list
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Subject: [Cocci] [PATCH 00/24] parsing_cocci: Add attributefn to the SmPL
+	AST0 visitor
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,85 +52,66 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Sat, 2020-07-11 at 09:57 +0200, Julia Lawall wrote:
-> 
-> On Sat, 11 Jul 2020, Jaskaran Singh wrote:
-> 
-> > Add more tokens (binary operators and colon) to the match ladder in
-> > is_permissible_proto. These cases would otherwise cause parsing
-> > errors
-> > for function calls after these tokens.
-> 
-> Thanks, but it doesn't apply:
-> 
-> Applying: parsing_cocci: parse_cocci: Extend is_permissible_proto
-> list
-> error: parsing_cocci/parse_cocci.ml: does not match index
-> 
+This patch series aims to add a public function for visiting attributes
+to the SmPL AST0 visitor. This is needed to support meta attributes. An
+AttributeTag constructor is also added due to dependencies, as well as
+to maintain consistency with the codebase.
 
-That's weird, it applies fine on gitlab/master for me.
+Jaskaran Singh (24):
+      parsing_cocci: visitor_ast0: Add attributefn to SmPL AST0 visitor
+      parsing_cocci: ast0toast: Reflect attributefn in AST0 visitor
+      parsing_cocci: check_meta: Reflect attributefn in AST0 visitor
+      parsing_cocci: function_prototypes: Reflect attributefn in AST0 visitor
+      parsing_cocci: iso_compile: Reflect attributefn in AST0 visitor
+      parsing_cocci: iso_pattern: Reflect attributefn in AST0 visitor
+      parsing_cocci: parse_cocci: Reflect attributefn in AST0 visitor
+      parsing_cocci: single_statement: Reflect attributefn in AST0 visitor
+      parsing_cocci: unitary_ast0: Reflect attributefn in AST0 visitor
+      parsing_cocci: ast0_cocci: Add AttributeTag to SmPL AST0
+      parsing_cocci: visitor_ast0: Reflect AttributeTag in SmPL AST0
+      parsing_cocci: iso_pattern: Reflect AttributeTag in SmPL AST0
+      parsing_cocci: unparse_ast0: Reflect AttributeTag in SmPL AST0
+      parsing_cocci: context_neg: Reflect AttributeTag in SmPL AST0
+      parsing_cocci: insert_plus: Reflect AttributeTag in SmPL AST0
+      parsing_cocci: ast_cocci: Add AttributeTag to the SmPL AST
+      parsing_cocci: pretty_print_cocci: Reflect AttributeTag in SmPL AST
+      parsing_c: unparse_cocci: Reflect AttributeTag in SmPL AST
+      parsing_cocci: visitor_ast: Reflect AttributeTag in SmPL AST
+      parsing_cocci: ast0toast: Reflect AttributeTag in the SmPL ASTs
+      ocaml: coccilib: Reflect AttributeTag in the SmPL ASTs
+      parsing_cocci: context_neg: Reflect attributefn in AST0 visitor
+      parsing_cocci: insert_plus: Reflect attributefn in AST0 visitor
+      tools: spgen: Reflect attributefn in AST0 visitor
 
-Maybe do a git am --abort and try again?
+ ocaml/coccilib.mli                   |    2 ++
+ parsing_c/unparse_cocci.ml           |    1 +
+ parsing_cocci/ast0_cocci.ml          |    2 ++
+ parsing_cocci/ast0_cocci.mli         |    2 ++
+ parsing_cocci/ast0toast.ml           |    5 +++--
+ parsing_cocci/ast0toast.mli          |    1 +
+ parsing_cocci/ast_cocci.ml           |    2 ++
+ parsing_cocci/ast_cocci.mli          |    1 +
+ parsing_cocci/check_meta.ml          |    4 ++--
+ parsing_cocci/context_neg.ml         |   23 +++++++++++++++++------
+ parsing_cocci/function_prototypes.ml |    6 +++---
+ parsing_cocci/insert_plus.ml         |   18 ++++++++++++++----
+ parsing_cocci/iso_compile.ml         |    2 +-
+ parsing_cocci/iso_pattern.ml         |   17 +++++++++++------
+ parsing_cocci/parse_cocci.ml         |    2 +-
+ parsing_cocci/pretty_print_cocci.ml  |    1 +
+ parsing_cocci/single_statement.ml    |    2 +-
+ parsing_cocci/unitary_ast0.ml        |    2 +-
+ parsing_cocci/unparse_ast0.ml        |    1 +
+ parsing_cocci/visitor_ast.ml         |    2 ++
+ parsing_cocci/visitor_ast0.ml        |   24 ++++++++++++++++++++----
+ parsing_cocci/visitor_ast0.mli       |    2 ++
+ parsing_cocci/visitor_ast0_types.ml  |    6 ++++++
+ parsing_cocci/visitor_ast0_types.mli |    6 ++++++
+ tools/spgen/source/detect_patch.ml   |    3 ++-
+ tools/spgen/source/meta_variable.ml  |    3 ++-
+ tools/spgen/source/rule_body.ml      |    3 ++-
+ 27 files changed, 109 insertions(+), 34 deletions(-)
 
-Cheers,
-Jaskaran.
-
-> julia
-> 
-> > Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
-> > ---
-> >  parsing_cocci/parse_cocci.ml | 19 ++++++++++++++++++-
-> >  1 file changed, 18 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/parsing_cocci/parse_cocci.ml
-> > b/parsing_cocci/parse_cocci.ml
-> > index 598cdc0b..e30039dc 100644
-> > --- a/parsing_cocci/parse_cocci.ml
-> > +++ b/parsing_cocci/parse_cocci.ml
-> > @@ -1052,7 +1052,8 @@ let find_function_names l =
-> >        ((PC.TMid0(_),_) | (PC.TAnd0(_),_))::
-> >        (PC.TOPar0(_),_)::_ -> false
-> >      | (PC.TOPar0(_),_)::rest
-> > -    | (PC.TCPar0(_),_)::rest -> is_permissible_proto rest
-> > +    | (PC.TCPar0(_),_)::rest
-> > +    | (PC.TMul(_),_)::rest -> is_permissible_proto rest
-> >      | x::rest when is_mid x ->
-> >          let rec loop = function
-> >            [] -> false
-> > @@ -1076,6 +1077,21 @@ let find_function_names l =
-> >      | (PC.TMetaId(_),_)::_
-> >      | (PC.TMetaLocalIdExp(_),_)::_
-> >      | (PC.TEq(_),_)::_
-> > +    | (PC.TEqEq(_),_)::_
-> > +    | (PC.TNotEq(_),_)::_
-> > +    | (PC.TShROp(_),_)::_
-> > +    | (PC.TShLOp(_),_)::_
-> > +    | (PC.TSub(_),_)::_
-> > +    | (PC.TPlus(_),_)::_
-> > +    | (PC.TMinus(_),_)::_
-> > +    | (PC.TDmOp(_),_)::_
-> > +    | (PC.TAnd(_),_)::_
-> > +    | (PC.TOr(_),_)::_
-> > +    | (PC.TXor(_),_)::_
-> > +    | (PC.TLogOp(_),_)::_
-> > +    | (PC.TAndLog(_),_)::_
-> > +    | (PC.TOrLog(_),_)::_
-> > +    | (PC.TDotDot(_),_)::_
-> >      | (PC.TPtrOp(_),_)::_
-> >      | (PC.TEllipsis(_),_)::_
-> >      | (PC.TOEllipsis(_),_)::_
-> > @@ -1086,6 +1102,7 @@ let find_function_names l =
-> >      | (PC.TOBrace(_),_)::_
-> >      | (PC.TCBrace(_),_)::_
-> >      | (PC.TOPar(_),_)::_
-> > +    | (PC.TOCro(_),_)::_
-> >      | (PC.TIdent(_),_)::_ -> false
-> >      | _ -> true in
-> >    let decl_or_proto clt info bef aft =
-> > --
-> > 2.21.3
-> > 
-> > 
 
 _______________________________________________
 Cocci mailing list
