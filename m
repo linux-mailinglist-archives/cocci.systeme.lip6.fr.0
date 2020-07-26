@@ -2,43 +2,41 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9696E22DF53
-	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD8022DF40
+	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:53:39 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqhkm002060;
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqhko002060;
 	Sun, 26 Jul 2020 14:52:44 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 195FA777B;
+	by systeme.lip6.fr (Postfix) with ESMTP id 9333077B7;
 	Sun, 26 Jul 2020 14:52:44 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 51B623F6C
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:40 +0200 (CEST)
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqdR0006345
+ by systeme.lip6.fr (Postfix) with ESMTPS id ABBA03F6C
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:41 +0200 (CEST)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqe5v028300
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:39 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:41 +0200 (CEST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id 9428B263ACB
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id E91E227088D
 From: Jaskaran Singh <jaskaran.singh@collabora.com>
 To: cocci@systeme.lip6.fr
-Date: Sun, 26 Jul 2020 18:21:19 +0530
-Message-Id: <20200726125141.17787-22-jaskaran.singh@collabora.com>
+Date: Sun, 26 Jul 2020 18:21:20 +0530
+Message-Id: <20200726125141.17787-23-jaskaran.singh@collabora.com>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 References: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 MIME-Version: 1.0
 X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:44 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 26 Jul 2020 14:52:39 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:41 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Subject: [Cocci] [PATCH 21/43] parsing_cocci: adjust_pragmas: Reflect
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Subject: [Cocci] [PATCH 22/43] parsing_cocci: context_neg: Reflect
 	MetaAttribute
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -57,27 +55,79 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 MetaAttribute is added to the SmPL AST. Reflect these changes in
-adjust_pragmas.ml.
+context_neg.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
 ---
- parsing_cocci/adjust_pragmas.ml | 3 +++
- 1 file changed, 3 insertions(+)
+ parsing_cocci/context_neg.ml | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/parsing_cocci/adjust_pragmas.ml b/parsing_cocci/adjust_pragmas.ml
-index 8f24fa718..6891d886f 100644
---- a/parsing_cocci/adjust_pragmas.ml
-+++ b/parsing_cocci/adjust_pragmas.ml
-@@ -225,6 +225,9 @@ let left_attribute attr =
-   match Ast0.unwrap attr with
-     Ast0.Attribute(a) ->
-       call_right left_mcode a attr (function a -> Ast0.Attribute(a))
-+  | Ast0.MetaAttribute(name,a,b) ->
-+      call_right left_mcode name attr
-+        (function name -> Ast0.MetaAttribute(name,a,b))
+diff --git a/parsing_cocci/context_neg.ml b/parsing_cocci/context_neg.ml
+index ebb93806b..8b2512c9b 100644
+--- a/parsing_cocci/context_neg.ml
++++ b/parsing_cocci/context_neg.ml
+@@ -403,9 +403,6 @@ let classify is_minus all_marked table code =
+ 	  disj_cases e starter expr_list r.VT0.combiner_rec_expression ender
+       |	_ -> k e) in
  
- let left_fundecl name fninfo =
-   let fncall_right processor data cont =
+-  let attribute a =
+-    match Ast0.unwrap a with
+-      Ast0.Attribute(attr) -> mcode attr in
+ 
+   (* not clear why we have the next cases, since DisjDecl and
+   as it only comes from isos *)
+@@ -430,7 +427,8 @@ let classify is_minus all_marked table code =
+ 	    (bind (r.VT0.combiner_rec_typeC ty)
+ 	       (bind (r.VT0.combiner_rec_ident id)
+                   (bind
+-                     (List.fold_right bind (List.map attribute attr)
++                     (List.fold_right bind
++                       (List.map r.VT0.combiner_rec_attribute attr)
+ 			option_default)
+ 		     (bind (mcode eq)
+ 			(bind (r.VT0.combiner_rec_initialiser ini)
+@@ -440,7 +438,8 @@ let classify is_minus all_marked table code =
+ 	    (bind (r.VT0.combiner_rec_typeC ty)
+ 	       (bind (r.VT0.combiner_rec_ident id)
+                   (bind
+-                     (List.fold_right bind (List.map attribute attr)
++                     (List.fold_right bind
++                       (List.map r.VT0.combiner_rec_attribute attr)
+ 			option_default)
+ 		     (mcode sem))))
+       |	_ -> k e) in
+@@ -477,7 +476,9 @@ let classify is_minus all_marked table code =
+ 	  (* needed for the same reason as in the Init and UnInit cases *)
+ 	  bind (r.VT0.combiner_rec_typeC ty)
+            (bind (r.VT0.combiner_rec_ident id)
+-              (List.fold_right bind (List.map attribute attr) option_default))
++              (List.fold_right bind
++                 (List.map r.VT0.combiner_rec_attribute attr)
++                 option_default))
+       |	_ -> k e) in
+ 
+   let typeC r k e =
+@@ -596,6 +597,9 @@ let equal_attribute a1 a2 =
+   match (Ast0.unwrap a1, Ast0.unwrap a2) with
+     (Ast0.Attribute(attr1),Ast0.Attribute(attr2)) ->
+       equal_mcode attr1 attr2
++  | (Ast0.MetaAttribute(name1,_,_),Ast0.MetaAttribute(name2,_,_)) ->
++      equal_mcode name1 name2
++  | _ -> false
+ 
+ let equal_ident i1 i2 =
+   match (Ast0.unwrap i1,Ast0.unwrap i2) with
+@@ -865,8 +869,10 @@ let equal_initialiser i1 i2 =
+ let equal_parameterTypeDef p1 p2 =
+   match (Ast0.unwrap p1,Ast0.unwrap p2) with
+     (Ast0.VoidParam(_,ar1),Ast0.VoidParam(_,ar2)) ->
++      (List.length ar1) = (List.length ar2) &&
+       List.for_all2 equal_attribute ar1 ar2
+   | (Ast0.Param(_,_,ar1),Ast0.Param(_,_,ar2)) ->
++      (List.length ar1) = (List.length ar2) &&
+       List.for_all2 equal_attribute ar1 ar2
+   | (Ast0.MetaParam(name1,_,_),Ast0.MetaParam(name2,_,_))
+   | (Ast0.MetaParamList(name1,_,_,_),Ast0.MetaParamList(name2,_,_,_)) ->
 -- 
 2.21.3
 
