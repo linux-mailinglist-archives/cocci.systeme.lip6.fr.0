@@ -2,43 +2,43 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 827C822DF51
-	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E9722DF58
+	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:54:41 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqxOF027551;
-	Sun, 26 Jul 2020 14:52:59 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqxOH027551;
+	Sun, 26 Jul 2020 14:53:00 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id B753177B7;
-	Sun, 26 Jul 2020 14:52:59 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 379927780;
+	Sun, 26 Jul 2020 14:53:00 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id EF10B3F6C
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:55 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 9CA25777B
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:57 +0200 (CEST)
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
  [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqt36026175
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCquO0023053
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:55 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:57 +0200 (CEST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id 5AA62263ACB
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id B874427088D
 From: Jaskaran Singh <jaskaran.singh@collabora.com>
 To: cocci@systeme.lip6.fr
-Date: Sun, 26 Jul 2020 18:21:29 +0530
-Message-Id: <20200726125141.17787-32-jaskaran.singh@collabora.com>
+Date: Sun, 26 Jul 2020 18:21:30 +0530
+Message-Id: <20200726125141.17787-33-jaskaran.singh@collabora.com>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 References: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:59 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:53:00 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
  (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 26 Jul 2020 14:52:55 +0200 (CEST)
+ Sun, 26 Jul 2020 14:52:57 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78
-Subject: [Cocci] [PATCH 31/43] parsing_cocci: cleanup_rules: Reflect
+Subject: [Cocci] [PATCH 32/43] parsing_cocci: free_vars: Reflect
 	MetaAttribute
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -57,41 +57,87 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 MetaAttribute is added to the SmPL AST. Reflect these changes in
-cleanup_rules.ml.
+free_vars.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
 ---
- parsing_cocci/cleanup_rules.ml | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ parsing_cocci/free_vars.ml | 28 +++++++++++++++++++++++++---
+ 1 file changed, 25 insertions(+), 3 deletions(-)
 
-diff --git a/parsing_cocci/cleanup_rules.ml b/parsing_cocci/cleanup_rules.ml
-index 7f03f98fd..e11484539 100644
---- a/parsing_cocci/cleanup_rules.ml
-+++ b/parsing_cocci/cleanup_rules.ml
-@@ -244,6 +244,14 @@ let statement r k s =
-   | Ast.OptStm(_) -> s
-   | _ -> k s
+diff --git a/parsing_cocci/free_vars.ml b/parsing_cocci/free_vars.ml
+index 6958f48ee..404e2d549 100644
+--- a/parsing_cocci/free_vars.ml
++++ b/parsing_cocci/free_vars.ml
+@@ -137,6 +137,13 @@ let collect_refs include_constraints =
+ 	  bind (constraints cstr) [metaid name]
+       | _ -> option_default) in
  
-+let attribute r k a =
-+  match Ast.unwrap a with
-+    Ast.MetaAttribute(name,_,_,_) ->
-+      (if List.mem (get_rule name) !dropped
-+      then set_failed !drop_stack);
-+      k a
-+  | _ -> k a
++  let astfvattribute recursor k a =
++    bind (k a)
++      (match Ast.unwrap a with
++	Ast.MetaAttribute(name,cstr,_,_) ->
++	  bind (constraints cstr) [metaid name]
++      | _ -> option_default) in
 +
- let do_cleanup =
-   let donothing r k e = k e in
-   V.rebuilder
-@@ -254,7 +262,7 @@ let do_cleanup =
-     ident expression string_fragment string_format assignOp
-     binaryOp fullType typeC initialiser parameterTypeDef define_param
-     declaration donothing field ann_field donothing
--    rule_elem statement donothing donothing donothing donothing
-+    rule_elem statement donothing attribute donothing donothing
+   let rec collect_assign_names aop =
+     match Ast.unwrap aop with
+       Ast.MetaAssign(name,cstr,_,_) ->
+@@ -253,7 +260,8 @@ let collect_refs include_constraints =
+     astfvident astfvexpr astfvfrag astfvfmt astfvassignop astfvbinaryop
+     astfvfullType astfvtypeC astfvinit astfvparam astfvdefine_param
+     astfvdecls donothing astfvfields astafvfields donothing
+-    astfvrule_elem astfvstatement donothing donothing donothing donothing_a
++    astfvrule_elem astfvstatement donothing astfvattribute
++    donothing donothing_a
  
- let cleanup_rules rules d =
-   dropped := d;
+ let collect_all_refs = collect_refs true
+ let collect_non_constraint_refs = collect_refs false
+@@ -369,6 +377,12 @@ let collect_saved =
+ 	Ast.MetaFormat(name,_,Ast.Saved,_) -> [metaid name]
+       | _ -> option_default) in
+ 
++  let astfvattribute recursor k a =
++    bind (k a)
++      (match Ast.unwrap a with
++	Ast.MetaAttribute(name,_,Ast.Saved,_) -> [metaid name]
++      | _ -> option_default) in
++
+   let astfvassign recursor k aop =
+     bind (k aop)
+       (match Ast.unwrap aop with
+@@ -479,7 +493,7 @@ let collect_saved =
+     astfvident astfvexpr astfvfrag astfvfmt astfvassign astfvbinary donothing
+     astfvtypeC astfvinit astfvparam astfvdefine_param astfvdecls donothing
+     astfvfields donothing donothing astfvrule_elem donothing donothing
+-    donothing donothing donothing
++    astfvattribute donothing donothing
+ 
+ (* ---------------------------------------------------------------- *)
+ 
+@@ -779,6 +793,14 @@ let classify_variables metavar_decls minirules used_after =
+ 	Ast.rewrap ft (Ast.MetaFormat(name,constraints,unitary,inherited))
+     | _ -> ft in
+ 
++  let attribute r k a =
++    let a = k a in
++    match Ast.unwrap a with
++      Ast.MetaAttribute(name,constraints,_,_) ->
++	let (unitary,inherited) = classify name in
++	Ast.rewrap a (Ast.MetaAttribute(name,constraints,unitary,inherited))
++    | _ -> a in
++
+   let assignop r k ft =
+     let ft = k ft in
+     match Ast.unwrap ft with
+@@ -905,7 +927,7 @@ let classify_variables metavar_decls minirules used_after =
+       ident expression string_fragment string_format assignop binaryop
+       donothing typeC
+       init param define_param decl donothing field donothing donothing
+-      rule_elem donothing donothing donothing donothing donothing in
++      rule_elem donothing donothing attribute donothing donothing in
+ 
+   List.map fn.V.rebuilder_top_level minirules
+ 
 -- 
 2.21.3
 
