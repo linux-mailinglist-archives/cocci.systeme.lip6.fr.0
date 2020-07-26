@@ -2,43 +2,41 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4446922DF42
-	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1CD22DF44
+	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:53:50 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqiLI029012;
-	Sun, 26 Jul 2020 14:52:45 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqnku018117;
+	Sun, 26 Jul 2020 14:52:49 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id E50A57780;
-	Sun, 26 Jul 2020 14:52:44 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 8D5B677B7;
+	Sun, 26 Jul 2020 14:52:49 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id D5D663F6C
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:42 +0200 (CEST)
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqgP7018086
+ by systeme.lip6.fr (Postfix) with ESMTPS id A59B93F6C
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:45 +0200 (CEST)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqjgd002647
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:42 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:45 +0200 (CEST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id 46045263ACB
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id 9906A27088D
 From: Jaskaran Singh <jaskaran.singh@collabora.com>
 To: cocci@systeme.lip6.fr
-Date: Sun, 26 Jul 2020 18:21:21 +0530
-Message-Id: <20200726125141.17787-24-jaskaran.singh@collabora.com>
+Date: Sun, 26 Jul 2020 18:21:22 +0530
+Message-Id: <20200726125141.17787-25-jaskaran.singh@collabora.com>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 References: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:45 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:49 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 26 Jul 2020 14:52:42 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:45 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Subject: [Cocci] [PATCH 23/43] parsing_cocci: compute_lines: Reflect
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Subject: [Cocci] [PATCH 24/43] parsing_cocci: iso_pattern: Reflect
 	MetaAttribute
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -57,38 +55,94 @@ Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
 MetaAttribute is added to the SmPL AST. Reflect these changes in
-compute_lines.ml.
+iso_pattern.ml.
 
 Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
 ---
- parsing_cocci/compute_lines.ml | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ parsing_cocci/iso_pattern.ml | 44 +++++++++++++++++++++++++++++++-----
+ 1 file changed, 38 insertions(+), 6 deletions(-)
 
-diff --git a/parsing_cocci/compute_lines.ml b/parsing_cocci/compute_lines.ml
-index 4420e9524..4042b1025 100644
---- a/parsing_cocci/compute_lines.ml
-+++ b/parsing_cocci/compute_lines.ml
-@@ -907,11 +907,15 @@ and initialiser_list prev = dots is_init_dots prev initialiser
- (* for export *)
- and initialiser_dots x = dots is_init_dots None initialiser x
+diff --git a/parsing_cocci/iso_pattern.ml b/parsing_cocci/iso_pattern.ml
+index 4a9a80b4f..c800665fd 100644
+--- a/parsing_cocci/iso_pattern.ml
++++ b/parsing_cocci/iso_pattern.ml
+@@ -475,13 +475,19 @@ let match_maker checks_needed context_required whencode_allowed =
+ 	  Ast0.MetaStmt(name,_,pure) | Ast0.MetaStmtList(name,_,_,pure) -> pure
+ 	| _ -> Ast0.Impure) in
  
--and attribute a =
--  match Ast0.unwrap a with
--    Ast0.Attribute(attr) ->
--      let ln = promote_mcode attr in
--      mkres a (Ast0.Attribute(attr)) ln ln
-+and attribute attr =
-+  match Ast0.unwrap attr with
-+    Ast0.Attribute(a) ->
-+      let ln = promote_mcode a in
-+      mkres attr (Ast0.Attribute(a)) ln ln
-+  | Ast0.MetaAttribute(name,a,b) ->
-+      let name = normal_mcode name in
-+      let ln = promote_mcode name in
-+      mkres attr (Ast0.MetaAttribute(name,a,b)) ln ln
++    let attribute r k a =
++      bind (bind (pure_mcodekind (Ast0.get_mcodekind a)) (k a))
++	(match Ast0.unwrap a with
++	  Ast0.MetaAttribute(name,_,pure) -> pure
++	| _ -> Ast0.Impure) in
++
+     V0.flat_combiner bind option_default
+       mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+       mcode mcode
+       donothing donothing donothing donothing donothing donothing donothing
+       donothing donothing
+       ident expression assignOp binaryOp typeC init param decl field donothing
+-      stmt donothing donothing donothing donothing donothing in
++      stmt donothing donothing donothing attribute donothing in
  
+   let add_pure_list_binding name pure is_pure builder1 builder2 lst =
+     match (checks_needed,pure) with
+@@ -1417,10 +1423,22 @@ let match_maker checks_needed context_required whencode_allowed =
+       |	_ -> return false in
+     loop (patterninfo,cinfo)
+ 
+-  and match_attribute a1 a2 =
+-    match (Ast0.unwrap a1,Ast0.unwrap a2) with
+-      (Ast0.Attribute(attr1),Ast0.Attribute(attr2)) ->
+-        check_mcode attr1 attr2
++  and match_attribute pattern a =
++    match Ast0.unwrap pattern with
++      Ast0.MetaAttribute(name,_,pure) ->
++	add_pure_binding name pure pure_sp_code.VT0.combiner_rec_attribute
++	  (function a -> Ast0.AttributeTag a)
++	  a
++    | up ->
++	if not(checks_needed) || not(context_required) || is_context a
++	then
++	  match (up,Ast0.unwrap a) with
++	    (Ast0.Attribute(attra),Ast0.Attribute(attrb)) ->
++              if mcode_equal attra attrb
++              then check_mcode attra attrb
++              else return false
++	  | _ -> return false
++	else return_false (ContextRequired (Ast0.AttributeTag a))
+ 
+   and match_attributes a1 a2 =
+     match_list match_attribute
+@@ -2169,13 +2187,27 @@ let instantiate bindings mv_bindings model =
+ 		(List.filter (function (x,v) -> x = (dot_term d)) bindings)))
+     | _ -> e in
+ 
++  let attributefn r k e =
++    let e = k e in
++    match Ast0.unwrap e with
++      Ast0.MetaAttribute(name,cstr,pure) ->
++	(rebuild_mcode None).VT0.rebuilder_rec_attribute
++	  (match lookup name bindings mv_bindings with
++	    Common.Left(Ast0.AttributeTag(a)) -> a
++	  | Common.Left(_) -> failwith "not possible 1"
++	  | Common.Right(new_mv) ->
++	      Ast0.rewrap e
++		(Ast0.MetaAttribute
++                  (Ast0.set_mcode_data new_mv name,cstr,pure)))
++    | _ -> e in
++
+   V0.flat_rebuilder
+     mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode mcode
+     mcode mcode
+     (dots elist) donothing (dots plist) (dots slist) donothing donothing
+     donothing donothing donothing
+     identfn exprfn donothing donothing tyfn initfn paramfn declfn fieldfn
+-    enumdeclfn stmtfn donothing donothing donothing donothing donothing
++    enumdeclfn stmtfn donothing donothing donothing attributefn donothing
  
  (* --------------------------------------------------------------------- *)
+ 
 -- 
 2.21.3
 
