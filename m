@@ -2,42 +2,44 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249FA22DF30
-	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC21922DF35
+	for <lists+cocci@lfdr.de>; Sun, 26 Jul 2020 14:52:58 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqKRo029489;
-	Sun, 26 Jul 2020 14:52:20 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 06QCqJxO017605;
+	Sun, 26 Jul 2020 14:52:22 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 931C37833;
-	Sun, 26 Jul 2020 14:52:19 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 80C5D782F;
+	Sun, 26 Jul 2020 14:52:22 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 55DC67830
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:17 +0200 (CEST)
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqD4F024270
+ by systeme.lip6.fr (Postfix) with ESMTPS id 17D96782A
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:20 +0200 (CEST)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 06QCqF4R022029
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:14 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Sun, 26 Jul 2020 14:52:15 +0200 (CEST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: jaskaran_singh) with ESMTPSA id DE504263ACB
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id 3D4B227088D
 From: Jaskaran Singh <jaskaran.singh@collabora.com>
 To: cocci@systeme.lip6.fr
-Date: Sun, 26 Jul 2020 18:21:01 +0530
-Message-Id: <20200726125141.17787-4-jaskaran.singh@collabora.com>
+Date: Sun, 26 Jul 2020 18:21:02 +0530
+Message-Id: <20200726125141.17787-5-jaskaran.singh@collabora.com>
 X-Mailer: git-send-email 2.21.3
 In-Reply-To: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 References: <20200726125141.17787-1-jaskaran.singh@collabora.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:20 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:22 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 26 Jul 2020 14:52:14 +0200 (CEST)
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sun, 26 Jul 2020 14:52:15 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Subject: [Cocci] [PATCH 03/43] parsing_cocci: parse_cocci: Reflect
-	MetaAttribute & MetaAttributeDecl
+X-Scanned-By: MIMEDefang 2.78
+Subject: [Cocci] [PATCH 04/43] parsing_cocci: ast_cocci: Add MetaAttribute &
+	MetaAttributeDecl
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,78 +56,62 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-MetaAttribute and MetaAttributeDecl are added to the SmPL AST. Reflect
-these changes in parse_cocci.ml.
+Add the MetaAttribute and MetaAttributeDecl consturctors the SmPL AST.
 
 Signed-off-by: Jaskaran Singh <jaskaran.singh@collabora.com>
 ---
- parsing_cocci/parse_cocci.ml | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ parsing_cocci/ast_cocci.ml  | 3 +++
+ parsing_cocci/ast_cocci.mli | 2 ++
+ 2 files changed, 5 insertions(+)
 
-diff --git a/parsing_cocci/parse_cocci.ml b/parsing_cocci/parse_cocci.ml
-index e455fce06..e8dca63a3 100644
---- a/parsing_cocci/parse_cocci.ml
-+++ b/parsing_cocci/parse_cocci.ml
-@@ -243,6 +243,7 @@ let token2c (tok,_) add_clt =
-   | PC.TMetaDParamList(_,_,_,_,clt) -> add_clt "dparamlistmeta" clt
-   | PC.TMetaFunc(_,_,_,clt)  -> add_clt "funcmeta" clt
-   | PC.TMetaLocalFunc(_,_,_,clt) -> add_clt "funcmeta" clt
-+  | PC.TMetaAttribute(_,_,_,clt) -> add_clt "attributemeta" clt
-   | PC.TMetaPos(_,_,_,clt)   -> "posmeta"
-   | PC.TMetaCom(_,_,clt)   -> "commeta"
-   | PC.TMPtVirg -> ";"
-@@ -404,6 +405,7 @@ let plus_attachable only_plus (tok,_) =
-   | PC.TCPar0(s,clt) -> NOTPLUS
-   | PC.TMetaPos(nm,_,_,_) -> NOTPLUS
-   | PC.TMetaCom(nm,_,_) -> NOTPLUS
-+  | PC.TMetaAttribute(nm,_,_,_) -> NOTPLUS
-   | PC.TSub(clt) -> NOTPLUS
-   | PC.TDirective(_,clt) -> NOTPLUS
-   | PC.TAttr_(clt) -> NOTPLUS
-@@ -466,6 +468,7 @@ let get_clt (tok,_) =
-   | PC.TMetaFieldList(_,_,_,_,clt)
-   | PC.TMetaFunc(_,_,_,clt) | PC.TMetaLocalFunc(_,_,_,clt)
-   | PC.TMetaPos(_,_,_,clt) | PC.TMetaCom(_,_,clt)
-+  | PC.TMetaAttribute(_,_,_,clt)
-   | PC.TMetaDeclarer(_,_,_,clt) | PC.TMetaIterator(_,_,_,clt)
+diff --git a/parsing_cocci/ast_cocci.ml b/parsing_cocci/ast_cocci.ml
+index 666629c58..656c3d929 100644
+--- a/parsing_cocci/ast_cocci.ml
++++ b/parsing_cocci/ast_cocci.ml
+@@ -128,6 +128,7 @@ and metavar =
+   | MetaPosDecl of arity * meta_name (* name *)
+   | MetaComDecl of arity * meta_name (* name *)
+   | MetaFmtDecl of arity * meta_name (* name *)
++  | MetaAttributeDecl of arity * meta_name (* name *)
+   | MetaFragListDecl of arity * meta_name (* name *) * list_len (*len*)
+   | MetaAnalysisDecl of string * meta_name (* name *)
+   | MetaDeclarerDecl of arity * meta_name (* name *)
+@@ -626,6 +627,7 @@ and fninfo =
  
-   | PC.TWhen(clt) | PC.TWhenTrue(clt) | PC.TWhenFalse(clt)
-@@ -680,6 +683,7 @@ let update_clt (tok,x) clt =
-   | PC.TMetaDParamList(a,b,c,d,_) -> (PC.TMetaDParamList(a,b,c,d,clt),x)
-   | PC.TMetaFunc(a,b,c,_)  -> (PC.TMetaFunc(a,b,c,clt),x)
-   | PC.TMetaLocalFunc(a,b,c,_) -> (PC.TMetaLocalFunc(a,b,c,clt),x)
-+  | PC.TMetaAttribute(a,b,c,_) -> (PC.TMetaAttribute(a,b,c,clt),x)
+ and base_attr =
+     Attribute of string mcode
++  | MetaAttribute of meta_name mcode * constraints * keep_binding * inherited
  
-   | PC.TMetaDeclarer(a,b,c,_) -> (PC.TMetaDeclarer(a,b,c,clt),x)
-   | PC.TMetaIterator(a,b,c,_) -> (PC.TMetaIterator(a,b,c,clt),x)
-@@ -929,7 +933,8 @@ let split_token ((tok,_) as t) =
-   | PC.TMetaDeclarer(_,_,_,clt) | PC.TMetaIterator(_,_,_,clt) -> split t clt
-   | PC.TMPtVirg | PC.TArob | PC.TArobArob | PC.TScript _
-   | PC.TInitialize | PC.TFinalize -> ([t],[t])
--  | PC.TPArob clt | PC.TMetaPos(_,_,_,clt) | PC.TMetaCom(_,_,clt) -> split t clt
-+  | PC.TPArob clt | PC.TMetaPos(_,_,_,clt) | PC.TMetaCom(_,_,clt)
-+  | PC.TMetaAttribute (_,_,_,clt) -> split t clt
+ and attr = base_attr wrap
  
-   | PC.TFunDecl(clt) | PC.TFunProto(clt)
-   | PC.TWhen(clt) | PC.TWhenTrue(clt) | PC.TWhenFalse(clt)
-@@ -1220,7 +1225,8 @@ let detect_types in_meta_decls l =
-     | (PC.TMetaStmList(_,_,_,_,_),_)
-     | (PC.TMetaDParamList(_,_,_,_,_),_)
-     | (PC.TMetaPos(_,_,_,_),_)
--    | (PC.TMetaCom(_,_,_),_) -> in_meta_decls
-+    | (PC.TMetaCom(_,_,_),_)
-+    | (PC.TMetaAttribute(_,_,_,_),_) -> in_meta_decls
-     | _ -> false in
-   let is_tyleft = function (* things that can start a var decl *)
-       (PC.TMul(_),_)
-@@ -1330,6 +1336,7 @@ let token2line (tok,_) =
-   | PC.TMetaStm(_,_,_,clt) | PC.TMetaStmList(_,_,_,_,clt)
-   | PC.TMetaDParamList(_,_,_,_,clt) | PC.TMetaFunc(_,_,_,clt)
-   | PC.TMetaLocalFunc(_,_,_,clt) | PC.TMetaPos(_,_,_,clt) | PC.TMetaCom(_,_,clt)
-+  | PC.TMetaAttribute(_,_,_,clt)
+@@ -914,6 +916,7 @@ let get_meta_name = function
+   | MetaPosDecl(_ar,nm) -> nm
+   | MetaComDecl(_ar,nm) -> nm
+   | MetaFmtDecl(_ar,nm) -> nm
++  | MetaAttributeDecl(_ar,nm) -> nm
+   | MetaFragListDecl(_ar,nm,_nm1) -> nm
+   | MetaAnalysisDecl(_code,nm) -> nm
+   | MetaDeclarerDecl(_ar,nm) -> nm
+diff --git a/parsing_cocci/ast_cocci.mli b/parsing_cocci/ast_cocci.mli
+index 983449123..9495e83c8 100644
+--- a/parsing_cocci/ast_cocci.mli
++++ b/parsing_cocci/ast_cocci.mli
+@@ -113,6 +113,7 @@ and metavar =
+   | MetaPosDecl of arity * meta_name (* name *)
+   | MetaComDecl of arity * meta_name (* name *)
+   | MetaFmtDecl of arity * meta_name (* name *)
++  | MetaAttributeDecl of arity * meta_name (* name *)
+   | MetaFragListDecl of arity * meta_name (* name *) * list_len (*len*)
+   | MetaAnalysisDecl of string * meta_name (* name *)
+   | MetaDeclarerDecl of arity * meta_name (* name *)
+@@ -606,6 +607,7 @@ and fninfo =
  
-   | PC.TFunDecl(clt) | PC.TFunProto(clt)
-   | PC.TWhen(clt) | PC.TWhenTrue(clt) | PC.TWhenFalse(clt)
+ and base_attr =
+     Attribute of string mcode
++  | MetaAttribute of meta_name mcode * constraints * keep_binding * inherited
+ 
+ and attr = base_attr wrap
+ 
 -- 
 2.21.3
 
