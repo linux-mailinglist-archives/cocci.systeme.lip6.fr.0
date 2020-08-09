@@ -2,51 +2,66 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED66323FDE9
-	for <lists+cocci@lfdr.de>; Sun,  9 Aug 2020 13:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F18024002C
+	for <lists+cocci@lfdr.de>; Sun,  9 Aug 2020 23:27:48 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 079BPdHw021704;
-	Sun, 9 Aug 2020 13:25:40 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 079LRDtV004057;
+	Sun, 9 Aug 2020 23:27:13 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id BD60977BF;
-	Sun,  9 Aug 2020 13:25:39 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id A38AC77BF;
+	Sun,  9 Aug 2020 23:27:13 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 269434084
- for <cocci@systeme.lip6.fr>; Sun,  9 Aug 2020 13:25:37 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 079BPZuQ026495
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sun, 9 Aug 2020 13:25:35 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.75,453,1589234400"; d="scan'208";a="356217592"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2020 13:25:35 +0200
-Date: Sun, 9 Aug 2020 13:25:34 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <b5c83a17-e04f-2d10-9506-12c50b3de9b9@web.de>
-Message-ID: <alpine.DEB.2.22.394.2008091324530.2450@hadrien>
-References: <1ae3eefe-fa5a-a497-f00b-5638f4191e90@web.de>
- <b5c83a17-e04f-2d10-9506-12c50b3de9b9@web.de>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 3AC834084
+ for <cocci@systeme.lip6.fr>; Sun,  9 Aug 2020 23:27:11 +0200 (CEST)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
+ [209.85.208.169])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 079LRAPv007390
+ (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
+ for <cocci@systeme.lip6.fr>; Sun, 9 Aug 2020 23:27:10 +0200 (CEST)
+Received: by mail-lj1-f169.google.com with SMTP id i10so7518532ljn.2
+ for <cocci@systeme.lip6.fr>; Sun, 09 Aug 2020 14:27:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=V+0cPGM3bRsE7YkU0y2eQl4qVGY5GO2VaxSnu9p+qWk=;
+ b=RGYfDqBqHfAXSt6v7dQSkxCmMknJ8w5kWxAvdsO4Jd+R7IwVTWUmPkQ+vtCBva9xDA
+ lt7IsAqiylNhYp3ykEityleXUwGbTNSHkJApzZds4xbHi/079a/FbTNoc5RtfVWzWEQf
+ Hup7wl4UtGg8dS2bkUxKl+jvvTDf1gFFUy+nDG5owitBUnVCHqbbn/ErWbApqXFe/bH2
+ Sn7NDfZPK31iTnKcmtprx5JpFXaNe/2Ymv/E9EP2t56EVxQ58maVoIZWazBCC4PgZEij
+ 55SPfFxpURjsdpOpnlUoMgiNFmcMdGH+5eFxnlgicHKMpfPNR/05FIxOSby4R7r2Ebk6
+ 4q9Q==
+X-Gm-Message-State: AOAM532mvYNN4Ma06wbxAJlMhXAnWGpqqGfFAm+7PIVhPFsOd01H7+Wg
+ XPoNavo3f7JMvkn3Mv9hCgk=
+X-Google-Smtp-Source: ABdhPJywEO7G7AjBEBjlke7hxs6urEH6pmbyTMrO5IqAjs+lVoCFfvgzB6RBDCyMWzMcpThbsBF+9w==
+X-Received: by 2002:a2e:9bc8:: with SMTP id w8mr10166240ljj.351.1597008429929; 
+ Sun, 09 Aug 2020 14:27:09 -0700 (PDT)
+Received: from localhost.localdomain (broadband-37-110-38-130.ip.moscow.rt.ru.
+ [37.110.38.130])
+ by smtp.googlemail.com with ESMTPSA id b204sm9684239lfd.48.2020.08.09.14.27.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 09 Aug 2020 14:27:09 -0700 (PDT)
+From: Denis Efremov <efremov@linux.com>
+To: Julia Lawall <julia.lawall@inria.fr>
+Date: Mon, 10 Aug 2020 00:26:55 +0300
+Message-Id: <20200809212655.58457-1-efremov@linux.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200806220342.25426-1-efremov@linux.com>
+References: <20200806220342.25426-1-efremov@linux.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 09 Aug 2020 13:25:40 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 09 Aug 2020 13:25:36 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 09 Aug 2020 23:27:15 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Sun, 09 Aug 2020 23:27:10 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Michal Marek <michal.lkml@markovi.net>,
-        Gilles Muller <Gilles.Muller@lip6.fr>, kernel-janitors@vger.kernel.org,
-        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
-        Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] [PATCH] Coccinelle: Reduce duplicate code for patch
- rules of memdup_user.cocci
+Cc: Kees Cook <keescook@chromium.org>,
+        "Gustavo A . R . Silva" <gustavoars@kernel.org>, cocci@systeme.lip6.fr,
+        linux-kernel@vger.kernel.org
+Subject: [Cocci] [PATCH v2] coccinelle: misc: add flexible_array.cocci script
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,94 +78,137 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+Commit 68e4cd17e218 ("docs: deprecated.rst: Add zero-length and one-element
+arrays") marks one-element and zero-length arrays as deprecated. Kernel
+code should always use "flexible array members" instead.
 
+The script warns about one-element and zero-length arrays in structs.
 
-On Sun, 9 Aug 2020, Markus Elfring wrote:
+Cc: Kees Cook <keescook@chromium.org>
+Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
+Signed-off-by: Denis Efremov <efremov@linux.com>
+---
+Changes in v2:
+ - all uapi headers are now filtered-out. Unfortunately, coccinelle
+   doesn't provide structure names in Location.current_element.
+   For structures the field is always "something_else". Thus, there is
+   no easy way to create a list of existing structures in uapi headers
+   and suppress the warning only for them, but not for the newly added
+   uapi structures.
+ - The pattern doesn't require 2+ fields in a structure/union anymore.
+   Now it also checks single field structures/unions.
+ - The pattern simplified and now uses disjuction in array elements
+   (Thanks, Markus)
+ - Unions are removed from patch mode
+ - one-element arrays are removed from patch mode. Correct patch may
+   involve turning the array to a simple field instead of a flexible
+   array.
 
-> From: Markus Elfring <elfring@users.sourceforge.net>
-> Date: Sun, 9 Aug 2020 11:11:20 +0200
->
-> Another patch rule was added. A bit of code was copied from a previous
-> SmPL rule for this change specification.
->
-> * Thus reduce duplicate code by using another SmPL disjunction.
+On the current master branch, the rule generates:
+ - context: https://gist.github.com/evdenis/e2b4323491f9eff35376372df07f723c
+ - patch: https://gist.github.com/evdenis/46081da9d68ecefd07edc3769cebcf32
 
-I don't care about this issue.
+ scripts/coccinelle/misc/flexible_array.cocci | 88 ++++++++++++++++++++
+ 1 file changed, 88 insertions(+)
+ create mode 100644 scripts/coccinelle/misc/flexible_array.cocci
 
->
-> * Increase the precision a bit for desired source code adjustments.
+diff --git a/scripts/coccinelle/misc/flexible_array.cocci b/scripts/coccinelle/misc/flexible_array.cocci
+new file mode 100644
+index 000000000000..bf6dcda1783e
+--- /dev/null
++++ b/scripts/coccinelle/misc/flexible_array.cocci
+@@ -0,0 +1,88 @@
++// SPDX-License-Identifier: GPL-2.0-only
++///
++/// Zero-length and one-element arrays are deprecated, see
++/// Documentation/process/deprecated.rst
++/// Flexible-array members should be used instead.
++///
++//
++// Confidence: High
++// Copyright: (C) 2020 Denis Efremov ISPRAS.
++// Comments:
++// Options: --no-includes --include-headers
++
++virtual context
++virtual report
++virtual org
++virtual patch
++
++@initialize:python@
++@@
++def relevant(positions):
++    for p in positions:
++        if "uapi" in p.file:
++             return False
++    return True
++
++@r depends on !patch@
++identifier name, array;
++type T;
++position p : script:python() { relevant(p) };
++@@
++
++(
++  struct name {
++    ...
++*   T array@p[\(0\|1\)];
++  };
++|
++  struct {
++    ...
++*   T array@p[\(0\|1\)];
++  };
++|
++  union name {
++    ...
++*   T array@p[\(0\|1\)];
++  };
++|
++  union {
++    ...
++*   T array@p[\(0\|1\)];
++  };
++)
++
++@depends on patch exists@
++identifier name, array;
++type T;
++position p : script:python() { relevant(p) };
++@@
++
++(
++  struct name {
++    ...
++    T array@p[
++-       0
++    ];
++  };
++|
++  struct {
++    ...
++    T array@p[
++-       0
++    ];
++  };
++)
++
++@script: python depends on report@
++p << r.p;
++@@
++
++msg = "WARNING: use flexible-array member instead"
++coccilib.report.print_report(p[0], msg)
++
++@script: python depends on org@
++p << r.p;
++@@
++
++msg = "WARNING: use flexible-array member instead"
++coccilib.org.print_todo(p, msg)
+-- 
+2.26.2
 
-This gives no information.  If you explain the improvement in an
-understandable way, I will consider whether it is useful to take the
-patch.
-
-julia
-
-> Fixes: 9c568dbd677bcfc975220d3157c89c48669a23e3 ("coccinelle: api: extend memdup_user rule with vmemdup_user()")
-> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-> ---
->  scripts/coccinelle/api/memdup_user.cocci | 44 +++++++++---------------
->  1 file changed, 16 insertions(+), 28 deletions(-)
->
-> diff --git a/scripts/coccinelle/api/memdup_user.cocci b/scripts/coccinelle/api/memdup_user.cocci
-> index e01e95108405..7cf698b4e925 100644
-> --- a/scripts/coccinelle/api/memdup_user.cocci
-> +++ b/scripts/coccinelle/api/memdup_user.cocci
-> @@ -27,34 +27,22 @@ expression from,to,size;
->  identifier l1,l2;
->  position p : script:python() { relevant(p) };
->  @@
-> -
-> --  to = \(kmalloc@p\|kzalloc@p\)
-> --		(size,\(GFP_KERNEL\|GFP_USER\|
-> --		      \(GFP_KERNEL\|GFP_USER\)|__GFP_NOWARN\));
-> -+  to = memdup_user(from,size);
-> -   if (
-> --      to==NULL
-> -+      IS_ERR(to)
-> -                 || ...) {
-> -   <+... when != goto l1;
-> --  -ENOMEM
-> -+  PTR_ERR(to)
-> -   ...+>
-> -   }
-> --  if (copy_from_user(to, from, size) != 0) {
-> --    <+... when != goto l2;
-> --    -EFAULT
-> --    ...+>
-> --  }
-> -
-> -@depends on patch@
-> -expression from,to,size;
-> -identifier l1,l2;
-> -position p : script:python() { relevant(p) };
-> -@@
-> -
-> --  to = \(kvmalloc@p\|kvzalloc@p\)(size,\(GFP_KERNEL\|GFP_USER\));
-> -+  to = vmemdup_user(from,size);
-> + to =
-> +(
-> +-     \(kmalloc@p\|kzalloc@p\)
-> ++     memdup_user
-> +      (
-> +-      size, \( \(GFP_KERNEL\|GFP_USER\) \| \(GFP_KERNEL\|GFP_USER\)|__GFP_NOWARN \)
-> ++      from, size
-> +      )
-> +|
-> +-     \(kvmalloc@p\|kvzalloc@p\)
-> ++     vmemdup_user
-> +      (
-> +-      size, \(GFP_KERNEL\|GFP_USER\)
-> ++      from, size
-> +      )
-> +);
->     if (
->  -      to==NULL
->  +      IS_ERR(to)
-> --
-> 2.28.0
->
->
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
