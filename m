@@ -2,50 +2,50 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id E32C02408A0
-	for <lists+cocci@lfdr.de>; Mon, 10 Aug 2020 17:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B41240900
+	for <lists+cocci@lfdr.de>; Mon, 10 Aug 2020 17:28:01 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07AFMqFU025740;
-	Mon, 10 Aug 2020 17:22:52 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07AFRd08019384;
+	Mon, 10 Aug 2020 17:27:40 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id E0D7377BF;
-	Mon, 10 Aug 2020 17:22:51 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id B955977BF;
+	Mon, 10 Aug 2020 17:27:39 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 23E805F8F
- for <cocci@systeme.lip6.fr>; Mon, 10 Aug 2020 17:22:50 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 279405F8F
+ for <cocci@systeme.lip6.fr>; Mon, 10 Aug 2020 17:27:38 +0200 (CEST)
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07AFMmdH017357
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07AFRaLo025049
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
- for <cocci@systeme.lip6.fr>; Mon, 10 Aug 2020 17:22:49 +0200 (CEST)
+ for <cocci@systeme.lip6.fr>; Mon, 10 Aug 2020 17:27:37 +0200 (CEST)
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl
  [83.86.89.107])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3D2B520782;
- Mon, 10 Aug 2020 15:22:47 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1DBE322B47;
+ Mon, 10 Aug 2020 15:27:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1597072967;
- bh=Itc7IHb08ZGOHTDJBJwZojMpWgF91q1faBxQtgBUtgk=;
+ s=default; t=1597073255;
+ bh=+Y8I+TEqJgHCm6hoHFWBG/y1v/nhmn99Qf6wrDWHZAw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=m/KNBIQd4PrbMp8WrO7drnHJYkq/93fM+BWFGArpZAFGvXE4RjpbamqNznFSHdWv7
- 6PXk+ZBNSQHQsN4+powt2I5/acka3shE+QlY6KZxQnjaRPieG+l/O/bAJPHb2Zjpgi
- wQGp5XGMX7bWL6Bn65FdhKRhI6Y+B7I+tYg7AVPM=
+ b=afXouU7GErtr3I/NVRjfg6u2qngDgRPxkk4tACShRrjpZSlYvW6Eei1eFDo0m3+lu
+ JOqmmos0093q1kz7XtuezaqS+qeO3CYAAY98eMIovI9Wsf72rFocAKSvBEgQHbyHky
+ tNtJSdw1pKSnGrh7AUizvpIktsjii4/R5ZAtL5mU=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: linux-kernel@vger.kernel.org
-Date: Mon, 10 Aug 2020 17:20:40 +0200
-Message-Id: <20200810151813.224449988@linuxfoundation.org>
+Date: Mon, 10 Aug 2020 17:21:10 +0200
+Message-Id: <20200810151810.565965608@linuxfoundation.org>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200810151812.114485777@linuxfoundation.org>
-References: <20200810151812.114485777@linuxfoundation.org>
+In-Reply-To: <20200810151809.438685785@linuxfoundation.org>
+References: <20200810151809.438685785@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 17:22:52 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 17:27:40 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 17:22:49 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 17:27:37 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: Matthias Maennich <maennich@google.com>,
@@ -53,7 +53,7 @@ Cc: Matthias Maennich <maennich@google.com>,
         Shuah Khan <skhan@linuxfoundation.org>,
         YueHaibing <yuehaibing@huawei.com>, stable@vger.kernel.org,
         jeyu@kernel.org, cocci@systeme.lip6.fr
-Subject: [Cocci] [PATCH 5.7 21/79] scripts: add dummy report mode to
+Subject: [Cocci] [PATCH 5.4 23/67] scripts: add dummy report mode to
 	add_namespace.cocci
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -137,7 +137,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 +@@
 --- a/scripts/nsdeps
 +++ b/scripts/nsdeps
-@@ -29,7 +29,7 @@ fi
+@@ -23,7 +23,7 @@ fi
  
  generate_deps_for_ns() {
  	$SPATCH --very-quiet --in-place --sp-file \
