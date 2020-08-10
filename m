@@ -2,44 +2,39 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47A8240360
-	for <lists+cocci@lfdr.de>; Mon, 10 Aug 2020 10:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B21F24035A
+	for <lists+cocci@lfdr.de>; Mon, 10 Aug 2020 10:25:46 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07A8Petr009823;
-	Mon, 10 Aug 2020 10:25:40 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07A8Ohx6026538;
+	Mon, 10 Aug 2020 10:24:44 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 4CE8377BF;
-	Mon, 10 Aug 2020 10:25:40 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id D5A0B77BF;
+	Mon, 10 Aug 2020 10:24:43 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id E00974084
- for <cocci@systeme.lip6.fr>; Sun,  9 Aug 2020 11:20:55 +0200 (CEST)
-Received: from mout.web.de (mout.web.de [217.72.192.78])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 0799KtrV012035
+ by systeme.lip6.fr (Postfix) with ESMTPS id 1C69C5F8F
+ for <cocci@systeme.lip6.fr>; Mon, 10 Aug 2020 09:30:43 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07A7UdqA025431
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
- Sun, 9 Aug 2020 11:20:55 +0200 (CEST)
+ Mon, 10 Aug 2020 09:30:39 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1596964853;
- bh=B3gAkd0ixTW0KjR7M98kko7oditl7PICaU8jrDP8nxg=;
- h=X-UI-Sender-Class:Subject:From:To:Cc:References:Date:In-Reply-To;
- b=LdTNZ+6VuPapF0QUCGdMFywJDmm9zTehYfsrpTUus2VNojzI1E0h2mdY6HDOyoVM1
- a48lJvVZJHLvUYtWuTYcx6cC89zcCUGTVve1172WUUZv/PJltB6JsbRX7u1twkhjel
- HDCMlTdWOdpiLmr1/CHz3kr01iiLPhKHB1uI4xzs=
+ s=dbaedf251592; t=1597044623;
+ bh=Mrds5nFat2EZG9gj7O45TJQ3YbOf0IbVOiYoKKCvYOQ=;
+ h=X-UI-Sender-Class:To:Cc:Subject:From:Date;
+ b=LGHC5jtEU78FVro67mbeAnulR/36zf0fqPXNKUL0AGTqxPz/LF4EEO7Av71x60AQn
+ 1Cy+2EkeER42KiltNtYSADj8s7/mT5a2TLjlyYhEW3AwDSjvZxwvJD0YPLo5/pSQxq
+ tY1zHscj/sSX9Fr2U365vG9FFIeo8ZDqMq/kH/IA=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([78.49.136.16]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MjPPs-1kSAM321FK-00l6MT; Sun, 09
- Aug 2020 11:20:53 +0200
+Received: from [192.168.1.2] ([93.133.64.233]) by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MoecF-1kTKKt337J-00ohsK; Mon, 10
+ Aug 2020 09:30:22 +0200
+To: Sumera Priyadarsini <sylphrenadin@gmail.com>,
+        Coccinelle <cocci@systeme.lip6.fr>, linux-doc@vger.kernel.org
 From: Markus Elfring <Markus.Elfring@web.de>
-To: Julia Lawall <julia.lawall@inria.fr>, Denis Efremov <efremov@linux.com>,
-        Coccinelle <cocci@systeme.lip6.fr>,
-        Gilles Muller <Gilles.Muller@lip6.fr>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nicolas Palix <nicolas.palix@imag.fr>
-References: <1ae3eefe-fa5a-a497-f00b-5638f4191e90@web.de>
 Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  mQINBFg2+xABEADBJW2hoUoFXVFWTeKbqqif8VjszdMkriilx90WB5c0ddWQX14h6w5bT/A8
  +v43YoGpDNyhgA0w9CEhuwfZrE91GocMtjLO67TAc2i2nxMc/FJRDI0OemO4VJ9RwID6ltwt
@@ -83,46 +78,53 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <b5c83a17-e04f-2d10-9506-12c50b3de9b9@web.de>
-Date: Sun, 9 Aug 2020 11:20:44 +0200
+Message-ID: <ffe8c50d-0bb5-9477-a20c-96aa7bb45067@web.de>
+Date: Mon, 10 Aug 2020 09:30:18 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <1ae3eefe-fa5a-a497-f00b-5638f4191e90@web.de>
 Content-Language: en-GB
-X-Provags-ID: V03:K1:E5UgWnT4q3V5ybaJB1BHuuBKl8da8tAx7eJfrWjybrS+0g4uWAX
- bCCiV6vY2A5xDx3svNG6zFzM6/2XhWolbbZ7iB8TlHPe3zjRuSWrObv0qH6vt7GwIXKLJlt
- FI8uk3r5h/Qe3OrvTb5MR3SXZgMpPtaScaka5XKLLB/y0iAcsgEHFBPmMT6GxlrzCJDck4h
- UzAnZySJo7ru3J1CVnF6g==
+X-Provags-ID: V03:K1:4BcmFblahuvFfP74NgJG77pNo/6cKTsrGW6uT7d43CNwbUeitt6
+ NtmQBMvqmggi+nI+1yWae/EkuEC9fhfxyHvRC18gj5r17uOjFiavQpDtEV0/jiIp9I7AapA
+ ygmjxuaPixmjnVqj6FuL+MrhbymZN2ObTwykW4CorvYpvMCRDOwDNf1seAAtbDVy8tmaNNd
+ uJCoFxW79///06SucDkPA==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:SCNGZ25cnZA=:zTJgbMIwZ/y7EW7M+6XKVC
- c/6AsSp5I+TbGY78+1QfURp6rupokFZ3jmIgjD0v+Jszod2022/Zebw6wLXopangDm1XQYF+K
- TIAX+gisL6f1bTD1wLYNghEH6xpaOMcDpuMr8kuC74dh7Zyel9EbB7BzU8+CBTm5H327HViq3
- hKiGr3EiIRZqW+I1n122VhM6/ZibOu5RS6xnPjKxF0tCYJjHdynWi9bEajYOUb9rrrYdSy8F3
- 07Gb+ECQ1Dz9scoLd8inDzT5k9h2DwslSMvZl9YbrEl2lvqjzbA5ZLY9b0lOU9FWsTE6MMMhh
- a9KyNC4GRgWXh26YatPiyz0FI3fLXYV1rl74uKFh56oxmPweWSOm9YZx3cZm5HuARXb/jbo8s
- rohVSzn+lrO3zsyROxZXaS5r1b9FW/U08j1Ek4jHopdGDjDc8SOKI8VpFP742IUDUMvwJUtQV
- MvMtk+hhrqQL0u4qvGl+ygMHKdy3r1HNnFSxB8Dc1TxZKrqrFDzVZDytzkvSO+jCQIoe7qGnk
- fgI44OENhtIO0FHaEyfc9wpZ9p6kZakkDzfW9eMdCoaRSsHeschBEStopRQ8wkusBAwjGlk4d
- n4CClwe40wZE75N0nxK+fC8jjMrL8/RcwK/5qO47MLz/3b8TR14Oywc3YHfhYJ/jm7cRJqoYY
- SwZVbtcEUUS3AEcjgLpcxz7Fh/GEnsqGRJRxwEGu2+LcxGlhLFOrRSIoL3rBNEgOTqcd2RDU3
- IV0aL81rETA1xaLEfKh74yD2UCVqhZB8zXATD2Gg57dT/75EcpjQjgGqbJceeqkuyLlhM3TBi
- n5DUhtySvZw+LBqr7gnd9nEzpYHgd8xHUeDRJBlJjw00Zynpq6JMnVcjmNQIQ/5qoIFN6ungy
- YZ0RqXyo1Ujo4TTags2+fURZN2jaONr1bruuD9jCwgM4eheUQ7d9IsinSVAXwoSum9T+eZAth
- 0JI2aURykTtLtSs2ZvgoTR90yK6drwdU8hg0Wagg0FmpARKwltnpL9CNbQGDO6nrcUv9lbAj5
- QzK3HX6nTkr1XL/kMRi9zrcECa6ybINWgOOd7/84fHehmBhdlIVZZHjzwQV9DJu1tx7N7IvSx
- DUYHBXJHXIi9lZ5YYlfZ8ueuzCd6tByllCJ1EKAisavMxxt76htc2JaeLH39khhsJ/xpM9AWZ
- EQCmdoBYJu2dcZGXHIlgI5jxLeWzpdrNDTfQ2cS2G64uoJrgoM7kBEcI+x9eGKGU/46lpV2yc
- zf4lvuyH0+RKPGIr0IqLYShAfk/+5MwoWR5ITqA==
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 10:25:40 +0200 (CEST)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:f7srSnombO8=:Aq7scJWjAbsRb6SNSBkJqL
+ yj+CfxKdxzceQ/euA2+ND9jnQndLyNMAlteg0CilVJTba2l2k1h97+GTekhQoqYu+Y4xGt38O
+ 8L/w7z8fh0vbrEFRpimeB4WhSV0jrDIzqIgmTJQXmSjTvyGK4v8hflH753fvqHoHzrb6sWJH8
+ qnSAwMvwQ+srk+jLTXSLSTH+Uzg2rZ84J3MyRkEef6kIlWcD+X6FfT/qYKfAVVtywRhTXwiLl
+ RDIes8u9vts0h6J9AzDaXlqc0/Z9hTfE9wXtBqBjx8HZ4dCylQhIqb//jwSxCi1yzrb7aPn/a
+ Su4wjzGmUMTH62fNl95B4ubtEQyNLHR8lUfjVuUdmxR9lax5Y2XbkW4LBrE0dSi8ewLrFLsWZ
+ T1nZbAUOvbkiVOyEPEGQkVuIyyeu4KJrlAqNPRm13pBYWDcLk0095pxjxYbWvQedbun45hDD5
+ egaj6S3V8YZ+MZiyl9bWtAm9yrPtH3MJUMU+EH3H+Pmg4IAjGvP6gPHWXGRU/vbLhyU/wAstB
+ HnVrHBZd5kuASZnuyjJ1+BiknXuJoBNT9U2Bat+7twESLWqKmxE0ELF9mfwKvuXh8/AEtrjj2
+ u2EkWg8StyVy4F6qYMm4UrPMZkoBhT/ant5FV1h9mBUNIKDePBmir+mf5mZLIyATrSTseBGBS
+ p++u1l5TS9+h//w57Q2/C1gkSdCabhikjCF6zaWP/e3IDOM5n68LB+Gatb2LIN//iT559dIvg
+ hpD1UXx+CHbTFdtelWDcvdEO9jOa3z0PRKa1aSipxPk+BaWJWUF+qErkoYf7wtx6TXuoAqsCj
+ WTN+Ul+rMP+qcFEocGXOqTjpAWZPF5612tAdr+lSRSQkjM7OwF8hMNxpzADQBXvoBe8BXhlAs
+ OJqBvi0RFYaoajKvpl+aTO5C7rsqL0drh97OAV6ncq75KZNvZtQsaMIdONdU3t52ojJh2kKjx
+ 6YTPbG7mMdaswYwqqElyK0J32R95HzVIv29N9Twn/g2WSa3RBdTjpm6X60iR+lugGJIJWcnOc
+ pNWsJ6uqA+vIokxceuMrVNm/iwBWbIEK8Hc+fn+TGoV/SU9sMROlh5BIs/HejSojyTwDtHtM3
+ 3m1N6zafUIqVa2QvyBCcSUYKPzTXfu5EDaXqT1jKgw4hk5yI4/+Wx0F3QdqNpVtOMTwNf0sWK
+ Zc9pmUiJzY2/te4ckYzRqMG1DHC5h7fd8b5LU37Mbdsz7vd8QoNU3fAKV8zgTCuWpdxQ1s0V1
+ KLQqWnPmzzsjZiFx9RWepX2UhJU82xX7EIn9Now==
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 10:24:44 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 09 Aug 2020 11:20:55 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Mon, 10 Aug 2020 09:30:39 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Mon, 10 Aug 2020 10:25:38 +0200
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [Cocci] [PATCH] Coccinelle: Reduce duplicate code for patch rules
- of memdup_user.cocci
+X-Mailman-Approved-At: Mon, 10 Aug 2020 10:24:42 +0200
+Cc: Michal Marek <michal.lkml@markovi.net>,
+        Gilles Muller <Gilles.Muller@lip6.fr>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Corbet <corbet@lwn.net>, kernel-janitors@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Matthew Wilcox <willy@infradead.org>,
+        Julia Lawall <Julia.Lawall@lip6.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>, Sam Ravnborg <sam@ravnborg.org>,
+        Luc Van Oostenryck <luc.vanoostenryck@gmail.com>
+Subject: Re: [Cocci] [PATCH v2] documentation: coccinelle: Improve command
+ example for make C={1, 2}
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -134,86 +136,42 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Sun, 9 Aug 2020 11:11:20 +0200
-
-Another patch rule was added. A bit of code was copied from a previous
-SmPL rule for this change specification.
-
-* Thus reduce duplicate code by using another SmPL disjunction.
-
-* Increase the precision a bit for desired source code adjustments.
-
-Fixes: 9c568dbd677bcfc975220d3157c89c48669a23e3 ("coccinelle: api: extend memdup_user rule with vmemdup_user()")
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
----
- scripts/coccinelle/api/memdup_user.cocci | 44 +++++++++---------------
- 1 file changed, 16 insertions(+), 28 deletions(-)
-
-diff --git a/scripts/coccinelle/api/memdup_user.cocci b/scripts/coccinelle/api/memdup_user.cocci
-index e01e95108405..7cf698b4e925 100644
---- a/scripts/coccinelle/api/memdup_user.cocci
-+++ b/scripts/coccinelle/api/memdup_user.cocci
-@@ -27,34 +27,22 @@ expression from,to,size;
- identifier l1,l2;
- position p : script:python() { relevant(p) };
- @@
--
---  to = \(kmalloc@p\|kzalloc@p\)
---		(size,\(GFP_KERNEL\|GFP_USER\|
---		      \(GFP_KERNEL\|GFP_USER\)|__GFP_NOWARN\));
--+  to = memdup_user(from,size);
--   if (
---      to==NULL
--+      IS_ERR(to)
--                 || ...) {
--   <+... when != goto l1;
---  -ENOMEM
--+  PTR_ERR(to)
--   ...+>
--   }
---  if (copy_from_user(to, from, size) != 0) {
---    <+... when != goto l2;
---    -EFAULT
---    ...+>
---  }
--
--@depends on patch@
--expression from,to,size;
--identifier l1,l2;
--position p : script:python() { relevant(p) };
--@@
--
---  to = \(kvmalloc@p\|kvzalloc@p\)(size,\(GFP_KERNEL\|GFP_USER\));
--+  to = vmemdup_user(from,size);
-+ to =
-+(
-+-     \(kmalloc@p\|kzalloc@p\)
-++     memdup_user
-+      (
-+-      size, \( \(GFP_KERNEL\|GFP_USER\) \| \(GFP_KERNEL\|GFP_USER\)|__GFP_NOWARN \)
-++      from, size
-+      )
-+|
-+-     \(kvmalloc@p\|kvzalloc@p\)
-++     vmemdup_user
-+      (
-+-      size, \(GFP_KERNEL\|GFP_USER\)
-++      from, size
-+      )
-+);
-    if (
- -      to==NULL
- +      IS_ERR(to)
---
-2.28.0
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+PiBNb2RpZnkgY29jY2luZWxsZSBkb2N1bWVudGF0aW9uIHRvIGZ1cnRoZXIgY2xhcmlmeQo+IHRo
+ZSB1c2FnZSBvZiB0aGUgbWFrZWZpbGUgQyB2YXJpYWJsZSBmbGFnIGJ5IGNvY2NpY2hlY2suCgpI
+b3cgZG8geW91IHRoaW5rIGFib3V0IGEgd29yZGluZyB2YXJpYW50IGxpa2UgdGhlIGZvbGxvd2lu
+Zwpmb3IgdGhlIGNoYW5nZSBkZXNjcmlwdGlvbj8KCiAgIENsYXJpZnkgdGhlIHVzYWdlIG9mIHRo
+ZSBtYWtlIHZhcmlhYmxlIOKAnEPigJ0gZm9yIGNvY2NpY2hlY2suCgoKPiArQyBmbGFnIGlzIHVz
+ZWQuIFRoZSBDIGZsYWcgaXMgYSB2YXJpYWJsZSB1c2VkIGJ5IHRoZSBtYWtlZmlsZQoKQ2FuIHN1
+Y2ggYSB3b3JkaW5nIGFwcHJvYWNoIHRyaWdnZXIgdW5kZXJzdGFuZGluZyBkaWZmaWN1bHRpZXM/
+CgoKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVGhpcyBmbGFnIGNhbiBi
+ZSB1c2VkIHRvCj4gK3J1biBzY3JpcHRzIGZvciDigKYKCkkgZmluZCB0aGlzIGRlc2NyaXB0aW9u
+IGltcHJvdmFibGUuCgoKPiArVGhlIHZhbHVlIDEgaXMgcGFzc2VkIHRvIHRoZSBDIGZsYWcgdG8g
+Y2hlY2sgZm9yIGZpbGVzIHRoYXQgbWFrZSBjb25zaWRlcnMKPiArbmVlZCB0byBiZSByZWNvbXBp
+bGVkLjo6CgpXb3VsZCB5b3UgbGlrZSB0byBkaXN0aW5ndWlzaCBjb25zZXF1ZW5jZXMgYmV0d2Vl
+biDigJxjb21waWxhdGlvbuKAnSBhbmQg4oCccmVjb21waWxhdGlvbuKAnT8KClRoZSBtZW50aW9u
+ZWQgcGFyYW1ldGVyIGlzIGFzc2lnbmVkIHRvIHRoZSBtYWNybyDigJxLQlVJTERfQ0hFQ0tTUkPi
+gJ0uCmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3RvcnZh
+bGRzL2xpbnV4LmdpdC90cmVlL01ha2VmaWxlP2lkPWZjODBjNTFmZDRiMjNlYzAwN2U4OGQ0YzY4
+OGYyY2FjMWI4NjQ4ZTcjbjE5OAoKVGhlIG1hY3JvIOKAnEtCVUlMRF9DSEVDS1NSQ+KAnSBpcyBl
+dmVudHVhbGx5IGNoZWNrZWQgZm9yIHRoZSBzZXR0aW5nIG9mIGEgZmV3IGFkZGl0aW9uYWwgbWFj
+cm9zLgpodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC90b3J2
+YWxkcy9saW51eC5naXQvdHJlZS9zY3JpcHRzL01ha2VmaWxlLmJ1aWxkP2lkPWZjODBjNTFmZDRi
+MjNlYzAwN2U4OGQ0YzY4OGYyY2FjMWI4NjQ4ZTcjbjk3CgpXb3VsZCB5b3UgbGlrZSB0byBkZXRl
+cm1pbmUgd2hlcmUgdGhlc2UgbWFjcm9zIGFyZSBhY3R1YWxseSBhcHBsaWVkPwoKRG8geW91IGZp
+bmQgdGhlIGNvbW1pdCAwYzMzZjEyNTczMmQwZDMzMzkyYmE2Nzc0ZDg1NDY5ZDU2NWQzNDk2ICgi
+a2J1aWxkOgpydW4gdGhlIGNoZWNrZXIgYWZ0ZXIgdGhlIGNvbXBpbGVyIikgZnJvbSAyMDIwLTA3
+LTA3IGludGVyZXN0aW5nIGZvcgp0aGUgZGlzY3Vzc2VkIGRvY3VtZW50YXRpb24gYWRqdXN0bWVu
+dD8KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvcGF0Y2h3b3JrL3BhdGNoLzEyNjA4MzIvCmh0dHBz
+Oi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvMjAyMDA2MjIxNTQ1MTIuODI3NTgtMS1sdWMudmFub29z
+dGVucnlja0BnbWFpbC5jb20vCgoKPiArICAgIG1ha2UgQz0xIENIRUNLPSJzY3JpcHRzL2NvY2Np
+Y2hlY2siICJkcml2ZXJzL2JsdWV0b290aC9iZnVzYi5vIgoKKiBDYW4gZG91YmxlIHF1b3RlcyBi
+ZSBvbWl0dGVkIGhlcmU/CgoqIEhvdyBkbyB5b3UgdGhpbmsgYWJvdXQgdG8gZW5jbG9zZSBhbnkg
+ZGF0YSBieSBhcG9zdHJvcGhlcz8KClJlZ2FyZHMsCk1hcmt1cwpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpDb2NjaSBtYWlsaW5nIGxpc3QKQ29jY2lAc3lz
+dGVtZS5saXA2LmZyCmh0dHBzOi8vc3lzdGVtZS5saXA2LmZyL21haWxtYW4vbGlzdGluZm8vY29j
+Y2kK
