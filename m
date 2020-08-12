@@ -2,66 +2,51 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C19824218C
-	for <lists+cocci@lfdr.de>; Tue, 11 Aug 2020 23:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB0A242798
+	for <lists+cocci@lfdr.de>; Wed, 12 Aug 2020 11:28:26 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07BL22kd021645;
-	Tue, 11 Aug 2020 23:02:02 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07C9RnQF010549;
+	Wed, 12 Aug 2020 11:27:50 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 2109577BF;
-	Tue, 11 Aug 2020 23:02:02 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id AC3F277BF;
+	Wed, 12 Aug 2020 11:27:49 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 606663C97
- for <cocci@systeme.lip6.fr>; Tue, 11 Aug 2020 23:02:00 +0200 (CEST)
-Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
- [209.85.208.194])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07BL1vrk023467
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Tue, 11 Aug 2020 23:01:58 +0200 (CEST)
-Received: by mail-lj1-f194.google.com with SMTP id z14so15122303ljm.1
- for <cocci@systeme.lip6.fr>; Tue, 11 Aug 2020 14:01:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=/rLVEXEg2UmvMufjSAF7U0pAi6vIHw1hc4UHchgW5EU=;
- b=tR84zO8HxWwg0Sw002R7ZlWGBiCqNTUDemF9ZPvDDxKMGW/202IGxArCdtr43Jx+CG
- u6x0ero4FoVyrW7gZ61pXaBcw6q6WvNJ5T+p+3/FFWLjhHWedQIl4fcsJQhqEyPTdau6
- BIQSk2YVPCr5FqLFX0vDOXZbFu1MbPP/GAkWfAfo+9Rx75JbEYsOY2xBKuIXu9vmgBL1
- 7463bHGRWAI8Yx01wbVLz+D6HYaSyLSaL9do5OcdqDU72Nr1apgRLWZIN4MFQ49qmkAB
- 9tvmWWAlIbuAEygDUxqtgjm7GRl/WMEg242DV3hEXuO/JCGUgSIbQlyI8kV7vqI1lQaj
- WNBA==
-X-Gm-Message-State: AOAM530HHKrF62GhcX+EeHjwd/QkcwOCNMfAIWvABu5ttqoN25A99XvC
- FGd9PmzIugb0f9SG8yNu6ig=
-X-Google-Smtp-Source: ABdhPJxNt4Y58LNPRSHZhxIIteWTiyzlrXqElWX0V/P2mYMjZJP1Sqj/8C0a14QJFu1lNfEUBSE6vQ==
-X-Received: by 2002:a05:651c:1122:: with SMTP id
- e2mr3709126ljo.36.1597179717627; 
- Tue, 11 Aug 2020 14:01:57 -0700 (PDT)
-Received: from localhost.localdomain (broadband-37-110-38-130.ip.moscow.rt.ru.
- [37.110.38.130])
- by smtp.googlemail.com with ESMTPSA id b1sm10265823ljp.78.2020.08.11.14.01.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Aug 2020 14:01:57 -0700 (PDT)
-From: Denis Efremov <efremov@linux.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Wed, 12 Aug 2020 00:01:27 +0300
-Message-Id: <20200811210127.11889-1-efremov@linux.com>
-X-Mailer: git-send-email 2.26.2
+ by systeme.lip6.fr (Postfix) with ESMTPS id 03CFF5F8F
+ for <cocci@systeme.lip6.fr>; Wed, 12 Aug 2020 11:27:47 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07C9RkLo009795
+ (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Wed, 12 Aug 2020 11:27:46 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.76,303,1592863200"; d="scan'208";a="356403421"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2020 11:27:45 +0200
+Date: Wed, 12 Aug 2020 11:27:45 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <1b8537dd-8bf3-d3b6-4c10-af2fa623f1fe@web.de>
+Message-ID: <alpine.DEB.2.22.394.2008121127120.2572@hadrien>
+References: <1b8537dd-8bf3-d3b6-4c10-af2fa623f1fe@web.de>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 11 Aug 2020 23:02:03 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Tue, 11 Aug 2020 23:01:58 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 12 Aug 2020 11:27:51 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 12 Aug 2020 11:27:46 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Kees Cook <keescook@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>, cocci@systeme.lip6.fr,
-        linux-kernel@vger.kernel.org
-Subject: [Cocci] [RFC PATCH] coccinelle: misc: add uninitialized_var.cocci
-	script
+Cc: Michal Marek <michal.lkml@markovi.net>, Kees Cook <keescook@chromium.org>,
+        Gilles Muller <Gilles.Muller@lip6.fr>, kernel-janitors@vger.kernel.org,
+        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Coccinelle <cocci@systeme.lip6.fr>
+Subject: Re: [Cocci] [RFC PATCH] coccinelle: misc: add
+ uninitialized_var.cocci script
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,96 +63,29 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Commit 63a0895d960a ("compiler: Remove uninitialized_var() macro") and
-commit 4b19bec97c88 ("docs: deprecated.rst: Add uninitialized_var()")
-removed uninitialized_var() and deprecated it.
 
-The purpose of this script is to prevent new occurrences of open-coded
-variants of uninitialized_var().
 
-Cc: Kees Cook <keescook@chromium.org>
-Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
-Signed-off-by: Denis Efremov <efremov@linux.com>
----
-List of warnings:
-./lib/glob.c:48:31-39: WARNING: this kind of initialization is deprecated
-./tools/testing/selftests/vm/userfaultfd.c:349:15-22: WARNING: this kind of initialization is deprecated
-./drivers/block/drbd/drbd_vli.h:330:5-9: WARNING: this kind of initialization is deprecated
-./drivers/char/hw_random/intel-rng.c:333:15-18: WARNING: this kind of initialization is deprecated
-./drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c:316:7-10: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:455:15-20: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:455:30-35: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:455:45-50: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:475:15-20: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:475:30-35: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:476:2-7: WARNING: this kind of initialization isdeprecated
-./arch/x86/include/asm/paravirt_types.h:476:17-22: WARNING: this kind of initialization is deprecated
-./arch/x86/include/asm/paravirt_types.h:476:32-37: WARNING: this kind of initialization is deprecated
+On Wed, 12 Aug 2020, Markus Elfring wrote:
 
- .../coccinelle/misc/uninitialized_var.cocci   | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 scripts/coccinelle/misc/uninitialized_var.cocci
+> > +@r@
+> > +identifier var;
+> > +type T;
+> > +position p;
+> > +@@
+> > +
+> > +(
+> > +* T var@p = var;
+> > +|
+> > +* T var@p = *(&(var));
+>
+> I suggest to simplify such code for the semantic patch language a bit.
+> Can an other variant be more succinct for the application of a SmPL disjunction?
+>
+> +*T var@p = \( var \| *(&(var)) \);
 
-diff --git a/scripts/coccinelle/misc/uninitialized_var.cocci b/scripts/coccinelle/misc/uninitialized_var.cocci
-new file mode 100644
-index 000000000000..e4787bc6ab9c
---- /dev/null
-+++ b/scripts/coccinelle/misc/uninitialized_var.cocci
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+///
-+/// uninitialized_var() and its open-coded variations are
-+/// deprecated. For details, see:
-+/// Documentation/process/deprecated.rst
-+///
-+// Confidence: High
-+// Copyright: (C) 2020 Denis Efremov ISPRAS
-+// Options: --no-includes --include-headers
-+//
-+
-+virtual context
-+virtual report
-+virtual org
-+
-+@r@
-+identifier var;
-+type T;
-+position p;
-+@@
-+
-+(
-+* T var@p = var;
-+|
-+* T var@p = *(&(var));
-+//|
-+// TODO: Actually, I'm not sure about this pattern.
-+// Looks like it's used in wireless drivers to determine
-+// whether data belongs to the driver or not.
-+// Here are all matches:
-+// https://elixir.bootlin.com/linux/latest/source/net/mac802154/util.c#L14
-+// https://elixir.bootlin.com/linux/latest/source/drivers/staging/wlan-ng/cfg80211.c#L48
-+// https://elixir.bootlin.com/linux/latest/source/drivers/net/wireless/intersil/orinoco/cfg.c#L21
-+// https://elixir.bootlin.com/linux/latest/source/net/mac80211/util.c#L37
-+// https://elixir.bootlin.com/linux/latest/source/drivers/net/wireless/rndis_wlan.c#L544
-+// * T *var@p = &var;
-+)
-+
-+@script:python depends on report@
-+p << r.p;
-+@@
-+
-+coccilib.report.print_report(p[0],
-+  "WARNING: this kind of initialization is deprecated")
-+
-+@script:python depends on org@
-+p << r.p;
-+@@
-+
-+coccilib.org.print_todo(p[0],
-+  "WARNING: this kind of initialization is deprecated")
--- 
-2.26.2
+It's fine as is.
 
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
