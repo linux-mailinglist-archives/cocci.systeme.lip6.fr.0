@@ -2,66 +2,116 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FCC024E5F6
-	for <lists+cocci@lfdr.de>; Sat, 22 Aug 2020 09:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B94832528FE
+	for <lists+cocci@lfdr.de>; Wed, 26 Aug 2020 10:13:26 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07M77cWb003051;
-	Sat, 22 Aug 2020 09:07:38 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07Q8CtSl002811;
+	Wed, 26 Aug 2020 10:12:55 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 02FDE77BC;
-	Sat, 22 Aug 2020 09:07:38 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 9AD5A77BF;
+	Wed, 26 Aug 2020 10:12:55 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 6DD2A3F6C
- for <cocci@systeme.lip6.fr>; Sat, 22 Aug 2020 09:07:35 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07M77YRC005328
- (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Sat, 22 Aug 2020 09:07:35 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.76,339,1592863200"; d="scan'208";a="464294685"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2020 09:07:34 +0200
-Date: Sat, 22 Aug 2020 09:07:34 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Joe Perches <joe@perches.com>
-In-Reply-To: <3836b482434bd0b9a609959d3696cc6113a93f2f.camel@perches.com>
-Message-ID: <alpine.DEB.2.22.394.2008220905460.3150@hadrien>
-References: <20200818184107.f8af232fb58b17160c570874@linux-foundation.org>
- <3bf27caf462007dfa75647b040ab3191374a59de.camel@perches.com>
- <b0fd63e4b379eda69ee85ab098353582b8c054bb.camel@perches.com>
- <alpine.DEB.2.22.394.2008201021400.2524@hadrien> 
- <a5713d8597065ef986f780499428fcc4cd31c003.camel@perches.com>
- <alpine.DEB.2.22.394.2008201856110.2524@hadrien>
- <744af177c09f8ce22c99d6e1df458bced558518b.camel@perches.com>
- <162653.1598067338@turing-police>
- <3836b482434bd0b9a609959d3696cc6113a93f2f.camel@perches.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id CEE493F6C
+ for <cocci@systeme.lip6.fr>; Wed, 26 Aug 2020 10:12:53 +0200 (CEST)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+ [209.85.208.195])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07Q8CqV9025258
+ (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
+ for <cocci@systeme.lip6.fr>; Wed, 26 Aug 2020 10:12:53 +0200 (CEST)
+Received: by mail-lj1-f195.google.com with SMTP id y2so1322028ljc.1
+ for <cocci@systeme.lip6.fr>; Wed, 26 Aug 2020 01:12:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from:autocrypt
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=72bxPu2qgb+boTSMMXTu0lwksF6qBFYOp8FbwrUctMM=;
+ b=cP9ktKKIDdOXfUYKwGL4xQhKsSvEfBMPHHQaAcSOMsB+a6qx7zJoods2LcTafTeDRH
+ XsXP14NXPb4lVOTz/pCJEPN4HnqH0jgsp4UW3C4/NtWdGzQaWB+/JVUIJKqpEvFoPSzH
+ 6z7Pjm6eTkwtcoD+HC1D4hEaEAjsZU5qMHqUtDPSaVz0TjiVLS8H7rA37B5Xn1K+/6Fy
+ iga0YK2IRpDr1py2sybDKItc75YyHDrH3mowhKgVzch3xQMpM5N6Ic73E8u/f/g0ZVbM
+ JRh+EOMWysQ8tUHn7AGINdw7a3cJYwQnCMZps6siykvHPG3Uxb+VmQmDAViKdTxPNO3l
+ FwKg==
+X-Gm-Message-State: AOAM531FfK33erz2j/Shc3Ak5+qb1O3aDVVthIv5MkmFpWY5ZP2ildNI
+ VOOAIREpfCBFk1rZzWl9LTI=
+X-Google-Smtp-Source: ABdhPJxIXuKDO6EfPMe5sP3QVOnaj2F0qBAJA5rXqGOvHPthnMbFKRqZFIrhaGa+bYjUNKqILH+JBw==
+X-Received: by 2002:a2e:8999:: with SMTP id c25mr6927638lji.430.1598429572333; 
+ Wed, 26 Aug 2020 01:12:52 -0700 (PDT)
+Received: from [10.68.32.147] (broadband-37-110-38-130.ip.moscow.rt.ru.
+ [37.110.38.130])
+ by smtp.gmail.com with ESMTPSA id 10sm337358ljn.22.2020.08.26.01.12.51
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 26 Aug 2020 01:12:51 -0700 (PDT)
+To: Julia Lawall <julia.lawall@inria.fr>
+References: <20200604140805.111613-1-efremov@linux.com>
+ <20200811074953.73994-1-efremov@linux.com>
+From: Denis Efremov <efremov@linux.com>
+Autocrypt: addr=efremov@linux.com; keydata=
+ mQINBFsJUXwBEADDnzbOGE/X5ZdHqpK/kNmR7AY39b/rR+2Wm/VbQHV+jpGk8ZL07iOWnVe1
+ ZInSp3Ze+scB4ZK+y48z0YDvKUU3L85Nb31UASB2bgWIV+8tmW4kV8a2PosqIc4wp4/Qa2A/
+ Ip6q+bWurxOOjyJkfzt51p6Th4FTUsuoxINKRMjHrs/0y5oEc7Wt/1qk2ljmnSocg3fMxo8+
+ y6IxmXt5tYvt+FfBqx/1XwXuOSd0WOku+/jscYmBPwyrLdk/pMSnnld6a2Fp1zxWIKz+4VJm
+ QEIlCTe5SO3h5sozpXeWS916VwwCuf8oov6706yC4MlmAqsQpBdoihQEA7zgh+pk10sCvviX
+ FYM4gIcoMkKRex/NSqmeh3VmvQunEv6P+hNMKnIlZ2eJGQpz/ezwqNtV/przO95FSMOQxvQY
+ 11TbyNxudW4FBx6K3fzKjw5dY2PrAUGfHbpI3wtVUNxSjcE6iaJHWUA+8R6FLnTXyEObRzTS
+ fAjfiqcta+iLPdGGkYtmW1muy/v0juldH9uLfD9OfYODsWia2Ve79RB9cHSgRv4nZcGhQmP2
+ wFpLqskh+qlibhAAqT3RQLRsGabiTjzUkdzO1gaNlwufwqMXjZNkLYu1KpTNUegx3MNEi2p9
+ CmmDxWMBSMFofgrcy8PJ0jUnn9vWmtn3gz10FgTgqC7B3UvARQARAQABtCFEZW5pcyBFZnJl
+ bW92IDxlZnJlbW92QGxpbnV4LmNvbT6JAlcEEwEIAEECGwMFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4ACGQEWIQR2VAM2ApQN8ZIP5AO1IpWwM1AwHwUCXsQtuwUJB31DPwAKCRC1IpWwM1Aw
+ H3dQD/9E/hFd2yPwWA5cJ5jmBeQt4lBi5wUXd2+9Y0mBIn40F17Xrjebo+D8E5y6S/wqfImW
+ nSDYaMfIIljdjmUUanR9R7Cxd/Z548Qaa4F1AtB4XN3W1L49q21h942iu0yxSLZtq9ayeja6
+ flCB7a+gKjHMWFDB4nRi4gEJvZN897wdJp2tAtUfErXvvxR2/ymKsIf5L0FZBnIaGpqRbfgG
+ Slu2RSpCkvxqlLaYGeYwGODs0QR7X2i70QGeEzznN1w1MGKLOFYw6lLeO8WPi05fHzpm5pK6
+ mTKkpZ53YsRfWL/HY3kLZPWm1cfAxa/rKvlhom+2V8cO4UoLYOzZLNW9HCFnNxo7zHoJ1shR
+ gYcCq8XgiJBF6jfM2RZYkOAJd6E3mVUxctosNq6av3NOdsp1Au0CYdQ6Whi13azZ81pDlJQu
+ Hdb0ZpDzysJKhORsf0Hr0PSlYKOdHuhl8fXKYOGQxpYrWpOnjrlEORl7NHILknXDfd8mccnf
+ 4boKIZP7FbqSLw1RSaeoCnqH4/b+ntsIGvY3oJjzbQVq7iEpIhIoQLxeklFl1xvJAOuSQwII
+ I9S0MsOm1uoT/mwq+wCYux4wQhALxSote/EcoUxK7DIW9ra4fCCo0bzaX7XJ+dJXBWb0Ixxm
+ yLl39M+7gnhvZyU+wkTYERp1qBe9ngjd0QTZNVi7MbkCDQRbCVF8ARAA3ITFo8OvvzQJT2cY
+ nPR718Npm+UL6uckm0Jr0IAFdstRZ3ZLW/R9e24nfF3A8Qga3VxJdhdEOzZKBbl1nadZ9kKU
+ nq87te0eBJu+EbcuMv6+njT4CBdwCzJnBZ7ApFpvM8CxIUyFAvaz4EZZxkfEpxaPAivR1Sa2
+ 2x7OMWH/78laB6KsPgwxV7fir45VjQEyJZ5ac5ydG9xndFmb76upD7HhV7fnygwf/uIPOzNZ
+ YVElGVnqTBqisFRWg9w3Bqvqb/W6prJsoh7F0/THzCzp6PwbAnXDedN388RIuHtXJ+wTsPA0
+ oL0H4jQ+4XuAWvghD/+RXJI5wcsAHx7QkDcbTddrhhGdGcd06qbXe2hNVgdCtaoAgpCEetW8
+ /a8H+lEBBD4/iD2La39sfE+dt100cKgUP9MukDvOF2fT6GimdQ8TeEd1+RjYyG9SEJpVIxj6
+ H3CyGjFwtIwodfediU/ygmYfKXJIDmVpVQi598apSoWYT/ltv+NXTALjyNIVvh5cLRz8YxoF
+ sFI2VpZ5PMrr1qo+DB1AbH00b0l2W7HGetSH8gcgpc7q3kCObmDSa3aTGTkawNHzbceEJrL6
+ mRD6GbjU4GPD06/dTRIhQatKgE4ekv5wnxBK6v9CVKViqpn7vIxiTI9/VtTKndzdnKE6C72+
+ jTwSYVa1vMxJABtOSg8AEQEAAYkCPAQYAQgAJgIbDBYhBHZUAzYClA3xkg/kA7UilbAzUDAf
+ BQJexC4MBQkHfUOQAAoJELUilbAzUDAfPYoQAJdBGd9WZIid10FCoI30QXA82SHmxWe0Xy7h
+ r4bbZobDPc7GbTHeDIYmUF24jI15NZ/Xy9ADAL0TpEg3fNVad2eslhCwiQViWfKOGOLLMe7v
+ zod9dwxYdGXnNRlW+YOCdFNVPMvPDr08zgzXaZ2+QJjp44HSyzxgONmHAroFcqCFUlfAqUDO
+ T30gV5bQ8BHqvfWyEhJT+CS3JJyP8BmmSgPa0Adlp6Do+pRsOO1YNNO78SYABhMi3fEa7X37
+ WxL31TrNCPnIauTgZtf/KCFQJpKaakC3ffEkPhyTjEl7oOE9xccNjccZraadi+2uHV0ULA1m
+ ycHhb817A03n1I00QwLf2wOkckdqTqRbFFI/ik69hF9hemK/BmAHpShI+z1JsYT9cSs8D7wb
+ aF/jQVy4URensgAPkgXsRiboqOj/rTz9F5mpd/gPU/IOUPFEMoo4TInt/+dEVECHioU3RRrW
+ EahrGMfRngbdp/mKs9aBR56ECMfFFUPyI3VJsNbgpcIJjV/0N+JdJKQpJ/4uQ2zNm0wH/RU8
+ CRJvEwtKemX6fp/zLI36Gvz8zJIjSBIEqCb7vdgvWarksrhmi6/Jay5zRZ03+k6YwiqgX8t7
+ ANwvYa1h1dQ36OiTqm1cIxRCGl4wrypOVGx3OjCar7sBLD+NkwO4RaqFvdv0xuuy4x01VnOF
+Message-ID: <3da343e9-bf5f-abe4-8b43-af98bd72e131@linux.com>
+Date: Wed, 26 Aug 2020 11:12:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-12852889-1598080054=:3150"
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 22 Aug 2020 09:07:39 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 22 Aug 2020 09:07:35 +0200 (CEST)
+In-Reply-To: <20200811074953.73994-1-efremov@linux.com>
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 26 Aug 2020 10:12:57 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 26 Aug 2020 10:12:53 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Giuseppe Scrivano <gscrivan@redhat.com>,
-        =?UTF-8?Q?Valdis_Kl=C4=93tnieks?= <valdis.kletnieks@vt.edu>,
-        kernelnewbies <kernelnewbies@kernelnewbies.org>,
-        kernel-janitors <kernel-janitors@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, Andy Whitcroft <apw@shadowen.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-kernel-mentees@lists.linuxfoundation.org,
-        cocci <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] coccinelle: Convert comma to semicolons (was Re:
- [PATCH] checkpatch: Add test for comma use that should be semicolon)
+Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
+Subject: Re: [Cocci] [PATCH] coccinelle: api: update kzfree script to
+	kfree_sensitive
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: efremov@linux.com
 List-Id: <cocci.systeme.lip6.fr>
 List-Unsubscribe: <https://systeme.lip6.fr/mailman/options/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=unsubscribe>
@@ -70,60 +120,110 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Ping?
 
---8323329-12852889-1598080054=:3150
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-
-
-
-On Fri, 21 Aug 2020, Joe Perches wrote:
-
-> On Fri, 2020-08-21 at 23:35 -0400, Valdis Klētnieks wrote:
-> > On Fri, 21 Aug 2020 18:08:08 -0700, Joe Perches said:
-> > > (forwarding on to kernel-janitors/mentees and kernelnewbies)
-> > >
-> > > Just fyi for anyone that cares:
-> > >
-> > > A janitorial task for someone might be to use Julia's coccinelle
-> > > script below to convert the existing instances of commas that
-> > > separate statements into semicolons.
-> >
-> > Note that you need to *really* check for possible changes in semantics.
-> > It's *usually* OK to do that, but sometimes it's not...
-> >
-> > for (i=0; i++, last++; !last) {
-> >
-> > changing that comma to a ; will break the compile.  In other cases, it can
-> > introduce subtle bugs.
->
-> True enough for a general statement, though the coccinelle
-> script Julia provided does not change a single instance of
-> for loop expressions with commas.
->
-> As far as I can tell, no logic defect is introduced by the
-> script at all.
-
-The script has a rule to ensure that what is changed is part of a top
-level statement that has the form e1, e2;.  I put that in to avoid
-transforming cases where the comma is the body of a macro, but it protects
-against for loop headers as well.
-
-julia
---8323329-12852889-1598080054=:3150
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On 8/11/20 10:49 AM, Denis Efremov wrote:
+> Commit 453431a54934 ("mm, treewide: rename kzfree() to kfree_sensitive()")
+> renames kzfree to kfree_sensitive and uses memzero_explicit(...) instead of
+> memset(..., 0, ...) internally. Update cocci script to reflect these
+> changes.
+> 
+> Signed-off-by: Denis Efremov <efremov@linux.com>
+> ---
+> Julia, I think you can squash this commit with original script, or I can
+> resend the whole script since it's not merged to the mainline.
+> 
+>  .../{kzfree.cocci => kfree_sensitive.cocci}   | 29 +++++++++----------
+>  1 file changed, 13 insertions(+), 16 deletions(-)
+>  rename scripts/coccinelle/api/{kzfree.cocci => kfree_sensitive.cocci} (70%)
+> 
+> diff --git a/scripts/coccinelle/api/kzfree.cocci b/scripts/coccinelle/api/kfree_sensitive.cocci
+> similarity index 70%
+> rename from scripts/coccinelle/api/kzfree.cocci
+> rename to scripts/coccinelle/api/kfree_sensitive.cocci
+> index 33625bd7cec9..e4a066a0b77d 100644
+> --- a/scripts/coccinelle/api/kzfree.cocci
+> +++ b/scripts/coccinelle/api/kfree_sensitive.cocci
+> @@ -1,13 +1,13 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  ///
+> -/// Use kzfree, kvfree_sensitive rather than memset or
+> -/// memzero_explicit followed by kfree
+> +/// Use kfree_sensitive, kvfree_sensitive rather than memset or
+> +/// memzero_explicit followed by kfree.
+>  ///
+>  // Confidence: High
+>  // Copyright: (C) 2020 Denis Efremov ISPRAS
+>  // Options: --no-includes --include-headers
+>  //
+> -// Keywords: kzfree, kvfree_sensitive
+> +// Keywords: kfree_sensitive, kvfree_sensitive
+>  //
+>  
+>  virtual context
+> @@ -18,7 +18,8 @@ virtual report
+>  @initialize:python@
+>  @@
+>  # kmalloc_oob_in_memset uses memset to explicitly trigger out-of-bounds access
+> -filter = frozenset(['kmalloc_oob_in_memset', 'kzfree', 'kvfree_sensitive'])
+> +filter = frozenset(['kmalloc_oob_in_memset',
+> +		    'kfree_sensitive', 'kvfree_sensitive'])
+>  
+>  def relevant(p):
+>      return not (filter & {el.current_element for el in p})
+> @@ -56,17 +57,13 @@ type T;
+>  - memzero_explicit@m((T)E, size);
+>    ... when != E
+>        when strict
+> -// TODO: uncomment when kfree_sensitive will be merged.
+> -// Only this case is commented out because developers
+> -// may not like patches like this since kzfree uses memset
+> -// internally (not memzero_explicit).
+> -//(
+> -//- kfree(E)@p;
+> -//+ kfree_sensitive(E);
+> -//|
+> +(
+> +- kfree(E)@p;
+> ++ kfree_sensitive(E);
+> +|
+>  - \(vfree\|kvfree\)(E)@p;
+>  + kvfree_sensitive(E, size);
+> -//)
+> +)
+>  
+>  @rp_memset depends on patch@
+>  expression E, size;
+> @@ -80,7 +77,7 @@ type T;
+>        when strict
+>  (
+>  - kfree(E)@p;
+> -+ kzfree(E);
+> ++ kfree_sensitive(E);
+>  |
+>  - \(vfree\|kvfree\)(E)@p;
+>  + kvfree_sensitive(E, size);
+> @@ -91,11 +88,11 @@ p << r.p;
+>  @@
+>  
+>  coccilib.report.print_report(p[0],
+> -  "WARNING: opportunity for kzfree/kvfree_sensitive")
+> +  "WARNING: opportunity for kfree_sensitive/kvfree_sensitive")
+>  
+>  @script:python depends on org@
+>  p << r.p;
+>  @@
+>  
+>  coccilib.org.print_todo(p[0],
+> -  "WARNING: opportunity for kzfree/kvfree_sensitive")
+> +  "WARNING: opportunity for kfree_sensitive/kvfree_sensitive")
+> 
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
-
---8323329-12852889-1598080054=:3150--
