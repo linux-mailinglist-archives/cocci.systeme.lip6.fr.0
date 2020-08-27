@@ -2,60 +2,51 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066B9255102
-	for <lists+cocci@lfdr.de>; Fri, 28 Aug 2020 00:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D911625513F
+	for <lists+cocci@lfdr.de>; Fri, 28 Aug 2020 00:39:19 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07RML2rt018332;
-	Fri, 28 Aug 2020 00:21:02 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07RMd2AQ019732;
+	Fri, 28 Aug 2020 00:39:02 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id DE24177BF;
-	Fri, 28 Aug 2020 00:21:01 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 1213E77BF;
+	Fri, 28 Aug 2020 00:39:02 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 69B553C97
- for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 00:20:59 +0200 (CEST)
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:1044])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07RMKvuu015964
+ by systeme.lip6.fr (Postfix) with ESMTPS id 3407D3C97
+ for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 00:39:00 +0200 (CEST)
+Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
+ [209.85.167.65])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07RMcx5s013037
  (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 00:20:58 +0200 (CEST)
-Received: by mail-pj1-x1044.google.com with SMTP id 2so3370578pjx.5
- for <cocci@systeme.lip6.fr>; Thu, 27 Aug 2020 15:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=7HOc3TOrUpk73yXJpqK5BG9QB3E4q5q24T2BiM8h4ig=;
- b=ACj55gMSyHznOPm+7Nt6RAuwvbljxgVA4RJ1jcyPkH2RJrl54y3SfzL7sTPYXgXrz+
- 7vVqFXQIV4YKln3ufrm1yzzL4F9GNLkhNZhKEWo0r814lT9QIkar6GT7VFgy7eUUkVeL
- H2VEyQhdACFwDVovcCSKufyBRGAAOoUbEQJgY=
+ for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 00:38:59 +0200 (CEST)
+Received: by mail-lf1-f65.google.com with SMTP id x77so2778211lfa.0
+ for <cocci@systeme.lip6.fr>; Thu, 27 Aug 2020 15:38:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=7HOc3TOrUpk73yXJpqK5BG9QB3E4q5q24T2BiM8h4ig=;
- b=WAUl+h96n2w/dJl2GADg8W8SKunuREsBaZrPU1oieEw05Rhrbdum4iE+5kVImDwnL0
- /ZeVwnasT0vTKoS4vIDRFsxIUxHq8qNn3DmW+LYEQwhkSaAWboJ3JFsmNnoyE0fu+I63
- GFrmdsuJcluB5RSiKAdBNIBVGwzCH0pgXI4oDCtZzGq8tNMTuxPOFW+WmiOzIPLc6NYP
- b89Iww2RggBhombnuayW7qqrK0bmVAqfz4rkwyhxagtUy+H6J6frLuYLSRNo4qjzG/CZ
- RDA0iFce0Sklb5Vpf0GgyCinYsYfh1TlWc6KbQRInfkMSs+FI8EKR208nr3MX/k6wa6A
- k/+g==
-X-Gm-Message-State: AOAM533F4SgXof9Kzv8h3N0uvM1ptEtyImMLFCc9teFcizebgnR341qI
- TVZeplc7nlo8kreOr1HVlLaxiw==
-X-Google-Smtp-Source: ABdhPJwGjzZLQ60AqhrpovvKnVZnmp/yETv8BkRDFYa73Hr7/msOUJUwKUrmeYNOEzO2CReThQJVpg==
-X-Received: by 2002:a17:90b:696:: with SMTP id
- m22mr886476pjz.158.1598566856643; 
- Thu, 27 Aug 2020 15:20:56 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id a13sm3327169pjq.36.2020.08.27.15.20.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Aug 2020 15:20:55 -0700 (PDT)
-Date: Thu, 27 Aug 2020 15:20:54 -0700
-From: Kees Cook <keescook@chromium.org>
-To: Denis Efremov <efremov@linux.com>
-Message-ID: <202008271517.ECC1F1F8F@keescook>
+ h=x-gm-message-state:to:cc:references:from:autocrypt:subject
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=jWe/MZBuXsPQIPwGDtHXYOGQF+tZkW1rf6P5WyO7gU0=;
+ b=aSiho4hOWG1nC1caZ8TGtb18xW76uj4Ws6Idq6AS1cA6QmJuTaxiYfilYWiytk1LsH
+ jNx36Wi/Qt1VPhrhatQ9iFyce9kyzhtRbXZIQaOU6iKkNowFFF+KnXUuE9FYHkvJOUZO
+ +qpoTmbhzA6ymSDC9tqSuq169/6Kyhm+u7CtBLQS9cmpTWrOgJpAUns0vXgSsKjagJ9F
+ Qz0+xxcgIQikvzS1mvvs3EMhOFelS/JVkLhMVYw89bkLKoVtwCCUg0hXqCurTP8JKy2M
+ 4Kq0V2ZhJrj2/KVotdnnrP7AHeNQLESDmFM5g4mJHG2qkI4BWiSqRNjgPlvbO0lDQYo3
+ M/rg==
+X-Gm-Message-State: AOAM532UJgEjBpS3C/558Ex6D7GxGIKJgVQD3xWRbUQoiHoQu4+Uz3rS
+ KskOCNx/bzKdGoRsqGSMpFc=
+X-Google-Smtp-Source: ABdhPJzNbZED6jAG/dXcSnQMVX21gJmCJMfrCRm6uK1ETK0qVpTDxrRAo0S5cqh9JjAkUoVOdtG0VA==
+X-Received: by 2002:a05:6512:1146:: with SMTP id
+ m6mr1957763lfg.1.1598567938855; 
+ Thu, 27 Aug 2020 15:38:58 -0700 (PDT)
+Received: from [192.168.1.8] ([213.87.147.111])
+ by smtp.gmail.com with ESMTPSA id d21sm355589lfi.41.2020.08.27.15.38.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 27 Aug 2020 15:38:58 -0700 (PDT)
+To: Joe Perches <joe@perches.com>, Julia Lawall <julia.lawall@inria.fr>
 References: <20200824222322.22962-1-alex.dewar90@gmail.com>
  <48f2dc90-7852-eaf1-55d7-2c85cf954688@rasmusvillemoes.dk>
  <20200827071537.GA168593@kroah.com>
@@ -65,21 +56,71 @@ References: <20200824222322.22962-1-alex.dewar90@gmail.com>
  <5d1dfb9b031130d4d20763ec621233a19d6a88a2.camel@perches.com>
  <alpine.DEB.2.22.394.2008272141220.2482@hadrien>
  <5853c58e-7d26-2cf9-6cbf-698ecd93cbf9@linux.com>
+ <alpine.DEB.2.22.394.2008272334500.2482@hadrien>
+ <d6d5836196208d5280cedf5837952096c3518852.camel@perches.com>
+From: Denis Efremov <efremov@linux.com>
+Autocrypt: addr=efremov@linux.com; keydata=
+ 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
+Message-ID: <adfca3f2-561a-9d91-c064-cf01c2b573e7@linux.com>
+Date: Fri, 28 Aug 2020 01:38:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5853c58e-7d26-2cf9-6cbf-698ecd93cbf9@linux.com>
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 28 Aug 2020 00:21:02 +0200 (CEST)
+In-Reply-To: <d6d5836196208d5280cedf5837952096c3518852.camel@perches.com>
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 28 Aug 2020 00:39:02 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 28 Aug 2020 00:20:58 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Fri, 28 Aug 2020 00:38:59 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: Kees Cook <keescook@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
         "Gustavo A. R. Silva" <gustavoars@kernel.org>,
         linux-kernel@vger.kernel.org, Alex Dewar <alex.dewar90@gmail.com>,
         accessrunner-general@lists.sourceforge.net,
-        Joe Perches <joe@perches.com>, cocci <cocci@systeme.lip6.fr>
+        cocci <cocci@systeme.lip6.fr>
 Subject: Re: [Cocci] [PATCH] usb: atm: don't use snprintf() for sysfs attrs
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -97,31 +138,82 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Fri, Aug 28, 2020 at 12:01:34AM +0300, Denis Efremov wrote:
-> Just FYI, I've send an addition to the device_attr_show.cocci script[1] to turn
-> simple cases of snprintf (e.g. "%i") to sprintf. Looks like many developers would
-> like it more than changing snprintf to scnprintf. As for me, I don't like the idea
-> of automated altering of the original logic from bounded snprint to unbouded one
-> with sprintf.
+> 
+> I tried:
+> @@
+> identifier f_show =~ "^.*_show$";
 
-Agreed. This just makes me cringe. If the API design declares that when
-a show() callback starts, buf has been allocated with PAGE_SIZE bytes,
-then that's how the logic should proceed, and it should be using
-scnprintf...
 
-show(...) {
-	size_t remaining = PAGE_SIZE;
+This will miss this kind of functions:
+./drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c:1953:static DEVICE_ATTR(vbios_version, 0444, amdgpu_atombios_get_vbios_version,
+./drivers/gpu/drm/amd/amdgpu/df_v3_6.c:266:static DEVICE_ATTR(df_cntr_avail, S_IRUGO, df_v3_6_get_df_cntr_avail, NULL);
+./drivers/input/touchscreen/melfas_mip4.c:1348:static DEVICE_ATTR(fw_version, S_IRUGO, mip4_sysfs_read_fw_version, NULL);
+./drivers/input/touchscreen/melfas_mip4.c:1373:static DEVICE_ATTR(hw_version, S_IRUGO, mip4_sysfs_read_hw_version, NULL);
+./drivers/input/touchscreen/melfas_mip4.c:1392:static DEVICE_ATTR(product_id, S_IRUGO, mip4_sysfs_read_product_id, NULL);
+...
 
-	...
-	remaining -= scnprintf(buf, remaining, "fmt", var args ...);
-	remaining -= scnprintf(buf, remaining, "fmt", var args ...);
-	remaining -= scnprintf(buf, remaining, "fmt", var args ...);
+> identifier dev, attr, buf;
+> const char *chr;
+> @@
+> ssize_t f_show(struct device *dev, struct device_attribute *attr, char
+> *buf)
+> {
+> 	<...
+> (
+> -	sprintf
+> +	sysfs_sprintf
+> 	(...);
+> |
+> -	snprintf(buf, PAGE_SIZE,
+> +	sysfs_sprintf(buf,
+> 	...);
+> |
+> -	scnprintf(buf, PAGE_SIZE,
+> +	sysfs_sprintf(buf,
+> 	...);
+> |
+> 	strcpy(buf, chr);
+> 	sysfs_strcpy(buf, chr);
+> )
+> 	...>
+> }
+> 
+> which finds direct statements without an assign
+> but that doesn't find
+> 
+> arch/arm/common/dmabounce.c:static ssize_t dmabounce_show(struct device *dev, struct device_attribute *attr, char *buf)
+> arch/arm/common/dmabounce.c-{
+> arch/arm/common/dmabounce.c-    struct dmabounce_device_info *device_info = dev->archdata.dmabounce;
+> arch/arm/common/dmabounce.c-    return sprintf(buf, "%lu %lu %lu %lu %lu %lu\n",
+> arch/arm/common/dmabounce.c-            device_info->small.allocs,
+> arch/arm/common/dmabounce.c-            device_info->large.allocs,
+> arch/arm/common/dmabounce.c-            device_info->total_allocs - device_info->small.allocs -
+> arch/arm/common/dmabounce.c-                    device_info->large.allocs,
+> arch/arm/common/dmabounce.c-            device_info->total_allocs,
+> arch/arm/common/dmabounce.c-            device_info->map_op_count,
+> arch/arm/common/dmabounce.c-            device_info->bounce_count);
+> arch/arm/common/dmabounce.c-}
+>
 
-	return PAGE_SIZE - remaining;
+This will match it (the difference is in the ';'):
+@@
+identifier f_show =~ "^.*_show$";
+identifier dev, attr, buf;
+@@
+
+ssize_t f_show(struct device *dev, struct device_attribute *attr, char *buf)
+
+{
+
+	<...
+-	sprintf
++	sysfs_sprintf
+	(...)
+	...>
 }
 
--- 
-Kees Cook
+Regards,
+Denis
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
