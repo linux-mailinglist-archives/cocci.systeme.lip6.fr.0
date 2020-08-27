@@ -2,64 +2,77 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078E5255ECE
-	for <lists+cocci@lfdr.de>; Fri, 28 Aug 2020 18:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9814025617A
+	for <lists+cocci@lfdr.de>; Fri, 28 Aug 2020 21:43:40 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07SGWA4C020212;
-	Fri, 28 Aug 2020 18:32:11 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 07SJhCgd023339;
+	Fri, 28 Aug 2020 21:43:12 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id CC3DF77BF;
-	Fri, 28 Aug 2020 18:32:10 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 622A877BF;
+	Fri, 28 Aug 2020 21:43:12 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 8B1B64316
- for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 18:32:08 +0200 (CEST)
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
- [209.85.208.196])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07SGW7X6016007
- (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 18:32:07 +0200 (CEST)
-Received: by mail-lj1-f196.google.com with SMTP id w25so1962531ljo.12
- for <cocci@systeme.lip6.fr>; Fri, 28 Aug 2020 09:32:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=MTrVSpZ9C8pbL/8BIE49vy9556f5oKETpreng4WhtvM=;
- b=uOx16t1ueeDYpgwk4dXSlEOufSdWHHyhp4X2rNPmS+leF1YrR8e1AfQjN/23viQz1P
- sAYGr3393xjrBDEWZ/v7FdbdskQW/ZHFTsw7AfJOWnqOkpyWR9BK92fTHxBb/bhAgGLe
- d8lAmb8GtR0IOVKKlpuwJURVhnVzZWHZsW1lmPgJdzOMGHIgjyktqHe/YmxoT4RV9I/E
- zN0mjjIO1z/B0bCYIbWmgpY6B4+7YhbfE1VZk7xJftfMoL7SdKfzF1v7MSIJQqKGhkbG
- Pks9Wf2hYk6QZfFslHCkw0RaQsYsjCF2tzhOn99wKDrzEe//Cm+7dVs0iuU/FpwKSDfA
- 5tzQ==
-X-Gm-Message-State: AOAM530VTZ5PTQkBaPZXq5x8v0id2ncWcIIupcuh41ToBhztx+dHqB55
- bH9ur/W/26XDs1enG8RsJFQ=
-X-Google-Smtp-Source: ABdhPJxVhozefzKCWuOnKCweTEB6t3+HJdnKnvpGPQLql/uMye5UbfzGnGlvc9KOk15WHazGtYLUXg==
-X-Received: by 2002:a2e:918e:: with SMTP id f14mr1210827ljg.66.1598632327161; 
- Fri, 28 Aug 2020 09:32:07 -0700 (PDT)
-Received: from localhost.localdomain ([213.87.147.111])
- by smtp.googlemail.com with ESMTPSA id w6sm397882lfn.73.2020.08.28.09.32.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Aug 2020 09:32:06 -0700 (PDT)
-From: Denis Efremov <efremov@linux.com>
-To: Julia Lawall <Julia.Lawall@lip6.fr>
-Date: Fri, 28 Aug 2020 19:31:34 +0300
-Message-Id: <20200828163134.496386-1-efremov@linux.com>
-X-Mailer: git-send-email 2.26.2
+ by systeme.lip6.fr (Postfix) with ESMTPS id 819033C97
+ for <cocci@systeme.lip6.fr>; Thu, 27 Aug 2020 23:54:17 +0200 (CEST)
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 07RLsFfH018763
+ (version=TLSv1.2 cipher=DHE-RSA-AES256-SHA256 bits=256 verify=NO)
+ for <cocci@systeme.lip6.fr>; Thu, 27 Aug 2020 23:54:16 +0200 (CEST)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-58-iJVQv5u7OyCBBBM2t5KBVA-1; Thu, 27 Aug 2020 22:54:12 +0100
+X-MC-Unique: iJVQv5u7OyCBBBM2t5KBVA-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Thu, 27 Aug 2020 22:54:12 +0100
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Thu, 27 Aug 2020 22:54:12 +0100
+From: David Laight <David.Laight@ACULAB.COM>
+To: "'Joe Perches'" <joe@perches.com>, Alex Dewar <alex.dewar90@gmail.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        cocci <cocci@systeme.lip6.fr>
+Thread-Topic: [PATCH] usb: atm: don't use snprintf() for sysfs attrs
+Thread-Index: AQHWfJNPoPleWxCDKky1KLXQzyLa5alMfq2A
+Date: Thu, 27 Aug 2020 21:54:12 +0000
+Message-ID: <c256eba42a564c01a8e470320475d46f@AcuMS.aculab.com>
+References: <20200824222322.22962-1-alex.dewar90@gmail.com>
+ <48f2dc90-7852-eaf1-55d7-2c85cf954688@rasmusvillemoes.dk>
+ <20200827071537.GA168593@kroah.com>
+ <20200827131819.7rcl2f5js3hkoqj2@lenovo-laptop>
+ <def24e9e-018c-9712-0d07-d4cbc84f07d9@rasmusvillemoes.dk>
+ <20200827144846.yauuttjaqtxaldxg@lenovo-laptop>
+ <5d1dfb9b031130d4d20763ec621233a19d6a88a2.camel@perches.com>
+In-Reply-To: <5d1dfb9b031130d4d20763ec621233a19d6a88a2.camel@perches.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 28 Aug 2020 18:32:12 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Fri, 28 Aug 2020 18:32:07 +0200 (CEST)
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0.001
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 28 Aug 2020 21:43:16 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Thu, 27 Aug 2020 23:54:16 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Fri, 28 Aug 2020 21:43:10 +0200
 Cc: Kees Cook <keescook@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>, cocci@systeme.lip6.fr,
-        linux-kernel@vger.kernel.org
-Subject: [Cocci] [RFC PATCH] coccinelle: api: add flex_array_size.cocci
-	script
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "accessrunner-general@lists.sourceforge.net"
+ <accessrunner-general@lists.sourceforge.net>
+Subject: Re: [Cocci] [PATCH] usb: atm: don't use snprintf() for sysfs attrs
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,233 +89,113 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Suggest flex_array_size() wrapper to compute the size of a
-flexible array member in a structure. The macro additionally
-checks for integer overflows.
+From: Joe Perches
+> Sent: 27 August 2020 17:59
+> To: Alex Dewar <alex.dewar90@gmail.com>; Rasmus Villemoes <linux@rasmusvillemoes.dk>; cocci
+> <cocci@systeme.lip6.fr>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Kees Cook <keescook@chromium.org>; Gustavo A. R.
+> Silva <gustavoars@kernel.org>; accessrunner-general@lists.sourceforge.net; linux-usb@vger.kernel.org;
+> linux-kernel@vger.kernel.org
+> Subject: Re: [PATCH] usb: atm: don't use snprintf() for sysfs attrs
+> 
+> On Thu, 2020-08-27 at 15:48 +0100, Alex Dewar wrote:
+> > On Thu, Aug 27, 2020 at 03:41:06PM +0200, Rasmus Villemoes wrote:
+> > > On 27/08/2020 15.18, Alex Dewar wrote:
+> > > > On Thu, Aug 27, 2020 at 09:15:37AM +0200, Greg Kroah-Hartman wrote:
+> > > > > On Thu, Aug 27, 2020 at 08:42:06AM +0200, Rasmus Villemoes wrote:
+> > > > > > On 25/08/2020 00.23, Alex Dewar wrote:
+> > > > > > > kernel/cpu.c: don't use snprintf() for sysfs attrs
+> > > > > > >
+> > > > > > > As per the documentation (Documentation/filesystems/sysfs.rst),
+> > > > > > > snprintf() should not be used for formatting values returned by sysfs.
+> > > > > > >
+> > > > > >
+> > > > > > Can we have a sysfs_sprintf() (could just be a macro that does sprintf)
+> > > > > > to make it clear to the next reader that we know we're in a sysfs show
+> > > > > > method? It would make auditing uses of sprintf() much easier.
+> > > > >
+> > > > > Code churn to keep code checkers quiet for pointless reasons?  What
+> > > > > could go wrong with that...
+> > >
+> > > I did not (mean to) suggest replacing existing sprintf() calls in sysfs
+> > > show methods. But when changes _are_ being made, such as when replacing
+> > > snprintf() calls for whatever reasons, can we please not make it harder
+> > > for people doing manual audits (those are "code checkers" as well, I
+> > > suppose, but they do tend to only make noise when finding something).
+> > >
+> > > > > It should be pretty obvious to any reader that you are in a sysfs show
+> > > > > method, as almost all of them are trivially tiny and obvious.
+> > >
+> > > git grep doesn't immediately show that, not even with a suitable -C
+> > > argument, as you can't really know the potential callers unless you open
+> > > the file and see that the function is only assigned as a .show method.
+> > > And even that can be a pain because it's all hidden behind five levels
+> > > of magic macros that build identifiers with ##.
+> > >
+> > > > Perhaps I should have mentioned this in the commit message, but the problem
+> > > > is that snprintf() doesn't return the number of bytes written to the
+> > > > destination buffer,
+> > >
+> > > I'm perfectly well aware of that, TYVM (you may want to 'git log
+> > > --author Villemoes lib/vsprintf.c').
+> > >
+> > >  but the number of bytes that *would have been written if
+> > > > they fitted*, which may be more than the bounds specified [1]. So "return
+> > > > snprintf(...)" for sysfs attributes is an antipattern. If you need bounded
+> > > > string ops, scnprintf() is the way to go. Using snprintf() can give a
+> > > > false sense of security, because it isn't necessarily safe.
+> > >
+> > > Huh? This all seems utterly irrelevant WRT a change that replaces
+> > > PAGE_SIZE by INT_MAX (because that's what sprintf() is going to pretend
+> > > you passed). You get the same return value.
+> > >
+> > > But I'm not at all concerned about whether one passes the proper buffer
+> > > size or not in sysfs show methods; with my embedded hat on, I'm all for
+> > > saving a few bytes of .text here and there. The problem, as far as I'm
+> > > concerned, is merely that adding sprintf() callers makes it harder to
+> > > find the problematic sprintf() instances.
+> > >
+> >
+> > Apologies, I think I might have expressed myself poorly, being a kernel noob
+> > ;-). I know that this is a stylistic change rather than a functional
+> > one -- I meant that I was hoping that it would be helpful to get rid of bad
+> > uses of snprintf().
+> >
+> > I really like your idea of helper methods though :-). If in show()
+> > methods we could have something like:
+> > 	return sysfs_itoa(buf, i);
+> > in place of:
+> > 	return sprintf(buf, "%d\n", i);
+> >
+> > ... then we wouldn't be introducing any new calls to sprintf() as you
+> > say, but we'd still be removing a call to snprintf() (which also may be
+> > problematic). Plus we'd have type checking on the argument.
+> >
+> > For returning strings, we could have a bounded and unbounded variant of
+> > the function. As it seems like only single values should be returned via
+> > sysfs, if we did things this way then it would only be these
+> > string-returning functions which could cause buffer overflow problems
+> > and kernel devs could focus their attention accordingly...
+> >
+> > What do people think? I'm happy to have a crack, provided this is
+> > actually a sensible thing to do! I'm looking for a newbie-level project
+> > to get started with.
 
-The cocci script intentionally skips cases where count argument
-is not a member of a structure because this introduce false
-positives.
+The problem with that idea is that is the code needs to
+merge the output of two values or split an integer as nnn.nn
+then it needs to do something different from the 'normal' code.
 
-Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
-Cc: Kees Cook <keescook@chromium.org>
-Signed-off-by: Denis Efremov <efremov@linux.com>
----
-Kees, Gustavo, may I have your acks if you find this script useful?
-Currently, it emits following warnings:
-./fs/select.c:994:25-26: WARNING opportunity for flex_array_size
-./include/linux/avf/virtchnl.h:711:34-35: WARNING opportunity for flex_array_size
-./include/linux/avf/virtchnl.h:722:43-44: WARNING opportunity for flex_array_size
-./include/linux/avf/virtchnl.h:738:40-41: WARNING opportunity for flex_array_size
-./include/linux/avf/virtchnl.h:749:46-47: WARNING opportunity for flex_array_size
-./drivers/dma/qcom/bam_dma.c:1055:35-36: WARNING opportunity for flex_array_size
-./drivers/md/dm-crypt.c:2895:45-46: WARNING opportunity for flex_array_size
-./drivers/md/dm-crypt.c:3381:47-48: WARNING opportunity for flex_array_size
-./drivers/md/dm-crypt.c:2484:45-46: WARNING opportunity for flex_array_size
-./drivers/md/dm-crypt.c:2484:45-46: WARNING opportunity for flex_array_size
-./net/sched/em_canid.c:198:48-49: WARNING opportunity for flex_array_size
-./include/linux/filter.h:741:42-43: WARNING opportunity for flex_array_size
-./fs/aio.c:677:42-43: WARNING opportunity for flex_array_size
-./include/rdma/rdmavt_qp.h:537:31-32: WARNING opportunity for flex_array_size
-./include/rdma/rdmavt_qp.h:537:31-32: WARNING opportunity for flex_array_size
-./lib/ts_fsm.c:311:49-50: WARNING opportunity for flex_array_size
-./mm/slab.c:3407:59-60: WARNING opportunity for flex_array_size
-./mm/slab.c:2139:55-56: WARNING opportunity for flex_array_size
-./mm/slab.c:3407:59-60: WARNING opportunity for flex_array_size
-./mm/slab.c:2139:55-56: WARNING opportunity for flex_array_size
+If the buffer is always PAGE_SIZE the why not embed it in
+a structure.
+The generated code will be the same, but it will be absolutely
+explicit that the size is PAGE_SIZE if the code filling in the
+buffer decides it needs to check.
 
- scripts/coccinelle/api/flex_array_size.cocci | 180 +++++++++++++++++++
- 1 file changed, 180 insertions(+)
- create mode 100644 scripts/coccinelle/api/flex_array_size.cocci
+	David
 
-diff --git a/scripts/coccinelle/api/flex_array_size.cocci b/scripts/coccinelle/api/flex_array_size.cocci
-new file mode 100644
-index 000000000000..b5264a826c29
---- /dev/null
-+++ b/scripts/coccinelle/api/flex_array_size.cocci
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+///
-+/// Suggest flex_array_size() wrapper to compute the size of a
-+/// flexible array member in a structure. The macro additionally
-+/// checks for integer overflows.
-+///
-+// Confidence: High
-+// Copyright: (C) 2020 Denis Efremov ISPRAS
-+// Options: --no-includes --include-headers
-+//
-+// Keywords: flex_array_size
-+//
-+
-+
-+virtual context
-+virtual report
-+virtual org
-+virtual patch
-+
-+@decl_flex@
-+identifier name, array, size;
-+type TA, TS;
-+@@
-+
-+  struct name {
-+    ...
-+    TS size;
-+    ...
-+(
-+    TA array[];
-+|
-+    TA array[\(0\|1\)];
-+)
-+  };
-+
-+@ptr_flex@
-+identifier decl_flex.name;
-+identifier instance;
-+@@
-+
-+  struct name *instance;
-+
-+@struct_flex@
-+identifier decl_flex.name;
-+identifier instance;
-+@@
-+
-+  struct name instance;
-+
-+@ptr_flex_size depends on !patch@
-+identifier decl_flex.array, decl_flex.size;
-+identifier ptr_flex.instance;
-+type decl_flex.TA;
-+position p;
-+@@
-+
-+(
-+* instance->size * sizeof(TA)@p
-+|
-+* instance->size * sizeof(*instance->array)@p
-+)
-+
-+@depends on patch exists@
-+identifier decl_flex.array, decl_flex.size;
-+identifier ptr_flex.instance;
-+type decl_flex.TA;
-+@@
-+
-+(
-+- instance->size * sizeof(TA)
-++ flex_array_size(instance, array, instance->size)
-+|
-+- instance->size * sizeof(*instance->array)
-++ flex_array_size(instance, array, instance->size)
-+)
-+
-+@struct_flex_size depends on !patch@
-+identifier decl_flex.array, decl_flex.size;
-+identifier struct_flex.instance;
-+type decl_flex.TA;
-+position p;
-+@@
-+
-+(
-+* instance.size * sizeof(TA)@p
-+|
-+* instance.size * sizeof(*instance->array)@p
-+)
-+
-+@depends on patch exists@
-+identifier decl_flex.array, decl_flex.size;
-+identifier struct_flex.instance;
-+type decl_flex.TA;
-+@@
-+
-+(
-+- instance.size * sizeof(TA)
-++ flex_array_size(instance, array, instance.size)
-+|
-+- instance.size * sizeof(*instance->array)
-++ flex_array_size(instance, array, instance.size)
-+)
-+
-+@func_arg_flex_size depends on !patch@
-+identifier decl_flex.name, decl_flex.array, decl_flex.size;
-+identifier func, instance;
-+type decl_flex.TA;
-+position p;
-+@@
-+
-+  func(..., struct name *instance, ...) {
-+    ... when any
-+(
-+*   instance->size * sizeof(TA)@p
-+|
-+*   instance->size * sizeof(*instance->array)@p
-+)
-+    ...
-+  }
-+
-+@depends on patch exists@
-+identifier decl_flex.name, decl_flex.array, decl_flex.size;
-+identifier func, instance;
-+type decl_flex.TA;
-+@@
-+
-+  func(..., struct name *instance, ...) {
-+    ... when any
-+(
-+-   instance->size * sizeof(TA)
-++   flex_array_size(instance, array, instance->size)
-+|
-+-   instance->size * sizeof(*instance->array)
-++   flex_array_size(instance, array, instance->size)
-+)
-+    ...
-+  }
-+
-+
-+@script:python depends on report@
-+p << ptr_flex_size.p;
-+@@
-+
-+coccilib.report.print_report(p[0],
-+  "WARNING opportunity for flex_array_size")
-+
-+@script:python depends on org@
-+p << ptr_flex_size.p;
-+@@
-+
-+coccilib.org.print_todo(p[0],
-+  "WARNING opportunity for flex_array_size")
-+
-+@script:python depends on report@
-+p << struct_flex_size.p;
-+@@
-+
-+coccilib.report.print_report(p[0],
-+  "WARNING opportunity for flex_array_size")
-+
-+@script:python depends on org@
-+p << struct_flex_size.p;
-+@@
-+
-+coccilib.org.print_todo(p[0],
-+  "WARNING opportunity for flex_array_size")
-+
-+@script:python depends on report@
-+p << func_arg_flex_size.p;
-+@@
-+
-+coccilib.report.print_report(p[0],
-+  "WARNING opportunity for flex_array_size")
-+
-+@script:python depends on org@
-+p << func_arg_flex_size.p;
-+@@
-+
-+coccilib.org.print_todo(p[0],
-+  "WARNING opportunity for flex_array_size")
--- 
-2.26.2
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 
 _______________________________________________
 Cocci mailing list
