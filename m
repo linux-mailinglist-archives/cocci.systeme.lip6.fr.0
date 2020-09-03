@@ -2,36 +2,36 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6349F25C4B5
-	for <lists+cocci@lfdr.de>; Thu,  3 Sep 2020 17:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D61325C6FE
+	for <lists+cocci@lfdr.de>; Thu,  3 Sep 2020 18:35:39 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 083FEPjC011919;
-	Thu, 3 Sep 2020 17:14:25 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 083GZFA5025936;
+	Thu, 3 Sep 2020 18:35:15 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 4377F77BC;
-	Thu,  3 Sep 2020 17:14:25 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 33E8077BC;
+	Thu,  3 Sep 2020 18:35:15 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 319596717
- for <cocci@systeme.lip6.fr>; Thu,  3 Sep 2020 17:14:23 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 083FEMFv002774
+ by systeme.lip6.fr (Postfix) with ESMTPS id B6F006717
+ for <cocci@systeme.lip6.fr>; Thu,  3 Sep 2020 18:35:13 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 083GZDtt006785
  (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Thu, 3 Sep 2020 17:14:22 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.76,359,1592863200"; d="scan'208";a="358019773"
+ for <cocci@systeme.lip6.fr>; Thu, 3 Sep 2020 18:35:13 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.76,359,1592863200"; d="scan'208";a="465969925"
 Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2020 17:14:22 +0200
-Date: Thu, 3 Sep 2020 17:14:21 +0200 (CEST)
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2020 18:35:05 +0200
+Date: Thu, 3 Sep 2020 18:35:05 +0200 (CEST)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
 To: Joe Perches <joe@perches.com>
-In-Reply-To: <0db493cb85521ee26b7ca7c255e89721cc6b6dcd.camel@perches.com>
-Message-ID: <alpine.DEB.2.22.394.2009031711470.2496@hadrien>
+In-Reply-To: <13de187ee83bb6ebffc6e4ff5f1c78d917ba9432.camel@perches.com>
+Message-ID: <alpine.DEB.2.22.394.2009031834060.2496@hadrien>
 References: <de28becbfe76575b18c0bf47567b7f9c20f15f87.camel@perches.com>
  <alpine.DEB.2.22.394.2008300854510.3629@hadrien>
  <b43fac2f903451dba4d5f4ac010b2ae5bfcad0c4.camel@perches.com>
@@ -43,11 +43,13 @@ References: <de28becbfe76575b18c0bf47567b7f9c20f15f87.camel@perches.com>
  <ec1cc3309738bf1acab87fcf9178dbf7b204176a.camel@perches.com>
  <alpine.DEB.2.22.394.2009022236330.2460@hadrien>
  <0db493cb85521ee26b7ca7c255e89721cc6b6dcd.camel@perches.com>
+ <alpine.DEB.2.22.394.2009031711470.2496@hadrien>
+ <13de187ee83bb6ebffc6e4ff5f1c78d917ba9432.camel@perches.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 03 Sep 2020 17:14:26 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 03 Sep 2020 18:35:15 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Thu, 03 Sep 2020 17:14:22 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Thu, 03 Sep 2020 18:35:13 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci <cocci@systeme.lip6.fr>
@@ -70,34 +72,62 @@ Errors-To: cocci-bounces@systeme.lip6.fr
 
 
 
-On Wed, 2 Sep 2020, Joe Perches wrote:
+On Thu, 3 Sep 2020, Joe Perches wrote:
 
-> On Wed, 2020-09-02 at 22:46 +0200, Julia Lawall wrote:
-> >
+> On Thu, 2020-09-03 at 17:14 +0200, Julia Lawall wrote:
 > > On Wed, 2 Sep 2020, Joe Perches wrote:
+> > > On Wed, 2020-09-02 at 22:46 +0200, Julia Lawall wrote:
+> > > > On Wed, 2 Sep 2020, Joe Perches wrote:
+> > > > > On Sun, 2020-08-30 at 20:41 +0200, Julia Lawall wrote:
+> > > > > > On Sun, 30 Aug 2020, Joe Perches wrote:
+> > > > > > > On Sun, 2020-08-30 at 17:46 +0200, Julia Lawall wrote:
+> > > > > > > > Unfortunately this does not work when the declaration
+> > > > > > > is comma terminated and not semicolon terminated.
+> > > > > []
+> > > > > > I will have to look into it.  It should handle this sort of thing, but it
+> > > > > > is somewhat complex, because the declarations have to be split and this
+> > > > > > specific case may not be handled.
+> > > > >
+> > > > > Thanks.  Hope you can get to look at that one day.
 > >
-> > > On Sun, 2020-08-30 at 20:41 +0200, Julia Lawall wrote:
-> > > > On Sun, 30 Aug 2020, Joe Perches wrote:
-> > > > > On Sun, 2020-08-30 at 17:46 +0200, Julia Lawall wrote:
-> > > > > > Unfortunately this does not work when the declaration
-> > > > > is comma terminated and not semicolon terminated.
-> > > []
-> > > > I will have to look into it.  It should handle this sort of thing, but it
-> > > > is somewhat complex, because the declarations have to be split and this
-> > > > specific case may not be handled.
-> > >
-> > > Thanks.  Hope you can get to look at that one day.
+> > It works if you replace the addition of the new declaration by ++.  It
+> > seems that it is concerned that if there are multiple variables in the
+> > original declaration then it may be necessary to do multiple additions and
+> > so it doesn't do anything for a single +.  You can see this information
+> > with the --debug option.
+>
+> Thanks, works now.
+>
+> > The newlines in the generated code are also not what one would hope for.
+> > I will see if this can be improved.
+>
+> One day.
+>
+> It's not urgent for me as all the proposed changes
+> would need to be checked manually and the rename can
+> cause other alignment issues around not just the
+> definition changes but in code too.
+>
+> e.g.:
+> 	written = sysfs_emit(buf,
+> 			     "foo", bar...);
+> becomes
+> 	len = sysfs_emit(buf,
+> 			     "foo", bar...);
 
-It works if you replace the addition of the new declaration by ++.  It
-seems that it is concerned that if there are multiple variables in the
-original declaration then it may be necessary to do multiple additions and
-so it doesn't do anything for a single +.  You can see this information
-with the --debug option.
-
-The newlines in the generated code are also not what one would hope for.
-I will see if this can be improved.
+If you remove and put back the argument list, perhaps with an expression
+list metavariable, if you don't know how many arguments there are,
+Coccinelle should clean this up for yout.
 
 julia
+
+>
+> I have other scripts that can fix both the definition
+> and the alignment changes done by coccinelle.
+>
+> cheers, Joe
+>
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
