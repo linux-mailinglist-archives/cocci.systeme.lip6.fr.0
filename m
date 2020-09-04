@@ -2,57 +2,46 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF9B25E045
-	for <lists+cocci@lfdr.de>; Fri,  4 Sep 2020 18:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B79C25E2ED
+	for <lists+cocci@lfdr.de>; Fri,  4 Sep 2020 22:39:43 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 084GqmI2018289;
-	Fri, 4 Sep 2020 18:52:48 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 084KdIpj026566;
+	Fri, 4 Sep 2020 22:39:18 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 69C2177BC;
-	Fri,  4 Sep 2020 18:52:48 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 9AC0477BC;
+	Fri,  4 Sep 2020 22:39:18 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 4AF033F6C
- for <cocci@systeme.lip6.fr>; Fri,  4 Sep 2020 18:52:47 +0200 (CEST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 8FC1E3F6C
+ for <cocci@systeme.lip6.fr>; Fri,  4 Sep 2020 22:39:17 +0200 (CEST)
 Received: from mail3-relais-sop.national.inria.fr
  (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 084GqkpB021407
- for <cocci@systeme.lip6.fr>; Fri, 4 Sep 2020 18:52:46 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.76,359,1592863200"; d="scan'208";a="358126050"
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 084KdGcK015629
+ for <cocci@systeme.lip6.fr>; Fri, 4 Sep 2020 22:39:17 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.76,359,1592863200"; d="scan'208";a="358135169"
 Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
  by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2020 18:52:46 +0200
-Date: Fri, 4 Sep 2020 18:52:46 +0200 (CEST)
+ 04 Sep 2020 22:39:16 +0200
+Date: Fri, 4 Sep 2020 22:39:16 +0200 (CEST)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
-To: Joe Perches <joe@perches.com>
-In-Reply-To: <13de187ee83bb6ebffc6e4ff5f1c78d917ba9432.camel@perches.com>
-Message-ID: <alpine.DEB.2.22.394.2009041851480.2425@hadrien>
-References: <de28becbfe76575b18c0bf47567b7f9c20f15f87.camel@perches.com>
- <alpine.DEB.2.22.394.2008300854510.3629@hadrien>
- <b43fac2f903451dba4d5f4ac010b2ae5bfcad0c4.camel@perches.com>
- <alpine.DEB.2.22.394.2008301021250.3629@hadrien> 
- <bc3215bbf6c217a06dc2ebbf6ddd977c5d57654c.camel@perches.com>
- <alpine.DEB.2.22.394.2008301742400.3629@hadrien>
- <7ce009d5f538feae7a6a20e0bbecdf73d74ea9f9.camel@perches.com>
- <alpine.DEB.2.22.394.2008302039000.3629@hadrien> 
- <ec1cc3309738bf1acab87fcf9178dbf7b204176a.camel@perches.com>
- <alpine.DEB.2.22.394.2009022236330.2460@hadrien>
- <0db493cb85521ee26b7ca7c255e89721cc6b6dcd.camel@perches.com>
- <alpine.DEB.2.22.394.2009031711470.2496@hadrien>
- <13de187ee83bb6ebffc6e4ff5f1c78d917ba9432.camel@perches.com>
+To: Denis Efremov <efremov@linux.com>
+In-Reply-To: <20200902151859.403354-1-efremov@linux.com>
+Message-ID: <alpine.DEB.2.22.394.2009042236360.2425@hadrien>
+References: <20200902151859.403354-1-efremov@linux.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 04 Sep 2020 18:52:50 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 04 Sep 2020 22:39:20 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Fri, 04 Sep 2020 18:52:46 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Fri, 04 Sep 2020 22:39:17 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] transform oddity / bug ?
+Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
+Subject: Re: [Cocci] [PATCH] coccinelle: misc: add excluded_middle.cocci
+	script
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,37 +60,82 @@ Errors-To: cocci-bounces@systeme.lip6.fr
 
 
 
-On Thu, 3 Sep 2020, Joe Perches wrote:
+On Wed, 2 Sep 2020, Denis Efremov wrote:
 
-> On Thu, 2020-09-03 at 17:14 +0200, Julia Lawall wrote:
-> > On Wed, 2 Sep 2020, Joe Perches wrote:
-> > > On Wed, 2020-09-02 at 22:46 +0200, Julia Lawall wrote:
-> > > > On Wed, 2 Sep 2020, Joe Perches wrote:
-> > > > > On Sun, 2020-08-30 at 20:41 +0200, Julia Lawall wrote:
-> > > > > > On Sun, 30 Aug 2020, Joe Perches wrote:
-> > > > > > > On Sun, 2020-08-30 at 17:46 +0200, Julia Lawall wrote:
-> > > > > > > > Unfortunately this does not work when the declaration
-> > > > > > > is comma terminated and not semicolon terminated.
-> > > > > []
-> > > > > > I will have to look into it.  It should handle this sort of thing, but it
-> > > > > > is somewhat complex, because the declarations have to be split and this
-> > > > > > specific case may not be handled.
-> > > > >
-> > > > > Thanks.  Hope you can get to look at that one day.
-> >
-> > It works if you replace the addition of the new declaration by ++.  It
-> > seems that it is concerned that if there are multiple variables in the
-> > original declaration then it may be necessary to do multiple additions and
-> > so it doesn't do anything for a single +.  You can see this information
-> > with the --debug option.
+> Check for "!A || A && B" condition. It's equivalent to
+> "!A || B" condition.
 >
-> Thanks, works now.
+> Signed-off-by: Denis Efremov <efremov@linux.com>
+> ---
+>  scripts/coccinelle/misc/excluded_middle.cocci | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 scripts/coccinelle/misc/excluded_middle.cocci
 >
-> > The newlines in the generated code are also not what one would hope for.
-> > I will see if this can be improved.
+> diff --git a/scripts/coccinelle/misc/excluded_middle.cocci b/scripts/coccinelle/misc/excluded_middle.cocci
+> new file mode 100644
+> index 000000000000..1b8c20f13966
+> --- /dev/null
+> +++ b/scripts/coccinelle/misc/excluded_middle.cocci
+> @@ -0,0 +1,40 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +///
+> +/// Condition "!A || A && B" is equalent to "!A || B".
 
-This should be fixed now.  You can see the test case
-tests/type_and_var.{cocci,c,res}.
+As was noted, there is a spelling mistake here.
+
+> +///
+> +// Confidence: High
+> +// Copyright: (C) 2020 Denis Efremov ISPRAS
+> +// Options: --no-includes --include-headers
+> +
+> +virtual patch
+> +virtual context
+> +virtual org
+> +virtual report
+> +
+> +@r depends on !patch@
+> +expression A, B;
+> +position p;
+> +@@
+> +
+> +* !A || (A && B)@p
+
+In org mode, the token with the position variable gets highlighted in
+color.  It would be more meaningful to put the position variable on the &&
+operator.
+
+> +
+> +@depends on patch@
+> +expression A, B;
+> +@@
+> +
+> +  !A ||
+> +-      (A &&
+> +             B
+> +-      )
+
+I found it better to say
+
+- (A && B)
++ B
+
+There are some cases where B should be moved one space to the left and by
+removing B and adding it back again that will happen.  I didn't see any
+case where the result was less good.
+
+> +@script:python depends on report@
+> +p << r.p;
+> +@@
+> +
+> +coccilib.report.print_report(p[0], "WARNING condition !A || A && B is equivalent to !A || B")
+> +
+> +@script:python depends on org@
+> +p << r.p;
+> +@@
+> +
+> +coccilib.org.print_todo(p[0], "WARNING condition !A || A && B is equivalent to !A || B")
+
+I'm not sure that you need the word condition, but up to you.
 
 julia
 _______________________________________________
