@@ -2,73 +2,39 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390B1262D23
-	for <lists+cocci@lfdr.de>; Wed,  9 Sep 2020 12:29:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F39E2635A8
+	for <lists+cocci@lfdr.de>; Wed,  9 Sep 2020 20:13:42 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 089ATPvJ011686;
-	Wed, 9 Sep 2020 12:29:25 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 089IDJq5011952;
+	Wed, 9 Sep 2020 20:13:20 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 0D6D777BF;
-	Wed,  9 Sep 2020 12:29:25 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id D1B8E4316;
+	Wed,  9 Sep 2020 20:13:19 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 56D434316
- for <cocci@systeme.lip6.fr>; Wed,  9 Sep 2020 12:29:23 +0200 (CEST)
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:544])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 089ATMou028684
- for <cocci@systeme.lip6.fr>; Wed, 9 Sep 2020 12:29:22 +0200 (CEST)
-Received: by mail-pg1-x544.google.com with SMTP id v15so1754819pgh.6
- for <cocci@systeme.lip6.fr>; Wed, 09 Sep 2020 03:29:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
- bh=x1ennYUlzh5ZiE58CNNa6Rmzq+yOs03mH5GcYAaRQyI=;
- b=nPAWIBBQZscZP2VxtA/QFjIrqE8jNAcLYFah9SHCxCi7X3nALrlQD/qHcfeWXdIAF8
- VLyx5wb/euOZKWKdBdhB3ex2mbZu1zj3JwX7beimGt/6/7MFDdWhzoxVH5YTbKvt/YgG
- VJy1eHXwLmie1VnCDszqDBz5PkiK9JOKm2o1FfQ2p+p07+66CSr40z5QWR6QFNx2ckWB
- xc9mIICMHTudmxfJ43ZTOsqp3dHNYYX5ablzywvP4s5vZdD3i5K+NQrX+mZCEBtjv/Lt
- 0qZxmCPL3iqqTdhE0e8QQ0Gq2yI07dDiyDLOqnXEb2oZi78oIPYJ25cgY3xa6CJ99wR3
- QLcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition;
- bh=x1ennYUlzh5ZiE58CNNa6Rmzq+yOs03mH5GcYAaRQyI=;
- b=BrPNQgQNibx7nPvtQJha2FQLnFj34umpZRhGDLrXUx/lZ9oAM/W5OvSXfXiHaYuQnG
- Xh6zTaez9Q1dxKJISpVhsvVVdR9oxjhPcnANDtl1NSHOyJsRryJ8LtFlZL2UQbqrzrjR
- YagkQ2BNavWhm2Eirulgh6nTrqzm9ekrkIdrvf6N8Q8BhSwr2Qw36XNYmhoi0q/HP5cd
- kamZeQSYHK8ITXS+S0jiWpc0dquNt3r+5Sh3vHM5QGaXeU1dnXvqAnvHppoDqGuDLvTN
- VPwU1CwGo4Xwvj6Ts9lWxL2CYZf8RNuCZhnieXit4YQWNwMCm16eXB6r3bzwJTPzlsH4
- lq3Q==
-X-Gm-Message-State: AOAM532m+E+tbc86eqWTCsTI7xLD6g0d20vaJ9dxpvhhImeyDA7CJc5U
- w1ZmfRJX8m6grOBNKNU29/nNImhpiQeeUl/I
-X-Google-Smtp-Source: ABdhPJxnx5qwJK5MRFb2jXoiqF3ihVYJ6uzVDwxzoDcHxl2egfJ3y8gFQbLix0JXQHmBz/02XWKWeA==
-X-Received: by 2002:a63:3742:: with SMTP id g2mr122109pgn.71.1599647361851;
- Wed, 09 Sep 2020 03:29:21 -0700 (PDT)
-Received: from adolin ([49.207.200.122])
- by smtp.gmail.com with ESMTPSA id l19sm2235775pff.8.2020.09.09.03.29.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Sep 2020 03:29:21 -0700 (PDT)
-Date: Wed, 9 Sep 2020 15:59:15 +0530
-From: Sumera Priyadarsini <sylphrenadin@gmail.com>
+ by systeme.lip6.fr (Postfix) with ESMTPS id CB69C4316
+ for <cocci@systeme.lip6.fr>; Wed,  9 Sep 2020 20:13:17 +0200 (CEST)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 089IDGGk019171
+ for <cocci@systeme.lip6.fr>; Wed, 9 Sep 2020 20:13:16 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: jaskaran_singh) with ESMTPSA id 17C9629B137
+From: Jaskaran Singh <jaskaran.singh@collabora.com>
 To: cocci@systeme.lip6.fr
-Message-ID: <20200909102915.jzwe754pd7i65r6u@adolin>
+Date: Wed,  9 Sep 2020 23:42:59 +0530
+Message-Id: <20200909181302.1187-1-jaskaran.singh@collabora.com>
+X-Mailer: git-send-email 2.21.3
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 09 Sep 2020 12:29:25 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Wed, 09 Sep 2020 12:29:23 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 09 Sep 2020 20:13:21 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 09 Sep 2020 20:13:16 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Cc: michal.lkml@markovi.net, Gilles.Muller@lip6.fr,
-        kernel-janitors@vger.kernel.org, nicolas.palix@imag.fr,
-        linux-kernel@vger.kernel.org, Julia.Lawall@lip6.fr
-Subject: [Cocci] [PATCH V3] scripts: coccicheck: Do not use shift command
- when rule is specified
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Subject: [Cocci] [RFC PATCH 0/3] parsing_c: Optimize recursive header file
+	parsing
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,59 +51,74 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-The command "make coccicheck C=1 CHECK=scripts/coccicheck" results in the
-error:
-	./scripts/coccicheck: line 65: -1: shift count out of range
+This patch series aims to optimize performance for recursively parsing
+header files in Coccinelle.
 
-This happens because every time the C variable is specified,
-the shell arguments need to be "shifted" in order to take only
-the last argument, which is the C file to test. These shell arguments
-mostly comprise flags that have been set in the Makefile. However,
-when coccicheck is specified in the make command as a rule, the
-number of shell arguments is zero, thus passing the invalid value -1
-to the shift command, resulting in an error.
+Coccinelle's C parsing subsystem has an option called --recursive-includes
+to recursively parse header files. This is used for type
+inference/annotation.
 
-Modify coccicheck to use the shift command only when
-number of shell arguments is not zero.
+Previously, using --recursive-includes on the entire Linux kernel source
+code would take far too long. On my computer with the following specs,
+	- Processor: AMD Ryzen 5 3550H
+	- RAM: 8 GB
+it would take close to 7 hours to complete.  The optimization that this
+patch series implements reduces that time to 1 hour.
 
-Signed-off-by: Sumera Priyadarsini <sylphrenadin@gmail.com>
+The following is a high-level description of what has been implemented:
+- As header files are recursively parsed, they are scanned for the
+  following:
+	- fields of structs/unions/enums
+	- typedefs
+	- function prototypes
+	- global variables
+  The names of the above are stored in a "name cache", i.e. a hashtable to
+  map the name to the files it is declared in.
+- A dependency graph is built to determine dependencies between all the
+  files in the codebase.
+- In the type annotation phase of the C subsystem, if a function call,
+  struct/union field or identifier is encountered, the type of which is
+  not known to the annoter, the name cache is checked for the name.
+- The name cache gives a list of files that the name is declared/defined
+  in.  These files are cross checked with the dependency graph to
+  determine if any of these are reachable by the file that the annoter is
+  working on.
+- If a reachable header file is found, that file is parsed and the type
+  associated to the name is returned.
 
----
-Changes in V2:
-	- Fix spelling errors as suggested by Markus Elfring
----
- scripts/coccicheck | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+Different approaches that were attempted to alleviate this issue, and the
+problems with each are as follows:
+- Caching the most recently used files: A LRU cache to store ASTs of the
+  most recently encountered header files. The problem with this approach
+  is the amount of memory it takes to cache the header file ASTs.
+- Caching the most troublesome files: A pseudo-LFU cache to store files
+  that cumulatively take the longest to parse, and thus bloat the time
+  taken. The problem with this approach is the amount of memory it takes
+  to cache the header file ASTs.
+- Skipping unparsable locations in header files: Skipping top-level items
+  in a header file that cannot be parsed. This approach does not produce
+  even close to the amount of optimization needed.
 
-diff --git a/scripts/coccicheck b/scripts/coccicheck
-index e04d328210ac..5c8df337e1e3 100755
---- a/scripts/coccicheck
-+++ b/scripts/coccicheck
-@@ -61,9 +61,19 @@ COCCIINCLUDE=${COCCIINCLUDE// -include/ --include}
- if [ "$C" = "1" -o "$C" = "2" ]; then
-     ONLINE=1
- 
--    # Take only the last argument, which is the C file to test
--    shift $(( $# - 1 ))
--    OPTIONS="$COCCIINCLUDE $1"
-+    # If the rule coccicheck is specified when calling make, number of
-+    # arguments is zero
-+    if [ $# -ne 0 ]; then
-+	    # Take only the last argument, which is the C file to test
-+	    shift $(( $# -1 ))
-+	    OPTIONS="$COCCIINCLUDE $1"
-+    else
-+	if [ "$KBUILD_EXTMOD" = "" ] ; then
-+		OPTIONS="--dir $srctree $COCCIINCLUDE"
-+	else
-+		OPTIONS="--dir $KBUILD_EXTMOD $COCCIINCLUDE"
-+	fi
-+    fi
- 
-     # No need to parallelize Coccinelle since this mode takes one input file.
-     NPROC=1
--- 
-2.25.1
+The next step from here would be:
+- Maintain a small but persistent cache of header files in groups of
+  directories. Leverage multiprocessing for parsing these header files.
+- Leverage multiprocessing to parse header files initially for name
+  extraction.
+- Performing some initial matching with the semantic patch to determine if
+  a C file matches. If matches are found, call the annoter and recursively
+  parse header files for type annotation.
+- Recursively parse all header files only once and build a large type
+  environment. Use the dependency graph to determine reachability. This
+  has potential memory usage issues though.
+
+
+ Makefile                     |    2 
+ parsing_c/includes_cache.ml  |  286 +++++++++++++++++++++++++++++++++++++++++++
+ parsing_c/includes_cache.mli |   47 +++++++
+ parsing_c/parse_c.ml         |   27 +++-
+ parsing_c/type_annoter_c.ml  |  130 ++++++++++++++++---
+ 5 files changed, 466 insertions(+), 26 deletions(-)
+
 
 _______________________________________________
 Cocci mailing list
