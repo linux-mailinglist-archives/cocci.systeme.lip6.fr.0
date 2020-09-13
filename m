@@ -2,69 +2,72 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3988D267E23
-	for <lists+cocci@lfdr.de>; Sun, 13 Sep 2020 08:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90806267F6E
+	for <lists+cocci@lfdr.de>; Sun, 13 Sep 2020 14:06:27 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08D6FANa021187;
-	Sun, 13 Sep 2020 08:15:10 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08DC5wpw026857;
+	Sun, 13 Sep 2020 14:05:58 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 1B3FD77BC;
-	Sun, 13 Sep 2020 08:15:10 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 121C577BC;
+	Sun, 13 Sep 2020 14:05:58 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 92AC24316
- for <cocci@systeme.lip6.fr>; Sun, 13 Sep 2020 08:15:07 +0200 (CEST)
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
- [209.85.167.67])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08D6F62E025263
- for <cocci@systeme.lip6.fr>; Sun, 13 Sep 2020 08:15:06 +0200 (CEST)
-Received: by mail-lf1-f67.google.com with SMTP id d15so10001641lfq.11
- for <cocci@systeme.lip6.fr>; Sat, 12 Sep 2020 23:15:06 -0700 (PDT)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 47C214316
+ for <cocci@systeme.lip6.fr>; Sun, 13 Sep 2020 14:05:56 +0200 (CEST)
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:443])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08DC5sQq014053
+ for <cocci@systeme.lip6.fr>; Sun, 13 Sep 2020 14:05:54 +0200 (CEST)
+Received: by mail-pf1-x443.google.com with SMTP id x123so10296538pfc.7
+ for <cocci@systeme.lip6.fr>; Sun, 13 Sep 2020 05:05:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+ bh=Vsq2EpPAKnreG44my/rSP6OLukd3irJGMACNHFoXfQY=;
+ b=HYmWTVRAYowkmPtIwoh8IMtZfBpEB+hW13kFz/ZbqJiDanEKc2ukG5aqno/ZP2drHO
+ W6u2eDXPd7pvwPu9exeIuDbvm1V/ECO6BKGxbABqCr5RyexmTO+5IhLYTJYareQcOdd4
+ aJdb7+z6xOcc91CXk9xCPUt04nUPYBKbI9vvRn7BNA5qYd6mFu6F2+GvRyPKL+o7kIkc
+ giPNgHA9ReulRKDx4ZYY3FXR4HBR6axakt6J6ZvlT9/s4uDYetvGFtES1To27ub2FEvx
+ /hk1BV3DrcZzA5GvXRlk2NTqSIFobUExVC2uggr07/pBU2Z1YD/O/QHwLcb6iNC6U25x
+ 3v+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=VIVA2HaGuHbJZKovmrROTl+HQozHCTJ5N0cUfUx1nfg=;
- b=eW4ckrFvfSPQXQULCBbzaVsXxwmnVdk52T8kq6SUpnxZmij4v24rz7X8BxcxD1Mm9g
- ZYwL95RoUwfEN9GZ/mBWI4rgE/3mH4oOIePwyzhuqJxudDGQtKetNvCyBTGdSjGc4ijB
- XwFXklMHpVSdfDHgQJT47t4MThzgounWuaCBNmBxm9XAqWtArjw0rpbk/3oHVq27s0lT
- Ef4bwsmnpN99NqSqgN96TLaxIBjnUyUSipXTYeMXQybcEOrGft/xxsMuMzQD0nVABl5r
- dzuL7AIqZsKsDIY/pxrFKFOxhBS4gO86styHT1Lw2NdUpRwtR+4Nmc/buiDpAiPD5UcO
- ZnXA==
-X-Gm-Message-State: AOAM532B+Yt8AvWL6AjpwfgyOuJUsTuIZtRxCV569L6NxJh0SlhSYpAM
- 8hzTp0aAq67tPcm3EVVMTD0=
-X-Google-Smtp-Source: ABdhPJwjH7ptCUkCoTy2pV6UjoybHb3zAonsb7RgEuRKBhZkx+nQpSW3dH2K2ViPBYuAB1LpHhpf9Q==
-X-Received: by 2002:a19:754:: with SMTP id 81mr2416069lfh.272.1599977706439;
- Sat, 12 Sep 2020 23:15:06 -0700 (PDT)
-Received: from [192.168.1.184] ([213.87.159.180])
- by smtp.gmail.com with ESMTPSA id x5sm1939351lff.280.2020.09.12.23.15.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 12 Sep 2020 23:15:05 -0700 (PDT)
-To: Julia Lawall <julia.lawall@inria.fr>
-References: <20200806220342.25426-1-efremov@linux.com>
- <20200809212655.58457-1-efremov@linux.com>
- <alpine.DEB.2.22.394.2009121642070.2362@hadrien>
-From: Denis Efremov <efremov@linux.com>
-Message-ID: <c717ff19-73c3-2369-7b61-318b0a9662ab@linux.com>
-Date: Sun, 13 Sep 2020 09:15:04 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition;
+ bh=Vsq2EpPAKnreG44my/rSP6OLukd3irJGMACNHFoXfQY=;
+ b=fcmZnDMJjdTcLdVfHbZhC37py9Zc8RrJz6qE1XQg4QIZ3vnQQ9SlCHLfn8qQs4eRBN
+ zgeKBpZJtV5TdsDqSQXU0+GJ7z+mGZv38I7Er7mFRqia1m2lMBnb2eEzOTD3pn9APbTO
+ gZ1jtctJhW2/6FkBD31hz43qyJHIHkMF49GD35CahATJuwFFB6YIPN1xWINcOD9PJnl4
+ 2k2NBsgoJEwbgx6CU+fN2ftESmvw6G9z4dU37D4GeKvdHrmuil0F0js/F4bHBJ7Jyu/n
+ TCyKiTXEX/fR0rHiPE4Qt8O//fwyvGRCTwIJRVvImJZWLByGjXH8BlpPM71Qldvugi1s
+ JtQg==
+X-Gm-Message-State: AOAM531QO20XW6b8s2lsBoL3scxHdiwoC1AJK0imzXI8WaCAKiv/7EMC
+ CoMCKcvuidRNu0eLszqFoi8=
+X-Google-Smtp-Source: ABdhPJySzSYm5D7wRb8u9V4+TDj9iFszEPlnd4jXyNMOO7rk4GkoBvylg0Pnr8o5dywo6gWvv3XLlg==
+X-Received: by 2002:a62:864e:: with SMTP id x75mr9419816pfd.60.1599998753546; 
+ Sun, 13 Sep 2020 05:05:53 -0700 (PDT)
+Received: from adolin ([49.207.213.41])
+ by smtp.gmail.com with ESMTPSA id x19sm5925722pge.22.2020.09.13.05.05.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 13 Sep 2020 05:05:52 -0700 (PDT)
+Date: Sun, 13 Sep 2020 17:35:48 +0530
+From: Sumera Priyadarsini <sylphrenadin@gmail.com>
+To: Julia.Lawall@lip6.fr
+Message-ID: <20200913120548.bwl3elfl7ss66eyh@adolin>
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.22.394.2009121642070.2362@hadrien>
-Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 13 Sep 2020 08:15:11 +0200 (CEST)
+Content-Disposition: inline
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 13 Sep 2020 14:05:59 +0200 (CEST)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 13 Sep 2020 08:15:06 +0200 (CEST)
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sun, 13 Sep 2020 14:05:54 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: "Gustavo A . R . Silva" <gustavoars@kernel.org>, cocci@systeme.lip6.fr,
-        Kees Cook <keescook@chromium.org>, linux-kernel@vger.kernel.org
-Subject: Re: [Cocci] [PATCH v2] coccinelle: misc: add flexible_array.cocci
-	script
+X-Scanned-By: MIMEDefang 2.78
+Cc: linux-kernel@vger.kernel.org, michal.lkml@markovi.net,
+        nicolas.palix@imag.fr, cocci@systeme.lip6.fr, Gilles.Muller@lip6.fr
+Subject: [Cocci] [RFC PATCH] scripts: coccicheck: Improve error feedback
+ when coccicheck fails
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,154 +84,43 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Hi,
+Currently, coccicheck fails with only the message "coccicheck failed"
+and the error code for the failure. To obtain the error logs,
+one needs to specify a debug file using the DEBUG_FILE option.
 
-On 9/12/20 5:43 PM, Julia Lawall wrote:
-> 
-> 
-> On Mon, 10 Aug 2020, Denis Efremov wrote:
-> 
->> Commit 68e4cd17e218 ("docs: deprecated.rst: Add zero-length and one-element
->> arrays") marks one-element and zero-length arrays as deprecated. Kernel
->> code should always use "flexible array members" instead.
->>
->> The script warns about one-element and zero-length arrays in structs.
->>
->> Cc: Kees Cook <keescook@chromium.org>
->> Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
->> Signed-off-by: Denis Efremov <efremov@linux.com>
->> ---
->> Changes in v2:
->>  - all uapi headers are now filtered-out. Unfortunately, coccinelle
->>    doesn't provide structure names in Location.current_element.
->>    For structures the field is always "something_else". Thus, there is
->>    no easy way to create a list of existing structures in uapi headers
->>    and suppress the warning only for them, but not for the newly added
->>    uapi structures.
->>  - The pattern doesn't require 2+ fields in a structure/union anymore.
->>    Now it also checks single field structures/unions.
->>  - The pattern simplified and now uses disjuction in array elements
->>    (Thanks, Markus)
->>  - Unions are removed from patch mode
->>  - one-element arrays are removed from patch mode. Correct patch may
->>    involve turning the array to a simple field instead of a flexible
->>    array.
->>
->> On the current master branch, the rule generates:
->>  - context: https://gist.github.com/evdenis/e2b4323491f9eff35376372df07f723c
->>  - patch: https://gist.github.com/evdenis/46081da9d68ecefd07edc3769cebcf32
->>
->>  scripts/coccinelle/misc/flexible_array.cocci | 88 ++++++++++++++++++++
->>  1 file changed, 88 insertions(+)
->>  create mode 100644 scripts/coccinelle/misc/flexible_array.cocci
->>
->> diff --git a/scripts/coccinelle/misc/flexible_array.cocci b/scripts/coccinelle/misc/flexible_array.cocci
->> new file mode 100644
->> index 000000000000..bf6dcda1783e
->> --- /dev/null
->> +++ b/scripts/coccinelle/misc/flexible_array.cocci
->> @@ -0,0 +1,88 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +///
->> +/// Zero-length and one-element arrays are deprecated, see
->> +/// Documentation/process/deprecated.rst
->> +/// Flexible-array members should be used instead.
->> +///
->> +//
->> +// Confidence: High
->> +// Copyright: (C) 2020 Denis Efremov ISPRAS.
->> +// Comments:
->> +// Options: --no-includes --include-headers
->> +
->> +virtual context
->> +virtual report
->> +virtual org
->> +virtual patch
->> +
->> +@initialize:python@
->> +@@
->> +def relevant(positions):
->> +    for p in positions:
->> +        if "uapi" in p.file:
->> +             return False
->> +    return True
->> +
->> +@r depends on !patch@
->> +identifier name, array;
->> +type T;
->> +position p : script:python() { relevant(p) };
->> +@@
->> +
->> +(
->> +  struct name {
->> +    ...
->> +*   T array@p[\(0\|1\)];
->> +  };
->> +|
->> +  struct {
->> +    ...
->> +*   T array@p[\(0\|1\)];
->> +  };
->> +|
->> +  union name {
->> +    ...
->> +*   T array@p[\(0\|1\)];
->> +  };
->> +|
->> +  union {
->> +    ...
->> +*   T array@p[\(0\|1\)];
->> +  };
->> +)
->> +
->> +@depends on patch exists@
-> 
-> exists is not necessary here.  There are not multiple control-flow paths
-> through a structure declaration.
-> 
->> +identifier name, array;
->> +type T;
->> +position p : script:python() { relevant(p) };
->> +@@
->> +
->> +(
->> +  struct name {
->> +    ...
->> +    T array@p[
->> +-       0
->> +    ];
->> +  };
->> +|
->> +  struct {
->> +    ...
->> +    T array@p[
->> +-       0
->> +    ];
->> +  };
->> +)
->> +
->> +@script: python depends on report@
->> +p << r.p;
->> +@@
->> +
->> +msg = "WARNING: use flexible-array member instead"
->> +coccilib.report.print_report(p[0], msg)
->> +
->> +@script: python depends on org@
->> +p << r.p;
->> +@@
->> +
->> +msg = "WARNING: use flexible-array member instead"
->> +coccilib.org.print_todo(p, msg)
-> 
-> This should be coccilib.org.print_todo(p[0], msg)
-> 
+Modify coccicheck to display error logs when it crashes unless
+DEBUG_FILE is set, in which case, the error logs are stored in
+the specified debug file.
 
+Signed-off-by: Sumera Priyadarsini <sylphrenadin@gmail.com>
+---
+ scripts/coccicheck | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-Thanks, I will send v3 with fixes and proper links to online documentation.
+diff --git a/scripts/coccicheck b/scripts/coccicheck
+index e04d328210ac..dbeafa21f359 100755
+--- a/scripts/coccicheck
++++ b/scripts/coccicheck
+@@ -126,8 +126,14 @@ run_cmd_parmap() {
+ 	if [ $VERBOSE -ne 0 ] ; then
+ 		echo "Running ($NPROC in parallel): $@"
+ 	fi
+-	echo $@ >>$DEBUG_FILE
+-	$@ 2>>$DEBUG_FILE
++	if [ "$DEBUG_FILE" != "/dev/null" -a "$DEBUG_FILE" != "" ]; then
++                echo $@>>$DEBUG_FILE
++                $@ 2>>$DEBUG_FILE
++        else
++                echo $@
++                $@ 2>&1
++	fi
++
+ 	err=$?
+ 	if [[ $err -ne 0 ]]; then
+ 		echo "coccicheck failed"
+-- 
+2.25.1
 
-Regards,
-Denis
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
