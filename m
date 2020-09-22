@@ -2,64 +2,51 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83862273124
-	for <lists+cocci@lfdr.de>; Mon, 21 Sep 2020 19:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 215DC273E8B
+	for <lists+cocci@lfdr.de>; Tue, 22 Sep 2020 11:30:28 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08LHncLv003433;
-	Mon, 21 Sep 2020 19:49:38 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08M9TwjD005841;
+	Tue, 22 Sep 2020 11:29:58 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id D03CE77BF;
-	Mon, 21 Sep 2020 19:49:38 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 1DB3C77BF;
+	Tue, 22 Sep 2020 11:29:58 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 4E11E5F8F
- for <cocci@systeme.lip6.fr>; Mon, 21 Sep 2020 19:49:37 +0200 (CEST)
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
- [209.85.208.196])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08LHnast017338
- for <cocci@systeme.lip6.fr>; Mon, 21 Sep 2020 19:49:36 +0200 (CEST)
-Received: by mail-lj1-f196.google.com with SMTP id u4so11828779ljd.10
- for <cocci@systeme.lip6.fr>; Mon, 21 Sep 2020 10:49:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=JYVL6vVhxxsHwQqcaJ+Y/Dyr3s/BHvLdogiat9zzOMY=;
- b=gAmPUhMj+7K3h3qn69cQa8QYp3g4Rr6bR6K5ixIUYro73xyMm2V4qSf+FHhJcDbo8a
- CzNSyQGcbWn3rPLu0AAHhl/44HMQztt+0dCrZmJBGC/ly0N1f1HqnDxjV84KTv0Vt7lo
- TCxgBtLuEwJYVrnm25wobk+5yPkHs7zrup9O+thkAJD0nPKFmWvx+TM5vuVYhKTy2C7X
- dsEJmaT0QEh7OaHIxYYBK4v+z5f4AUKot0T4rW8TWCV32D2qcLzrZnhzS5/o3bTRSPL4
- Zd1tOSvdHcumw8hPHlbYlTc6kG2gDxhG72rPEz7e+NkPJR5r/FRIgNkJREogOOXwQYbZ
- 5Ieg==
-X-Gm-Message-State: AOAM5337C3PVxh6w8GRmdnZSVnywq9wlpUovr9mGNOmxDX8mfPUNBtMA
- UvEiHiH6Rswhgb7x74QOps8=
-X-Google-Smtp-Source: ABdhPJyuIwK4gStrZns8fCO6n/pBDKraTe1BTnTEwKWkDnih4NCMna1EpOuzxJwnULIkwuD7H5324g==
-X-Received: by 2002:a2e:3203:: with SMTP id y3mr269898ljy.261.1600710575899;
- Mon, 21 Sep 2020 10:49:35 -0700 (PDT)
-Received: from green.intra.ispras.ru (winnie.ispras.ru. [83.149.199.91])
- by smtp.googlemail.com with ESMTPSA id q24sm2773353lfo.149.2020.09.21.10.49.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Sep 2020 10:49:35 -0700 (PDT)
-From: Denis Efremov <efremov@linux.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Mon, 21 Sep 2020 20:49:20 +0300
-Message-Id: <20200921174920.87241-1-efremov@linux.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200806220342.25426-1-efremov@linux.com>
-References: <20200806220342.25426-1-efremov@linux.com>
+ by systeme.lip6.fr (Postfix) with ESMTPS id C406F4316
+ for <cocci@systeme.lip6.fr>; Tue, 22 Sep 2020 11:29:55 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 08M9TtT2009593
+ for <cocci@systeme.lip6.fr>; Tue, 22 Sep 2020 11:29:55 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.77,290,1596492000"; d="scan'208";a="468920227"
+Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2020 11:29:55 +0200
+Date: Tue, 22 Sep 2020 11:29:55 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <6746e72b-ad50-7b03-f059-8e22e21d32c9@web.de>
+Message-ID: <alpine.DEB.2.22.394.2009221129140.2659@hadrien>
+References: <f3c1a592-e179-69bf-33df-15fce69a2cb9@web.de>
+ <alpine.DEB.2.22.394.2009211521430.2630@hadrien>
+ <38815e95-833b-e2fd-4630-8ae7cfe54aa7@web.de>
+ <alpine.DEB.2.22.394.2009211547540.2630@hadrien>
+ <12c105f8-80e3-b47d-3bc5-141d6011fe89@web.de>
+ <alpine.DEB.2.22.394.2009211626370.2630@hadrien>
+ <6746e72b-ad50-7b03-f059-8e22e21d32c9@web.de>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 21 Sep 2020 19:49:39 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 21 Sep 2020 19:49:36 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 22 Sep 2020 11:29:59 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Tue, 22 Sep 2020 11:29:55 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Kees Cook <keescook@chromium.org>,
-        "Gustavo A . R . Silva" <gustavoars@kernel.org>, cocci@systeme.lip6.fr,
-        linux-kernel@vger.kernel.org
-Subject: [Cocci] [PATCH v3] coccinelle: misc: add flexible_array.cocci script
+Cc: Coccinelle <cocci@systeme.lip6.fr>
+Subject: Re: [Cocci] Searching for functions with non-internal linkage
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,140 +63,37 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-One-element and zero-length arrays are deprecated [1]. Kernel
-code should always use "flexible array members" instead, except
-for existing uapi definitions.
 
-The script warns about one-element and zero-length arrays in structs.
 
-[1] commit 68e4cd17e218 ("docs: deprecated.rst: Add zero-length and
-    one-element arrays")
+On Tue, 22 Sep 2020, Markus Elfring wrote:
 
-Cc: Kees Cook <keescook@chromium.org>
-Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
-Signed-off-by: Denis Efremov <efremov@linux.com>
----
-Changes in v2:
- - all uapi headers are now filtered-out. Unfortunately, coccinelle
-   doesn't provide structure names in Location.current_element.
-   For structures the field is always "something_else". Thus, there is
-   no easy way to create a list of existing structures in uapi headers
-   and suppress the warning only for them, but not for the newly added
-   uapi structures.
- - The pattern doesn't require 2+ fields in a structure/union anymore.
-   Now it also checks single field structures/unions.
- - The pattern simplified and now uses disjuction in array elements
-   (Thanks, Markus)
- - Unions are removed from patch mode
- - one-element arrays are removed from patch mode. Correct patch may
-   involve turning the array to a simple field instead of a flexible
-   array.
-Changes in v3:
- - exists removed from "depends on patch"
- - position argument fixed in org mode
- - link to the online documentation added to the warning message
+> >> Can another SmPL script variant become similarly useful?
+> >>
+> >> @find2 disable optional_storage@
+> >> identifier i;
+> >> type t;
+> >> @@
+> >> (
+> >> *t
+> >> |
+> >> *extern t
+> >> )
+> >> *i(...)
+> >>  { ... }
+> >
+> > I doubt that this parses.
+>
+> I hope to achieve further improvements also for this application area.
+>
+>
+> > I don't think extern t is considered to be a type.
+>
+> Which entity should take care of this key word (in SmPL disjunctions)?
 
- scripts/coccinelle/misc/flexible_array.cocci | 88 ++++++++++++++++++++
- 1 file changed, 88 insertions(+)
- create mode 100644 scripts/coccinelle/misc/flexible_array.cocci
+I don't know if a disjunction is allowed at this level.  But if it is
+allowed, then it would be with extern and maybe inline, etc.
 
-diff --git a/scripts/coccinelle/misc/flexible_array.cocci b/scripts/coccinelle/misc/flexible_array.cocci
-new file mode 100644
-index 000000000000..947fbaff82a9
---- /dev/null
-+++ b/scripts/coccinelle/misc/flexible_array.cocci
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+///
-+/// Zero-length and one-element arrays are deprecated, see
-+/// Documentation/process/deprecated.rst
-+/// Flexible-array members should be used instead.
-+///
-+//
-+// Confidence: High
-+// Copyright: (C) 2020 Denis Efremov ISPRAS.
-+// Comments:
-+// Options: --no-includes --include-headers
-+
-+virtual context
-+virtual report
-+virtual org
-+virtual patch
-+
-+@initialize:python@
-+@@
-+def relevant(positions):
-+    for p in positions:
-+        if "uapi" in p.file:
-+             return False
-+    return True
-+
-+@r depends on !patch@
-+identifier name, array;
-+type T;
-+position p : script:python() { relevant(p) };
-+@@
-+
-+(
-+  struct name {
-+    ...
-+*   T array@p[\(0\|1\)];
-+  };
-+|
-+  struct {
-+    ...
-+*   T array@p[\(0\|1\)];
-+  };
-+|
-+  union name {
-+    ...
-+*   T array@p[\(0\|1\)];
-+  };
-+|
-+  union {
-+    ...
-+*   T array@p[\(0\|1\)];
-+  };
-+)
-+
-+@depends on patch@
-+identifier name, array;
-+type T;
-+position p : script:python() { relevant(p) };
-+@@
-+
-+(
-+  struct name {
-+    ...
-+    T array@p[
-+-       0
-+    ];
-+  };
-+|
-+  struct {
-+    ...
-+    T array@p[
-+-       0
-+    ];
-+  };
-+)
-+
-+@script: python depends on report@
-+p << r.p;
-+@@
-+
-+msg = "WARNING use flexible-array member instead (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-length-and-one-element-arrays)"
-+coccilib.report.print_report(p[0], msg)
-+
-+@script: python depends on org@
-+p << r.p;
-+@@
-+
-+msg = "WARNING use flexible-array member instead (https://www.kernel.org/doc/html/latest/process/deprecated.html#zero-length-and-one-element-arrays)"
-+coccilib.org.print_todo(p[0], msg)
--- 
-2.26.2
-
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
