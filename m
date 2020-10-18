@@ -2,75 +2,61 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E658291FBD
-	for <lists+cocci@lfdr.de>; Sun, 18 Oct 2020 22:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0161291DD5
+	for <lists+cocci@lfdr.de>; Sun, 18 Oct 2020 21:50:11 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IKFVkh022077;
-	Sun, 18 Oct 2020 22:15:31 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IJnZQf005289;
+	Sun, 18 Oct 2020 21:49:35 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 9E13177BF;
-	Sun, 18 Oct 2020 22:15:31 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 2CAE977BF;
+	Sun, 18 Oct 2020 21:49:35 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
-Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
+Received: from osiris.lip6.fr (osiris.lip6.fr [132.227.60.30])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 205AC74CE
- for <cocci@systeme.lip6.fr>; Sun, 18 Oct 2020 18:46:57 +0200 (CEST)
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IGktF2000377;
- Sun, 18 Oct 2020 18:46:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1603039614;
- bh=yK1PJ/gOJq+OOk51w81zO9ptHCKwDVH4mV0AA4IoLoA=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=fBWMtzF2F5S0i2Fh6xHrvf0RLadwYn/kMvesHIb93lVeqtPbrTWfc3Mq+Zn+I24pI
- mqH5gLn7dtMogfPz6Dl60HPzFHndhdOq6T26WgdKQlDflL+FWZGpQKlHk9ZL4yh9fX
- o4ESTZBYiu9ACHy3XkOun5zIZ8TpagWCJK1LTAjg=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from sonne.localnet ([93.133.46.65]) by smtp.web.de (mrweb101
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MGAG3-1kh4Fl1e2Z-00FAWv; Sun, 18
- Oct 2020 18:46:54 +0200
-From: Markus Elfring <Markus.Elfring@web.de>
-To: Julia Lawall <julia.lawall@inria.fr>, Denis Efremov <efremov@linux.com>,
-        Coccinelle <cocci@systeme.lip6.fr>
-Date: Sun, 18 Oct 2020 18:46:53 +0200
-Message-ID: <51716926.XVqqe9kqm5@sonne>
-In-Reply-To: <alpine.DEB.2.22.394.2010181819210.2759@hadrien>
-References: <3528117.7ODa3CK5J5@sonne> <2774601.u91sIFNy1E@sonne>
- <alpine.DEB.2.22.394.2010181819210.2759@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 2E1A974CE
+ for <cocci@systeme.lip6.fr>; Sun, 18 Oct 2020 21:49:33 +0200 (CEST)
+Received: from smtprelay.hostedemail.com (smtprelay0189.hostedemail.com
+ [216.40.44.189])
+ by osiris.lip6.fr (8.15.2/8.15.2) with ESMTPS id 09IJnURD006101
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+ for <cocci@systeme.lip6.fr>; Sun, 18 Oct 2020 21:49:31 +0200 (CEST)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay02.hostedemail.com (Postfix) with ESMTP id 805F012E9;
+ Sun, 18 Oct 2020 19:49:28 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
+ RULES_HIT:41:355:379:800:960:968:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2197:2199:2393:2559:2562:2828:3138:3139:3140:3141:3142:3352:3653:3866:3871:4321:4823:5007:10004:10400:10848:11026:11232:11658:11914:12050:12297:12555:12760:13069:13161:13229:13311:13357:13439:14181:14394:14659:14721:21080:21221:21627:21990:30054,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:1, LUA_SUMMARY:none
+X-HE-Tag: pot35_22082b127231
+X-Filterd-Recvd-Size: 2009
+Received: from XPS-9350.home (unknown [47.151.133.149])
+ (Authenticated sender: joe@perches.com)
+ by omf02.hostedemail.com (Postfix) with ESMTPA;
+ Sun, 18 Oct 2020 19:49:27 +0000 (UTC)
+Message-ID: <dfe24da760056e31d90ff639b47c494263b5f4a7.camel@perches.com>
+From: Joe Perches <joe@perches.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Date: Sun, 18 Oct 2020 12:49:26 -0700
+In-Reply-To: <alpine.DEB.2.22.394.2010172016370.9440@hadrien>
+References: <20201017160928.12698-1-trix@redhat.com>
+ <f530b7aeecbbf9654b4540cfa20023a4c2a11889.camel@perches.com>
+ <alpine.DEB.2.22.394.2010172016370.9440@hadrien>
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:KmSLS3+kP863ygiP8Yd5E3bTEEyHc3ud2fbvs4O7DoQbuTchfFt
- sSG429O9X1CwPMwQj8/zNs2faDBJFePDY2BM8Duf2BZzlURWXtLaKHDNmpvdD84RUG+Tt2p
- SWo+BQsc5FYBPmWn7BbP8PjN4fJ5HIwKiMERTnbS+GPygBqdBZMdVS0VX6qKnofjmDuCdGh
- sQT7H0tEFCbDwYhxtI4AQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:QeQBaokREIg=:3tbjgltXZhtvuGh8tffmCl
- t2KdLjZW4VphcQsHrr3qB9DXx/zujl3Isye2TcHE0XWA3NoP1b48eUamCuI0WJJ7NSH2eQ3is
- Tqdl7rwh79t/9CaLFBNIJBDi9mJ9z8cEYb0JFkqk+laQWms6SM+O+Zafy5cHt50qA/44SX/aQ
- 0xJMSE4ksgEGwVv0eYZMvDhpadOMLURcnSevWA5uawNgzAdp3Dc0NR+BSnfD6kqsRoe7y4zU6
- Vwckx9eYihws567ehy4EOl1HzKzIi1c09E1fCSD9dBJHsojN4UairJtQ63uLz71SDdg8npDY9
- TUeG4IddEhITI5jvNIm5pyhnrZ7AVuChF2D9J4M6sFiXlRQ6Nym567hw1SZ//XOKcnV/XCPXB
- gQyIVRaRbNdrepbdZG7D+A6ghkes841YZxbgKnBLVKMzzvfwOqPczi/HS21ctikyLicmTvL0D
- 0OS5a+QuP7k+EoXDGj6AamiU7h8LBoLSFPsYjT4blrLNtIYTHlaAlhIQH4nCwL8sAGTonE1eB
- RIsJY19kojoeu+ZcCwmcqzpH0ZWwygTJOigAJVGsFAPpbtwuBnJ9qjfHwlnh7PhLySH2oyM0r
- R6dexNZQ4mN2l+VSZkvFOK+InFDmDia2mIsG2K+bxLMOfCGZQRjCBHCsNqPHtNCLrVnKGxB8d
- yqf48eKcztRelD31nyhdauC1XCvbo8SiVHUHcM5GoVQbdSoJQZ+Qce2BaVoNE0FqfKx08nHVS
- AUOZFLP/e/4/PsdQg4qzKhfVJfQZUI6y6/fdBGLgHP0Jcs+fGarteO2Dc9tuDHNA7+zvsBOxE
- X1a/Py8lZiaXuFD+ukY59LIHkO/uVbuub4oK3APB2dCgZX8LxqCdBigjhhMFh8yNHFecQsIXR
- lhBPoGM3M5hx4Wwif/Mw==
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 22:15:31 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 18:46:55 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 21:49:39 +0200 (CEST)
+X-Greylist: Delayed for 23:33:32 by milter-greylist-4.4.3 (osiris.lip6.fr
+ [132.227.60.30]); Sun, 18 Oct 2020 21:49:32 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 18 Oct 2020 22:15:30 +0200
-Cc: Michal Marek <michal.lkml@markovi.net>,
-        Gilles Muller <Gilles.Muller@lip6.fr>,
-        Nicolas Palix <nicolas.palix@imag.fr>, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Alexander Popov <alex.popov@linux.com>
-Subject: Re: [Cocci] Determination of an usage statistic for memory
-	allocation calls
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.30
+Cc: trix@redhat.com, linux-kernel@vger.kernel.org,
+        cocci <cocci@systeme.lip6.fr>
+Subject: [Cocci] [PATCH] checkpatch: Allow --fix removal of unnecessary
+ break statements
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,24 +68,52 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-PiA+IENhbiBzdWNoIGZhY3RzIGluZmx1ZW5jZSB0aGUgc3BlY2lmaWNhdGlvbiBvZiBlZmZpY2ll
-bnQgU21QTCBkaXNqdW5jdGlvbnMgYW5vdGhlciBiaXQ/Cj4gCj4gT24gbXkgbWFjaGluZSwgcHV0
-dGluZyB0aGUgdGhyZWUgZnVuY3Rpb25zIHRoYXQgeW91IGhhdmUgZm91ZG4gdG8gYmUgdGhlCj4g
-bW9zdCBmcmVxdWVudCBhdCB0aGUgZW5kIG9mIGVhY2ggZGlzanVuY3Rpb24gaGFzIG5vIGltcGFj
-dCBvbiB0aGUgcGVyZm9ybWFuY2UuCgpJIHByb3Bvc2UgdG8gcmVjb25zaWRlciB0aGlzIHZpZXcu
-CgoKPiBTbyB3aGF0IGRvIHlvdSBzdWdnZXN0PwoKMS4gSSB3b3VsZCBhcHByZWNpYXRlIGlmIHlv
-dSB3b3VsZCBzaGFyZSBtb3JlIHRlY2huaWNhbCBkZXRhaWxzIGFib3V0IHlvdXIgdGVzdCBlbnZp
-cm9ubWVudAogICBmb3IgYSBzYWZlciBjb21wYXJpc29uLgoKMi4gVGhlIG9ic2VydmVkIHNvZnR3
-YXJlIGJlaGF2aW91ciBjYW4gYmUgY2xhcmlmaWVkIGZ1cnRoZXIsIGNhbid0IGl0PwogICBBc3Bl
-Y3RzIGxpa2UgdGhlIGZvbGxvd2luZyBjYW4gdHJpZ2dlciBjb3JyZXNwb25kaW5nIGRldmVsb3Bt
-ZW50IGNvbnNpZGVyYXRpb25zLgogICAqIOKAnG5vdGljYWJsZeKAnSBkaWZmZXJlbmNlcyAoZGVw
-ZW5kaW5nIG9uIHRoZSBydW4gdGltZSBlbnZpcm9ubWVudCkKICAgKiBtZWFzdXJhYmxlIGVmZmVj
-dHMKICAgKiBtYXRoZW1hdGljYWwgcHJvcGVydGllcyBvZiBhbiBhbGdvcml0aG0KClJlZ2FyZHMs
-Ck1hcmt1cwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkNvY2NpIG1haWxpbmcgbGlzdApDb2NjaUBzeXN0ZW1lLmxpcDYuZnIKaHR0cHM6Ly9zeXN0ZW1l
-LmxpcDYuZnIvbWFpbG1hbi9saXN0aW5mby9jb2NjaQo=
+switch/case use of break after a return or goto is unnecessary.
+
+There is an existing warning for these uses, so add a --fix option too.
+
+Signed-off-by: Joe Perches <joe@perches.com>
+---
+
+For today's next, this would remove ~300 instances like:
+
+	case FOO:
+		return bar;
+		break;
+or
+	case FOO:
+		goto bar;
+		break;
+
+ scripts/checkpatch.pl | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index fab38b493cef..22263b278e87 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -3678,8 +3678,11 @@ sub process {
+ 		if ($sline =~ /^\+([\t]+)break\s*;\s*$/) {
+ 			my $tabs = $1;
+ 			if ($prevline =~ /^\+$tabs(?:goto|return)\b/) {
+-				WARN("UNNECESSARY_BREAK",
+-				     "break is not useful after a goto or return\n" . $hereprev);
++				if (WARN("UNNECESSARY_BREAK",
++					 "break is not useful after a goto or return\n" . $hereprev) &&
++				    $fix) {
++					fix_delete_line($fixlinenr, $rawline);
++				}
+ 			}
+ 		}
+ 
+
+
+_______________________________________________
+Cocci mailing list
+Cocci@systeme.lip6.fr
+https://systeme.lip6.fr/mailman/listinfo/cocci
