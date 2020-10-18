@@ -2,51 +2,75 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099F8291854
-	for <lists+cocci@lfdr.de>; Sun, 18 Oct 2020 18:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E658291FBD
+	for <lists+cocci@lfdr.de>; Sun, 18 Oct 2020 22:15:54 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IGK8YT019474;
-	Sun, 18 Oct 2020 18:20:08 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IKFVkh022077;
+	Sun, 18 Oct 2020 22:15:31 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id A5CD977BF;
-	Sun, 18 Oct 2020 18:20:08 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 9E13177BF;
+	Sun, 18 Oct 2020 22:15:31 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 6607E74CE
- for <cocci@systeme.lip6.fr>; Sun, 18 Oct 2020 18:20:06 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IGK4SY021009
- for <cocci@systeme.lip6.fr>; Sun, 18 Oct 2020 18:20:04 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.77,391,1596492000"; d="scan'208";a="473171051"
-Received: from abo-173-121-68.mrs.modulonet.fr (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2020 18:20:04 +0200
-Date: Sun, 18 Oct 2020 18:20:04 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <2774601.u91sIFNy1E@sonne>
-Message-ID: <alpine.DEB.2.22.394.2010181819210.2759@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 205AC74CE
+ for <cocci@systeme.lip6.fr>; Sun, 18 Oct 2020 18:46:57 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09IGktF2000377;
+ Sun, 18 Oct 2020 18:46:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1603039614;
+ bh=yK1PJ/gOJq+OOk51w81zO9ptHCKwDVH4mV0AA4IoLoA=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=fBWMtzF2F5S0i2Fh6xHrvf0RLadwYn/kMvesHIb93lVeqtPbrTWfc3Mq+Zn+I24pI
+ mqH5gLn7dtMogfPz6Dl60HPzFHndhdOq6T26WgdKQlDflL+FWZGpQKlHk9ZL4yh9fX
+ o4ESTZBYiu9ACHy3XkOun5zIZ8TpagWCJK1LTAjg=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from sonne.localnet ([93.133.46.65]) by smtp.web.de (mrweb101
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MGAG3-1kh4Fl1e2Z-00FAWv; Sun, 18
+ Oct 2020 18:46:54 +0200
+From: Markus Elfring <Markus.Elfring@web.de>
+To: Julia Lawall <julia.lawall@inria.fr>, Denis Efremov <efremov@linux.com>,
+        Coccinelle <cocci@systeme.lip6.fr>
+Date: Sun, 18 Oct 2020 18:46:53 +0200
+Message-ID: <51716926.XVqqe9kqm5@sonne>
+In-Reply-To: <alpine.DEB.2.22.394.2010181819210.2759@hadrien>
 References: <3528117.7ODa3CK5J5@sonne> <2774601.u91sIFNy1E@sonne>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ <alpine.DEB.2.22.394.2010181819210.2759@hadrien>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1982622638-1603038004=:2759"
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 18:20:08 +0200 (CEST)
+X-Provags-ID: V03:K1:KmSLS3+kP863ygiP8Yd5E3bTEEyHc3ud2fbvs4O7DoQbuTchfFt
+ sSG429O9X1CwPMwQj8/zNs2faDBJFePDY2BM8Duf2BZzlURWXtLaKHDNmpvdD84RUG+Tt2p
+ SWo+BQsc5FYBPmWn7BbP8PjN4fJ5HIwKiMERTnbS+GPygBqdBZMdVS0VX6qKnofjmDuCdGh
+ sQT7H0tEFCbDwYhxtI4AQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:QeQBaokREIg=:3tbjgltXZhtvuGh8tffmCl
+ t2KdLjZW4VphcQsHrr3qB9DXx/zujl3Isye2TcHE0XWA3NoP1b48eUamCuI0WJJ7NSH2eQ3is
+ Tqdl7rwh79t/9CaLFBNIJBDi9mJ9z8cEYb0JFkqk+laQWms6SM+O+Zafy5cHt50qA/44SX/aQ
+ 0xJMSE4ksgEGwVv0eYZMvDhpadOMLURcnSevWA5uawNgzAdp3Dc0NR+BSnfD6kqsRoe7y4zU6
+ Vwckx9eYihws567ehy4EOl1HzKzIi1c09E1fCSD9dBJHsojN4UairJtQ63uLz71SDdg8npDY9
+ TUeG4IddEhITI5jvNIm5pyhnrZ7AVuChF2D9J4M6sFiXlRQ6Nym567hw1SZ//XOKcnV/XCPXB
+ gQyIVRaRbNdrepbdZG7D+A6ghkes841YZxbgKnBLVKMzzvfwOqPczi/HS21ctikyLicmTvL0D
+ 0OS5a+QuP7k+EoXDGj6AamiU7h8LBoLSFPsYjT4blrLNtIYTHlaAlhIQH4nCwL8sAGTonE1eB
+ RIsJY19kojoeu+ZcCwmcqzpH0ZWwygTJOigAJVGsFAPpbtwuBnJ9qjfHwlnh7PhLySH2oyM0r
+ R6dexNZQ4mN2l+VSZkvFOK+InFDmDia2mIsG2K+bxLMOfCGZQRjCBHCsNqPHtNCLrVnKGxB8d
+ yqf48eKcztRelD31nyhdauC1XCvbo8SiVHUHcM5GoVQbdSoJQZ+Qce2BaVoNE0FqfKx08nHVS
+ AUOZFLP/e/4/PsdQg4qzKhfVJfQZUI6y6/fdBGLgHP0Jcs+fGarteO2Dc9tuDHNA7+zvsBOxE
+ X1a/Py8lZiaXuFD+ukY59LIHkO/uVbuub4oK3APB2dCgZX8LxqCdBigjhhMFh8yNHFecQsIXR
+ lhBPoGM3M5hx4Wwif/Mw==
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 22:15:31 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 18:20:04 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 18 Oct 2020 18:46:55 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Sun, 18 Oct 2020 22:15:30 +0200
 Cc: Michal Marek <michal.lkml@markovi.net>,
         Gilles Muller <Gilles.Muller@lip6.fr>,
         Nicolas Palix <nicolas.palix@imag.fr>, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Coccinelle <cocci@systeme.lip6.fr>,
-        Alexander Popov <alex.popov@linux.com>
-Subject: Re: [Cocci] Determination of an usage statistic for
- memory	allocation calls
+        linux-kernel@vger.kernel.org, Alexander Popov <alex.popov@linux.com>
+Subject: Re: [Cocci] Determination of an usage statistic for memory
+	allocation calls
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,181 +82,24 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-1982622638-1603038004=:2759
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-
-
-
-On Sun, 18 Oct 2020, Markus Elfring wrote:
-
-> > …
-> > > +    E = \(kmalloc\|kzalloc\|krealloc\|kcalloc\|
-> > > +          kmalloc_node\|kzalloc_node\|kmalloc_array\|
-> > > +          kmalloc_array_node\|kcalloc_node\)(...)@kok
-> > …
-> >
-> > How do you think about the possibility for any adjustments according to the order
-> > of the mentioned function names in proposed disjunctions for the semantic patch language?
->
->
-> I would like to share another source code analysis approach.
-> I hope that this contribution can trigger further helpful software development ideas.
->
->
-> @initialize:python@
-> @@
-> import sys
->
-> def write_identifier(source, call):
->     names = []
->     for x in source:
->        names.append(call)
->
->     sys.stdout.write("\n".join(names) + "\n")
->
-> @find1@
-> expression e;
-> identifier call, x;
-> position pos;
-> type rt;
-> @@
->  rt x(...)
->  {
->  <+...
->  e =@pos
-> (kzalloc@call
-> |kmalloc@call
-> |kcalloc@call
-> |kmalloc_array@call
-> |kmemdup@call
-> |kstrdup@call
-> |vmalloc@call
-> |vzalloc@call
-> |kzalloc_node@call
-> |kvmalloc@call
-> |krealloc@call
-> |kmalloc_node@call
-> |kcalloc_node@call
-> |__vmalloc@call
-> |vmalloc_user@call
-> |vzalloc_node@call
-> |vmalloc_32@call
-> |__vmalloc_node_range@call
-> |vmalloc_node@call
-> |kmalloc_array_node@call
-> |__vmalloc_node@call
-> |vmalloc_32_user@call
-> |vmalloc_exec@call
-> )(...)
->  ...+>
->  }
->
-> @script:python collection1@
-> call << find1.call;
-> place << find1.pos;
-> @@
-> write_identifier(place, call)
->
-> @find2@
-> identifier call, var, x;
-> position pos;
-> type rt, vt;
-> @@
->  rt x(...)
->  {
->  <+...
->  vt var =@pos
-> (kzalloc@call
-> |kmalloc@call
-> |kcalloc@call
-> |kmalloc_array@call
-> |kmemdup@call
-> |kstrdup@call
-> |vmalloc@call
-> |vzalloc@call
-> |kzalloc_node@call
-> |kvmalloc@call
-> |krealloc@call
-> |kmalloc_node@call
-> |kcalloc_node@call
-> |__vmalloc@call
-> |vmalloc_user@call
-> |vzalloc_node@call
-> |vmalloc_32@call
-> |__vmalloc_node_range@call
-> |vmalloc_node@call
-> |kmalloc_array_node@call
-> |__vmalloc_node@call
-> |vmalloc_32_user@call
-> |vmalloc_exec@call
-> )(...);
->  ...+>
->  }
->
-> @script:python collection2@
-> call << find2.call;
-> place << find2.pos;
-> @@
-> write_identifier(place, call)
->
->
-> Test result:
-> elfring@Sonne:~/Projekte/Linux/next-patched> git checkout next-20201016 && XX=$(date) && time spatch --timeout 23 --python python3 --jobs 4 --chunksize 1 --include-headers --no-includes --dir . ~/Projekte/Coccinelle/janitor/report_memory_allocation_calls4.cocci 2> ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201016/report_memory_allocation_calls4-errors.txt | echo "$(echo 'call' && cat)" | csvsql --query 'select call, count(*) from stdin group by call order by count(*) desc'; YY=$(date) && echo "$XX | $YY"
-> …
-> call,count(*)
-> kzalloc,12652
-> kmalloc,4902
-> kcalloc,2564
-> kmalloc_array,859
-> kmemdup,797
-> kstrdup,469
-> vmalloc,405
-> vzalloc,359
-> kzalloc_node,177
-> kvmalloc,154
-> krealloc,151
-> kmalloc_node,49
-> kcalloc_node,44
-> __vmalloc,34
-> vmalloc_user,28
-> vzalloc_node,21
-> vmalloc_32,9
-> __vmalloc_node_range,8
-> vmalloc_node,7
-> kmalloc_array_node,5
-> __vmalloc_node,4
-> vmalloc_32_user,1
->
-> real	22m25,049s
-> user	84m11,257s
-> sys	0m12,168s
-> So 18. Okt 16:55:08 CEST 2020 | So 18. Okt 17:17:33 CEST 2020
->
->
-> The log file contains the information “9211 files match”.
-> Can such facts influence the specification of efficient SmPL disjunctions another bit?
-
-On my machine, putting the three functions that you have foudn to be the
-most frequent at the end of each disjunction has no impact on the
-performance.  So what do you suggest?
-
-julia
---8323329-1982622638-1603038004=:2759
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
-
---8323329-1982622638-1603038004=:2759--
+PiA+IENhbiBzdWNoIGZhY3RzIGluZmx1ZW5jZSB0aGUgc3BlY2lmaWNhdGlvbiBvZiBlZmZpY2ll
+bnQgU21QTCBkaXNqdW5jdGlvbnMgYW5vdGhlciBiaXQ/Cj4gCj4gT24gbXkgbWFjaGluZSwgcHV0
+dGluZyB0aGUgdGhyZWUgZnVuY3Rpb25zIHRoYXQgeW91IGhhdmUgZm91ZG4gdG8gYmUgdGhlCj4g
+bW9zdCBmcmVxdWVudCBhdCB0aGUgZW5kIG9mIGVhY2ggZGlzanVuY3Rpb24gaGFzIG5vIGltcGFj
+dCBvbiB0aGUgcGVyZm9ybWFuY2UuCgpJIHByb3Bvc2UgdG8gcmVjb25zaWRlciB0aGlzIHZpZXcu
+CgoKPiBTbyB3aGF0IGRvIHlvdSBzdWdnZXN0PwoKMS4gSSB3b3VsZCBhcHByZWNpYXRlIGlmIHlv
+dSB3b3VsZCBzaGFyZSBtb3JlIHRlY2huaWNhbCBkZXRhaWxzIGFib3V0IHlvdXIgdGVzdCBlbnZp
+cm9ubWVudAogICBmb3IgYSBzYWZlciBjb21wYXJpc29uLgoKMi4gVGhlIG9ic2VydmVkIHNvZnR3
+YXJlIGJlaGF2aW91ciBjYW4gYmUgY2xhcmlmaWVkIGZ1cnRoZXIsIGNhbid0IGl0PwogICBBc3Bl
+Y3RzIGxpa2UgdGhlIGZvbGxvd2luZyBjYW4gdHJpZ2dlciBjb3JyZXNwb25kaW5nIGRldmVsb3Bt
+ZW50IGNvbnNpZGVyYXRpb25zLgogICAqIOKAnG5vdGljYWJsZeKAnSBkaWZmZXJlbmNlcyAoZGVw
+ZW5kaW5nIG9uIHRoZSBydW4gdGltZSBlbnZpcm9ubWVudCkKICAgKiBtZWFzdXJhYmxlIGVmZmVj
+dHMKICAgKiBtYXRoZW1hdGljYWwgcHJvcGVydGllcyBvZiBhbiBhbGdvcml0aG0KClJlZ2FyZHMs
+Ck1hcmt1cwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkNvY2NpIG1haWxpbmcgbGlzdApDb2NjaUBzeXN0ZW1lLmxpcDYuZnIKaHR0cHM6Ly9zeXN0ZW1l
+LmxpcDYuZnIvbWFpbG1hbi9saXN0aW5mby9jb2NjaQo=
