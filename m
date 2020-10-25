@@ -2,55 +2,74 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BDB298380
-	for <lists+cocci@lfdr.de>; Sun, 25 Oct 2020 21:27:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E5D29838E
+	for <lists+cocci@lfdr.de>; Sun, 25 Oct 2020 21:55:35 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09PKRVNG022213;
-	Sun, 25 Oct 2020 21:27:31 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09PKtKTa008760;
+	Sun, 25 Oct 2020 21:55:20 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id EE8E95C34;
-	Sun, 25 Oct 2020 21:27:30 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id B23875C34;
+	Sun, 25 Oct 2020 21:55:20 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 0D2F95C16
- for <cocci@systeme.lip6.fr>; Sun, 25 Oct 2020 21:27:29 +0100 (CET)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09PKRSZf028930
- for <cocci@systeme.lip6.fr>; Sun, 25 Oct 2020 21:27:28 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.77,417,1596492000"; d="scan'208";a="474226999"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2020 21:27:27 +0100
-Date: Sun, 25 Oct 2020 21:27:27 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <bee0c5df-8f28-ee9d-99e2-abbf84df76e6@web.de>
-Message-ID: <alpine.DEB.2.22.394.2010252122320.2714@hadrien>
-References: <0d1575b0-ab37-663e-2464-278fd76280b5@web.de>
- <alpine.DEB.2.22.394.2010251924290.2714@hadrien>
- <8f58a94e-b093-a587-c56a-a0ea0fc1f3ea@web.de>
- <alpine.DEB.2.22.394.2010251955280.2714@hadrien>
- <bee0c5df-8f28-ee9d-99e2-abbf84df76e6@web.de>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 37B205C16
+ for <cocci@systeme.lip6.fr>; Sun, 25 Oct 2020 14:26:13 +0100 (CET)
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09PDQ9N6007008;
+ Sun, 25 Oct 2020 14:26:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1603632368;
+ bh=ymsrOB9IX3Aa+gHMr37pJ0ZwXJFlxBtl8FYVO56l0Y0=;
+ h=X-UI-Sender-Class:To:From:Subject:Cc:Date;
+ b=ih5Z7rSZIhWAHrF+/Vd/rIQwT8fxYff8uCArJDR0vyHgVUawWan68gQHknSBGq9ch
+ 2h8or4GkTgcpnzRb8E1QSsn9USF9vSYC/sT9aAvL3EMVn+SYLorf8TYQRYTrovlwrC
+ KITQADo8Popjb0xWEuSteqUTxqviyDZoLWAv3kOw=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([2.244.86.219]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MfKtN-1jvfWV0XGt-00gmUA; Sun, 25
+ Oct 2020 14:26:08 +0100
+To: Coccinelle <cocci@systeme.lip6.fr>, Gilles Muller <Gilles.Muller@lip6.fr>,
+        Julia Lawall <Julia.Lawall@lip6.fr>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nicolas Palix <nicolas.palix@imag.fr>
+From: Markus Elfring <Markus.Elfring@web.de>
+Message-ID: <9a22556d-ca26-8082-b18c-52c7f0423670@web.de>
+Date: Sun, 25 Oct 2020 14:25:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1179668747-1603657647=:2714"
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 25 Oct 2020 21:27:33 +0100 (CET)
+Content-Language: en-GB
+X-Provags-ID: V03:K1:zpMQHETjj118pjJCnF53cOPW+imGN1Hg5vPf9z3rhLwXIyjsNXe
+ +yaJyVrytcPQFKjpdj/d2E+bCTgABXHceS6eoNcZbkxP/eeIz10L2UE0Yvv4twNuDNbaBdh
+ d8vh97Nw6WibTcpVT3wILZHTCO9ehvrgMbmN/uck0n2Ird2J0jQ6GIuxtmG5D1LQ/bWmDt4
+ qEVmDquvjA9PHeJeAMUaA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:V1tJpjk4HYc=:XQSWXv+IYndiAydPiXcyPu
+ 0P1iheO2rhS/eFg7x86FS901J/ejCGUbjqqTu0BNVe5q14yz753gXOkIvDLAKPpqU1xqVLIlc
+ OAh/qAXjklUOERAX3WlgNsGL0UiFYXzKNllpoV86eP7iQ4lJpL5PSaM7s6P92HZS/DEWu11rf
+ m7tAK3E18nAGl6svnX7wgCFrZ8E9T2X68ashx251cI/wTIL0Q/QbtYNlJrawJA6QKVSYOPnag
+ Akev6s5G+XOr9EWy0DyU8Y5+DdkaIpVZEzSEiP1ptgNfrF2S4WiOfeAWVePoH1qPkaDEV+WKZ
+ J5XLDsM96Pqk/IVxK4D66vDw679HAiTpLOCO2kcYreMithvx+LYddSFLOBnWHGJBjd/GXREvN
+ djURcAadwcmZrDeKO9sKwyoMi0EYJtc4EY26UrwaOont5XAbbDz1KHwFf1wUvt7HxKqOSgpGC
+ bLDNlS7fNg3D10012wA3CHi7WTATXXBWZ7XC5DTIRGisQNmb3RMxf+hOrmnCGLJpOsLrTQUk0
+ YrWPiQ+PmC7GA2xawYCWiV/Y0aIBzH92aMA8pKxutYUTg11BJ5VILmqBD057VkoeljFzr3/vv
+ 4VP+Pt8P7y1G1RT76bsJWF7vLXV1vWdZBUMeFKyCHYgkN/yH/2BNrayLKm7WROCqr2BG64GU9
+ BG82W0JUTse7A42G+iVxxouPmlYGvFhpZS9ypqTUL8eJFjRe7vxu48N1V0nRSZstqy5ULq+9l
+ I+cs9QEn5ZL1tZLn09f2fdPe2uHSjus6/C592c4m5V6mrN8HCbPLiLmZvrcO35n1TcCACteFj
+ rK6Qk/lYXRNlUsYvyOFDlJYyhDEcT62aUTvE2h0S6+bv4sGr/D8wb6e8xCWDVf0EcOVGqic+J
+ 6sIlQCvW/dCXpry8PBaw==
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 25 Oct 2020 21:55:20 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 25 Oct 2020 21:27:28 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Sun, 25 Oct 2020 14:26:09 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: Michal Marek <michal.lkml@markovi.net>,
-        Gilles Muller <Gilles.Muller@lip6.fr>,
-        Nicolas Palix <nicolas.palix@imag.fr>, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci]
- =?utf-8?q?Coccinelle=3A_null=3A_Optimise_disjunctions_in_?=
- =?utf-8?b?U21QTCBzY3JpcHQg4oCcZW5vLmNvY2Np4oCd?=
+X-Mailman-Approved-At: Sun, 25 Oct 2020 21:55:18 +0100
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [Cocci] =?utf-8?q?=5BPATCH=5D_Coccinelle=3A_api=3A_Optimise_disju?=
+ =?utf-8?q?nction_in_SmPL_script_=E2=80=9Cpm=5Fruntime=2Ecocci=E2=80=9D?=
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,98 +81,51 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-1179668747-1603657647=:2714
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-
-
-
-On Sun, 25 Oct 2020, Markus Elfring wrote:
-
-> >> Would you become interested to configure a representative test environment
-> >> for safe comparisons of corresponding run time characteristics
-> >> of the affected software?
-> >
-> > In what sense could the comparison possibly be unsafe?
->
-> * Our test systems are obviously different.
->   Thus concerns can be considered for reproducibility of test results
->   on other possible configurations.
->
-> * We share only a tiny fraction of technical information which would probably
->   be needed for “benchmarks”.
->
->
-> > Just use time and run spatch on whatever machine you want.
->
-> fring@Sonne:~/Projekte/Linux/next-patched>
-> elfring@Sonne:~/Projekte/Linux/next-patched> git checkout next-20201023 && XX=$(date) && time spatch -D patch --timeout 9 --jobs 4 --chunksize 1 --include-headers --no-includes --dir . scripts/coccinelle/null/eno.cocci > ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno1.diff 2> ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno1-errors.txt; YY=$(date) && echo "$XX | $YY"
-> …
-> real	2m54,266s
-> user	10m15,553s
-> sys	0m4,004s
-> So 25. Okt 20:53:56 CET 2020 | So 25. Okt 20:56:51 CET 2020
-> elfring@Sonne:~/Projekte/Linux/next-patched> git checkout next-20201023 && XX=$(date) && time spatch -D context --timeout 9 --jobs 4 --chunksize 1 --include-headers --no-includes --dir . scripts/coccinelle/null/eno.cocci > ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno2.txt 2> ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno2-errors.txt; YY=$(date) && echo "$XX | $YY"
-> …
-> real	2m38,494s
-> user	9m39,364s
-> sys	0m4,094s
-> So 25. Okt 20:58:05 CET 2020 | So 25. Okt 21:00:44 CET 2020
-> elfring@Sonne:~/Projekte/Linux/next-patched> git checkout optimise_disjunction_in_eno.cocci-1 && XX=$(date) && time spatch -D patch --timeout 9 --jobs 4 --chunksize 1 --include-headers --no-includes --dir . scripts/coccinelle/null/eno.cocci > ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno3.diff 2> ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno3-errors.txt; YY=$(date) && echo "$XX | $YY"
-> …
-> real	2m46,097s
-> user	10m15,467s
-> sys	0m3,984s
-> So 25. Okt 21:00:56 CET 2020 | So 25. Okt 21:03:42 CET 2020
-> elfring@Sonne:~/Projekte/Linux/next-patched> git checkout optimise_disjunction_in_eno.cocci-1 && XX=$(date) && time spatch -D context --timeout 9 --jobs 4 --chunksize 1 --include-headers --no-includes --dir . scripts/coccinelle/null/eno.cocci > ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno4.txt 2> ~/Projekte/Bau/Linux/scripts/Coccinelle/call_checks/20201023/eno4-errors.txt; YY=$(date) && echo "$XX | $YY"
-> …
-> real	2m41,472s
-> user	9m37,492s
-> sys	0m3,834s
-
-In the patch case, the user and system time are essentially identical.  In
-the context case, the difference in user time is 2 seconds out of 9.5
-minutes, 0.3%.
-
-In the patch case, the real time is a bit slower.  But I believe that this
-is due to the time to read in the data from the file system.  I also had a
-number like that, but the difference disappeared when I reran it
-afterwards, which meant running that case in the same conditions as the
-others.
-
-In the context case, the real time is slightly slower with your patch.
-
-So I see no compelling evidence for making the change.
-
-julia
-
-> So 25. Okt 21:03:56 CET 2020 | So 25. Okt 21:06:37 CET 2020
->
->
-> > Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz
->
-> AMD Phenom(tm) II X4 850 Processor
->
-> Will any other aspects become relevant?
->
-> Regards,
-> Markus
->
---8323329-1179668747-1603657647=:2714
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
-
---8323329-1179668747-1603657647=:2714--
+RnJvbTogTWFya3VzIEVsZnJpbmcgPGVsZnJpbmdAdXNlcnMuc291cmNlZm9yZ2UubmV0PgpEYXRl
+OiBTdW4sIDI1IE9jdCAyMDIwIDE0OjEwOjU4ICswMTAwCgpBIGRpc2p1bmN0aW9uIGlzIGFwcGxp
+ZWQgYnkgdGhpcyBzY3JpcHQgZm9yIHRoZSBzZW1hbnRpYyBwYXRjaCBsYW5ndWFnZS4KVGhpcyBj
+b25zdHJ1Y3QgdXNlcyBzaG9ydC1jaXJjdWl0IGV2YWx1YXRpb24uIEl0IGhhcyBnb3QgdGhlIGNv
+bnNlcXVlbmNlCnRoYXQgdGhlIGxhc3QgZWxlbWVudCBvZiB0aGUgc3BlY2lmaWVkIGNvbmRpdGlv
+biB3aWxsIG9ubHkgYmUgY2hlY2tlZAppZiBhbGwgcHJldmlvdXMgcGFydHMgZGlkIG5vdCBtYXRj
+aC4gU3VjaCBhIHRlY2huaWNhbCBkZXRhaWwgbGVhZHMgdG8KYSByZWNvbW1lbmRlZCBvcmRlcmlu
+ZyBvZiBjb25kaXRpb24gcGFydHMgaWYgeW91IHdvdWxkIGxpa2UgdG8gY2FyZSBmb3IKb3B0aW1h
+bCBydW4gdGltZSBjaGFyYWN0ZXJpc3RpY3Mgb2YgU21QTCBjb2RlLgoKQW4gdXNhZ2UgaW5jaWRl
+bmNlIHdhcyBkZXRlcm1pbmVkIGZvciB0aGUgc3BlY2lmaWVkIGlkZW50aWZpZXJzIGluIHNvdXJj
+ZQpmaWxlcyBmcm9tIHRoZSBzb2Z0d2FyZSDigJxMaW51eCBuZXh0LTIwMjAxMDIz4oCdIGJ5IGFu
+b3RoZXIgU21QTCBzY3JpcHQuClRoaXMgYW5hbHlzaXMgcmVzdWx0IGluZGljYXRlZCB0aGF0IGEg
+ZmV3IGZ1bmN0aW9ucyB3ZXJlIGNhbGxlZCBtb3JlCmZyZXF1ZW50IHRoYW4gb3RoZXJzLgpUaHVz
+IHJlb3JkZXIgdGhlIFNtUEwgZGlzanVuY3Rpb24gaXRlbXMgcGFydGx5IGFjY29yZGluZyB0byB0
+aGVpcgp1c2FnZSBpbmNpZGVuY2UuCgpTaWduZWQtb2ZmLWJ5OiBNYXJrdXMgRWxmcmluZyA8ZWxm
+cmluZ0B1c2Vycy5zb3VyY2Vmb3JnZS5uZXQ+Ci0tLQogc2NyaXB0cy9jb2NjaW5lbGxlL2FwaS9w
+bV9ydW50aW1lLmNvY2NpIHwgNDAgKysrKysrKysrKysrKy0tLS0tLS0tLS0tLQogMSBmaWxlIGNo
+YW5nZWQsIDIxIGluc2VydGlvbnMoKyksIDE5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3Nj
+cmlwdHMvY29jY2luZWxsZS9hcGkvcG1fcnVudGltZS5jb2NjaSBiL3NjcmlwdHMvY29jY2luZWxs
+ZS9hcGkvcG1fcnVudGltZS5jb2NjaQppbmRleCAxY2NjZTNmZDAwYjguLjdkOTkwOGNmMDgwMyAx
+MDA2NDQKLS0tIGEvc2NyaXB0cy9jb2NjaW5lbGxlL2FwaS9wbV9ydW50aW1lLmNvY2NpCisrKyBi
+L3NjcmlwdHMvY29jY2luZWxsZS9hcGkvcG1fcnVudGltZS5jb2NjaQpAQCAtMjEsMjUgKzIxLDI3
+IEBAIGV4cHJlc3Npb24gcmV0OwogcG9zaXRpb24gcDsKIEBACiAoCi1yZXRAcCA9IFwocG1fcnVu
+dGltZV9pZGxlXHwKLQlwbV9ydW50aW1lX3N1c3BlbmRcfAotCXBtX3J1bnRpbWVfYXV0b3N1c3Bl
+bmRcfAotCXBtX3J1bnRpbWVfcmVzdW1lXHwKLQlwbV9yZXF1ZXN0X2lkbGVcfAotCXBtX3JlcXVl
+c3RfcmVzdW1lXHwKLQlwbV9yZXF1ZXN0X2F1dG9zdXNwZW5kXHwKLQlwbV9ydW50aW1lX2dldFx8
+Ci0JcG1fcnVudGltZV9nZXRfc3luY1x8Ci0JcG1fcnVudGltZV9wdXRcfAotCXBtX3J1bnRpbWVf
+cHV0X2F1dG9zdXNwZW5kXHwKLQlwbV9ydW50aW1lX3B1dF9zeW5jXHwKLQlwbV9ydW50aW1lX3B1
+dF9zeW5jX3N1c3BlbmRcfAotCXBtX3J1bnRpbWVfcHV0X3N5bmNfYXV0b3N1c3BlbmRcfAotCXBt
+X3J1bnRpbWVfc2V0X2FjdGl2ZVx8Ci0JcG1fc2NoZWR1bGVfc3VzcGVuZFx8Ci0JcG1fcnVudGlt
+ZV9iYXJyaWVyXHwKLQlwbV9nZW5lcmljX3J1bnRpbWVfc3VzcGVuZFx8Ci0JcG1fZ2VuZXJpY19y
+dW50aW1lX3Jlc3VtZVwpKC4uLik7CisgcmV0QHAgPQorKHBtX3J1bnRpbWVfZ2V0X3N5bmMKK3xw
+bV9ydW50aW1lX3NldF9hY3RpdmUKK3xwbV9ydW50aW1lX3B1dF9zeW5jX2F1dG9zdXNwZW5kCit8
+cG1fcnVudGltZV9wdXRfc3luYworfHBtX3J1bnRpbWVfZ2V0Cit8cG1fcnVudGltZV9wdXQKK3xw
+bV9nZW5lcmljX3J1bnRpbWVfc3VzcGVuZAorfHBtX2dlbmVyaWNfcnVudGltZV9yZXN1bWUKK3xw
+bV9yZXF1ZXN0X2F1dG9zdXNwZW5kCit8cG1fcmVxdWVzdF9pZGxlCit8cG1fcmVxdWVzdF9yZXN1
+bWUKK3xwbV9ydW50aW1lX2F1dG9zdXNwZW5kCit8cG1fcnVudGltZV9iYXJyaWVyCit8cG1fcnVu
+dGltZV9pZGxlCit8cG1fcnVudGltZV9wdXRfYXV0b3N1c3BlbmQKK3xwbV9ydW50aW1lX3B1dF9z
+eW5jX3N1c3BlbmQKK3xwbV9ydW50aW1lX3Jlc3VtZQorfHBtX3J1bnRpbWVfc3VzcGVuZAorfHBt
+X3NjaGVkdWxlX3N1c3BlbmQKKykoLi4uKTsKIC4uLgogSVNfRVJSX1ZBTFVFKHJldCkKIC4uLgot
+LQoyLjI5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkNvY2NpIG1haWxpbmcgbGlzdApDb2NjaUBzeXN0ZW1lLmxpcDYuZnIKaHR0cHM6Ly9zeXN0ZW1l
+LmxpcDYuZnIvbWFpbG1hbi9saXN0aW5mby9jb2NjaQo=
