@@ -2,81 +2,81 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA67429838B
-	for <lists+cocci@lfdr.de>; Sun, 25 Oct 2020 21:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D00B629A9F2
+	for <lists+cocci@lfdr.de>; Tue, 27 Oct 2020 11:44:26 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09PKswEQ006674;
-	Sun, 25 Oct 2020 21:54:58 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09RAhotW011255;
+	Tue, 27 Oct 2020 11:43:51 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 608625C34;
-	Sun, 25 Oct 2020 21:54:58 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id B249477B8;
+	Tue, 27 Oct 2020 11:43:50 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id D8D205C16
- for <cocci@systeme.lip6.fr>; Sun, 25 Oct 2020 21:45:36 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id D343F5C18
+ for <cocci@systeme.lip6.fr>; Tue, 27 Oct 2020 11:36:55 +0100 (CET)
 Received: from mout.web.de (mout.web.de [217.72.192.78])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09PKjauG022421;
- Sun, 25 Oct 2020 21:45:36 +0100 (CET)
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 09RAat8h023361;
+ Tue, 27 Oct 2020 11:36:55 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1603658734;
- bh=XpHzDDphpGg8/UbUK1m3E36mNaylukbZlKLFkPPatW8=;
- h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=hiAyX/hrN2bZwnfh1uPjjJrSpkbR2x0pAH/pMUidBHNkrpKvoOQtgGfv4AgapyVN/
- IAIYYIUNrqZxbWMWbQrs+sSzvkF5frB2tI4OAEwJwE5LKEPjvg+ekOCWS9KXDt6qCV
- kBF2Tr9aXbXOmsPej1TjH3hhLuvBH1dGVU9Z9kMI=
+ s=dbaedf251592; t=1603795013;
+ bh=LCDEhvzOSwgaW9p7SAqsP4igd8WTJT4VbpS/jAas8rk=;
+ h=X-UI-Sender-Class:From:To:Cc:References:Subject:Date:In-Reply-To;
+ b=D75Z2do/rxf9jBH6wlW+qFTBVrrYdq6S04Mc/AfZAUtoUKVjEXRlPK+EuePOjaEuC
+ MO0Qk8aGWQaDBU3VP6Qvr2u4rrIfDc3+KdHFD+4pIgG5em+1P2Jqz0IKGqUmkQAfUm
+ yzgJlik19dSneL+W5tDGXJcSF0fS6u5wdUn29zag=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([2.244.86.219]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MG994-1kcHb82UzE-00Gf7N; Sun, 25
- Oct 2020 21:45:34 +0100
-To: Julia Lawall <julia.lawall@inria.fr>, Coccinelle <cocci@systeme.lip6.fr>
-References: <0d1575b0-ab37-663e-2464-278fd76280b5@web.de>
- <alpine.DEB.2.22.394.2010251924290.2714@hadrien>
- <8f58a94e-b093-a587-c56a-a0ea0fc1f3ea@web.de>
- <alpine.DEB.2.22.394.2010251955280.2714@hadrien>
- <bee0c5df-8f28-ee9d-99e2-abbf84df76e6@web.de>
- <alpine.DEB.2.22.394.2010252122320.2714@hadrien>
+Received: from [192.168.1.3] ([93.131.4.127]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MT7WH-1kxvcg0dBf-00Ucyg; Tue, 27
+ Oct 2020 11:36:53 +0100
 From: Markus Elfring <Markus.Elfring@web.de>
-Message-ID: <f32d351f-24a0-be5f-2905-1828943a6512@web.de>
-Date: Sun, 25 Oct 2020 21:45:33 +0100
+To: Coccinelle <cocci@systeme.lip6.fr>, Gilles Muller <Gilles.Muller@lip6.fr>,
+        Julia Lawall <Julia.Lawall@lip6.fr>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nicolas Palix
+ <nicolas.palix@imag.fr>,
+        Sumera Priyadarsini <sylphrenadin@gmail.com>
+References: <78f8b08754dde286adf7e11e1eeb3bb8ad500d8b.camel@web.de>
+ <acaed49b9195d47e252a0b67551f87e96324d004.camel@web.de>
+Message-ID: <45310257-201a-40ea-348f-b8e909c3775c@web.de>
+Date: Tue, 27 Oct 2020 11:36:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.22.394.2010252122320.2714@hadrien>
+In-Reply-To: <acaed49b9195d47e252a0b67551f87e96324d004.camel@web.de>
 Content-Language: en-GB
-X-Provags-ID: V03:K1:zA5eNEJ96XyR5WBFOZV1K46lyETuuWhU07mEm3e1MEyMpcMj4iw
- na2jGIiII5gRS03enf07utUZfaKvOvmoJxHFrzoKcl5T34d+4bGPkAV4J4r1r0+lNttu/+c
- 0a1Yc4YqziFiuYm70NM5xf8B83BE4Qme16AUwBDq/EFBqR4hYzN/XZuBuI6NsreX5TvBnLI
- 0w1ACwVCn59RQqP3u5sow==
+X-Provags-ID: V03:K1:jVULiKWd1D/B7hWOQQxMhmAB+3v7v9b9w6uPMx0dKh7u622mCzo
+ Fdre9kA6vA7WcPoONoh6/yump+rfH4T3NdrZrNUxfa7XO8pyvnKdaefY9fKeJBm9ovrnQNi
+ x2E+t8VkJb4tI7cHfZlM7qFqXKAT7RMAGQBH4UTqfXYx2mpOLsA7SZ2u6giYNmGe9oVZqem
+ 35q6RqNHwwleRBc0UT2hg==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Bhyy0d6qwho=:aIvyh2WTMransmz0x5wCS9
- LJfaumrjcJ6zZQ8KbPfsbKmZ1e1Iwf8iiWv1iKWD4mxSESg2P9LopnhkWSChsv7Mm7hX4Lt0g
- +Q6y/cgOjsAnN/sGOscinisr7UEmjxAUoFk/8myFRA4r+1miJ/CYStKFgCQ6L4ZteiI10Q7F6
- nrtLcCM0vE0U7JcBtsgxiZIYVft9xsj7xCZ//8lAbxdsmP6ljmVyq+efUpYUAIpwrq9s6hDSp
- 4KN6R3ppmASHctTMsgBzkehO5crx68RAC1sVMMX+uORA5FzAg3Q5JxqPtQKgZQuE7POOfeiG2
- FAB+DC+bHNw5BW/tzKhkfJ2W/XT+myrv8DCeHr6Th2VJ1n2s/OwP9Y5YAOQ6kSXvj6Kno/E2q
- cyory42r8BEHHjPRGcQ/o747lcAmqlurisLER6l3oTObKBxCnbOy8GOwzLX/ZB8pbi4CtH1gX
- a8SQRFTeKKyCGUwbW5lV/Ww7JTdNSk7sH5ELtpzhzfi8SIvAL90lqhpYo4tPFuJpVjLQEnd11
- OUEcJSPWOe537hmbrrK1x+cv1XLUenpuavRRjOgLJjFjwFz+PKCi1p2mNBcaAF50fStvYjbRQ
- qZ9z0Ung0QxsFCieI5xLGSBSpmUI4dMisWke6JZUnA5brVBIeI8c2/tmJP6Tuz45dphWWAbMt
- 3c73VBPb/9+0RoNUy3Rmpc6xsPbHFzmvePGW0uXc3gXJPI5AGFtdCeR8Dr/FSEc2ukNswVyac
- CGaWTN9CD0cegZnhLc+Q/1jkoWDJx+2Nd88qqZnU3+3a92vGl6DgEclMLj3SHwvdQ/5j/RXQ/
- GcSelkDS4zlYMcm7c6jy8JGEL/R4V4xWDZ2ogWIWjf97oNzwS4aKoSwuUWOOoyRZa9Q+aN4zx
- j9JqOM3iGkH1mAeiMDxA==
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 25 Oct 2020 21:54:58 +0100 (CET)
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+ZH2Vl5WHn8=:0dnx3GqlRNFMdPPCGbjMzz
+ t3wxcXFzkRwRUdL+k1oWNLR4H160E5mGrOWSUobilc3ncO3urslwBNvp27vvJ1BsJ+fo/Lv+n
+ ZpyivgpbZCS7BKhqIJYTAqafAt0okgNHSddqVQSUNPhNSaBAtjsQ8qzNtmdv8npuknvY4UpVF
+ uKCcmW/hnTXc6pEHXxreSZ8Xz5n6inOHmRhr7hXr3NzaLnUgVJiBm2I/A01+AgGuaBprrhR/d
+ W9zM8HVJ7gUhioFUaymZK3JW+U9OO4fIoiUr9jXVCtphNXaVFL4j0v5dK+UC19QzG6JDm+JjW
+ Hi0vHyXH0g+2Y7XMP1dYMhXivajU61l2HlLPWJusYkazNDuP1EO5AslCVCZNZ9bK/HLFnV/ht
+ SaITE/kKHAOQe23/cjoTK8GVV2faP+NY4yoZ4i6XPzMf7lcWAjvMzrZCCb+yINS6MonSdh+6j
+ ayaXX5h0edDJQEV/v/FhvQAQ4HzwNmNTK6jinDbQDAjdiRLFUnA0fmJpSNWpv+q3dzg1BPlZb
+ 1o30rPHeu+Y/V65NfRQd5FaWmDCABZyCAEca30V/WnmYqcIdY96YjiPUNg4iFDhC/tlgjToMc
+ Qnujauze/PeraPCcaOS5HP+U21efbIUcDg2N5zaagS2CGVJTztLP9bBw+vzhz4Lr+0vLK/3sE
+ b3fj0Y6k9JOI3xaq3cIdyUEozug+8sHaGEru3l0z5o5m4/j3RMG5t5vBMJjIM+4U2Vi/mkWqI
+ qnpmfZMD3EmQSaUFj72U6YqgEZsCCeAwJ5gHdfvjFpDCNyP08/iJKp5c9OznAPR4bjXiGQxKQ
+ RIdobp0S7n29YVKuSFkDHKnWskmXR93t9z98oifT8em9ztBbKQyojrJ6eE0TFgdz3BF2NniFa
+ /aREloFUV+VUnqnEwODQ==
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 27 Oct 2020 11:43:52 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 25 Oct 2020 21:45:36 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Tue, 27 Oct 2020 11:36:55 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 25 Oct 2020 21:54:56 +0100
-Cc: kernel-janitors@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>,
-        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
-        Gilles Muller <Gilles.Muller@lip6.fr>
+X-Mailman-Approved-At: Tue, 27 Oct 2020 11:43:49 +0100
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [Cocci]
- =?utf-8?q?Coccinelle=3A_null=3A_Optimise_disjunctions_in_?=
- =?utf-8?b?U21QTCBzY3JpcHQg4oCcZW5vLmNvY2Np4oCd?=
+ =?utf-8?q?Coccinelle=3A_Checking_the_relevance_of_parenth?=
+ =?utf-8?b?ZXNlcyBpbiDigJxnaXQgZ3JlcOKAnQ==?=
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,48 +88,21 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-> In the patch case, the user and system time are essentially identical.
-> In the context case, the difference in user time is 2 seconds out of 9.5
-> minutes, 0.3%.
-
-This was just a single test run example.
-
-
-> In the patch case, the real time is a bit slower.
-
-I wonder about such an interpretation.
-
-
-> But I believe that this is due to the time to read in the data from the file system.
-
-I assume that I could reduce such an influence a bit if I would put
-(my) Linux repository into a RAM disk.
-
-
-> I also had a number like that, but the difference disappeared
-> when I reran it afterwards, which meant running that case in the same conditions
-> as the others.
->
-> In the context case, the real time is slightly slower with your patch.
-
-I guess that the small variations from such a test approach can eventually become
-more interesting.
-
-
-> So I see no compelling evidence for making the change.
-
-This can be.
-
-Should any other differences become more significant?
-
-Regards,
-Markus
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+PiBXaWxsIGFueSBhZGp1c3RtZW50cyBiZWNvbWUgcmVsZXZhbnQgdGhlbiBhY2NvcmRpbmdseT8K
+CkkgaGF2ZSBmb3VuZCBvdXQgdGhhdCB0aGUgZnVuY3Rpb24g4oCcaW50ZXJwcmV04oCdIChPQ2Ft
+bCBjb2RlKSBjb25zdHJ1Y3RzIGEgY29tbWFuZAphbmQgZXhlY3V0ZXMgaXQuCmh0dHBzOi8vZ2l0
+aHViLmNvbS9jb2NjaW5lbGxlL2NvY2NpbmVsbGUvYmxvYi8zYzAxZGMxNjk2ZGM1Y2NmYjMxOTY3
+M2YyMDVlNDkxYjU3MmVlMGJlL3BhcnNpbmdfY29jY2kvZ2l0X2dyZXAubWwjTDkKCkkgaGF2ZSB0
+cmllZCBhIGNvcnJlc3BvbmRpbmcgdGVzdCBkaXNwbGF5IG91dC4gVGh1cyBJIGhhdmUgZ290IHRo
+ZSBpbXByZXNzaW9uCnRoYXQgZGVzaXJlZCBwYXR0ZXJucyBhcmUgcGFzc2VkIHdpdGggZXh0cmEg
+cGFyZW50aGVzZXMuCgrigKYgZ2l0IGdyZXAgLWwgLXcgXCggLWUgZm9yX2VhY2hfbm9kZV9ieV90
+eXBlIOKApiAtZSBmb3JfZWFjaF9ub2RlX3dpdGhfcHJvcGVydHkgXCkgLS0gJyouYycKCgpIb3cg
+ZG8geW91IHRoaW5rIGFib3V0IHRvIG9taXQgdGhlc2UgcGFyZW50aGVzZXMgaGVyZT8KClJlZ2Fy
+ZHMsCk1hcmt1cwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpDb2NjaSBtYWlsaW5nIGxpc3QKQ29jY2lAc3lzdGVtZS5saXA2LmZyCmh0dHBzOi8vc3lzdGVt
+ZS5saXA2LmZyL21haWxtYW4vbGlzdGluZm8vY29jY2kK
