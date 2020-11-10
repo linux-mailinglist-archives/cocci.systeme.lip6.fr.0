@@ -2,101 +2,66 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 290482AD83E
-	for <lists+cocci@lfdr.de>; Tue, 10 Nov 2020 15:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F28542AD9C8
+	for <lists+cocci@lfdr.de>; Tue, 10 Nov 2020 16:11:43 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0AAE3uni010958;
-	Tue, 10 Nov 2020 15:03:56 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0AAFBC6I010919;
+	Tue, 10 Nov 2020 16:11:12 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id B92F1779B;
-	Tue, 10 Nov 2020 15:03:56 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 682CF779B;
+	Tue, 10 Nov 2020 16:11:12 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 28984454B
- for <cocci@systeme.lip6.fr>; Tue, 10 Nov 2020 14:12:34 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id C16D4454B
+ for <cocci@systeme.lip6.fr>; Tue, 10 Nov 2020 16:11:10 +0100 (CET)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0AADCXsN027987
- for <cocci@systeme.lip6.fr>; Tue, 10 Nov 2020 14:12:33 +0100 (CET)
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0AAFB5m8029008
+ for <cocci@systeme.lip6.fr>; Tue, 10 Nov 2020 16:11:06 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1605013952;
+ s=mimecast20190719; t=1605021065;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2V11rFQ3FKVTN+koXAVvig/bkOvKVZoOl9jWSSiZ8Ik=;
- b=Di+p8tHpuaV5rtMlatp24D6j8+WKmCUBtqz8yv0zCEdrS6sGXtBKp/ajiNQKnRgk1iVbBf
- EPgPhQ0oDcmNLweqKLA2uf1G287zKEdUoDcJ+SAJtNZ7ElvnOQlZ77m+OxtwtGg6hoPAvK
- H8JUZjK8UjW7EnlIU91t9XZBpHRi/X8=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-252-iVaqILZxMJ64NFFqwhtldA-1; Tue, 10 Nov 2020 08:12:30 -0500
-X-MC-Unique: iVaqILZxMJ64NFFqwhtldA-1
-Received: by mail-qk1-f197.google.com with SMTP id s9so3071667qks.2
- for <cocci@systeme.lip6.fr>; Tue, 10 Nov 2020 05:12:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=2V11rFQ3FKVTN+koXAVvig/bkOvKVZoOl9jWSSiZ8Ik=;
- b=m1vt4FJoA+kSq3cmqBEEY5FYjGRJArc2djTADop0JfJ8d1MYdL6DI7k/x53UbKpIve
- LQUIobeo/UQrjifUELXBSVGLRPFKoL2Itm+UiX+DnFIGeYLCM7hrV1K2FkrOtKi5FZoE
- ZMiL7HWeygkSOredaf74NwMKSS2Qzhm0PLqT3Gtf7uRQLbJJr4qQhAWENWdKDIJzv7Vi
- 20gJ50YK+2y5ISRekx7SnlOu1xCggf/FwJJeSN1zvie2oZ6wtwDZf521gTQ6qGyeu9R7
- ifhh6hqncCjC6Or7dbYOjiAxIi1h3T0oSFm/9/u/WGtEWngLQNOAr3OxC5pyZZmL5p86
- 5SoA==
-X-Gm-Message-State: AOAM531MCbEcB28RAgUtZrMIz8oMw1dKBjESQXRwmuflle0BGF7fypOc
- Orl40KmrAEEjR9oXovNinpYSUMSelXl33plhuCx4ieOxt2h2mWbnbE3PeK4ZGc1BC6OOaVAvfYF
- pXzjGJ6xLp4opaFQ=
-X-Received: by 2002:ac8:3621:: with SMTP id m30mr8787103qtb.168.1605013950454; 
- Tue, 10 Nov 2020 05:12:30 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyRnI1rUF5eW2rST1vImtIogpOlMRBum2fO0dVCe+zUlRqVIaRBqmVo31rjlhOk2kmW2Hr8dQ==
-X-Received: by 2002:ac8:3621:: with SMTP id m30mr8787064qtb.168.1605013950178; 
- Tue, 10 Nov 2020 05:12:30 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id e8sm7658678qti.28.2020.11.10.05.12.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 10 Nov 2020 05:12:29 -0800 (PST)
-To: Joe Perches <joe@perches.com>, linux-kernel@vger.kernel.org,
-        clang-built-linux@googlegroups.com, cocci <cocci@systeme.lip6.fr>
-References: <20201027164255.1573301-1-trix@redhat.com>
- <3c39c363690d0b46069afddc3ad09213011e5cd4.camel@perches.com>
-From: Tom Rix <trix@redhat.com>
-Message-ID: <cc512954-2e1d-a165-f1f1-2c489fd6d3a9@redhat.com>
-Date: Tue, 10 Nov 2020 05:12:26 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ytghYupO837DwYXnKDkhVhRyxudQhPK1XCV3mzM3uyw=;
+ b=IEm5jSXsMX7Urkas7D5++MaA7vedmENeEA5M6yqeSPObqUri8+bJYGvfEbaX8wQc7XNRS4
+ zri5P4iAhnSN+mKIpDsz6DqK72Pzc1CjYSKAIo9WYXhVrxeTrAo+82liULWPihFdVkHTeR
+ WRMrjJza9Ecnd5byT4aZJSoFDmus9iY=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-488-jV2FtNGbMhigscgnztZ4gw-1; Tue, 10 Nov 2020 10:11:03 -0500
+X-MC-Unique: jV2FtNGbMhigscgnztZ4gw-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 63EC080474F;
+ Tue, 10 Nov 2020 15:11:02 +0000 (UTC)
+Received: from foo.home.annexia.org (ovpn-114-98.ams2.redhat.com
+ [10.36.114.98])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8A0B45C1C4;
+ Tue, 10 Nov 2020 15:11:01 +0000 (UTC)
+From: "Richard W.M. Jones" <rjones@redhat.com>
+To: julia.lawall@inria.fr
+Date: Tue, 10 Nov 2020 15:10:57 +0000
+Message-Id: <20201110151058.82289-1-rjones@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <3c39c363690d0b46069afddc3ad09213011e5cd4.camel@perches.com>
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rjones@redhat.com
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 10 Nov 2020 15:03:56 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 10 Nov 2020 16:11:13 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Tue, 10 Nov 2020 14:12:33 +0100 (CET)
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Tue, 10 Nov 2020 15:03:54 +0100
-Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
-        linux-iio@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-stm32@st-md-mailman.stormreply.com, linux-rtc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
-        linux-rdma@vger.kernel.org, qat-linux@intel.com,
-        amd-gfx@lists.freedesktop.org, linux-pm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-nfs@vger.kernel.org,
-        netdev@vger.kernel.org, linux-mmc@vger.kernel.org,
-        tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
-        linux-btrfs@vger.kernel.org
-Subject: Re: [Cocci] Subject: [RFC] clang tooling cleanups
+ (isis.lip6.fr [132.227.60.2]); Tue, 10 Nov 2020 16:11:06 +0100 (CET)
+Cc: cocci@systeme.lip6.fr
+Subject: [Cocci] [PATCH Python 10] bundles/pyml: Remove bindings for
+	PyObject_As(Char|Read|Write)Buffer
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -108,30 +73,25 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Ck9uIDExLzkvMjAgNjo1MiBQTSwgSm9lIFBlcmNoZXMgd3JvdGU6Cj4gT24gVHVlLCAyMDIwLTEw
-LTI3IGF0IDA5OjQyIC0wNzAwLCB0cml4QHJlZGhhdC5jb20gd3JvdGU6Cj4+IFRoaXMgcmZjIHdp
-bGwgZGVzY3JpYmUKPj4gQW4gdXBjb21pbmcgdHJlZXdpZGUgY2xlYW51cC4KPj4gSG93IGNsYW5n
-IHRvb2xpbmcgd2FzIHVzZWQgdG8gcHJvZ3JhbWF0aWNhbGx5IGRvIHRoZSBjbGVhbiB1cC4KPj4g
-U29saWNpdCBvcGluaW9ucyBvbiBob3cgdG8gZ2VuZXJhbGx5IHVzZSBjbGFuZyB0b29saW5nLgo+
-Pgo+PiBUaGUgY2xhbmcgd2FybmluZyAtV2V4dHJhLXNlbWktc3RtdCBwcm9kdWNlcyBhYm91dCAx
-MGsgd2FybmluZ3MuCj4+IFJldmlld2luZyB0aGVzZSwgYSBzdWJzZXQgb2Ygc2VtaWNvbG9uIGFm
-dGVyIGEgc3dpdGNoIGxvb2tzIHNhZmUgdG8KPj4gZml4IGFsbCB0aGUgdGltZS4gIEFuIGV4YW1w
-bGUgcHJvYmxlbQo+Pgo+PiB2b2lkIGZvbyhpbnQgYSkgewo+PiDCoMKgwqDCoMKgc3dpdGNoKGEp
-IHsKPj4gwqDCoMKgwqDCoAkgICAgICAgY2FzZSAxOgo+PiAJICAgICAgIC4uLgo+PiDCoMKgwqDC
-oMKgfTsgPC0tLSBleHRyYSBzZW1pY29sb24KPj4gfQo+Pgo+PiBUcmVld2lkZSwgdGhlcmUgYXJl
-IGFib3V0IDEwMCBwcm9ibGVtcyBpbiA1MCBmaWxlcyBmb3IgeDg2XzY0IGFsbHllc2NvbmZpZy4K
-Pj4gVGhlc2UgZml4ZXMgd2lsbCBiZSB0aGUgdXBjb21pbmcgY2xlYW51cC4KPiBjb2NjaW5lbGxl
-IGFscmVhZHkgZG9lcyBzb21lIG9mIHRoZXNlLgo+Cj4gRm9yIGluc3RhbmNlOiBzY3JpcHRzL2Nv
-Y2NpbmVsbGUvbWlzYy9zZW1pY29sb24uY29jY2kKPgo+IFBlcmhhcHMgc29tZSB0b29sIGNvb3Jk
-aW5hdGlvbiBjYW4gYmUgZG9uZSBoZXJlIGFzCj4gY29jY2luZWxsZS9jaGVja3BhdGNoL2NsYW5n
-L0xpbmRlbnQgY2FsbCBhbGwgYmUgdXNlZAo+IHRvIGRvIHNvbWUgZmFjZXQgb3IgYW5vdGhlciBv
-ZiB0aGVzZSBjbGVhbnVwIGlzc3Vlcy4KClRoYW5rcyBmb3IgcG9pbnRpbmcgdGhpcyBvdXQuCgpJ
-IHdpbGwgdGFrZSBhIGxvb2sgYXQgaXQuCgpUb20KCj4KPgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3Rl
-bWUubGlwNi5mcgpodHRwczovL3N5c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2Np
-Cg==
+Some more functions were deprecated/removed in Python 10,
+breaking Coccinelle compiles.  It was reported by Fedora's
+Python team here:
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1896393
+
+I have fixed it by chopping out bindings for these
+functions from the bundled pyml, and it compiles fine
+for me with Python 10 now.
+
+Rich.
+
+
+_______________________________________________
+Cocci mailing list
+Cocci@systeme.lip6.fr
+https://systeme.lip6.fr/mailman/listinfo/cocci
