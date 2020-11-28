@@ -2,47 +2,71 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE042C70B3
-	for <lists+cocci@lfdr.de>; Sat, 28 Nov 2020 20:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A272C70CD
+	for <lists+cocci@lfdr.de>; Sat, 28 Nov 2020 21:10:30 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ASJn7Dx020011;
-	Sat, 28 Nov 2020 20:49:07 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ASK9snq026925;
+	Sat, 28 Nov 2020 21:09:54 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 4548077C0;
-	Sat, 28 Nov 2020 20:49:07 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 0F47C77C0;
+	Sat, 28 Nov 2020 21:09:54 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 39761454B
- for <cocci@systeme.lip6.fr>; Sat, 28 Nov 2020 20:49:05 +0100 (CET)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ASJn4am013339
- for <cocci@systeme.lip6.fr>; Sat, 28 Nov 2020 20:49:04 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.78,378,1599516000"; d="scan'208";a="480017785"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2020 20:49:04 +0100
-Date: Sat, 28 Nov 2020 20:49:04 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <d78a46b3-7035-8300-6e8c-b9e823574ad9@web.de>
-Message-ID: <alpine.DEB.2.22.394.2011282048540.2725@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 3DE8F454B
+ for <cocci@systeme.lip6.fr>; Sat, 28 Nov 2020 19:56:14 +0100 (CET)
+Received: from mout.web.de (mout.web.de [212.227.17.11])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ASIuDwb005245
+ for <cocci@systeme.lip6.fr>; Sat, 28 Nov 2020 19:56:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1606589772;
+ bh=ZMVxVAVF77W1lVdiakquBzY+MjE6S7x/vVOC7lyvafQ=;
+ h=X-UI-Sender-Class:To:Cc:References:From:Subject:Date:In-Reply-To;
+ b=jXDPLg4FI7V1cApLDsji6CoGFd1qG1bONnMtzLFucK3xBS79xAAtEerzNKlSBq57S
+ fUH9vqdkB1E+y6/lVo3DB7ka/5AlVIFjduL/Z2hSBmrij+XXIpot2sbKAE+30oyNMD
+ kDyhdkV3XkuY+1V0WI5grX3xOMq21cX/bstDpl2g=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([93.132.189.227]) by smtp.web.de (mrweb101
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0M3jwL-1jsUjl2Hpp-00rK81; Sat, 28
+ Nov 2020 19:56:12 +0100
+To: Julia Lawall <julia.lawall@inria.fr>
 References: <13b38013-8d4f-55fa-3c0e-ead782031659@web.de>
  <alpine.DEB.2.22.394.2011281844070.2725@hadrien>
- <feb351dc-537f-0f83-d9ec-cf16796ac0ee@web.de>
- <alpine.DEB.2.22.394.2011281959330.2725@hadrien>
- <d78a46b3-7035-8300-6e8c-b9e823574ad9@web.de>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+From: Markus Elfring <Markus.Elfring@web.de>
+Message-ID: <feb351dc-537f-0f83-d9ec-cf16796ac0ee@web.de>
+Date: Sat, 28 Nov 2020 19:56:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.3
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 28 Nov 2020 20:49:08 +0100 (CET)
+In-Reply-To: <alpine.DEB.2.22.394.2011281844070.2725@hadrien>
+Content-Language: en-GB
+X-Provags-ID: V03:K1:Am+hhDMNVyqcIlZg1P/9/TToJANv4yurdmQVPBxIOeUKzTW1O3n
+ KxO1cLRHzjgYWbjKjlsEos1i9xiGbJHeqSvFw4shnN2tHJt1UBJl6/q3+SL4sdWHx4Stdpj
+ WhQHyly5ECoR1FMrn2VSPhNpRlENLFr0RUULywtEnYth3Uo9LEc2A2By4xeOniF+51B7V8n
+ lXHD+7PJzHKfz6QODJK9w==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HsRz+RkGXKc=:8JuiksvkHzFxkXPeOFT+NJ
+ MSEF900CiCgNjlWoBkZvNS+2x1Hdxya8rBCjJK5QRkztiMwB94bQ+0SnM9TqRg2SCt8F9GF04
+ yw6bZPiWNZqIgPEuIZHVLqlWOVJrrjc1e2NSmntEAfE6dv/ATbPsLOMBQxvQxXQgcIqwlvcDk
+ UfQqZS1BdQdgZFAiE/5sX6QBdeJkP3Drq7dFlbJ9qzR1FRbMWhEq0E3UXP4Q5OM9GfBKNHoBf
+ IvfaPbuhh9nqiBUJWcEtCsnOmkzNKjUvm+VYEDvpg5x4oYs0iHgt/jlJVwM8eU1iYejEZbfZW
+ S32zM8jnN/lbMMyk7+9XLB50g1LdaVEpA3Cs9ifdiFQ4KW/0dFMkU+IHnUB/scVbiLaQajqEH
+ WJikRRzq4cpvsQks2rXgWZtNkr4t7DMF9PePbUHwyPDJww9lgm5/YQg4TACrT1CatRX4+8iaF
+ t7/uGhC1GyxDRv5DvX2H253VdLnfJnmcrulLusGLQq1NihWun0ZvCr9bASGFwh7yaODPhcZmC
+ kNlPQ6Ty5reYUEMEjyFfOM6XKztVsYKVLNs1cVMXVHoq+mystovtlU9nM9g0wj9jeToD4foGT
+ wgnBQCHA4Etl9CRReS1bNubTeYEJgV3/kLQaEZDdDj0UIws/gs5LyMr5tmgkJYIgV1VViQDHi
+ LwFVhyFH3Ougde31RTD+1mo8MjypApOgSi3iVZng1sAecjdJpguioisWgRPWYtV/T9at5CbM/
+ mKn9ZnV9LaDfMApa6dsfMKwXweu/WE5lOvk3wkkSQOgRnPbAPyynQIBHm2DN+MUttzWs2wJ4S
+ 6meDrDMx/fqZlghJeBI9QJ6TcJgSvYOC2JH3okqs3JfHuNTRF1sbJZIGCXhKYpqP/zsYP0//n
+ 7NVnejcH7QSeVKQ+ItJg==
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 28 Nov 2020 21:09:54 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 28 Nov 2020 20:49:04 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Sat, 28 Nov 2020 19:56:13 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Sat, 28 Nov 2020 21:09:52 +0100
 Cc: Coccinelle <cocci@systeme.lip6.fr>
 Subject: Re: [Cocci] Checking the influence of an omitted semicolon on a
  code adjustment
@@ -62,33 +86,32 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+> Why do you want to remove the semicolon?
+
+I have shown a transformation example where a function parameter should be replaced
+by a previous function call.
+Thus a semicolon should be intentionally be deleted.
 
 
-On Sat, 28 Nov 2020, Markus Elfring wrote:
+> If you want to find the call somewhere in the next statement, you can say
+>
+> (
+> S
+> &
+> call(
+>   ...
+>   )
+> )
+>
+> where S is a statement metavariable.
 
-> >> I have shown a transformation example where a function parameter should be replaced
-> >> by a previous function call.
-> >> Thus a semicolon should be intentionally be deleted.
-> >
-> > That makes no sense.
->
-> This transformation part is working as expected (under constraints) already.
->
->
-> > You can't have an expression directly following a statement.
-> > Only statements follow other statements.
->
-> This information is reasonable.
->
-> Does the Coccinelle software insist on the specification of another semicolon
-> in the SmPL script for the identification of an adjustable statement?
+This SmPL specification variant can be also interesting.
 
-Yes
+I got just interested in the possibility to omit an extra semicolon
+in my simple change approach.
 
->
-> Regards,
-> Markus
->
+Regards,
+Markus
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
