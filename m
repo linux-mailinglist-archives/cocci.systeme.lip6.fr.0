@@ -2,78 +2,53 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id B766F2C70CA
-	for <lists+cocci@lfdr.de>; Sat, 28 Nov 2020 21:10:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16C722C78FC
+	for <lists+cocci@lfdr.de>; Sun, 29 Nov 2020 12:55:18 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ASK9TMC001100;
-	Sat, 28 Nov 2020 21:09:29 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ATBseSL027052;
+	Sun, 29 Nov 2020 12:54:40 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 47ACF77C0;
-	Sat, 28 Nov 2020 21:09:29 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 9E57F77CD;
+	Sun, 29 Nov 2020 12:54:40 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id F3B72454B
- for <cocci@systeme.lip6.fr>; Sat, 28 Nov 2020 21:04:16 +0100 (CET)
-Received: from mout.web.de (mout.web.de [212.227.17.11])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ASK4FwN001470
- for <cocci@systeme.lip6.fr>; Sat, 28 Nov 2020 21:04:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1606593854;
- bh=QRVs2SNILPvF3VqOCQZ2qjxFMOp7CvxtofQRvrH797I=;
- h=X-UI-Sender-Class:To:Cc:References:From:Subject:Date:In-Reply-To;
- b=OCetiUYsS3Ei3B+p2MtTEoIz38WwVH2eVDSp0dt+Ck5nXA1P7LeXXhkXrjboSf+rl
- 3Dblsb4crGXF+20y9bkgooAdmuIDknmav3y9YC5jwJV7drvGJkiQ1Jd5l8nCpeymYi
- vLez7fO/9HQsnZ4ZCtWcnZCfwgDuKyDBnp3DMmyQ=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([93.132.189.227]) by smtp.web.de (mrweb103
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0Martm-1kTDUa2qAU-00KTWR; Sat, 28
- Nov 2020 21:04:14 +0100
-To: Julia Lawall <julia.lawall@inria.fr>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 8C2E3454B
+ for <cocci@systeme.lip6.fr>; Sun, 29 Nov 2020 12:54:38 +0100 (CET)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0ATBscuM007201
+ for <cocci@systeme.lip6.fr>; Sun, 29 Nov 2020 12:54:38 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.78,379,1599516000"; d="scan'208";a="480067500"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2020 12:54:33 +0100
+Date: Sun, 29 Nov 2020 12:54:32 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <0148bab2-6148-e403-985d-df2e7cade490@web.de>
+Message-ID: <alpine.DEB.2.22.394.2011291250490.2671@hadrien>
 References: <13b38013-8d4f-55fa-3c0e-ead782031659@web.de>
  <alpine.DEB.2.22.394.2011281844070.2725@hadrien>
  <feb351dc-537f-0f83-d9ec-cf16796ac0ee@web.de>
  <alpine.DEB.2.22.394.2011281959330.2725@hadrien>
  <d78a46b3-7035-8300-6e8c-b9e823574ad9@web.de>
  <alpine.DEB.2.22.394.2011282048540.2725@hadrien>
-From: Markus Elfring <Markus.Elfring@web.de>
-Message-ID: <8d2bfa68-c8e0-9c5a-b2f5-057e534f5976@web.de>
-Date: Sat, 28 Nov 2020 21:04:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.3
+ <8d2bfa68-c8e0-9c5a-b2f5-057e534f5976@web.de>
+ <0148bab2-6148-e403-985d-df2e7cade490@web.de>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.22.394.2011282048540.2725@hadrien>
-Content-Language: en-GB
-X-Provags-ID: V03:K1:VXQ453i7j1Dd20Xw7f41GaCKRehsuGxyVE65UTOYTo4vyqF4zDA
- v9o+4ANdvZo52vk0Df8FamH0F/hAEkvUgl8fBGR+mwcLIa3V22eunRWRiHNrtOdptpv1Ndh
- jHlXfkTCOYPe50rhZl0IQA1Q7P1HH/vIq/QR/Sa6YlfEdwPp2iJ/A9JLVuUwn+FiYqPjZ4z
- df9kr+nTpt5j9b+Fre6Jw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:5EELceT9eTA=:Z/FGGEkswH9f0o09cJAvxE
- iZmomgjja+Erq+jMOlUWKZZQXOrElEw6k4GI9r2+Bmi1K00NmKVP8Ah5FbW9XWHlLOd3m+6Yt
- bUCxzAPj+geAQjm/i8R1jw14WBDXIR/Rg4nZ1cZHt/1y70Ag3/X2iVfmzSheCfxeFyPnMzoPC
- BWebBEFeNUvUU+sbQJnYl5e1SaeANdCEJ1b8KxPuhoqofOrTSt6AN2gLzFKYHoJua7ylmNo75
- 8+uu6J6F0LbbU4ugQEaKTNNvsKk+ObGFRftnGBPMD4Z56g00ljMDDWHQi4pDCYpAELRAHGVqv
- Cl3yNnoGnx/kk7zQQX/GoG6fI5ijcay1s3aZfTEV+ggpdKzJINJCDYgUXMUAFk5UZ7PPnivjZ
- +DHtskMgnZmmNPoVc49kisOgD1A2k2PDFVABVnRovLyLRWI5VQw23FNIxM6EkSt7dtxcsjWz1
- 4CZRwsXgYhFAwDiLOeL8lo2X0Fa7iClZlq9eWWUkQQ7JeorsQZQaP09euDERHtJ+RkyhcjyBm
- GE7LvGwux6aIPDIzmJbG6+MyJDlaKFyOnEZEA7sEskI7+gDp4x906Dt19cHZgDvs7dwHlGx+Y
- 585RjlKcmIsKcUm2DIeZGjHk20RWQMqVgwnZbBwJwKUTPqM6yRUQ9SCzqDvX02v9aPfF1pts1
- phFOcCrqjWTD7iZk5jWEWUEsyyUzqDbX0Fa85recOnrOZKv0lObiQw4rfkjww294PKvEh1qea
- Shp2k4ZzPDGICV5J8++ZgvM1eFW6KtgiE9rto7SmW/YubtfC8oV0cmQmkZx9nt18mrwInTZm1
- +WenenInOEobnmu5ooCIh9zdBXU1rHKmN2GNpE01Ln9BwAjqmvYfu6GYNwtKFZkmqQUN0/K9x
- Ae5bAZ+h56g+bPRYXeoQ==
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 28 Nov 2020 21:09:30 +0100 (CET)
+Content-Type: multipart/mixed; boundary="8323329-2090294965-1606650873=:2671"
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 29 Nov 2020 12:54:43 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 28 Nov 2020 21:04:15 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Sun, 29 Nov 2020 12:54:38 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sat, 28 Nov 2020 21:09:27 +0100
 Cc: Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] Checking the influence of an omitted semicolon on a
- code adjustment
+Subject: Re: [Cocci] Adjusting some calls according to pass-through functions
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,37 +60,128 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
->>> You can't have an expression directly following a statement.
->>> Only statements follow other statements.
->>
->> This information is reasonable.
->>
->> Does the Coccinelle software insist on the specification of another semicolon
->> in the SmPL script for the identification of an adjustable statement?
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--8323329-2090294965-1606650873=:2671
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+
+
+
+On Sun, 29 Nov 2020, Markus Elfring wrote:
+
+> > I stumble on further software challenges if I would like to make the simple
+> > transformation approach a bit more variable on the number of surrounding parameters.
 >
-> Yes
+> It looked promising that another SmPL script variant gets also successfully parsed
+> by the current Coccinelle software.
+>
+>
+> @Replacement@
+> expression action, input1, input2, input3, target;
+> identifier gs;
+> @@
+> -\( g_string_assign@gs \| g_string_append@gs \| g_string_append_c@gs \) (target, input1);
+>  action (
+> +        gs (
+>              target
+> +            , input1)
+>              ,
+> (            input2, input3
+> |            input2
+> )       );
 
-I imagine that another view can become applicable here.
+I find this way of writing disjunctions really unreadable.  You are saving
+some precious whitespace characters at the cost of making any distinction
+between what is obligatory and what is optional.
 
-* It is possible to move a function call with a known property into a parameter
-  of a subsequent function/macro call.
+>
+> But another test run shows opportunities for further clarification of
+> the following software behaviour.
+>
+>
+> elfring@Sonne:~/Projekte/Gnome/Evolution-Data-Server/lokal> spatch --smpl-spacing --max-width 120 src/addressbook/libedata-book/e-book-sqlite.c ~/Projekte/Gnome/use_string_action_return_pointer8.cocci
+> …
+> previous modification:
+> MINUS
+>
+> According to environment 2:
+>    Replacement.input1 -> ' '
+>
+>    Replacement.gs -> id g_string_append_c
+>
+>
+> current modification:
+>
+>   <<< gs(
+> CONTEXT
+>   >>> , input1)
+>
+>
+> According to environment 2:
+>    Replacement.input1 -> info->name
+>
+>    Replacement.gs -> id g_string_append
+>
+>
+> Replacement: already tagged token:
+> C code context
+> File "src/addressbook/libedata-book/e-book-sqlite.c", line 1909, column 20, charpos = 53094
+>   around = 'string',
+>   whole content = 	g_string_append_c (string, ' ');
+>
+>
+> The implementation of a function like “format_column_declaration” contains
+> the following statements.
+> https://gitlab.gnome.org/GNOME/evolution-data-server/-/blob/3de7ea5fdb5d5db4a097a4d888d77bd2778c1c30/src/addressbook/libedata-book/e-book-sqlite.c#L1898
+>
+> 	g_string_append (string, info->name);
+> 	g_string_append_c (string, ' ');
+>
+> 	g_string_append (string, info->type);
+>
+> 	if (info->extra) {
+> 		g_string_append_c (string, ' ');
+> 		g_string_append (string, info->extra);
+> 	}
 
-* I care more for the implementation detail that a following function/macro
-  call exists and less that this source code needs to be an complete statement
-  (together with the usual semicolon at the end).
+The rule matches for example on the first line and on the second line.
+The match on the first line makes a change in the second line.  The match
+on the second line removes the second line.  This is a conflict, as
+reported.
 
+The problem would be solved in this case by making two separate rules.
 
-I stumble on further software challenges if I would like to make the simple
-transformation approach a bit more variable on the number of surrounding parameters.
+julia
 
-Regards,
-Markus
+>
+>
+> I imagine that such source code can be transformed into the following variant.
+>
+> 	g_string_append (g_string_append_c (g_string_append (string, info->name), ' '), info->type);
+>
+> 	if (info->extra)
+> 		g_string_append (g_string_append_c (string, ' '), info->extra);
+>
+>
+> Do you find any extensions interesting for such a code refactoring?
+>
+> Regards,
+> Markus
+>
+--8323329-2090294965-1606650873=:2671
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
+
+--8323329-2090294965-1606650873=:2671--
