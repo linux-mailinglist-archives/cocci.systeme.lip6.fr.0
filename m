@@ -2,80 +2,91 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717742D8D7A
-	for <lists+cocci@lfdr.de>; Sun, 13 Dec 2020 14:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9912DAD8B
+	for <lists+cocci@lfdr.de>; Tue, 15 Dec 2020 13:57:07 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0BDDrYj9000878;
-	Sun, 13 Dec 2020 14:53:34 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0BFCuUKO029230;
+	Tue, 15 Dec 2020 13:56:30 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 8F5FE77D0;
-	Sun, 13 Dec 2020 14:53:34 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6E5A277D0;
+	Tue, 15 Dec 2020 13:56:30 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 003097B6
- for <cocci@systeme.lip6.fr>; Sun, 13 Dec 2020 14:25:16 +0100 (CET)
-Received: from mout.web.de (mout.web.de [217.72.192.78])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0BDDPFEt009269;
- Sun, 13 Dec 2020 14:25:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1607865913;
- bh=SwNzJ2bJGa86JPjK8v8iohCicBkE50+y5QdndOYqSWA=;
- h=X-UI-Sender-Class:To:Cc:References:From:Subject:Date:In-Reply-To;
- b=K61JjmbGzdMprjHT0Sl5IBBv7Iv4YzxGL8aCuKsmuBO9tmohgzfxPDIFCZI6aPi3+
- ADovq4iuB76zPHktRHC62Eux4bCRKWAAoWxqcZd8aWlQeKzZB4yd3yI65bFh8Xej+r
- PAEOoDU6+hRlUrMvQxKdbcwEYBNkupP4ZFw6ZWcI=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([78.48.147.14]) by smtp.web.de (mrweb103
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MORqb-1kjCAu2Tyf-005nXg; Sun, 13
- Dec 2020 14:25:13 +0100
-To: Masahiro Yamada <masahiroy@kernel.org>, linux-kbuild@vger.kernel.org,
-        Coccinelle <cocci@systeme.lip6.fr>
-References: <20201212165431.150750-1-masahiroy@kernel.org>
-From: Markus Elfring <Markus.Elfring@web.de>
-Message-ID: <682c6da6-08b3-e776-ea60-f3de8a74f833@web.de>
-Date: Sun, 13 Dec 2020 14:25:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+ by systeme.lip6.fr (Postfix) with ESMTPS id 41ABC3A53
+ for <cocci@systeme.lip6.fr>; Tue, 15 Dec 2020 09:48:32 +0100 (CET)
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0BF8mT8W025040
+ for <cocci@systeme.lip6.fr>; Tue, 15 Dec 2020 09:48:30 +0100 (CET)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 00F0058031C;
+ Tue, 15 Dec 2020 03:48:27 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Tue, 15 Dec 2020 03:48:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm1; bh=h3oX4m+4ODPAKvjAZ8mPFFy+Fof
+ Mm7MXA7iosatUhIk=; b=OgUjprAOYhN//F1okcQ4nTCrVhyxKU5xsiNau5e66qW
+ +t6CuLhGUWHyjZT74sUpzcUYijXl1OCN8EkrRIMRBdyAIS6olS/OI/d9+Blm5NaO
+ +hfQb13hDwGBq+I/g8cmhMA7992HQodZfGGG5sNm/qS7rLqSnKpgRKFDs0ND/ddI
+ 9Yo2pZngYVlzLSaoTESBqLXmiUcvfEjH4VMFz0JR+rNhLDog8xFkfN799FNkAZJ7
+ 571DCXHUNocasYuEA3x2hPCDOoQmMuw7V2iBJdNVw0MEAZBaurZI09eH/PcC/rI/
+ JyWJOEK+80iZtM8cqpMwjoQsoh2QXVE1EPQtHGLOv6A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=h3oX4m
+ +4ODPAKvjAZ8mPFFy+FofMm7MXA7iosatUhIk=; b=YhH7M/nmtAjifJbYmBndvn
+ omJdvYhisqniJaNBMDAWGVaSH0a+rsOsbEVV/7CVkbPPPEa9rjEHa+y3PPHQUsdi
+ GoGsvQTSpxJ+yNsiNwJqoLgYjRoLdDaZNNN1u39Wrh+VFdHXOxvpMV0p2FFtE8ut
+ ZaqGd6QlwtVtLYW1ylL7oHY80cf9ZXjQHyjteOCqyfFeNjWXxPUfLCB7rURL60QL
+ NyEM1Obo2sPRS4zlOZ5cplfLNyjXbL2F0QmY+zPDfnVSuuAryyTl4lw73B2qc9zh
+ g+UccDpWC3K2t3rrvLwkNJNIY5088ErTKQQHu4iHDs/tEDZNX20npkRPBIiVY5/w
+ ==
+X-ME-Sender: <xms:WXjYX3fdpxXJ8YSNybISgc0GBGBxSodmiGxScC4ptUBYShZwyQMmYw>
+ <xme:WXjYX9NRHK2DAhFy4in9fkw6TycHtX2m45zUim0eQIOOeNU8odjY_kwQ3anJnWH2q
+ yVkMt1GaIwH40g5_zI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudekledguddviecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
+ heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
+ curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:WXjYXwjBdoZ8NLSK_XtDzWipTIm-TQsGSP4hkkyIFO0nOUDc8IDL7g>
+ <xmx:WXjYX4_MQBpmuUJkJXgPr-PjFqzgYD8qBqsQ0EvBQdOLH78qqNaGtA>
+ <xmx:WXjYXztXdzemIllbe0wdF5s4Ri5875dk-KSXtFYhpAaqzUrxuhsXYA>
+ <xmx:WnjYXxIv7pnco1dkdFFLXrdr3ShKE36Z1m-LgWRLq8AXGuqc03qS2A>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 3744924005D;
+ Tue, 15 Dec 2020 03:48:25 -0500 (EST)
+Date: Tue, 15 Dec 2020 09:48:23 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Wolfram Sang <wsa@the-dreams.de>
+Message-ID: <20201215084823.towbaqay5tgdh7dw@gilmour>
+References: <20200107073629.325249-1-maxime@cerno.tech>
+ <alpine.DEB.2.21.2001071106420.3004@hadrien>
+ <20200107102954.GB1135@ninjato>
 MIME-Version: 1.0
-In-Reply-To: <20201212165431.150750-1-masahiroy@kernel.org>
-Content-Language: en-GB
-X-Provags-ID: V03:K1:DZ3yPXo7JlzC+xu4TTQ+IuNQf0gsoXVlxwZa7NCAh6WJ3JG8kYi
- Yv7Q9PkhKChiCIvX7lTqdYx7/i3v+byOLejqQTF5LCIWdwb5W8KjX1G/zTI+9Zi+09ZhYdh
- ry+5ms6eUTTCU0+KDuf5C+ohYW0cKEc8fClfB0Uw6JcMq3OOvZMKizOVcNnJ0SQAw5suAyN
- aifhRdXJgioxJVS0cenOw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:61hHWaH079M=:szKnkjLQORXxwAB8eRZtRY
- CQBeoAwgcpcabs+llvM/zobfVlBFojFDwlJ9ihwkFRXqgF6wOeFz3Vv6khMCmLRpz06G+Za7d
- gcYF4IhGmelrb9H23rQC+iRkUXj0BZE3YDU+ma84nBoU5/0rd3K1JeChh3GFTcYBdBFiWNAmV
- OAgeFPK+MGUo82pIPJkw+hKuCtU0TA4nW94NYpKFbAnVRtIVovhVVAsIMPhBTnrHPd8Kpfyu4
- GlN7R7LYiZ7qUEJESfriiPSXr8fi9tUyjeY0OjMQZ7j1gqdRB29Z6u4zVsjtfqnth+dItNHQs
- +xxUlAFMyYblM/0zxAz9j2SMC1ZbvpAnYP91kr1jKYD+2nPwt4m3+O2WnbaRa0ws7wMglQSpY
- 6m+7JZppqJQYhuxslSCqJhwyKIgJ6D+7CjtBXWfStS+gBVKsP7OGN4ib3D2GPc2bSYa+NKUWy
- kq+KfI/HGZpeUeuXby19WaeYcNnJ867eJXzQAVk91ITJtylNLA0SkCiQOK4UjOUhel5EtHo3X
- u6gwehrKNnoPlhmZjmTll47MQL0roAT9bujH5AjafThMXiqnC1+wA1Uxq15ikpc3WbRh3dL0b
- YEuEOm0ACzj+bIHetCvGfvkQaVcs1vX2vXRK6MFvAAgRG0K3K2MBeQNDDHG3fYdZhbSfTKf6K
- YpJfU+jsxmpzoOYsbdkww9U3ZV7zV5daS2GVrERCDL0iakNYlCiFx1vKiO8aU0AokFs4WBqEQ
- a9lGxJEKmZrEwsfZT5Mg2KU+mQwDvlw1ZOhRn9U0YkypFoOHOSIB2X5HZVWRHQ3E9Q1yab5pr
- FGQGjZq3LTXOHyLChhklN/v7xhqBuzFcQlPhO1jBxKC28JCxgYNemqdK5d7hj2lI3U4Qapcn9
- UC/zAe0rqh0OdvVvBTDg==
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 13 Dec 2020 14:53:35 +0100 (CET)
+In-Reply-To: <20200107102954.GB1135@ninjato>
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 15 Dec 2020 13:56:31 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 13 Dec 2020 14:25:15 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Tue, 15 Dec 2020 09:48:30 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 13 Dec 2020 14:53:32 +0100
-Cc: Michal Marek <michal.lkml@markovi.net>,
-        Gilles Muller <Gilles.Muller@lip6.fr>,
-        Nicolas Palix <nicolas.palix@imag.fr>,
-        Dominique Martinet <asmadeus@codewreck.org>,
-        =?UTF-8?Q?Matthias_M=c3=a4nnich?= <maennich@google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Julia Lawall <Julia.Lawall@lip6.fr>
-Subject: Re: [Cocci] [PATCH 1/3] kbuild: do not use scripts/ld-version.sh
- for checking spatch version
+X-Mailman-Approved-At: Tue, 15 Dec 2020 13:56:28 +0100
+Cc: michal.lkml@markovi.net, Gilles.Muller@lip6.fr,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>, nicolas.palix@imag.fr,
+        linux-kernel@vger.kernel.org,
+        Jani Nikula <jani.nikula@linux.intel.com>, Julia.Lawall@lip6.fr,
+        Mark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>, cocci@systeme.lip6.fr
+Subject: Re: [Cocci] [PATCH] coccinnelle: Remove ptr_ret script
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,26 +98,104 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1388844960=="
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-4oCmCj4gKysrIGIvc2NyaXB0cy9jb2NjaWNoZWNrCuKApgo+IEBAIC0xODYsMTQgKzE4NSwxMSBA
-QCBjb2NjaW5lbGxlICgpIHsK4oCmCj4gKyAgICBpZiBbIC1uICIkUkVRIiBdICYmICEgeyBlY2hv
-ICIkUkVRIjsgZWNobyAiJFNQQVRDSF9WRVJTSU9OIjsgfSB8IHNvcnQgLUNWIDsgdGhlbgoKV291
-bGQgaXQgbWFrZSBzZW5zZSB0byB1c2UgYW4gb3RoZXIgY29tbWFuZCBjb250cm9sIG9wZXJhdG9y
-PwoKCisgICAgaWYgWyAtbiAiJFJFUSIgXSAmJiAhIHsgZWNobyAiJFJFUSIgJiYgZWNobyAiJFNQ
-QVRDSF9WRVJTSU9OIjsgfSB8IHNvcnQgLUNWIDsgdGhlbgoKCkhvdyBkbyB5b3UgdGhpbmsgYWJv
-dXQgYW5vdGhlciBjb21tYW5kIHZhcmlhbnQ/CgorICAgIGlmIFsgLW4gIiRSRVEiIF0gJiYgISBw
-cmludGYgIiVzXG4lc1xuIiAiJHtSRVF9IiAiJHtTUEFUQ0hfVkVSU0lPTn0iIHwgc29ydCAtQ1Yg
-OyB0aGVuCgoK4oCmCj4gKysrIGIvc2NyaXB0cy9uc2RlcHMKPiBAQCAtMTIsMTEgKzEyLDkgQEAg
-aWYgWyAhIC14ICIkU1BBVENIIiBdOyB0aGVuCuKApgo+ICtpZiAhIHsgZWNobyAiJFNQQVRDSF9S
-RVFfVkVSU0lPTiI7IGVjaG8gIiRTUEFUQ0hfVkVSU0lPTiI7IH0gfCBzb3J0IC1DViA7IHRoZW4K
-CkFyZSBjb21tYW5kIGFsdGVybmF0aXZlcyBoZWxwZnVsIGF0IHN1Y2ggYSBwbGFjZT8KCitpZiAh
-IHsgZWNobyAiJFNQQVRDSF9SRVFfVkVSU0lPTiIgJiYgZWNobyAiJFNQQVRDSF9WRVJTSU9OIjsg
-fSB8IHNvcnQgLUNWIDsgdGhlbgoKT3IKCitpZiAhIHByaW50ZiAiJXNcbiVzXG4iICIke1NQQVRD
-SF9SRVFfVkVSU0lPTn0iICIke1NQQVRDSF9WRVJTSU9OfSIgfCBzb3J0IC1DViA7IHRoZW4KCgpS
-ZWdhcmRzLApNYXJrdXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5c3RlbWUubGlwNi5mcgpodHRwczovL3N5
-c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2NvY2NpCg==
+
+--===============1388844960==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5hw66wsxl6qicpm2"
+Content-Disposition: inline
+
+
+--5hw66wsxl6qicpm2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Tue, Jan 07, 2020 at 11:29:54AM +0100, Wolfram Sang wrote:
+> On Tue, Jan 07, 2020 at 11:06:56AM +0100, Julia Lawall wrote:
+> >=20
+> >=20
+> > On Tue, 7 Jan 2020, Maxime Ripard wrote:
+> >=20
+> > > The ptr_ret script script addresses a number of situations where we e=
+nd up
+> > > testing an error pointer, and if it's an error returning it, or retur=
+n 0
+> > > otherwise to transform it into a PTR_ERR_OR_ZERO call.
+> > >
+> > > So it will convert a block like this:
+> > >
+> > > if (IS_ERR(err))
+> > >     return PTR_ERR(err);
+> > >
+> > > return 0;
+> > >
+> > > into
+> > >
+> > > return PTR_ERR_OR_ZERO(err);
+> > >
+> > > While this is technically correct, it has a number of drawbacks. Firs=
+t, it
+> > > merges the error and success path, which will make it harder for a re=
+viewer
+> > > or reader to grasp.
+> > >
+> > > It's also more difficult to extend if we were to add some code betwee=
+n the
+> > > error check and the function return, making the author essentially re=
+vert
+> > > that patch before adding new lines, while it would have been a trivial
+> > > addition otherwise for the rewiever.
+> > >
+> > > Therefore, since that script is only about cosmetic in the first plac=
+e,
+> > > let's remove it since it's not worth it.
+> > >
+> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > > Cc: Mark Brown <broonie@kernel.org>
+> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >=20
+> > Acked-by: Julia Lawall <julia.lawall@inria.fr>
+>=20
+> Convincing patch description, good catch!
+>=20
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+It looks like this patch was never applied, whose tree should it go
+through?
+
+Thanks!
+Maxime
+
+--5hw66wsxl6qicpm2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX9h4VwAKCRDj7w1vZxhR
+xZ0BAQD1ZXa/ItFHIo5NWZRARYGbuSbkRWYbcCsQVw+HHg7aEQD/RquZR/W23qaA
+8bVm4Koy2o1u3VAH53EEpY7lm2cs9wY=
+=/ffb
+-----END PGP SIGNATURE-----
+
+--5hw66wsxl6qicpm2--
+
+--===============1388844960==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Cocci mailing list
+Cocci@systeme.lip6.fr
+https://systeme.lip6.fr/mailman/listinfo/cocci
+
+--===============1388844960==--
