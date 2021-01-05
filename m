@@ -2,64 +2,64 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5D42E82B0
-	for <lists+cocci@lfdr.de>; Fri,  1 Jan 2021 00:53:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3B92EB2E6
+	for <lists+cocci@lfdr.de>; Tue,  5 Jan 2021 20:00:56 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0BVNrSTg014478;
-	Fri, 1 Jan 2021 00:53:28 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 105J0Msw017793;
+	Tue, 5 Jan 2021 20:00:22 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 95CD077D5;
-	Fri,  1 Jan 2021 00:53:28 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id A006077D0;
+	Tue,  5 Jan 2021 20:00:22 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id F1247373F
- for <cocci@systeme.lip6.fr>; Fri,  1 Jan 2021 00:53:26 +0100 (CET)
-Received: from smtprelay.hostedemail.com (smtprelay0113.hostedemail.com
- [216.40.44.113])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 0BVNrOoJ007122
- for <cocci@systeme.lip6.fr>; Fri, 1 Jan 2021 00:53:24 +0100 (CET)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
- [10.5.19.251])
- by smtpgrave03.hostedemail.com (Postfix) with ESMTP id 3C867181CAC61
- for <cocci@systeme.lip6.fr>; Thu, 31 Dec 2020 21:24:04 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay01.hostedemail.com (Postfix) with ESMTP id 64D91100E7B43;
- Thu, 31 Dec 2020 21:24:01 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:973:988:989:1260:1261:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1537:1567:1593:1594:1711:1714:1730:1747:1777:1792:2393:2559:2562:2828:3138:3139:3140:3141:3142:3622:3865:3866:3867:3870:3871:3872:3874:4321:5007:7652:8660:10004:10400:10848:11232:11658:11914:12297:12740:12760:12895:13069:13148:13161:13229:13230:13311:13357:13439:14659:14721:21080:21433:21627:21740:21939:30054:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:34, LUA_SUMMARY:none
-X-HE-Tag: sofa78_14019a2274b0
-X-Filterd-Recvd-Size: 1372
-Received: from [192.168.1.159] (unknown [47.151.137.21])
- (Authenticated sender: joe@perches.com)
- by omf15.hostedemail.com (Postfix) with ESMTPA;
- Thu, 31 Dec 2020 21:24:00 +0000 (UTC)
-Message-ID: <a3279a5772b2e49b57890cd75e97360b82890798.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Thu, 31 Dec 2020 13:23:57 -0800
-In-Reply-To: <alpine.DEB.2.22.394.2012312219520.20387@hadrien>
-References: <58a84d03b714f71d231f9cac04af09a6b97c6f04.camel@perches.com>
- <cc5722eb472a0a94f3418f6081b10f3c4a7e156d.camel@perches.com>
- <alpine.DEB.2.22.394.2012312124290.20387@hadrien>
- <eaa30016de67722c9595c3233b32b94474280a0a.camel@perches.com>
- <alpine.DEB.2.22.394.2012312219520.20387@hadrien>
-User-Agent: Evolution 3.38.1-1 
+ by systeme.lip6.fr (Postfix) with ESMTPS id 1DC603783
+ for <cocci@systeme.lip6.fr>; Tue,  5 Jan 2021 20:00:20 +0100 (CET)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 105J0Jom024381
+ for <cocci@systeme.lip6.fr>; Tue, 5 Jan 2021 20:00:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1609873218;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=/Sty7bYJ3dDWQE7W7ZImS+zmZzlThoNnRUCDickVDC0=;
+ b=EwUuyxHa36jsflQTS16Qa8TI8B9ojq0v4Gb/SpqAJEoKLERI04UhWWE2thIovjuiefQOVV
+ EBrfieSwy5pD6EiAiZCgPm8491lnqdf16w3/KDf8YBJLAln05qqu5eUui2BxWIj3fLQgYD
+ +Ez9rXC1ixdW6SoINTk4tJrsSAfQ7/0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-150-XruL3h7oPr6z_2lz3gPAEg-1; Tue, 05 Jan 2021 14:00:10 -0500
+X-MC-Unique: XruL3h7oPr6z_2lz3gPAEg-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D9841AFA80
+ for <cocci@systeme.lip6.fr>; Tue,  5 Jan 2021 19:00:09 +0000 (UTC)
+Received: from localhost (ovpn-114-98.ams2.redhat.com [10.36.114.98])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 855017046C
+ for <cocci@systeme.lip6.fr>; Tue,  5 Jan 2021 19:00:09 +0000 (UTC)
+Date: Tue, 5 Jan 2021 19:00:08 +0000
+From: "Richard W.M. Jones" <rjones@redhat.com>
+To: cocci@systeme.lip6.fr
+Message-ID: <20210105190008.GB27779@redhat.com>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 01 Jan 2021 00:53:29 -878300 (CET)
-X-Greylist: Delayed for 03:39:46 by milter-greylist-4.4.3 (isis.lip6.fr
- [132.227.60.2]); Fri, 01 Jan 2021 00:53:25 -878300 (CET)
+User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] cocci: missed strlcpy->strscpy conversion?
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rjones@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 05 Jan 2021 20:00:25 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Tue, 05 Jan 2021 20:00:19 +0100 (CET)
+Subject: [Cocci] Python 3.10 again: _Py_fopen deprecated
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,15 +76,31 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Thu, 2020-12-31 at 22:21 +0100, Julia Lawall wrote:
-> It seems that the problem is not really the for_each, but the * in front
-> of a "function call" on the left side of an assignment.  Without the *,
-> everything is fine.  So it is indeed probably not worth doing anything
-> about.
+Firstly a gentle reminder that there's a patch waiting to be applied:
+https://systeme.lip6.fr/pipermail/cocci/2020-November/thread.html#8398
 
-Maybe a combination because if braces are added to the for_each,
-the conversion also works.
+Different from that patch, but still related to Python 3.10, we've got
+another bug report here:
+https://bugzilla.redhat.com/show_bug.cgi?id=1912931
 
+This time _Py_fopen has been deprecated, replaced by _Py_wfopen or
+_Py_fopen_obj.  It's unclear which is better.  The two functions are
+documented here:
+https://github.com/python/cpython/blob/master/Python/fileutils.c#L1418
+
+What I don't understand from the pyxml code is why we use these
+internal Python functions at all, instead of calling regular C
+functions like fopen etc.  In fact it seems like for Python 2 we did
+call fopen ...
+
+Rich.
+
+-- 
+Richard Jones, Virtualization Group, Red Hat http://people.redhat.com/~rjones
+Read my programming and virtualization blog: http://rwmj.wordpress.com
+Fedora Windows cross-compiler. Compile Windows programs, test, and
+build Windows installers. Over 100 libraries supported.
+http://fedoraproject.org/wiki/MinGW
 
 _______________________________________________
 Cocci mailing list
