@@ -2,64 +2,45 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3B92EB2E6
-	for <lists+cocci@lfdr.de>; Tue,  5 Jan 2021 20:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC7CC2EFB49
+	for <lists+cocci@lfdr.de>; Fri,  8 Jan 2021 23:42:57 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 105J0Msw017793;
-	Tue, 5 Jan 2021 20:00:22 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 108MgPG5005937;
+	Fri, 8 Jan 2021 23:42:25 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id A006077D0;
-	Tue,  5 Jan 2021 20:00:22 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 43D4F77D0;
+	Fri,  8 Jan 2021 23:42:25 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 1DC603783
- for <cocci@systeme.lip6.fr>; Tue,  5 Jan 2021 20:00:20 +0100 (CET)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 105J0Jom024381
- for <cocci@systeme.lip6.fr>; Tue, 5 Jan 2021 20:00:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1609873218;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type;
- bh=/Sty7bYJ3dDWQE7W7ZImS+zmZzlThoNnRUCDickVDC0=;
- b=EwUuyxHa36jsflQTS16Qa8TI8B9ojq0v4Gb/SpqAJEoKLERI04UhWWE2thIovjuiefQOVV
- EBrfieSwy5pD6EiAiZCgPm8491lnqdf16w3/KDf8YBJLAln05qqu5eUui2BxWIj3fLQgYD
- +Ez9rXC1ixdW6SoINTk4tJrsSAfQ7/0=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-150-XruL3h7oPr6z_2lz3gPAEg-1; Tue, 05 Jan 2021 14:00:10 -0500
-X-MC-Unique: XruL3h7oPr6z_2lz3gPAEg-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D9841AFA80
- for <cocci@systeme.lip6.fr>; Tue,  5 Jan 2021 19:00:09 +0000 (UTC)
-Received: from localhost (ovpn-114-98.ams2.redhat.com [10.36.114.98])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 855017046C
- for <cocci@systeme.lip6.fr>; Tue,  5 Jan 2021 19:00:09 +0000 (UTC)
-Date: Tue, 5 Jan 2021 19:00:08 +0000
-From: "Richard W.M. Jones" <rjones@redhat.com>
-To: cocci@systeme.lip6.fr
-Message-ID: <20210105190008.GB27779@redhat.com>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 55E513783
+ for <cocci@systeme.lip6.fr>; Fri,  8 Jan 2021 23:42:23 +0100 (CET)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 108MgMnA008654
+ for <cocci@systeme.lip6.fr>; Fri, 8 Jan 2021 23:42:22 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.79,332,1602540000"; d="scan'208";a="486185116"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2021 23:42:22 +0100
+Date: Fri, 8 Jan 2021 23:42:22 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: "Richard W.M. Jones" <rjones@redhat.com>
+In-Reply-To: <20210105190008.GB27779@redhat.com>
+Message-ID: <alpine.DEB.2.22.394.2101082341230.2796@hadrien>
+References: <20210105190008.GB27779@redhat.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rjones@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 05 Jan 2021 20:00:25 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 08 Jan 2021 23:42:28 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Tue, 05 Jan 2021 20:00:19 +0100 (CET)
-Subject: [Cocci] Python 3.10 again: _Py_fopen deprecated
+ (isis.lip6.fr [132.227.60.2]); Fri, 08 Jan 2021 23:42:22 +0100 (CET)
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: cocci@systeme.lip6.fr
+Subject: Re: [Cocci] Python 3.10 again: _Py_fopen deprecated
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,32 +57,47 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Firstly a gentle reminder that there's a patch waiting to be applied:
-https://systeme.lip6.fr/pipermail/cocci/2020-November/thread.html#8398
 
-Different from that patch, but still related to Python 3.10, we've got
-another bug report here:
-https://bugzilla.redhat.com/show_bug.cgi?id=1912931
 
-This time _Py_fopen has been deprecated, replaced by _Py_wfopen or
-_Py_fopen_obj.  It's unclear which is better.  The two functions are
-documented here:
-https://github.com/python/cpython/blob/master/Python/fileutils.c#L1418
+On Tue, 5 Jan 2021, Richard W.M. Jones wrote:
 
-What I don't understand from the pyxml code is why we use these
-internal Python functions at all, instead of calling regular C
-functions like fopen etc.  In fact it seems like for Python 2 we did
-call fopen ...
+> Firstly a gentle reminder that there's a patch waiting to be applied:
+> https://systeme.lip6.fr/pipermail/cocci/2020-November/thread.html#8398
+>
+> Different from that patch, but still related to Python 3.10, we've got
+> another bug report here:
+> https://bugzilla.redhat.com/show_bug.cgi?id=1912931
+>
+> This time _Py_fopen has been deprecated, replaced by _Py_wfopen or
+> _Py_fopen_obj.  It's unclear which is better.  The two functions are
+> documented here:
+> https://github.com/python/cpython/blob/master/Python/fileutils.c#L1418
+>
+> What I don't understand from the pyxml code is why we use these
+> internal Python functions at all, instead of calling regular C
+> functions like fopen etc.  In fact it seems like for Python 2 we did
+> call fopen ...
 
-Rich.
+Everything should be up to date now on github.  Thanks for your help.
+Thierry will contact you directly about the choice of fopen.
 
--- 
-Richard Jones, Virtualization Group, Red Hat http://people.redhat.com/~rjones
-Read my programming and virtualization blog: http://rwmj.wordpress.com
-Fedora Windows cross-compiler. Compile Windows programs, test, and
-build Windows installers. Over 100 libraries supported.
-http://fedoraproject.org/wiki/MinGW
+julia
 
+>
+> Rich.
+>
+> --
+> Richard Jones, Virtualization Group, Red Hat http://people.redhat.com/~rjones
+> Read my programming and virtualization blog: http://rwmj.wordpress.com
+> Fedora Windows cross-compiler. Compile Windows programs, test, and
+> build Windows installers. Over 100 libraries supported.
+> http://fedoraproject.org/wiki/MinGW
+>
+> _______________________________________________
+> Cocci mailing list
+> Cocci@systeme.lip6.fr
+> https://systeme.lip6.fr/mailman/listinfo/cocci
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
