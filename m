@@ -2,45 +2,71 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72B812EFE4B
-	for <lists+cocci@lfdr.de>; Sat,  9 Jan 2021 08:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 363412EFEB9
+	for <lists+cocci@lfdr.de>; Sat,  9 Jan 2021 10:10:55 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 1097YVmK026606;
-	Sat, 9 Jan 2021 08:34:31 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 1099ALC4000612;
+	Sat, 9 Jan 2021 10:10:22 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 44F8077D0;
-	Sat,  9 Jan 2021 08:34:31 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id BA62F77D0;
+	Sat,  9 Jan 2021 10:10:21 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 14B7F454B
- for <cocci@systeme.lip6.fr>; Sat,  9 Jan 2021 08:34:30 +0100 (CET)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 1097YTiD018210
- for <cocci@systeme.lip6.fr>; Sat, 9 Jan 2021 08:34:29 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.79,333,1602540000"; d="scan'208";a="369493653"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2021 08:34:19 +0100
-Date: Sat, 9 Jan 2021 08:34:19 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Lukas Straub <lukasstraub2@web.de>
-In-Reply-To: <20210109004841.34cb9174@gecko.fritz.box>
-Message-ID: <alpine.DEB.2.22.394.2101090833410.2803@hadrien>
-References: <20210109004841.34cb9174@gecko.fritz.box>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id A6DD9454B
+ for <cocci@systeme.lip6.fr>; Sat,  9 Jan 2021 10:10:19 +0100 (CET)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 1099AI4W026831
+ for <cocci@systeme.lip6.fr>; Sat, 9 Jan 2021 10:10:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1610183418;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=knQafjxd+bKwdSM4pmnsIxjF+ty++e9tJTrqnBNkuAE=;
+ b=Up4KA/Sb+wexbs/J2f29N7JzI2p2J5oZuG9Bb7H6i2XbQnR5u26bOlEhMgEO6VCautcWDO
+ BoLPGJRz6JjVRKaHHbDzcGAfJWgbAJqAoIGxmz9eVcw+2JCBb5RZrjUTJ4WAejtRI3esiW
+ ps7yeiDqLeYWEXq9fs70MRZ6IjWEyqE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-439-84PBNUESP8ucsqRiWmKTDQ-1; Sat, 09 Jan 2021 04:10:13 -0500
+X-MC-Unique: 84PBNUESP8ucsqRiWmKTDQ-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D6EF3800D55;
+ Sat,  9 Jan 2021 09:10:11 +0000 (UTC)
+Received: from localhost (ovpn-114-98.ams2.redhat.com [10.36.114.98])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id A3D3F10013BD;
+ Sat,  9 Jan 2021 09:10:10 +0000 (UTC)
+Date: Sat, 9 Jan 2021 09:10:09 +0000
+From: "Richard W.M. Jones" <rjones@redhat.com>
+To: Thierry Martinez <Thierry.Martinez@inria.fr>
+Message-ID: <20210109091009.GK30079@redhat.com>
+References: <20210105190008.GB27779@redhat.com>
+ <alpine.DEB.2.22.394.2101082341230.2796@hadrien>
+ <ow4mtxjyqhx.fsf@inria.fr>
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 09 Jan 2021 08:34:31 +0100 (CET)
+In-Reply-To: <ow4mtxjyqhx.fsf@inria.fr>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=rjones@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 09 Jan 2021 10:10:23 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 09 Jan 2021 08:34:29 +0100 (CET)
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+ (isis.lip6.fr [132.227.60.2]); Sat, 09 Jan 2021 10:10:19 +0100 (CET)
 Cc: cocci@systeme.lip6.fr
-Subject: Re: [Cocci] Matching attributes
+Subject: Re: [Cocci] Python 3.10 again: _Py_fopen deprecated
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,37 +78,96 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-> But this fails:
->
->  @@
->  type T;
->  identifier var;
->  attribute name autofree;
->  @@
->
->     T var autofree;
->     ...
->  ++ free(var);
->     return ...;
->
-> with
->
->  minus: parse error:
->    File "autofree.cocci", line 7, column 17, charpos = 73
->    around = ';',
->    whole content =    T var autofree;
->
-> What am I doing wrong here?
-> I tried both with v1.0.8 and latest git.
+On Sat, Jan 09, 2021 at 12:10:18AM +0100, Thierry Martinez wrote:
+> Hi, Richard.
+> =
 
-Thanks for the report.  I will look into it.
+> Thank you very much for your two successive reports about
+> incompatibilities between pyml and Python 3.10. They should have been
+> fixed now.
+> =
 
-julia
+> Richard:
+> >> What I don't understand from the pyxml code is why we use these
+> >> internal Python functions at all, instead of calling regular C
+> >> functions like fopen etc.  In fact it seems like for Python 2 we did
+> >> call fopen ...
+> =
+
+> Indeed, for Python 2, there is a fallback to fopen since Py_fopen is not
+> available.  When Py_fopen or Py_wfopen are available, we prefer to use
+> them because they handle the Windows special case.
+
+Oh I see, that makes sense.
+
+Rich.
+
+> Best regards.
+> -- =
+
+> Thierry.
+> =
+
+> Julia Lawall=C2=A0:
+> > On Tue, 5 Jan 2021, Richard W.M. Jones wrote:
+> >
+> >> Firstly a gentle reminder that there's a patch waiting to be applied:
+> >> https://systeme.lip6.fr/pipermail/cocci/2020-November/thread.html#8398
+> >>
+> >> Different from that patch, but still related to Python 3.10, we've got
+> >> another bug report here:
+> >> https://bugzilla.redhat.com/show_bug.cgi?id=3D1912931
+> >>
+> >> This time _Py_fopen has been deprecated, replaced by _Py_wfopen or
+> >> _Py_fopen_obj.  It's unclear which is better.  The two functions are
+> >> documented here:
+> >> https://github.com/python/cpython/blob/master/Python/fileutils.c#L1418
+> >>
+> >> What I don't understand from the pyxml code is why we use these
+> >> internal Python functions at all, instead of calling regular C
+> >> functions like fopen etc.  In fact it seems like for Python 2 we did
+> >> call fopen ...
+> >
+> > Everything should be up to date now on github.  Thanks for your help.
+> > Thierry will contact you directly about the choice of fopen.
+> >
+> > julia
+> >
+> >>
+> >> Rich.
+> >>
+> >> --
+> >> Richard Jones, Virtualization Group, Red Hat http://people.redhat.com/=
+~rjones
+> >> Read my programming and virtualization blog: http://rwmj.wordpress.com
+> >> Fedora Windows cross-compiler. Compile Windows programs, test, and
+> >> build Windows installers. Over 100 libraries supported.
+> >> http://fedoraproject.org/wiki/MinGW
+> >>
+> >> _______________________________________________
+> >> Cocci mailing list
+> >> Cocci@systeme.lip6.fr
+> >> https://systeme.lip6.fr/mailman/listinfo/cocci
+> >>
+> > _______________________________________________
+> > Cocci mailing list
+> > Cocci@systeme.lip6.fr
+> > https://systeme.lip6.fr/mailman/listinfo/cocci
+
+-- =
+
+Richard Jones, Virtualization Group, Red Hat http://people.redhat.com/~rjon=
+es
+Read my programming and virtualization blog: http://rwmj.wordpress.com
+virt-p2v converts physical machines to virtual machines.  Boot with a
+live CD or over the network (PXE) and turn machines into KVM guests.
+http://libguestfs.org/virt-v2v
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
