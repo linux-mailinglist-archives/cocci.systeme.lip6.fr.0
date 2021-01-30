@@ -2,44 +2,66 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8EEB30653D
-	for <lists+cocci@lfdr.de>; Wed, 27 Jan 2021 21:35:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB1A3091BE
+	for <lists+cocci@lfdr.de>; Sat, 30 Jan 2021 04:54:31 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 10RKZA65024223;
-	Wed, 27 Jan 2021 21:35:10 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 10U3rtU1029850;
+	Sat, 30 Jan 2021 04:53:55 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 13F8077BF;
-	Wed, 27 Jan 2021 21:35:10 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 773AD77DD;
+	Sat, 30 Jan 2021 04:53:55 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 06DA4389B
- for <cocci@systeme.lip6.fr>; Wed, 27 Jan 2021 21:35:09 +0100 (CET)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 10RKZ88G014205
- for <cocci@systeme.lip6.fr>; Wed, 27 Jan 2021 21:35:08 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.79,380,1602540000"; d="scan'208";a="371320931"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 21:35:08 +0100
-Date: Wed, 27 Jan 2021 21:35:07 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: "James K. Lowden" <jklowden@schemamania.org>
-In-Reply-To: <20210127152325.5692b2e6eb7b8ed82d91262b@schemamania.org>
-Message-ID: <alpine.DEB.2.22.394.2101272128510.3768@hadrien>
-References: <20210127152325.5692b2e6eb7b8ed82d91262b@schemamania.org>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 85E43389B
+ for <cocci@systeme.lip6.fr>; Sat, 30 Jan 2021 04:53:53 +0100 (CET)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20:0:0:0:532])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 10U3rpBu005252
+ for <cocci@systeme.lip6.fr>; Sat, 30 Jan 2021 04:53:51 +0100 (CET)
+Received: by mail-ed1-x532.google.com with SMTP id d22so12869716edy.1
+ for <cocci@systeme.lip6.fr>; Fri, 29 Jan 2021 19:53:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=HNjSZwNQ8JDwBMbb5HAFLGG51tpfUMPetya9PVtDBi4=;
+ b=pF6xmgGwHN7xe+C/g3KaVjdx1x9hkjyKmkqprtLHj8B67LfvgA2TG9Dd3fB6Cflo5c
+ v6G6H4msjFI+fmnJaL/zaf+St3b58DGDn10F1urkNonaLKmSIyKwr9cTpqAOFryZKxFH
+ jkN4XULWZcuirV45lvs0ULhTFdYnOkPE4zN/87Zo0XO7ghiF3Sevn9tyN4h7q2gZpfwN
+ b8785jaBrwppTPL0nXyohdtr/VvyPvm+9AJa/jJiyRWe0Q1Xv+BGs3CAYtLEyt/xSYme
+ RMwkYUzs1WB3RCykY/EN8vKSHVbCCr4Spqe7v2tW0+mXQZULB8xGf/UdKcdEenuCiiOc
+ mu/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=HNjSZwNQ8JDwBMbb5HAFLGG51tpfUMPetya9PVtDBi4=;
+ b=MmC28Cr6Z4am/lPt5niFYNj18MuPGseAdY//sKpHcUkOMkaU2CslsbAYxU1GblZ73Z
+ Nfm3VdnhWB5Rr9cvlAP5mJD8OAemTFnBxOkAxxMTKcmEZJkzTfopOX5A15dY+8ZcSR0b
+ mXmVXc7uZ81NXi6C4c2kB4lhQejd0ey5JjiGEe/rcUOSErh9UJvuV9eVFEdQ/oWAfVYP
+ bdrkYtzCku34qnNtBs9MkTRhIL2tgHIwcrY2W0+tDY7sQnTsPVFzeCLd80K5PKAckFs6
+ u4m9qE/2eIOqXkhI31hp4DmZZyN4tJnaqIdlZQH7TTkQDnUiIvSQfA5kXgBqzMrK/ddl
+ Gvyw==
+X-Gm-Message-State: AOAM532qHZpFR0NhDDIGdZVMqHoF6N2HeEtIhuPrw9jMpxjnim9NZLn/
+ 3ofYBaMHVOanWHg0Pl6irDDWMHfxQ0u97T5vNC+p/seP+EU=
+X-Google-Smtp-Source: ABdhPJwnDm061qxOuI//ShShsIpnIegzEdH2BYp3eleHwkMDVPhi8XnW2Ty/aJfdxr0Rix2n2PT/3/pDt6yUssOldQ4=
+X-Received: by 2002:a05:6402:151:: with SMTP id
+ s17mr8179035edu.107.1611978831245; 
+ Fri, 29 Jan 2021 19:53:51 -0800 (PST)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 27 Jan 2021 21:35:12 +0100 (CET)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 27 Jan 2021 21:35:08 +0100 (CET)
+References: <20210127152325.5692b2e6eb7b8ed82d91262b@schemamania.org>
+In-Reply-To: <20210127152325.5692b2e6eb7b8ed82d91262b@schemamania.org>
+From: Mansour Moufid <mansourmoufid@gmail.com>
+Date: Fri, 29 Jan 2021 22:53:40 -0500
+Message-ID: <CALogXGV1sf3z9rS8eL4-jJdXoeJdThXb=CTvCvaUVNrk31d3=g@mail.gmail.com>
+To: cocci@systeme.lip6.fr
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 30 Jan 2021 04:53:59 +0100 (CET)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sat, 30 Jan 2021 04:53:51 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr
+X-Scanned-By: MIMEDefang 2.78
 Subject: Re: [Cocci] qualified function rule
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -57,10 +79,9 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-
-
-On Wed, 27 Jan 2021, James K. Lowden wrote:
-
+On Wed, Jan 27, 2021 at 3:23 PM James K. Lowden
+<jklowden@schemamania.org> wrote:
+>
 > I don't understand how, if it's possible, to qualify a function in a
 > rule.  I want the class of all functions having a parameter of a
 > particular type.
@@ -82,66 +103,27 @@ On Wed, 27 Jan 2021, James K. Lowden wrote:
 > + F(data)
 >
 > but that doesn't work, and I haven't found anything that does.
->
-> In the kmalloc examples, I see things like
->
-> - \(kmalloc|kcmalloc\)(...)
-> + mumble something
->
-> but that forces me to enumerate all such function names. It seems
-> vaguely like positions would do the trick, but, well, vaguely.
->
-> Is there a way?
 
-In principle, you should be able to specify the type of F. But I'm not at
-all sure that that is supported for function names.
+Try:
 
-Maybe it would suffice to do:
+    @@
+    void *x;
+    @@
+    - (void *)(x)
+    + x
 
-@fn@
-identifier F,i;
-parameter list[n] ps;
-@@
+or, to catch them all,
 
-F(ps,void *i,...) { ... }
+    @@
+    type t;
+    t *x;
+    @@
+    - (t *)(x)
+    + x
 
-@@
-identifier fn.F;
-expression list[fn.n] es;
-type T;
-expression *e;
-@@
-
-F(es,
-- (T*)
-  e, ...)
-
-@ty@
-identifier F,i;
-parameter list[n] ps;
-type t;
-@@
-
-t F(ps,void *i,...);
-
-@@
-identifier ty.F;
-expression list[ty.n] es;
-type T;
-expression *e;
-@@
-
-F(es,
-- (T*)
-  e, ...)
-
-Probably your function prototypes are not in the .c files, but rather in
-things that they include.  So you would want to use an argument like
---all-includes (include locally mentioned header) or --recursive-includes
-(include headers included in other headers).  You may want to give some -I
-dir arguments to help it find the header files.
-
-julia
+but this only works on function arguments when Coccinelle knows about
+the function prototype from a header file (see the options
+--include-headers and -I).
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
