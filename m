@@ -2,47 +2,73 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE8931AA60
-	for <lists+cocci@lfdr.de>; Sat, 13 Feb 2021 08:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E94E931AE20
+	for <lists+cocci@lfdr.de>; Sat, 13 Feb 2021 22:38:40 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11D7kFVH017770;
-	Sat, 13 Feb 2021 08:46:15 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11DLc6KK022362;
+	Sat, 13 Feb 2021 22:38:07 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 80C0277DD;
-	Sat, 13 Feb 2021 08:46:15 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id DF3CF77EB;
+	Sat, 13 Feb 2021 22:38:06 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 2812324DD
- for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 08:46:13 +0100 (CET)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11D7kCbc009311
- for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 08:46:12 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.81,175,1610406000"; d="scan'208";a="372952662"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2021 08:46:12 +0100
-Date: Sat, 13 Feb 2021 08:46:11 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Denis Efremov <efremov@linux.com>
-In-Reply-To: <f7c2e83e-0cdd-d414-0fb1-e57cd380dce7@linux.com>
-Message-ID: <alpine.DEB.2.22.394.2102130843330.2720@hadrien>
-References: <0c2a01f3-e48b-fc67-78b4-f061026aec42@linux.com>
- <alpine.DEB.2.22.394.2102121504100.9350@hadrien>
- <f7c2e83e-0cdd-d414-0fb1-e57cd380dce7@linux.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 89AC974AF
+ for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 00:27:49 +0100 (CET)
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
+ [209.85.210.53])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11BNRmqA012322
+ for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 00:27:49 +0100 (CET)
+Received: by mail-ot1-f53.google.com with SMTP id i20so6842901otl.7
+ for <cocci@systeme.lip6.fr>; Thu, 11 Feb 2021 15:27:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=NMJ7yLd9O23CBO6jbidyP4gLEKA1R1vMVgKZt27Rrho=;
+ b=J6XUW0TzIy5gxVicHg9K9zwGE7+8jC22rfmZvz+DbKNPQca73V7cpCq+lNsd+M5BGO
+ 33+LiuPFs+bXv8UfEPmnv3GSQqZfpAMa+cVgZMtCE8Qz3WXxlchITrC3uJXgo7qKb8jC
+ tbyR1yl3qWlM098zsBygI675e9FTZh2BUB/ckvetZvaooAFDYyqwtXNPoStXo9TM0Amr
+ CM0rVScktxDgG69gwi3FZXiLlVQ7XXl3IeENOdsI4bVYUAqW+3/cgNVVa1xp67xSOOCL
+ tKIm4YltFUDkM8ySqnEdxiVt2u/DpDQHpHlfkxOMclsBeSWjiG0G+eJV60F2mYz35Z03
+ /jqA==
+X-Gm-Message-State: AOAM533rk6hMXVxL1jnF7Fn5Xi3fSNkF7qJ4jbXVPZKkMUt0l1R4vwkl
+ 3MbkfCScM36CknTWgdnIDw==
+X-Google-Smtp-Source: ABdhPJxCLDZrG4wjSzEe3ksZoou3d9Y2oSOGUfFU4jjPmhV2WnoDeeXu5PQ90Om+6OiCd4FYz8Tnog==
+X-Received: by 2002:a9d:74c6:: with SMTP id a6mr250282otl.369.1613086068486;
+ Thu, 11 Feb 2021 15:27:48 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.googlemail.com with ESMTPSA id s18sm1283922oih.53.2021.02.11.15.27.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Feb 2021 15:27:47 -0800 (PST)
+From: Rob Herring <robh@kernel.org>
+To: Michael Ellerman <mpe@ellerman.id.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Date: Thu, 11 Feb 2021 17:27:43 -0600
+Message-Id: <20210211232745.1498137-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 13 Feb 2021 08:46:18 +0100 (CET)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 13 Feb 2021 08:46:12 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 13 Feb 2021 22:38:12 +0100 (CET)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Fri, 12 Feb 2021 00:27:49 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr
-Subject: Re: [Cocci] Backward compatibility issue
+X-Mailman-Approved-At: Sat, 13 Feb 2021 22:38:04 +0100
+Cc: Felipe Balbi <balbi@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>, netdev@vger.kernel.org,
+        linux-usb@vger.kernel.org, Nicolas Palix <nicolas.palix@imag.fr>,
+        Patrice Chotard <patrice.chotard@st.com>, linux-kernel@vger.kernel.org,
+        Paul Mackerras <paulus@samba.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linuxppc-dev@lists.ozlabs.org, cocci@systeme.lip6.fr,
+        linux-arm-kernel@lists.infradead.org
+Subject: [Cocci] [PATCH v2 0/2] of: of_device.h cleanups
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,56 +85,30 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+This is a couple of cleanups for of_device.h. They fell out from my
+attempt at decoupling of_device.h and of_platform.h which is a mess
+and I haven't finished, but there's no reason to wait on these.
 
+Rob
 
-On Fri, 12 Feb 2021, Denis Efremov wrote:
+Rob Herring (2):
+  of: Remove of_dev_{get,put}()
+  driver core: platform: Drop of_device_node_put() wrapper
 
->
->
-> On 2/12/21 5:04 PM, Julia Lawall wrote:
-> >
-> >
-> > On Thu, 11 Feb 2021, Denis Efremov wrote:
-> >
-> >> Hi, one of my patterns started to fail tests on latest coccinelle.
-> >> I've bisected the commit that introduces "error". It's:
-> >> commit db60e916633d2cb3ae31140364783fdf85ed10f4
-> >> "make information about SmPL iterator and declarer names available to the C parser"
-> >>
-> >> To reproduce the error:
-> >> $ cd linux
-> >> $ git checkout 5b01014759991887b1e450c9def01e58c02ab81b
-> >> $ wget https://raw.githubusercontent.com/evdenis/cvehound/master/cvehound/cve/CVE-2016-9793.cocci
-> >> $ spatch -D detect --cocci-file CVE-2016-9793.cocci net/core/sock.c
-> >> # spatch before db60e916633d2cb3ae31140364783fdf85ed10f4 will find the match
-> >> net/core/sock.c:718:16-17: ERROR: CVE-2016-9793
-> >> net/core/sock.c:754:16-17: ERROR: CVE-2016-9793
-> >> ...
-> >> # spatch >= db60e916633d2cb3ae31140364783fdf85ed10f4 will not match the same code
-> >
-> > If you change typedef u32 to symbol u32, it should be good.  It is no use
-> > to Coccinelle to know that u32 is a typedef in this code.
->
-> After changing typedef to symbol, git version starts to match the code,
-> but coccinelle 1.0.8 starts to fail the detection.
+ arch/powerpc/platforms/pseries/ibmebus.c |  4 ++--
+ drivers/base/platform.c                  |  2 +-
+ drivers/net/ethernet/ibm/emac/core.c     | 15 ++++++++-------
+ drivers/of/device.c                      | 21 ---------------------
+ drivers/of/platform.c                    |  4 ++--
+ drivers/of/unittest.c                    |  2 +-
+ drivers/usb/dwc3/dwc3-st.c               |  2 +-
+ include/linux/of_device.h                | 10 ----------
+ scripts/coccinelle/free/put_device.cocci |  1 -
+ 9 files changed, 15 insertions(+), 46 deletions(-)
 
-Strange, I'll check.
+-- 
+2.27.0
 
-> Well, this doesn't
-> solve the problem for me.
->
-> What's the difference between symbol and typedef? How can I understand
-> when to use one or another?
-
-Typedef allows the thing to be used as a type.  But in semantic patch that
-oyu have, there is no way for Coccinelle to know that u32 is being used as
-a type.  It's just the argument to a macro.  It could be any identifier.
-
-Symbol just means "this is an identifier I want to match exactly, and I
-don't want the semantic patch parser to ask me if it should be a
-metavariable".  It actually has no impact on the matching process.
-
-julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
