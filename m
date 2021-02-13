@@ -2,76 +2,76 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7BF131AE1F
-	for <lists+cocci@lfdr.de>; Sat, 13 Feb 2021 22:38:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A736031AE22
+	for <lists+cocci@lfdr.de>; Sat, 13 Feb 2021 22:38:43 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11DLc7V4002709;
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11DLc68r017091;
 	Sat, 13 Feb 2021 22:38:07 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 760F277DE;
+	by systeme.lip6.fr (Postfix) with ESMTP id D76FD77F3;
 	Sat, 13 Feb 2021 22:38:07 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 1EF6074AF
- for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 00:27:54 +0100 (CET)
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
- [209.85.167.171])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11BNRruN003544
- for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 00:27:53 +0100 (CET)
-Received: by mail-oi1-f171.google.com with SMTP id 18so8111112oiz.7
- for <cocci@systeme.lip6.fr>; Thu, 11 Feb 2021 15:27:53 -0800 (PST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id CE89724DD
+ for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 22:23:28 +0100 (CET)
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:72d])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11DLNRWs007629
+ for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 22:23:27 +0100 (CET)
+Received: by mail-qk1-x72d.google.com with SMTP id w19so3075188qki.13
+ for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 13:23:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ttaylorr-com.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=+8agD4NEJjhqvnSlMNk/HZ1/kpOl/xG4gk2GwQViNJg=;
+ b=0By5OheH0/1s9ZMQUGIKxlCkkVWdGDT28YwWhBFrK9Tz41iyX/50QpFxYitlgovEa+
+ uWISQgZnb1jBX63hBVl4YJNtC6XQNX0TL9V43mcgofUBiek4jq2bIUBYWG06Oez1O7Ax
+ jGP1PDoIUmEKyCw3UxIaZNa4QWJlu7+zgIyJrlit9XQhZzCIqihZ5UF/vBhOSEczsJU6
+ /VCiDr0VSJp0wYIGA0bfLOX627rcoG7i3kFOzPNZ7dJH6JpH61f+2oMR8S2+NEx+UrHc
+ iH4IHU5AixintcVsH/5l16Werlirt3j9z7Xm5PS0x5I7qBBnATvdq3+TdB71VuJ+Vrnn
+ Ca4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ADz3YBOZKFLK6zF24DOxVVKS+J+CretpaVJj7vT++ec=;
- b=NYZ6B/M5GjS5/QmEsV6x36Rtdf0pot+D5jurcY3ZcPvsNDWlRrJiHK07K6GwKNUVbn
- 8TEA7sF9NsrQXnBlBkCptS9FLalq4ThAADvQeD5JWELiloCRi/KnpWs1fLQhmIgsTYde
- 0c/t+UubnLnSNeHS3o6r91BOOiWoDemopYu9ItJz8g3eWlwmu1QVLOvS6GfkZuGFEMVR
- 4RY76lXGVluO+fuZJfvA3qc14sssc93L4T3AeZ6GDPOo11sK/uXedjJNI+iD0isoCuqp
- N9nAOXRpU4dX31kH6YZob8NtNtpQbF/PTHHlSA0Mnv5ZqzTYI7zySNqX5Pv+i9l86Tcx
- QsJg==
-X-Gm-Message-State: AOAM532Oj79V0MzRL/Ni7HjfKzv2p6H7zQodjamoujnX6SFGBhEPOsJs
- K+6ewM3LtM0rrbP02k6WHg==
-X-Google-Smtp-Source: ABdhPJy+twQqGpwKSav6zIZvsh713BBmGhpUj6WaxgTGWBdNTF041IP+ZozxodSFlnoZb6Znde+AKQ==
-X-Received: by 2002:aca:eb13:: with SMTP id j19mr185629oih.10.1613086073175;
- Thu, 11 Feb 2021 15:27:53 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.googlemail.com with ESMTPSA id s18sm1283922oih.53.2021.02.11.15.27.50
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=+8agD4NEJjhqvnSlMNk/HZ1/kpOl/xG4gk2GwQViNJg=;
+ b=aFfISCg69vu8fPNpSuLthiPruQZeMr0Zm0fXba7RyidR/OxTXAtIb8cN5BVN43bj2z
+ VSzX0w2ftlzydmmas5Yf9UrK6Q2dQ8O/q2sepBTAzmsYDrkrOM1BJ6azivQqG4+Z74OU
+ wAylMkudU576f9doIt1BftrtNTp5H03gzB1qwCmuefU5sOZCTWqWy0Nza3S55KWwPvcv
+ Cn5zxx/ky67JRgMuyihSJgYvuOqbbaYHkPyA7URPnKRykc8cMnV1CFvNYqcnUZOBmz6Z
+ GhXlZct08CoiC+mIYIBUbszJGNAWx8FFJBql7U5HAjX/alyuS1ex54NxklovsoKhzZtT
+ avjw==
+X-Gm-Message-State: AOAM532hdQ8Z/zbfK02bsl8cZoBKGpY4hia30h4SYc31OulVwxFQQsII
+ vELzj9mPGowahBqq8nIcEJCYTQ==
+X-Google-Smtp-Source: ABdhPJy9CmPiikBDItuNxIehWZmYehkwpaHppD/sd+fhY3CEUwVBjxyCFtry6nNrEXGgqrr4i7WRFw==
+X-Received: by 2002:a37:4d93:: with SMTP id a141mr8806358qkb.332.1613251407070; 
+ Sat, 13 Feb 2021 13:23:27 -0800 (PST)
+Received: from localhost ([2605:9480:22e:ff10:b44a:999a:5914:71f7])
+ by smtp.gmail.com with ESMTPSA id h6sm8983681qkf.96.2021.02.13.13.23.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Feb 2021 15:27:51 -0800 (PST)
-From: Rob Herring <robh@kernel.org>
-To: Michael Ellerman <mpe@ellerman.id.au>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
-Date: Thu, 11 Feb 2021 17:27:45 -0600
-Message-Id: <20210211232745.1498137-3-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210211232745.1498137-1-robh@kernel.org>
-References: <20210211232745.1498137-1-robh@kernel.org>
+ Sat, 13 Feb 2021 13:23:26 -0800 (PST)
+Date: Sat, 13 Feb 2021 16:23:22 -0500
+From: Taylor Blau <me@ttaylorr.com>
+To: Julia Lawall <julia.lawall@inria.fr>
+Message-ID: <YChDSqSeMgNAAbDJ@nand.local>
+References: <YCKi4Ca0RbcfZLRB@nand.local>
+ <alpine.DEB.2.22.394.2102121506050.9350@hadrien>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.22.394.2102121506050.9350@hadrien>
 X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 13 Feb 2021 22:38:12 +0100 (CET)
 X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Fri, 12 Feb 2021 00:27:53 +0100 (CET)
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Sat, 13 Feb 2021 22:23:27 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Scanned-By: MIMEDefang 2.78
 X-Mailman-Approved-At: Sat, 13 Feb 2021 22:38:04 +0100
-Cc: Felipe Balbi <balbi@kernel.org>, Michal Marek <michal.lkml@markovi.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>, netdev@vger.kernel.org,
-        linux-usb@vger.kernel.org, Nicolas Palix <nicolas.palix@imag.fr>,
-        Patrice Chotard <patrice.chotard@st.com>, linux-kernel@vger.kernel.org,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        linuxppc-dev@lists.ozlabs.org, cocci@systeme.lip6.fr,
-        linux-arm-kernel@lists.infradead.org
-Subject: [Cocci] [PATCH v2 2/2] driver core: platform: Drop
-	of_device_node_put() wrapper
+Cc: cocci@systeme.lip6.fr
+Subject: Re: [Cocci] Missing package for Ubuntu 20.04 LTS?
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,64 +88,27 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-of_device_node_put() is just a wrapper for of_node_put(). The platform
-driver core is already polluted with of_node pointers and the only 'get'
-already uses of_node_get() (though typically the get would happen in
-of_device_alloc()).
+Hi Julia,
 
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Fix build
----
- drivers/base/platform.c   | 2 +-
- include/linux/of_device.h | 7 -------
- 2 files changed, 1 insertion(+), 8 deletions(-)
+On Fri, Feb 12, 2021 at 03:06:16PM +0100, Julia Lawall wrote:
+> > Is there a planned release of coccinelle that will appear in the focal
+> > suite?
+>
+> Can you use the PPA?
+>
+> https://launchpad.net/~npalix/+archive/ubuntu/coccinelle
 
-diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-index 95fd1549f87d..9d5171e5f967 100644
---- a/drivers/base/platform.c
-+++ b/drivers/base/platform.c
-@@ -571,7 +571,7 @@ static void platform_device_release(struct device *dev)
- 	struct platform_object *pa = container_of(dev, struct platform_object,
- 						  pdev.dev);
- 
--	of_device_node_put(&pa->pdev.dev);
-+	of_node_put(pa->pdev.dev.of_node);
- 	kfree(pa->pdev.dev.platform_data);
- 	kfree(pa->pdev.mfd_cell);
- 	kfree(pa->pdev.resource);
-diff --git a/include/linux/of_device.h b/include/linux/of_device.h
-index d7a407dfeecb..1d7992a02e36 100644
---- a/include/linux/of_device.h
-+++ b/include/linux/of_device.h
-@@ -38,11 +38,6 @@ extern int of_device_request_module(struct device *dev);
- extern void of_device_uevent(struct device *dev, struct kobj_uevent_env *env);
- extern int of_device_uevent_modalias(struct device *dev, struct kobj_uevent_env *env);
- 
--static inline void of_device_node_put(struct device *dev)
--{
--	of_node_put(dev->of_node);
--}
--
- static inline struct device_node *of_cpu_device_node_get(int cpu)
- {
- 	struct device *cpu_dev;
-@@ -94,8 +89,6 @@ static inline int of_device_uevent_modalias(struct device *dev,
- 	return -ENODEV;
- }
- 
--static inline void of_device_node_put(struct device *dev) { }
--
- static inline const struct of_device_id *of_match_device(
- 		const struct of_device_id *matches, const struct device *dev)
- {
--- 
-2.27.0
+Yes, we could. But it's an extra step that all users of Ubuntu Focal
+will have to take. Note that 20.04 is the image that all users of
+GitHub Actions' "runs-on: ubuntu-latest" get, so anybody in that group
+who wants to use coccinelle will have to configure and install from the
+PPA.
 
+Is there a reason that 20.04 was skipped when preparing a release for
+the official suites?
+
+Thanks,
+Taylor
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
