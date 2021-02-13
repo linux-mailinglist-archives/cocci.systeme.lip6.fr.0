@@ -2,63 +2,43 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94E131A5EA
-	for <lists+cocci@lfdr.de>; Fri, 12 Feb 2021 21:19:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE8931AA60
+	for <lists+cocci@lfdr.de>; Sat, 13 Feb 2021 08:46:42 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11CKIWnX019292;
-	Fri, 12 Feb 2021 21:18:32 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11D7kFVH017770;
+	Sat, 13 Feb 2021 08:46:15 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 8E69C77DD;
-	Fri, 12 Feb 2021 21:18:32 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 80C0277DD;
+	Sat, 13 Feb 2021 08:46:15 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 3E6EA3B26
- for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 21:18:30 +0100 (CET)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
- [209.85.208.173])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11CKIT0R013819
- for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 21:18:29 +0100 (CET)
-Received: by mail-lj1-f173.google.com with SMTP id j6so526397ljo.5
- for <cocci@systeme.lip6.fr>; Fri, 12 Feb 2021 12:18:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=D5S3NogKOZo9yTcKzDQCqDiuUHRnpTF0lV+WfEy31zY=;
- b=e2xA4PFT0t9pUZBQnBUM/2fX4oZbaHLoyE7NVtD4yzpDk13cxJdkaHCgxjKBB+qCde
- 8cgd6FbprGUMZFu27fKok0XEFyVO+1LdfjUnPKk935337e2eRnz9PKKriBqB/CoHcFNM
- a0cMhOX+0G0ZgfahHVYWI7iTXJD/FO9F6KKjigPc1RyN5JXcq6EldkuQ8SUcYIECgPSx
- qGte1LXokCsoYhZG8QtD6SbuXPB65RBrH5KAzIXyGc6wEkGYPkkDFLfLSD2SDcipTAKd
- oXuTOrKVhML+mURYgnRZ6plZOW4P24NvlbWLmgiHNGuqADZNPWOwz/1jXCOLHfMtW2px
- rygg==
-X-Gm-Message-State: AOAM533LLAsoHHQx1wJIju+pi8HmPGyNYyoKSEuQpHsm1neQ48NIt4K5
- 00hcuNRMdZ2tqzbt4TpPoJcuaUu8sSkr/A==
-X-Google-Smtp-Source: ABdhPJxx1CrhHM4nsaN22d47vocsr+lW3Lm79SXhbvojDVwfT++Ju50xDZnpxP6J1jwfhx2zbaE0Xg==
-X-Received: by 2002:a2e:3207:: with SMTP id y7mr2600522ljy.190.1613161109142; 
- Fri, 12 Feb 2021 12:18:29 -0800 (PST)
-Received: from [10.68.32.147] (broadband-188-32-236-56.ip.moscow.rt.ru.
- [188.32.236.56])
- by smtp.gmail.com with ESMTPSA id i13sm1240501lfl.125.2021.02.12.12.18.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 12 Feb 2021 12:18:28 -0800 (PST)
-To: Julia Lawall <julia.lawall@inria.fr>
+ by systeme.lip6.fr (Postfix) with ESMTPS id 2812324DD
+ for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 08:46:13 +0100 (CET)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11D7kCbc009311
+ for <cocci@systeme.lip6.fr>; Sat, 13 Feb 2021 08:46:12 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.81,175,1610406000"; d="scan'208";a="372952662"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2021 08:46:12 +0100
+Date: Sat, 13 Feb 2021 08:46:11 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Denis Efremov <efremov@linux.com>
+In-Reply-To: <f7c2e83e-0cdd-d414-0fb1-e57cd380dce7@linux.com>
+Message-ID: <alpine.DEB.2.22.394.2102130843330.2720@hadrien>
 References: <0c2a01f3-e48b-fc67-78b4-f061026aec42@linux.com>
  <alpine.DEB.2.22.394.2102121504100.9350@hadrien>
-From: Denis Efremov <efremov@linux.com>
-Message-ID: <f7c2e83e-0cdd-d414-0fb1-e57cd380dce7@linux.com>
-Date: Fri, 12 Feb 2021 23:18:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ <f7c2e83e-0cdd-d414-0fb1-e57cd380dce7@linux.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.22.394.2102121504100.9350@hadrien>
-Content-Language: en-US
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Fri, 12 Feb 2021 21:18:35 +0100 (CET)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Fri, 12 Feb 2021 21:18:29 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 13 Feb 2021 08:46:18 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Sat, 13 Feb 2021 08:46:12 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr
@@ -81,39 +61,54 @@ Errors-To: cocci-bounces@systeme.lip6.fr
 
 
 
-On 2/12/21 5:04 PM, Julia Lawall wrote:
-> 
-> 
-> On Thu, 11 Feb 2021, Denis Efremov wrote:
-> 
->> Hi, one of my patterns started to fail tests on latest coccinelle.
->> I've bisected the commit that introduces "error". It's:
->> commit db60e916633d2cb3ae31140364783fdf85ed10f4
->> "make information about SmPL iterator and declarer names available to the C parser"
->>
->> To reproduce the error:
->> $ cd linux
->> $ git checkout 5b01014759991887b1e450c9def01e58c02ab81b
->> $ wget https://raw.githubusercontent.com/evdenis/cvehound/master/cvehound/cve/CVE-2016-9793.cocci
->> $ spatch -D detect --cocci-file CVE-2016-9793.cocci net/core/sock.c
->> # spatch before db60e916633d2cb3ae31140364783fdf85ed10f4 will find the match
->> net/core/sock.c:718:16-17: ERROR: CVE-2016-9793
->> net/core/sock.c:754:16-17: ERROR: CVE-2016-9793
->> ...
->> # spatch >= db60e916633d2cb3ae31140364783fdf85ed10f4 will not match the same code
-> 
-> If you change typedef u32 to symbol u32, it should be good.  It is no use
-> to Coccinelle to know that u32 is a typedef in this code.
+On Fri, 12 Feb 2021, Denis Efremov wrote:
 
-After changing typedef to symbol, git version starts to match the code,
-but coccinelle 1.0.8 starts to fail the detection. Well, this doesn't
-solve the problem for me.
+>
+>
+> On 2/12/21 5:04 PM, Julia Lawall wrote:
+> >
+> >
+> > On Thu, 11 Feb 2021, Denis Efremov wrote:
+> >
+> >> Hi, one of my patterns started to fail tests on latest coccinelle.
+> >> I've bisected the commit that introduces "error". It's:
+> >> commit db60e916633d2cb3ae31140364783fdf85ed10f4
+> >> "make information about SmPL iterator and declarer names available to the C parser"
+> >>
+> >> To reproduce the error:
+> >> $ cd linux
+> >> $ git checkout 5b01014759991887b1e450c9def01e58c02ab81b
+> >> $ wget https://raw.githubusercontent.com/evdenis/cvehound/master/cvehound/cve/CVE-2016-9793.cocci
+> >> $ spatch -D detect --cocci-file CVE-2016-9793.cocci net/core/sock.c
+> >> # spatch before db60e916633d2cb3ae31140364783fdf85ed10f4 will find the match
+> >> net/core/sock.c:718:16-17: ERROR: CVE-2016-9793
+> >> net/core/sock.c:754:16-17: ERROR: CVE-2016-9793
+> >> ...
+> >> # spatch >= db60e916633d2cb3ae31140364783fdf85ed10f4 will not match the same code
+> >
+> > If you change typedef u32 to symbol u32, it should be good.  It is no use
+> > to Coccinelle to know that u32 is a typedef in this code.
+>
+> After changing typedef to symbol, git version starts to match the code,
+> but coccinelle 1.0.8 starts to fail the detection.
 
-What's the difference between symbol and typedef? How can I understand
-when to use one or another?
+Strange, I'll check.
 
-Thanks,
-Denis
+> Well, this doesn't
+> solve the problem for me.
+>
+> What's the difference between symbol and typedef? How can I understand
+> when to use one or another?
+
+Typedef allows the thing to be used as a type.  But in semantic patch that
+oyu have, there is no way for Coccinelle to know that u32 is being used as
+a type.  It's just the argument to a macro.  It could be any identifier.
+
+Symbol just means "this is an identifier I want to match exactly, and I
+don't want the semantic patch parser to ask me if it should be a
+metavariable".  It actually has no impact on the matching process.
+
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
