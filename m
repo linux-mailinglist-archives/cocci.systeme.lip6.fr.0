@@ -2,41 +2,41 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F4D31B84B
-	for <lists+cocci@lfdr.de>; Mon, 15 Feb 2021 12:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E35C31B84C
+	for <lists+cocci@lfdr.de>; Mon, 15 Feb 2021 12:48:07 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11FBj5dZ003479;
-	Mon, 15 Feb 2021 12:45:05 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11FBlgCf019759;
+	Mon, 15 Feb 2021 12:47:42 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id C5B8777D9;
-	Mon, 15 Feb 2021 12:45:05 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 6D5E5376A;
+	Mon, 15 Feb 2021 12:47:42 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id E1954376A
- for <cocci@systeme.lip6.fr>; Mon, 15 Feb 2021 12:45:03 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id EDD86376A
+ for <cocci@systeme.lip6.fr>; Mon, 15 Feb 2021 12:47:39 +0100 (CET)
 Received: from mail2-relais-roc.national.inria.fr
  (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11FBj3e4009312
- for <cocci@systeme.lip6.fr>; Mon, 15 Feb 2021 12:45:03 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.81,180,1610406000"; d="scan'208";a="493033157"
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 11FBldga008728
+ for <cocci@systeme.lip6.fr>; Mon, 15 Feb 2021 12:47:39 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.81,180,1610406000"; d="scan'208";a="493033741"
 Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 12:45:03 +0100
-Date: Mon, 15 Feb 2021 12:45:03 +0100 (CET)
+ 15 Feb 2021 12:47:39 +0100
+Date: Mon, 15 Feb 2021 12:47:39 +0100 (CET)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
 To: Denis Efremov <efremov@linux.com>
 In-Reply-To: <f3aefcce-4ba1-f49a-c47a-fb6e7a164a19@linux.com>
-Message-ID: <alpine.DEB.2.22.394.2102151244420.2808@hadrien>
+Message-ID: <alpine.DEB.2.22.394.2102151246510.2808@hadrien>
 References: <f3aefcce-4ba1-f49a-c47a-fb6e7a164a19@linux.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 15 Feb 2021 12:45:06 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 15 Feb 2021 12:47:42 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 15 Feb 2021 12:45:03 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Mon, 15 Feb 2021 12:47:39 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr
@@ -108,7 +108,10 @@ On Mon, 15 Feb 2021, Denis Efremov wrote:
 >
 > How can I improve the rule?
 
-Strange.  It shouldn't do that.
+I don't get a match with the latest version of Coccinelle.
+
+If the latest version of Coccinelle were to become a release, would that
+be good enough for you?  Or do you need 1.0.8 to work as well?
 
 julia
 _______________________________________________
