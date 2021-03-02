@@ -2,41 +2,41 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F31329D76
-	for <lists+cocci@lfdr.de>; Tue,  2 Mar 2021 13:00:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3061E32A295
+	for <lists+cocci@lfdr.de>; Tue,  2 Mar 2021 15:53:44 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 122BxIhM003660;
-	Tue, 2 Mar 2021 12:59:18 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 122EqxNe002386;
+	Tue, 2 Mar 2021 15:52:59 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id AB2E177DF;
-	Tue,  2 Mar 2021 12:59:18 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 2AF1777DF;
+	Tue,  2 Mar 2021 15:52:59 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id BBBBB5DC3
- for <cocci@systeme.lip6.fr>; Tue,  2 Mar 2021 12:59:16 +0100 (CET)
+ by systeme.lip6.fr (Postfix) with ESMTPS id A68A75DC3
+ for <cocci@systeme.lip6.fr>; Tue,  2 Mar 2021 15:52:56 +0100 (CET)
 Received: from mail3-relais-sop.national.inria.fr
  (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 122BxG31018627
- for <cocci@systeme.lip6.fr>; Tue, 2 Mar 2021 12:59:16 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.81,216,1610406000"; d="scan'208";a="374514781"
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 122EqtOr015815
+ for <cocci@systeme.lip6.fr>; Tue, 2 Mar 2021 15:52:55 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.81,216,1610406000"; d="scan'208";a="374537071"
 Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
  by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2021 12:59:15 +0100
-Date: Tue, 2 Mar 2021 12:59:15 +0100 (CET)
+ 02 Mar 2021 15:52:21 +0100
+Date: Tue, 2 Mar 2021 15:52:21 +0100 (CET)
 From: Julia Lawall <julia.lawall@inria.fr>
 X-X-Sender: jll@hadrien
 To: "Richard W.M. Jones" <rjones@redhat.com>
 In-Reply-To: <20210302114208.GA1818@redhat.com>
-Message-ID: <alpine.DEB.2.22.394.2103021258130.2906@hadrien>
+Message-ID: <alpine.DEB.2.22.394.2103021551510.2906@hadrien>
 References: <20210302114208.GA1818@redhat.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 02 Mar 2021 12:59:34 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 02 Mar 2021 15:53:16 +0100 (CET)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Tue, 02 Mar 2021 12:59:16 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Tue, 02 Mar 2021 15:52:55 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci@systeme.lip6.fr
@@ -73,7 +73,11 @@ X-Spam-Report: Content analysis details:   (3.8 points, 3.0 required)
                                            manager
                
 
+This problem is fixed now in the github version.
 
+Thanks again Richard and Markus for the report.
+
+julia
 
 On Tue, 2 Mar 2021, Richard W.M. Jones wrote:
 
@@ -129,13 +133,6 @@ On Tue, 2 Mar 2021, Richard W.M. Jones wrote:
 > ----------------------------------------------------------------------
 >
 > I made a patch to workaround the issues in Fedora, but it's a pure hack:
-
-Thanks for the feedback and the fix attempt.  I hope that this can be
-fixed on our side shortly.
-
-julia
-
-
 >
 >   https://src.fedoraproject.org/rpms/coccinelle/tree/rawhide
 >
