@@ -2,67 +2,45 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6010132B95F
-	for <lists+cocci@lfdr.de>; Wed,  3 Mar 2021 18:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E4D032B96A
+	for <lists+cocci@lfdr.de>; Wed,  3 Mar 2021 18:22:16 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 123H6QV3013682;
-	Wed, 3 Mar 2021 18:06:26 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 123HLYih016816;
+	Wed, 3 Mar 2021 18:21:34 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id A98A777DF;
-	Wed,  3 Mar 2021 18:06:26 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 429F177DF;
+	Wed,  3 Mar 2021 18:21:34 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id AC0EC571B
- for <cocci@systeme.lip6.fr>; Wed,  3 Mar 2021 18:06:24 +0100 (CET)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20:0:0:0:631])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 123H6Nii020050
- for <cocci@systeme.lip6.fr>; Wed, 3 Mar 2021 18:06:23 +0100 (CET)
-Received: by mail-ej1-x631.google.com with SMTP id hs11so43642424ejc.1
- for <cocci@systeme.lip6.fr>; Wed, 03 Mar 2021 09:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7H4xfwloy50FY8UV/7fV0qhLMGXpdonkA69zAip1ZGg=;
- b=KXMGQhqwZOMzqaJiSnG7f0i88MMel5zIcVqW7NPgsBremQhSX7mh/bMupaprSCLDg0
- GdQGVjxyawVKCmDqHrSgxkFUR2M8YxYJXm2u/vupD8cAxJ/QVyYAgmBmbo3hn73L485s
- YP3Eh+4GhK96qxra/+ZHIwl5VZkNVQ6j9shb8wO2npw3EP+RStTCbBt2EmezrYCnu10P
- DWSHHmpo2P/KcqSnsAJF1FQmOV8J06ok6+G+DYcyND8N+lWmWfW92MXvK+PercW7Bk9c
- 0ZR32DqGqR+T12uF3kNjoooojex5Mtrh4T2xlcU3RtH5pzg3WnrGoCFIMkfzkh6uDmFA
- MLFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=7H4xfwloy50FY8UV/7fV0qhLMGXpdonkA69zAip1ZGg=;
- b=PDbPlMxuAdk5IBZt/XVT8ZYjWDfNQZfZoEHmYZkRso/Fw39zSRBxdODWrdDqCsK7hD
- Fa1W47bfauDLEC+9CcwE6LI0HJ6NSzcOlD0d4fB20LRQqeIjX6FqKGOkCidnbTlHqbt0
- 3PZooAbyPKOlXxvEkzsbXkpKOGVG4lohcPNoeSjBloTdQdK6D0Xr0R7PvfoMaFkQP9Mp
- yBQG1jKhL/NcdHB5Ixra2Z4iE/S1G4z29rHsf7Y5cgMOMk8oy8eVjvb9J5PaW5BxU7Vq
- 2Lf65NkS4IixOmm6xalbtto1joOaaIsnoTJ4QerWJCdRxFrn79jSPwTvzBOuPl9sKz9j
- C1Wg==
-X-Gm-Message-State: AOAM53307B7prT6VTyjy/zRq5rJu/Y7qs3p3PjwTpXundsCZmZ9S7kvy
- 7NYo1KmSp571dYidqdRz7la8hU13NcJJvQbKAEcWPqpUS2SDEw==
-X-Google-Smtp-Source: ABdhPJwWm5FZ/d7BJMLCn4BUSsTMDNRmd1Geyv3CbjRaROaAePlNfZvJPQgY1UtmJStp7ZuHiyhcG4CxTz80obdIP9c=
-X-Received: by 2002:a17:906:495a:: with SMTP id
- f26mr18885557ejt.271.1614791183230; 
- Wed, 03 Mar 2021 09:06:23 -0800 (PST)
-MIME-Version: 1.0
+ by systeme.lip6.fr (Postfix) with ESMTPS id 03ABC571B
+ for <cocci@systeme.lip6.fr>; Wed,  3 Mar 2021 18:21:32 +0100 (CET)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 123HLUHm025075
+ for <cocci@systeme.lip6.fr>; Wed, 3 Mar 2021 18:21:30 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="5.81,220,1610406000"; d="scan'208";a="495959768"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2021 18:21:24 +0100
+Date: Wed, 3 Mar 2021 18:21:23 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Mansour Moufid <mansourmoufid@gmail.com>
+In-Reply-To: <CALogXGVMCiZcMRovK+9gJVKQPDJJdWUuXRPXVZ0fxmAXyq4Uig@mail.gmail.com>
+Message-ID: <alpine.DEB.2.22.394.2103031811410.2980@hadrien>
 References: <053b06c47f08631675c295b5c893b90be4248347.camel@perches.com>
-In-Reply-To: <053b06c47f08631675c295b5c893b90be4248347.camel@perches.com>
-From: Mansour Moufid <mansourmoufid@gmail.com>
-Date: Wed, 3 Mar 2021 12:06:12 -0500
-Message-ID: <CALogXGVMCiZcMRovK+9gJVKQPDJJdWUuXRPXVZ0fxmAXyq4Uig@mail.gmail.com>
-To: Joe Perches <joe@perches.com>
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 03 Mar 2021 18:06:42 +0100 (CET)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Wed, 03 Mar 2021 18:06:23 +0100 (CET)
+ <CALogXGVMCiZcMRovK+9gJVKQPDJJdWUuXRPXVZ0fxmAXyq4Uig@mail.gmail.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+MIME-Version: 1.0
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 03 Mar 2021 18:21:52 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 03 Mar 2021 18:21:30 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Cc: cocci <cocci@systeme.lip6.fr>
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: Joe Perches <joe@perches.com>, cocci <cocci@systeme.lip6.fr>
 Subject: Re: [Cocci] linux-kernel janitorial RFP: Mark static arrays as const
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
@@ -80,107 +58,217 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Tue, Mar 2, 2021 at 4:22 PM Joe Perches <joe@perches.com> wrote:
->
-> Here is a possible opportunity to reduce data usage in the kernel.
->
-> $ git grep -P -n '^static\s+(?!const|struct)(?:\w+\s+){1,3}\w+\s*\[\s*\]' drivers/ | \
->   grep -v __initdata | \
->   wc -l
-> 3250
->
-> Meaning there are ~3000 declarations of arrays with what appears to be
-> file static const content that are not marked const.
->
-> So there are many static arrays that could be marked const to move the
-> compiled object code from data to text minimizing the total amount of
-> exposed r/w data.
->
-> However, I do not know of a mechanism using coccinelle to determine
-> whether or not any of these static declarations are ever modified.
-
-I thought it would be a fun exercise but it got tedious quick.
-
-I don't know how to ignore an attribute like __initdata.
-
-Feel free to refine it:
 
 
-@@
-type t;
+On Wed, 3 Mar 2021, Mansour Moufid wrote:
+
+> On Tue, Mar 2, 2021 at 4:22 PM Joe Perches <joe@perches.com> wrote:
+> >
+> > Here is a possible opportunity to reduce data usage in the kernel.
+> >
+> > $ git grep -P -n '^static\s+(?!const|struct)(?:\w+\s+){1,3}\w+\s*\[\s*\]' drivers/ | \
+> >   grep -v __initdata | \
+> >   wc -l
+> > 3250
+> >
+> > Meaning there are ~3000 declarations of arrays with what appears to be
+> > file static const content that are not marked const.
+> >
+> > So there are many static arrays that could be marked const to move the
+> > compiled object code from data to text minimizing the total amount of
+> > exposed r/w data.
+> >
+> > However, I do not know of a mechanism using coccinelle to determine
+> > whether or not any of these static declarations are ever modified.
+>
+> I thought it would be a fun exercise but it got tedious quick.
+>
+> I don't know how to ignore an attribute like __initdata.
+>
+> Feel free to refine it:
+
+This adds the consts, but it doesn't check that the array is never
+updated, or never stored in a field from which it could get updated.
+
+In my attempt, I tried something like this for the first part:
+
+@r disable optional_qualifier@
+type T;
 identifier x;
+position p != ok.p;
 @@
+
+static T x@p[] = { ... };
+
+In principle, this should match cases where there is no const.  But it
+dones't work.  It matches some cases with const too.
+
+Then I tried:
+
+@ok@
+type T;
+identifier x;
+position p;
+@@
+
+static const T x@p[] = { ... };
+
+@r@
+type T;
+identifier x;
+position p != ok.p;
+@@
+
+static T x@p[] = { ... };
+
+The first rule matches the cases with const, and then the second rule
+matches all of the cases with the declared variable at a position
+different than that of the first rule.  It works if the type T is a simple
+type like int, but it doesn't work if it is something more complex, like
+struct foo *.
+
+Afterwards, I have the following:
+
+@bad@
+position p;
+identifier r.x;
+expression e,y;
+@@
+
 (
-    static const struct { ... } x[];
+ x@p[y] = e
 |
-    static
-+   const
-    struct { ... } x[];
-|
-    static const struct s *x[];
-|
-    static
-+   const
-    struct s *x[];
-|
-    static const struct s x[];
-|
-    static
-+   const
-    struct s x[];
-|
-    static const t *x[];
-|
-    static
-+   const
-    t *x[];
-|
-    static const t x[];
-|
-    static
-+   const
-    t x[];
+ &x@p[y]
 )
 
+@good@
+identifier r.x;
+expression y;
+position p != bad.p;
 @@
-type t;
-identifier s, x, y, z;
-assignment operator xx;
+
+x@p[y]
+
+@notgood@
+identifier r.x;
+position p != good.p;
 @@
-(
-    static const struct { ... } x[] = { ... };
-|
-    static
-+   const
-    struct { ... } x[] = { ... };
-|
-    static const struct s *x[] = { ... };
-|
-    static
-+   const
-    struct s *x[] = { ... };
-|
-    static const struct s x[] = { ... };
-|
-    static
-+   const
-    struct s x[] = { ... };
-|
-    static const t *x[] = { ... };
-|
-    static
-+   const
-    t *x[] = { ... };
-|
-    static const t x[] = { ... };
-|
-    static
-+   const
-    t x[] = { ... };
-)
-    ... when != x.y xx ...
-        when != x[...] xx ...
-        when != z = x
+
+x@p
+
+@depends on good && !notgood@
+identifier r.x;
+type r.T;
+@@
+
+static
++const
+ T x[] = { ... };
+
+That is,
+
+* rule bad: Give up if we assign an element or take the address of an
+element.
+
+* rule good: Things are going well if we access an element of the array.
+If there is no access at all, there is something suspicious, perhaps uses
+in macros.
+
+* rule notgood: A montion of the array that is not an element access is
+not good either
+
+In the end, if we match good and we don't match notgood, then we can make
+the change.
+
+I got stuck on the const problem, and didn't try the __initdata issue.
+But one could address with a rule like the rule ok above.
+
+The const problem is at least something worth looking into.
+
+julia
+
+>
+>
+> @@
+> type t;
+> identifier x;
+> @@
+> (
+>     static const struct { ... } x[];
+> |
+>     static
+> +   const
+>     struct { ... } x[];
+> |
+>     static const struct s *x[];
+> |
+>     static
+> +   const
+>     struct s *x[];
+> |
+>     static const struct s x[];
+> |
+>     static
+> +   const
+>     struct s x[];
+> |
+>     static const t *x[];
+> |
+>     static
+> +   const
+>     t *x[];
+> |
+>     static const t x[];
+> |
+>     static
+> +   const
+>     t x[];
+> )
+>
+> @@
+> type t;
+> identifier s, x, y, z;
+> assignment operator xx;
+> @@
+> (
+>     static const struct { ... } x[] = { ... };
+> |
+>     static
+> +   const
+>     struct { ... } x[] = { ... };
+> |
+>     static const struct s *x[] = { ... };
+> |
+>     static
+> +   const
+>     struct s *x[] = { ... };
+> |
+>     static const struct s x[] = { ... };
+> |
+>     static
+> +   const
+>     struct s x[] = { ... };
+> |
+>     static const t *x[] = { ... };
+> |
+>     static
+> +   const
+>     t *x[] = { ... };
+> |
+>     static const t x[] = { ... };
+> |
+>     static
+> +   const
+>     t x[] = { ... };
+> )
+>     ... when != x.y xx ...
+>         when != x[...] xx ...
+>         when != z = x
+> _______________________________________________
+> Cocci mailing list
+> Cocci@systeme.lip6.fr
+> https://systeme.lip6.fr/mailman/listinfo/cocci
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
