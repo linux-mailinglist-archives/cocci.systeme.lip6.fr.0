@@ -2,64 +2,51 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB44233A220
-	for <lists+cocci@lfdr.de>; Sun, 14 Mar 2021 01:56:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C5C33A35E
+	for <lists+cocci@lfdr.de>; Sun, 14 Mar 2021 07:40:07 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12E0tKVI025476;
-	Sun, 14 Mar 2021 01:55:20 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12E6dZe8024687;
+	Sun, 14 Mar 2021 07:39:35 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 382F877E2;
-	Sun, 14 Mar 2021 01:55:20 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 83B6277E4;
+	Sun, 14 Mar 2021 07:39:35 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 34C4D3BA2
- for <cocci@systeme.lip6.fr>; Sun, 14 Mar 2021 01:55:18 +0100 (CET)
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:234])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12E0tHvM003120
- for <cocci@systeme.lip6.fr>; Sun, 14 Mar 2021 01:55:17 +0100 (CET)
-Received: by mail-oi1-x234.google.com with SMTP id x135so26455672oia.9
- for <cocci@systeme.lip6.fr>; Sat, 13 Mar 2021 16:55:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xteddy-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=iEwHQS6bAStbCFsHcf66X8J/CKosMnTXz0l66GFaR68=;
- b=F4OOtevrx3qGaw6WjVDzSUH89dbXASMf79sw/wmWdc/3SRD9l4VYQfhGUr7Z41ykEH
- ANIA40O9caqUd825cz6dqRujJk+o2j3+fREhBPVX6iJjIIrOHoCu/UxtgO3wSxejODRC
- n3vjk9LZX8nyGMSIkkyqwJu6Jn6nnnzHI1LQpI2MtTrbX6N0jCQIiBoqaNxwhZo2jDRi
- bQ2tn1F7FAKKdbaW8gjszewUB8MluRFdatsb1Mg60Hn12557EBxZMm5x068vzz5+1Wk2
- jGyxNQSKqB3sXk4FZhQgqo8FnNMOZlsjSjS5CyYwDmuAp8wSSiAXmSFTq3CTpBQz0yj6
- UQ1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=iEwHQS6bAStbCFsHcf66X8J/CKosMnTXz0l66GFaR68=;
- b=aE8W6CjUiYUnLGXbl5lyyvhSRlVEL1yMegCdfBLENqjN0fNSdimJszoLYR8sDbxtA9
- YYbMDOvV6nhfBHIInfm4B7YwydODCGPhhrVV7zcVaoY13sYt5tqNalxB74gGGQfQfV38
- 7RhxAJ8jeNBFV5KxFEAG9k4zDdrE24586ENnhzjUHDaO/h4n1pZCtq3xY20Tbi0X1Wl4
- Llch1w2COGl94yIkGWQx70ob2S9bKGueP9HLBqDhVLrlQ1w1mjQfhIZBrAzJpKp2vop4
- GuUSwgaued9tAqAeP6csxMtwGAkoB+O65RJXrvBYFNJgbWfzjbeRHcPJkoqlhcTgeQW+
- Jw8Q==
-X-Gm-Message-State: AOAM530nAJycBb97+v68zg7diibmRgnzCfH83Tsl+wcRSfy/zLgAMy1s
- zGaC6fla3HjdRw75dgUK73zgkN0PTYIIPvN82olk7AWMI5JvfA==
-X-Google-Smtp-Source: ABdhPJxNeCPbSTHFAkFfSxOzqEn6+MtgQFdTdRaz8XemPsGNpcRXPUPJuuoaiHfU7CB4hcrZAAQqX9uSm9fuI5XyOl4=
-X-Received: by 2002:aca:4c48:: with SMTP id z69mr6255624oia.61.1615683316722; 
- Sat, 13 Mar 2021 16:55:16 -0800 (PST)
+ by systeme.lip6.fr (Postfix) with ESMTPS id A02A73BA2
+ for <cocci@systeme.lip6.fr>; Sun, 14 Mar 2021 07:10:13 +0100 (CET)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12E6ACxZ029457
+ for <cocci@systeme.lip6.fr>; Sun, 14 Mar 2021 07:10:13 +0100 (CET)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BC3F364E84;
+ Sun, 14 Mar 2021 06:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1615702211;
+ bh=wJJQ0Ng4LKjmldzFbogZXRa0YLiczLQHrsfQd+4TiEM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Pt1b3kkC/HVv4InnTwDhtY/nEOBW1hqClcOdUrGmHrdo5psgiilhKY+XqVOe0v5mc
+ Lw4yoYxyrsx4DPcLWRLu+mjDAPG9f7/YrsPbLPA30Wg+H7aT3rkuQTcS//vlNTgE1m
+ V2sG47x8qyOeJAn8y3HdtnUT1HXrFSud8Y6Hhi4F7m6OFV3n5KUmeDaeHpqR30LnnQ
+ gR/lZq3kx6//UtgnvB9Ql68fdA9JpGF1tB9jNxOn6wf5S91LZMOqUSRzeEBJZ8avW8
+ 5TcMNSWqMgGqfNoAeX4RQXpHWsRdKMvgHbbYlZIP2b+UZoDfJGwMeb1MjwzDZJGwLe
+ +/2UL8+O2hghA==
+Date: Sun, 14 Mar 2021 07:10:01 +0100
+From: Wolfram Sang <wsa@kernel.org>
+To: Thomas Adam <thomas@xteddy.org>
+Message-ID: <20210314061001.GA993@kunai>
+References: <CAOhcEPbTH-oTTn1OUkgoYf2GaBKaCYjwpWuhrdNRkNQ0uZ_r4A@mail.gmail.com>
 MIME-Version: 1.0
-From: Thomas Adam <thomas@xteddy.org>
-Date: Sun, 14 Mar 2021 00:55:06 +0000
-Message-ID: <CAOhcEPbTH-oTTn1OUkgoYf2GaBKaCYjwpWuhrdNRkNQ0uZ_r4A@mail.gmail.com>
-To: Coccinelle <cocci@systeme.lip6.fr>
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Mar 2021 01:55:23 +0100 (CET)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Sun, 14 Mar 2021 01:55:17 +0100 (CET)
+In-Reply-To: <CAOhcEPbTH-oTTn1OUkgoYf2GaBKaCYjwpWuhrdNRkNQ0uZ_r4A@mail.gmail.com>
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 14 Mar 2021 07:39:37 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Sun, 14 Mar 2021 07:10:13 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-Subject: [Cocci] Replacing a struct member with a function call
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Sun, 14 Mar 2021 07:39:33 +0100
+Cc: Coccinelle <cocci@systeme.lip6.fr>
+Subject: Re: [Cocci] Replacing a struct member with a function call
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,47 +58,64 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0496704264=="
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Hello all,
 
-I'm wanting to replace a struct member with a function call across the
-code base I'm working on.
+--===============0496704264==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BOKacYhQ+x31HxR3"
+Content-Disposition: inline
 
-For example, I currently have the following struct definition (simplified):
 
-struct monitor {
-    struct {
-        int width;
-        int height
-    } virtual;
-};
+--BOKacYhQ+x31HxR3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Across my code base, I typically have the following:
 
-struct monitor *m;
-int f = m->virtual.width;
+> @@
+> type M;
 
-I have a need to remove `m->virtual.width` with a function call, hence
-the example above after the modified code would look something like:
+This?
 
-struct monitor *m;
-int f = get_monitor_width();
+struct monitor* m;
 
-I've tried the following smPL code without any success.  Could someone
-point me in the right direction?  TIA!
+> @@
+> - m->virtual.width;
+> + get_monitor_width();
 
-@@
-type M;
-@@
-- m->virtual.width;
-+ get_monitor_width();
+--BOKacYhQ+x31HxR3
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- Thomas
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmBNqLUACgkQFA3kzBSg
+Kbbvyw/+I4QEKEArkeaGtf3WxqwGIJv37ydtio4IjN9K35hk4vJ0xa8VrDxF8cLp
+JSNvwxMo/D5R3HM17bL3YLnuLaMJU1H9dl6nHlQY8OG7gpqLTsgQL5dN2rXdjl4p
+7wtWesEGISBlv7JUIuPhI70ZxTsoywh1mDBIlRZAgtK/bag/hlMUcPB7s5pMXQmB
+Kc9kezOD0jUCGWuUGNdoty+RZ/2MkVc7VmaRocyD0u+/srzglaUGz2Uh8rN6fTs4
+Z7C/901O5DiNHpeRClWAJK2NyvRoSK+xfwFxUxvAHYcDy9h+vsuQ3hEADNFX3Zxs
+loY8ZvjNH87PjEBbITHArHdD0ZHFQKKhN1XCWHxB6XSOeDC8PtPEHcTfnGk8IQbx
+1qBnK2f9lCrWcTqbCh9FSWISip8WB0hH9Jg43MZ8rLmNuNkhs74Bwx2hkZ0DBQhp
+xFiHGCFAcWSW9CsnjeMXkpelrd1sdfTldJUhRO8jWKkc1LQlB2tQEq0cWr6R3Gzq
+Lovz9nXta8zCNXy8Xd6SIpLiMIxqSkgXYHl7WUqJiU+uQoVrCDCImoQzjAaIhwGe
+tqP6/iW6roP5/gu/N2uZPystcaSz1WsL08s6hdtmoZKoIJkC6EOjg9EfeRhngzVj
+jywCOowkJpXNiuic/qCo8J2XpOmYI8ZauhOGrDYAooIJrifMf64=
+=nUjc
+-----END PGP SIGNATURE-----
+
+--BOKacYhQ+x31HxR3--
+
+--===============0496704264==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
+
+--===============0496704264==--
