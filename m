@@ -2,52 +2,74 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FF6342FAB
-	for <lists+cocci@lfdr.de>; Sat, 20 Mar 2021 22:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F18BA34BBC7
+	for <lists+cocci@lfdr.de>; Sun, 28 Mar 2021 11:16:57 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12KLVPoe016277;
-	Sat, 20 Mar 2021 22:31:25 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S9GEvr019742;
+	Sun, 28 Mar 2021 11:16:15 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 8BE2C77E4;
-	Sat, 20 Mar 2021 22:31:25 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id CE9DD77E6;
+	Sun, 28 Mar 2021 11:16:14 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 41FCA24DD
- for <cocci@systeme.lip6.fr>; Sat, 20 Mar 2021 22:31:23 +0100 (CET)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12KLVMS5008550
- for <cocci@systeme.lip6.fr>; Sat, 20 Mar 2021 22:31:22 +0100 (CET)
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AhJXV267h1n4gSWqyaQPXwHrXdLJzesId70hD?=
- =?us-ascii?q?6mlaTxtJfsuE0/2/hfhz73HJoRsyeFVlo9CPP6GcXWjRnKQe3aA9NaqvNTOLhE?=
- =?us-ascii?q?KGN4dnhLGD/xTEGzfistJbz7tqaaJkCNb9ZGIK6PrSxQmjDpIdx8Oa+7qjnufU?=
- =?us-ascii?q?wzNVSxt2ApsQiztRLia+PglISBJdBZw/faDw2uNiqyC7cXoaKuSXb0NrY8H5q9?=
- =?us-ascii?q?fGlI3rbHc9bnZN1CC0gSqs+PrGFXGjr3QjeghC3Ks49iz9mxH5j5/T1M2T8APW?=
- =?us-ascii?q?1GPY8v1t+efJ990rPr3vtuElbhHhkByhaogkZq2asFkO0YeS1Go=3D?=
-X-IronPort-AV: E=Sophos;i="5.81,265,1610406000"; d="scan'208";a="376348230"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2021 22:31:22 +0100
-Date: Sat, 20 Mar 2021 22:31:21 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Denis Efremov <efremov@linux.com>
-In-Reply-To: <20210309063903.13231-1-efremov@linux.com>
-Message-ID: <alpine.DEB.2.22.394.2103202231080.3075@hadrien>
-References: <20210216160326.1341741-1-efremov@linux.com>
- <20210309063903.13231-1-efremov@linux.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 387597610
+ for <cocci@systeme.lip6.fr>; Fri, 19 Mar 2021 04:36:42 +0100 (CET)
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
+ [IPv6:2607:f8b0:4864:20:0:0:0:534])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12J3afSb026388
+ for <cocci@systeme.lip6.fr>; Fri, 19 Mar 2021 04:36:41 +0100 (CET)
+Received: by mail-pg1-x534.google.com with SMTP id y27so2781553pga.9
+ for <cocci@systeme.lip6.fr>; Thu, 18 Mar 2021 20:36:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=YThJXKoad88QyIUzJQjgHEKYHEHZlB/t9+1Xws9BWbo=;
+ b=VD/B9cBb2K0S5lmYwaCJosnP9TGGztKB/20JQ/fkjVjsoPdByO4kUXUEqrDflhCX+C
+ HPiW2HJantqBOkGpty+EeKd1wDi1qXyxhree4Xy3osahOFJDq2flVQZcRIg5vZKsnMI9
+ Folr58pqKFC1vWRJZan8ui7JUGvSXLHCgcRVA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=YThJXKoad88QyIUzJQjgHEKYHEHZlB/t9+1Xws9BWbo=;
+ b=U9PzMiiueiL9RhDUCEiYw8TtogpQ0ajCiw/rPoLyQ7G8VjG9FNDVOAB2zZ9A1EXhZo
+ j7RoY838fnv2csmZSGdO+5TQk3HTsLHI05V12PRU9QvJjWzfXSh7Hv4ueNj+3w/PxBu5
+ HppxNF+9dZYv8Wp5Te/J/jeX1ImN2ZD7adUTsTycZwHgTDpy8sFZYqbx9TM3fCH/6pel
+ nspudLD9zJiBuaVIiQyf6Rq/80r4Ndl3wVMJs4HNt+enFtVTgf57b5Nc9IbRYmY7dV90
+ NVOvzFqRSA2gKKKNA0tEmN/wsqXkEEjeXDnq3TXR21odzpqBAAHvg3fc20TFT9HM7lAZ
+ 3vKw==
+X-Gm-Message-State: AOAM531e0FAfJ/ikMqrKkqWxxbJgTm22yXZzdUS4uI/CuxVhiSlqQlrI
+ tuRTAJl4YoNAQY2aUhfn9dIXBA==
+X-Google-Smtp-Source: ABdhPJxcgUFvELXlvjD3ZpIDWD4ma+4r1W70Db0GBPaVPBvvUcnVbbUp9j1C3AIHlM2Zid/+2jEi5g==
+X-Received: by 2002:a62:5b43:0:b029:1ef:21ad:846 with SMTP id
+ p64-20020a625b430000b02901ef21ad0846mr7206410pfb.51.1616125000617; 
+ Thu, 18 Mar 2021 20:36:40 -0700 (PDT)
+Received: from evanbenn1.syd.corp.google.com
+ ([2401:fa00:9:15:d0d6:1466:f005:1b0a])
+ by smtp.gmail.com with ESMTPSA id z2sm3909741pfq.198.2021.03.18.20.36.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Mar 2021 20:36:40 -0700 (PDT)
+From: Evan Benn <evanbenn@chromium.org>
+To: Julia Lawall <Julia.Lawall@inria.fr>
+Date: Fri, 19 Mar 2021 14:36:15 +1100
+Message-Id: <20210319142952.1.I2c82789dba4e68d61595862188e8bf4d31a05d38@changeid>
+X-Mailer: git-send-email 2.31.0.291.g576ba9dcdaf-goog
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sat, 20 Mar 2021 22:31:29 +0100 (CET)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sat, 20 Mar 2021 22:31:22 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 11:16:17 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
+ Fri, 19 Mar 2021 04:36:41 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: Re: [Cocci] [PATCH v5] coccinelle: misc: add minmax script
+X-Scanned-By: MIMEDefang 2.78
+X-Mailman-Approved-At: Sun, 28 Mar 2021 11:16:13 +0200
+Cc: Michal Marek <michal.lkml@markovi.net>,
+        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
+        Evan Benn <evanbenn@chromium.org>, cocci@systeme.lip6.fr
+Subject: [Cocci] [PATCH] scripts/coccinelle: Add script to detect sign
+	extension
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,252 +86,77 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+Hello,
 
+I am attempting to create a coccinelle script that will detect possibly buggy
+usage of the bitwise operators where integer promotion may result in bugs,
+usually due to sign extension.
 
-On Tue, 9 Mar 2021, Denis Efremov wrote:
+I know this script needs a lot more work, but I am just beginning to learn the
+syntax of coccinelle. At this stage I am mainly looking for advice if this is
+even worth continuing, or if I am on the wrong track entirely. 
 
-> Check for opencoded min(), max() implementations.
->
-> Signed-off-by: Denis Efremov <efremov@linux.com>
+Here is an example of the bug I hope to find:
 
-Applied, thanks.
+https://lore.kernel.org/lkml/20210317013758.GA134033@roeck-us.net/
 
-julia
+Where ints and unsigned are mixed in bitwise operations, and the sizes differ.
 
-> ---
-> Changes in v2:
->  - <... ...> instead of ... when any
->  - org mode reports fixed
->  - patch rule to drop excessive ()
-> Changes in v3:
->  - "depends on patch && (pmax || pmaxif || pmin || pminif)" fixed
-> Changes in v4:
->  - refarmatting rule removed
->  - () brackets added to the patch rules to omit excessive ones
->  - org/report prints changed to cycle (for p0 in p: ...)
-> Changes in v5:
->  - parentheses droppped in pminif and pmaxif rules (max_val = x ...)
->
->  scripts/coccinelle/misc/minmax.cocci | 206 +++++++++++++++++++++++++++
->  1 file changed, 206 insertions(+)
->  create mode 100644 scripts/coccinelle/misc/minmax.cocci
->
-> diff --git a/scripts/coccinelle/misc/minmax.cocci b/scripts/coccinelle/misc/minmax.cocci
-> new file mode 100644
-> index 000000000000..eccdd3eb3452
-> --- /dev/null
-> +++ b/scripts/coccinelle/misc/minmax.cocci
-> @@ -0,0 +1,206 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +///
-> +/// Check for opencoded min(), max() implementations.
-> +/// Generated patches sometimes require adding a cast to fix compile warning.
-> +/// Warnings/patches scope intentionally limited to a function body.
-> +///
-> +// Confidence: Medium
-> +// Copyright: (C) 2021 Denis Efremov ISPRAS
-> +// Options: --no-includes --include-headers
-> +//
-> +// Keywords: min, max
-> +//
-> +
-> +
-> +virtual report
-> +virtual org
-> +virtual context
-> +virtual patch
-> +
-> +@rmax depends on !patch@
-> +identifier func;
-> +expression x, y;
-> +binary operator cmp = {>, >=};
-> +position p;
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +*	((x) cmp@p (y) ? (x) : (y))
-> +	...>
-> +}
-> +
-> +@rmaxif depends on !patch@
-> +identifier func;
-> +expression x, y;
-> +expression max_val;
-> +binary operator cmp = {>, >=};
-> +position p;
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +*	if ((x) cmp@p (y)) {
-> +*		max_val = (x);
-> +*	} else {
-> +*		max_val = (y);
-> +*	}
-> +	...>
-> +}
-> +
-> +@rmin depends on !patch@
-> +identifier func;
-> +expression x, y;
-> +binary operator cmp = {<, <=};
-> +position p;
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +*	((x) cmp@p (y) ? (x) : (y))
-> +	...>
-> +}
-> +
-> +@rminif depends on !patch@
-> +identifier func;
-> +expression x, y;
-> +expression min_val;
-> +binary operator cmp = {<, <=};
-> +position p;
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +*	if ((x) cmp@p (y)) {
-> +*		min_val = (x);
-> +*	} else {
-> +*		min_val = (y);
-> +*	}
-> +	...>
-> +}
-> +
-> +@pmax depends on patch@
-> +identifier func;
-> +expression x, y;
-> +binary operator cmp = {>=, >};
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +-	((x) cmp (y) ? (x) : (y))
-> ++	max(x, y)
-> +	...>
-> +}
-> +
-> +@pmaxif depends on patch@
-> +identifier func;
-> +expression x, y;
-> +expression max_val;
-> +binary operator cmp = {>=, >};
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +-	if ((x) cmp (y)) {
-> +-		max_val = x;
-> +-	} else {
-> +-		max_val = y;
-> +-	}
-> ++	max_val = max(x, y);
-> +	...>
-> +}
-> +
-> +@pmin depends on patch@
-> +identifier func;
-> +expression x, y;
-> +binary operator cmp = {<=, <};
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +-	((x) cmp (y) ? (x) : (y))
-> ++	min(x, y)
-> +	...>
-> +}
-> +
-> +@pminif depends on patch@
-> +identifier func;
-> +expression x, y;
-> +expression min_val;
-> +binary operator cmp = {<=, <};
-> +@@
-> +
-> +func(...)
-> +{
-> +	<...
-> +-	if ((x) cmp (y)) {
-> +-		min_val = x;
-> +-	} else {
-> +-		min_val = y;
-> +-	}
-> ++	min_val = min(x, y);
-> +	...>
-> +}
-> +
-> +@script:python depends on report@
-> +p << rmax.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.report.print_report(p0, "WARNING opportunity for max()")
-> +
-> +@script:python depends on org@
-> +p << rmax.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.org.print_todo(p0, "WARNING opportunity for max()")
-> +
-> +@script:python depends on report@
-> +p << rmaxif.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.report.print_report(p0, "WARNING opportunity for max()")
-> +
-> +@script:python depends on org@
-> +p << rmaxif.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.org.print_todo(p0, "WARNING opportunity for max()")
-> +
-> +@script:python depends on report@
-> +p << rmin.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.report.print_report(p0, "WARNING opportunity for min()")
-> +
-> +@script:python depends on org@
-> +p << rmin.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.org.print_todo(p0, "WARNING opportunity for min()")
-> +
-> +@script:python depends on report@
-> +p << rminif.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.report.print_report(p0, "WARNING opportunity for min()")
-> +
-> +@script:python depends on org@
-> +p << rminif.p;
-> +@@
-> +
-> +for p0 in p:
-> +	coccilib.org.print_todo(p0, "WARNING opportunity for min()")
-> --
-> 2.26.2
->
->
+Thanks
+
+Evan Benn
+
+Signed-off-by: Evan Benn <evanbenn@chromium.org>
+---
+
+ .../coccinelle/tests/int_sign_extend.cocci    | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+ create mode 100644 scripts/coccinelle/tests/int_sign_extend.cocci
+
+diff --git a/scripts/coccinelle/tests/int_sign_extend.cocci b/scripts/coccinelle/tests/int_sign_extend.cocci
+new file mode 100644
+index 000000000000..bad61e37e4e7
+--- /dev/null
++++ b/scripts/coccinelle/tests/int_sign_extend.cocci
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/// Mixing signed and unsigned types in bitwise operations risks problems when
++/// the 'Usual arithmetic conversions' are applied.
++/// For example:
++/// https://lore.kernel.org/lkml/20210317013758.GA134033@roeck-us.net/
++/// When a signed int and an unsigned int are compared there is no problem.
++/// But if the unsigned is changed to a unsigned long, for example by using BIT
++/// the signed value will be sign-extended and could result in incorrect logic.
++// Confidence:
++// Copyright: (C) 2021 Evan Benn <evanbenn@chromium.org>
++// Comments:
++// Options:
++
++virtual context
++virtual org
++virtual report
++
++@r@
++position p;
++{int} s;
++{unsigned long} u;
++@@
++    s@p & u
++
++@script:python depends on org@
++p << r.p;
++@@
++
++cocci.print_main("sign extension when comparing bits of signed and unsigned values", p)
++
++@script:python depends on report@
++p << r.p;
++@@
++
++coccilib.report.print_report(p[0],"sign extension when comparing bits of signed and unsigned values")
+-- 
+2.31.0.291.g576ba9dcdaf-goog
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
