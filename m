@@ -2,74 +2,51 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18BA34BBC7
-	for <lists+cocci@lfdr.de>; Sun, 28 Mar 2021 11:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A15E3482B9
+	for <lists+cocci@lfdr.de>; Wed, 24 Mar 2021 21:17:21 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S9GEvr019742;
-	Sun, 28 Mar 2021 11:16:15 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12OKGYWj005340;
+	Wed, 24 Mar 2021 21:16:34 +0100 (CET)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id CE9DD77E6;
-	Sun, 28 Mar 2021 11:16:14 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id DA3AC77E3;
+	Wed, 24 Mar 2021 21:16:33 +0100 (CET)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 387597610
- for <cocci@systeme.lip6.fr>; Fri, 19 Mar 2021 04:36:42 +0100 (CET)
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
- [IPv6:2607:f8b0:4864:20:0:0:0:534])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12J3afSb026388
- for <cocci@systeme.lip6.fr>; Fri, 19 Mar 2021 04:36:41 +0100 (CET)
-Received: by mail-pg1-x534.google.com with SMTP id y27so2781553pga.9
- for <cocci@systeme.lip6.fr>; Thu, 18 Mar 2021 20:36:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=YThJXKoad88QyIUzJQjgHEKYHEHZlB/t9+1Xws9BWbo=;
- b=VD/B9cBb2K0S5lmYwaCJosnP9TGGztKB/20JQ/fkjVjsoPdByO4kUXUEqrDflhCX+C
- HPiW2HJantqBOkGpty+EeKd1wDi1qXyxhree4Xy3osahOFJDq2flVQZcRIg5vZKsnMI9
- Folr58pqKFC1vWRJZan8ui7JUGvSXLHCgcRVA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=YThJXKoad88QyIUzJQjgHEKYHEHZlB/t9+1Xws9BWbo=;
- b=U9PzMiiueiL9RhDUCEiYw8TtogpQ0ajCiw/rPoLyQ7G8VjG9FNDVOAB2zZ9A1EXhZo
- j7RoY838fnv2csmZSGdO+5TQk3HTsLHI05V12PRU9QvJjWzfXSh7Hv4ueNj+3w/PxBu5
- HppxNF+9dZYv8Wp5Te/J/jeX1ImN2ZD7adUTsTycZwHgTDpy8sFZYqbx9TM3fCH/6pel
- nspudLD9zJiBuaVIiQyf6Rq/80r4Ndl3wVMJs4HNt+enFtVTgf57b5Nc9IbRYmY7dV90
- NVOvzFqRSA2gKKKNA0tEmN/wsqXkEEjeXDnq3TXR21odzpqBAAHvg3fc20TFT9HM7lAZ
- 3vKw==
-X-Gm-Message-State: AOAM531e0FAfJ/ikMqrKkqWxxbJgTm22yXZzdUS4uI/CuxVhiSlqQlrI
- tuRTAJl4YoNAQY2aUhfn9dIXBA==
-X-Google-Smtp-Source: ABdhPJxcgUFvELXlvjD3ZpIDWD4ma+4r1W70Db0GBPaVPBvvUcnVbbUp9j1C3AIHlM2Zid/+2jEi5g==
-X-Received: by 2002:a62:5b43:0:b029:1ef:21ad:846 with SMTP id
- p64-20020a625b430000b02901ef21ad0846mr7206410pfb.51.1616125000617; 
- Thu, 18 Mar 2021 20:36:40 -0700 (PDT)
-Received: from evanbenn1.syd.corp.google.com
- ([2401:fa00:9:15:d0d6:1466:f005:1b0a])
- by smtp.gmail.com with ESMTPSA id z2sm3909741pfq.198.2021.03.18.20.36.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Mar 2021 20:36:40 -0700 (PDT)
-From: Evan Benn <evanbenn@chromium.org>
-To: Julia Lawall <Julia.Lawall@inria.fr>
-Date: Fri, 19 Mar 2021 14:36:15 +1100
-Message-Id: <20210319142952.1.I2c82789dba4e68d61595862188e8bf4d31a05d38@changeid>
-X-Mailer: git-send-email 2.31.0.291.g576ba9dcdaf-goog
+ by systeme.lip6.fr (Postfix) with ESMTPS id EB30D3E8A
+ for <cocci@systeme.lip6.fr>; Wed, 24 Mar 2021 21:16:31 +0100 (CET)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12OKGVeU024792
+ for <cocci@systeme.lip6.fr>; Wed, 24 Mar 2021 21:16:31 +0100 (CET)
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3Agtl5mq0h1werp35a+9f/ogqjBFMkLtp033Aq?=
+ =?us-ascii?q?2lEZdDV+dMuEm8ey2MkKzBOcskd0ZFgMkc2NUZPqfVry7phwiLN6AZ6DW03ctH?=
+ =?us-ascii?q?KsPMVe6+LZogHIPw3b2qpj2bx7c654YeeAaGRSqcrh+gG3H5IB7bC8kJyAvuvV?=
+ =?us-ascii?q?w3dzQQwCUcgJ0y5DBgmWCUFwTgVdbKBJd6a03NZNpDarZB0sAPiTO39tZYT+ju?=
+ =?us-ascii?q?HQmImjSRALAANP0njtsRqYrI+/KRSe0xsEOgkj/Z4p+wH+/DDE2g=3D=3D?=
+X-IronPort-AV: E=Sophos;i="5.81,275,1610406000"; d="scan'208";a="376775116"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2021 21:16:30 +0100
+Date: Wed, 24 Mar 2021 21:16:30 +0100 (CET)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Denis Efremov <efremov@linux.com>
+In-Reply-To: <20210308191215.1362498-1-efremov@linux.com>
+Message-ID: <alpine.DEB.2.22.394.2103242116040.7838@hadrien>
+References: <20210308191215.1362498-1-efremov@linux.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 11:16:17 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [IPv6:2001:660:3302:283c:0:0:0:2]);
- Fri, 19 Mar 2021 04:36:41 +0100 (CET)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 24 Mar 2021 21:16:36 +0100 (CET)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Wed, 24 Mar 2021 21:16:31 +0100 (CET)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78
-X-Mailman-Approved-At: Sun, 28 Mar 2021 11:16:13 +0200
-Cc: Michal Marek <michal.lkml@markovi.net>,
-        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
-        Evan Benn <evanbenn@chromium.org>, cocci@systeme.lip6.fr
-Subject: [Cocci] [PATCH] scripts/coccinelle: Add script to detect sign
-	extension
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
+Subject: Re: [Cocci] [PATCH] coccinelle: misc: restrict patch mode in
+ flexible_array.cocci
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,77 +63,78 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Hello,
 
-I am attempting to create a coccinelle script that will detect possibly buggy
-usage of the bitwise operators where integer promotion may result in bugs,
-usually due to sign extension.
 
-I know this script needs a lot more work, but I am just beginning to learn the
-syntax of coccinelle. At this stage I am mainly looking for advice if this is
-even worth continuing, or if I am on the wrong track entirely. 
+On Mon, 8 Mar 2021, Denis Efremov wrote:
 
-Here is an example of the bug I hope to find:
+> Skip patches generation for structs/unions with a single field.
+> Changing a zero-length array to a flexible array member in a struct
+> with no named members breaks the compilation. However, reporting
+> such cases is still valuable, e.g. commit 637464c59e0b
+> ("ACPI: NFIT: Fix flexible_array.cocci warnings").
+>
+> Signed-off-by: Denis Efremov <efremov@linux.com>
 
-https://lore.kernel.org/lkml/20210317013758.GA134033@roeck-us.net/
+Applied.  I changed the log message to remove "/unions", since the change
+doesn't mention unions.
 
-Where ints and unsigned are mixed in bitwise operations, and the sizes differ.
+julia
 
-Thanks
-
-Evan Benn
-
-Signed-off-by: Evan Benn <evanbenn@chromium.org>
----
-
- .../coccinelle/tests/int_sign_extend.cocci    | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 scripts/coccinelle/tests/int_sign_extend.cocci
-
-diff --git a/scripts/coccinelle/tests/int_sign_extend.cocci b/scripts/coccinelle/tests/int_sign_extend.cocci
-new file mode 100644
-index 000000000000..bad61e37e4e7
---- /dev/null
-+++ b/scripts/coccinelle/tests/int_sign_extend.cocci
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/// Mixing signed and unsigned types in bitwise operations risks problems when
-+/// the 'Usual arithmetic conversions' are applied.
-+/// For example:
-+/// https://lore.kernel.org/lkml/20210317013758.GA134033@roeck-us.net/
-+/// When a signed int and an unsigned int are compared there is no problem.
-+/// But if the unsigned is changed to a unsigned long, for example by using BIT
-+/// the signed value will be sign-extended and could result in incorrect logic.
-+// Confidence:
-+// Copyright: (C) 2021 Evan Benn <evanbenn@chromium.org>
-+// Comments:
-+// Options:
-+
-+virtual context
-+virtual org
-+virtual report
-+
-+@r@
-+position p;
-+{int} s;
-+{unsigned long} u;
-+@@
-+    s@p & u
-+
-+@script:python depends on org@
-+p << r.p;
-+@@
-+
-+cocci.print_main("sign extension when comparing bits of signed and unsigned values", p)
-+
-+@script:python depends on report@
-+p << r.p;
-+@@
-+
-+coccilib.report.print_report(p[0],"sign extension when comparing bits of signed and unsigned values")
--- 
-2.31.0.291.g576ba9dcdaf-goog
-
+> ---
+>  scripts/coccinelle/misc/flexible_array.cocci | 23 ++++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
+>
+> diff --git a/scripts/coccinelle/misc/flexible_array.cocci b/scripts/coccinelle/misc/flexible_array.cocci
+> index 947fbaff82a9..f427fd68ed2d 100644
+> --- a/scripts/coccinelle/misc/flexible_array.cocci
+> +++ b/scripts/coccinelle/misc/flexible_array.cocci
+> @@ -51,21 +51,40 @@ position p : script:python() { relevant(p) };
+>    };
+>  )
+>
+> +@only_field depends on patch@
+> +identifier name, array;
+> +type T;
+> +position q;
+> +@@
+> +
+> +(
+> +  struct name {@q
+> +    T array[0];
+> +  };
+> +|
+> +  struct {@q
+> +    T array[0];
+> +  };
+> +)
+> +
+>  @depends on patch@
+>  identifier name, array;
+>  type T;
+>  position p : script:python() { relevant(p) };
+> +// position @q with rule "only_field" simplifies
+> +// handling of bitfields, arrays, etc.
+> +position q != only_field.q;
+>  @@
+>
+>  (
+> -  struct name {
+> +  struct name {@q
+>      ...
+>      T array@p[
+>  -       0
+>      ];
+>    };
+>  |
+> -  struct {
+> +  struct {@q
+>      ...
+>      T array@p[
+>  -       0
+> --
+> 2.26.2
+>
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
