@@ -2,51 +2,74 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E53A3482E9
-	for <lists+cocci@lfdr.de>; Wed, 24 Mar 2021 21:31:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4CAA34BBC6
+	for <lists+cocci@lfdr.de>; Sun, 28 Mar 2021 11:16:56 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12OKVQIm014188;
-	Wed, 24 Mar 2021 21:31:26 +0100 (CET)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S9GXPF005928;
+	Sun, 28 Mar 2021 11:16:33 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id A5AEC77E3;
-	Wed, 24 Mar 2021 21:31:26 +0100 (CET)
+	by systeme.lip6.fr (Postfix) with ESMTP id 36B2C77E6;
+	Sun, 28 Mar 2021 11:16:33 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id CAC3D3E8A
- for <cocci@systeme.lip6.fr>; Wed, 24 Mar 2021 21:31:24 +0100 (CET)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12OKVOGG006949
- for <cocci@systeme.lip6.fr>; Wed, 24 Mar 2021 21:31:24 +0100 (CET)
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ApUwnRqgmawWInLhM+gfn6+LDFnBQXjsji2hD?=
- =?us-ascii?q?6mlwRA09T+WzkceykPMHkSLlkTp5YgBFpfmsMLSNKEm2ybdb+o8UVI3JYCDHvy?=
- =?us-ascii?q?+SIJhm/c/exVTbehHW0s54+eNef7NlCNv2ZGIK6PrSxAWjCd4vzJ2m3cmT5dv2?=
- =?us-ascii?q?9HtmQQF0Z6wI1W4QNi+hHkJ7XwVAD5YifaDshfZvnSaqengcc62AaEUtYu6rnb?=
- =?us-ascii?q?H2va79bQVDLxAq7xTmt0LL1JfKVynd5BsYXj9VqI1OzUHOmWXCiZmejw=3D=3D?=
-X-IronPort-AV: E=Sophos;i="5.81,275,1610406000"; d="scan'208";a="376775754"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 21:31:24 +0100
-Date: Wed, 24 Mar 2021 21:31:23 +0100 (CET)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Denis Efremov <efremov@linux.com>
-In-Reply-To: <20210308073018.108487-1-efremov@linux.com>
-Message-ID: <alpine.DEB.2.22.394.2103242131140.7838@hadrien>
-References: <20210308073018.108487-1-efremov@linux.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id A4FA63E8A
+ for <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 08:15:23 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.15.4])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S6FNX8013260
+ for <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 08:15:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1616912123;
+ bh=qmJIOkvo67SpQOyrKdqmqDTV4A5XOTc1wkpNexTJ66U=;
+ h=X-UI-Sender-Class:To:From:Subject:Date;
+ b=B+MViOQZzDIr52/GE+Qhbl02VU7wOSNapxrtpuhaFG0D2yXVitR7qxWKzB9gf/S36
+ YlcAOdmU3TdBSrJBkBu2H4a4CTblcGwQP+Ue4Z+JoIAJSynTe65nlKaIg5rtEq0C1b
+ HvstOwlkib1VMan7DKNVjAhKRV9b9NBaIu30FCD8=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([93.133.73.126]) by smtp.web.de (mrweb001
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 0MC1RI-1lHdGM3uUK-008veZ for
+ <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 08:15:23 +0200
+To: Coccinelle <cocci@systeme.lip6.fr>
+From: Markus Elfring <Markus.Elfring@web.de>
+Message-ID: <0e878958-6245-a3b2-b892-5b67b1cb598f@web.de>
+Date: Sun, 28 Mar 2021 08:15:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Wed, 24 Mar 2021 21:31:27 +0100 (CET)
+Content-Language: en-GB
+X-Provags-ID: V03:K1:XFlXZw+6RX8fIfj7kc0hiGTDKm6LFOaMwrVvWJBvHIC4nEL6K6i
+ SrIPJZMGV2ZcXeLtE4OcoEmqGZEv1k1yIPPx8Rao6Uvo+PmV3iN7WRt+D3TmVdOpqfl1p4N
+ JDxWhAXc7bwV1x+4vncme2MwGMt9mRkjKdXhRCkSREHJ/YZJ98mn9nNlwSehwOvO1uN9hQm
+ tzoIVgkowl7jrBTuiScDw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Jm5K4iQwghg=:VTG8W9EQd217vQiYKsVXGu
+ CbrfFj8cFuNKBb9D3ddhb/FoF/BwTTXyXYD56vhggYmN3xcjntWFSF7ELDNAyhH8gn48zh3ZS
+ kJ9CcE1PA4SomrjQgAu/H7eaj/l2y3XlhvldHOPntV+kv23kGhCziVNjRAFcN34+KSxWI8hu/
+ QI2cgKt/MYApCwp13oBFRSoH5NHf6koxRz2gu4IzmtxYzxc3IJJuM5QTMh5asT2LnXuD8ZeRO
+ USb+LmdUS8MgyVXSrJFkaTIwauA6VLFG8NnT+bgWF5Nq7+U5xj0yQNzK8svfpdgBTgRda3+P+
+ ir3cj7uQJwsbRtatnDrXcLBAWQYAXL51z9YQ25NSI/XOuFu/CFRThAx0LbFNWJ3S0ZYEjVemN
+ oFr4KYurRTtXMDjb3ZilQO98Gyy5lRjkiTo7xXVtzWPw8/1GN2opHN6ku+2GlpbYpHJ4kv837
+ OTh0qn8qZDw+PRnrxNT9Km4ANidxWwx1UD5kTo65mNkIkL8DeULfSxW3fAnZs++aMGmHWwvUB
+ xPsutYUFBhJ5Z/YRQzPVE45O/EWiwmw8d7+DXkt/SJBORHrEKMFh1aztVOQYJOF8Lm4AyZ0Vz
+ i/zbZaN7UWhH6bpllqSGUmrOwAW+INr4tGcmMZsii7CgCXJv0dFejaxIr/k4NvUA2K+qADgw/
+ +P8ke8lagAK/quUdatUwBBBFLkxRhaGI84Kd++mpcFEx4NIH6IxTCvJK5kBwFodVJ2iLSCLD3
+ sMZAnGw9FxOMml7qxyoo4jfm11p57ASBiIgcpg7teAkS7lgoYwdcTyUEEwA4FAITeFdcWBUrg
+ 8t1eKXG14Wid0Rn65C0kUtmcBG8ktmqz5eaDbi2WvOLkIJH50t9IdyrahCBY4XhHI2b8SB0N1
+ 7B0/3fg0DuATnsnT4EO7wK0irTJa08NHupr3cn4NrqEHSS0wx8gCIRbfxTWCozMAkxP0mr4ab
+ rEAYu1vQGDnrZ1C6xjgTMgFrw9sLs8c4YljIicfqaOs1+1GAyerHnkQ4HWL7fDzTmXe54xzG9
+ gOvKs/feawxCXG9pem8I9wrKXW3nCB1u/CEJFjlUCE8TjoFkCj+Z8isU3o2ZjgPZnmH/o/Z7o
+ zLIqcb5CGMc8IdEfDufLR6X4RVA/mLzwOGPNmJH3fRUKm1X227eLRYaMdCQUidHyX5Yr1wI4D
+ 6bV+pg4PcmYaUvXNZekdiMGi2Jym94pEsu1884uirwGtgapvxjfV1k6GwJbd50VFrxUrls8WD
+ nT/fUnoHwsTLwaLM2
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 11:16:33 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Wed, 24 Mar 2021 21:31:24 +0100 (CET)
+ (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 08:15:23 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
-Subject: Re: [Cocci] [PATCH] coccinelle: misc: update
- uninitialized_var.cocci documentation
+X-Mailman-Approved-At: Sun, 28 Mar 2021 11:16:31 +0200
+Subject: [Cocci] Searching only for header files with the Coccinelle software
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,77 +81,18 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-
-
-On Mon, 8 Mar 2021, Denis Efremov wrote:
-
-> Remove the documentation link from the warning message because commit
-> 3942ea7a10c9 ("deprecated.rst: Remove now removed uninitialized_var")
-> removed the section from documentation. Update the rule documentation
-> accordingly.
->
-> Signed-off-by: Denis Efremov <efremov@linux.com>
-
-Applied, thanks.
-
-julia
-
-> ---
->  scripts/coccinelle/misc/uninitialized_var.cocci | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
->
-> diff --git a/scripts/coccinelle/misc/uninitialized_var.cocci b/scripts/coccinelle/misc/uninitialized_var.cocci
-> index 8fa845cefe11..69bbaae47e73 100644
-> --- a/scripts/coccinelle/misc/uninitialized_var.cocci
-> +++ b/scripts/coccinelle/misc/uninitialized_var.cocci
-> @@ -1,7 +1,9 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  ///
->  /// Please, don't reintroduce uninitialized_var().
-> -/// From Documentation/process/deprecated.rst:
-> +///
-> +/// From Documentation/process/deprecated.rst,
-> +/// commit 4b19bec97c88 ("docs: deprecated.rst: Add uninitialized_var()"):
->  ///  For any compiler warnings about uninitialized variables, just add
->  ///  an initializer. Using warning-silencing tricks is dangerous as it
->  ///  papers over real bugs (or can in the future), and suppresses unrelated
-> @@ -11,6 +13,11 @@
->  ///  obviously redundant, the compiler's dead-store elimination pass will make
->  ///  sure there are no needless variable writes.
->  ///
-> +/// Later, commit 3942ea7a10c9 ("deprecated.rst: Remove now removed
-> +/// uninitialized_var") removed this section because all initializations of
-> +/// this kind were cleaned-up from the kernel. This cocci rule checks that
-> +/// the macro is not explicitly or implicitly reintroduced.
-> +///
->  // Confidence: High
->  // Copyright: (C) 2020 Denis Efremov ISPRAS
->  // Options: --no-includes --include-headers
-> @@ -40,12 +47,10 @@ position p;
->  p << r.p;
->  @@
->
-> -coccilib.report.print_report(p[0],
-> -  "WARNING this kind of initialization is deprecated (https://www.kernel.org/doc/html/latest/process/deprecated.html#uninitialized-var)")
-> +coccilib.report.print_report(p[0], "WARNING this kind of initialization is deprecated")
->
->  @script:python depends on org@
->  p << r.p;
->  @@
->
-> -coccilib.org.print_todo(p[0],
-> -  "WARNING this kind of initialization is deprecated (https://www.kernel.org/doc/html/latest/process/deprecated.html#uninitialized-var)")
-> +coccilib.org.print_todo(p[0], "WARNING this kind of initialization is deprecated")
-> --
-> 2.26.2
->
->
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
+SGVsbG8sCgpUaGUgQ29jY2luZWxsZSBzb2Z0d2FyZSBjYW4gc2VhcmNoIGZvciBoZWFkZXIgZmls
+ZXMgaW4gYWRkaXRpb24gdG8gc291cmNlIGZpbGVzCmlmIHRoZSBvcHRpb24g4oCcLS1pbmNsdWRl
+LWhlYWRlcnPigJ0gd2FzIHNwZWNpZmllZC4KaHR0cHM6Ly9naXRodWIuY29tL2NvY2NpbmVsbGUv
+Y29jY2luZWxsZS9ibG9iLzI4NzM3NDE5NmRhOGM3Y2ZkMTY5ZTcyMWEyZDIzZjFlNDYyNDIyZjEv
+ZG9jcy9tYW51YWwvc3BhdGNoX29wdGlvbnMudGV4I0w0MwoKSG93IGNhbiBpdCBiZSBhY2hpZXZl
+ZCB0aGF0IG9ubHkgaGVhZGVyIGZpbGVzIHdpbGwgYmUgc2VhcmNoZWQgYnkgdGhpcyB0b29sCmZv
+ciBzcGVjaWFsIHNvdXJjZSBjb2RlIGFuYWx5c2lzIGFuZCB0cmFuc2Zvcm1hdGlvbiBhcHByb2Fj
+aGVzPwoKUmVnYXJkcywKTWFya3VzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkNvY2NpIG1haWxpbmcgbGlzdApDb2NjaUBzeXN0ZW1lLmxpcDYuZnIKaHR0
+cHM6Ly9zeXN0ZW1lLmxpcDYuZnIvbWFpbG1hbi9saXN0aW5mby9jb2NjaQo=
