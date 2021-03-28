@@ -2,73 +2,52 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2EB434BBC5
-	for <lists+cocci@lfdr.de>; Sun, 28 Mar 2021 11:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8E734BBD1
+	for <lists+cocci@lfdr.de>; Sun, 28 Mar 2021 11:28:28 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S9GXDZ008971;
-	Sun, 28 Mar 2021 11:16:33 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S9RxeN002130;
+	Sun, 28 Mar 2021 11:27:59 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 983C277E6;
-	Sun, 28 Mar 2021 11:16:33 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id AF49377E6;
+	Sun, 28 Mar 2021 11:27:59 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 3C35D3E8A
- for <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 09:19:09 +0200 (CEST)
-Received: from mout.web.de (mout.web.de [212.227.15.14])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S7J84V000080
- for <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 09:19:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1616915948;
- bh=LOk6RaZcazawHvUEp47uW7DUlFD7kEu5ywG88UgRSQQ=;
- h=X-UI-Sender-Class:To:From:Subject:Date;
- b=BCpSSyREliTLfULMhnHw/02yx92r6+taireqaJDK7Rkst4vnIaVPzpzwb+g7PZtCn
- ZymV9h3qP5Cl4vdVhspsBvDbAbSvvBwAsbWYqGyVQ23LB6vJqc6jN37iNoabpzzU88
- J1mSyN0wfh3cdacAM2xRH10KZxGBgEgV/JYl4FfA=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([93.133.73.126]) by smtp.web.de (mrweb002
- [213.165.67.108]) with ESMTPSA (Nemesis) id 0MKJEM-1lS3rO2HeY-001lGS for
- <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 09:19:08 +0200
-To: Coccinelle <cocci@systeme.lip6.fr>
-From: Markus Elfring <Markus.Elfring@web.de>
-Message-ID: <0756b630-a2d7-f300-3b11-59af33b48631@web.de>
-Date: Sun, 28 Mar 2021 09:19:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+ by systeme.lip6.fr (Postfix) with ESMTPS id 0BAC63E8A
+ for <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 11:27:58 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 12S9RvCo018823
+ for <cocci@systeme.lip6.fr>; Sun, 28 Mar 2021 11:27:57 +0200 (CEST)
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AhBZY/Kgn+2c/uSsBzJnPwiX3EHBQXjsji2hD?=
+ =?us-ascii?q?6mlwRA09T+WzkceykPMHkSLlkTp5YgBFpfmsMLSNKEm2ybdb+o8UVI3JYCDHvy?=
+ =?us-ascii?q?+SIJhm/c/exVTbehHW0s54+eNef7NlCNv2ZGIK6PrSxAWjCd4vzJ2m3cmT5dv2?=
+ =?us-ascii?q?9HtmQQF0Z6wI1W4QNi+hHkJ7XwVAD5YifaDshfZvnSaqengcc62AaEUtYu6rnb?=
+ =?us-ascii?q?H2va79bQVDLxAq7xTmt0LL1JfKVynd5BsYXj9VqI1OzUHOmWXCiZmejw=3D=3D?=
+X-IronPort-AV: E=Sophos;i="5.81,285,1610406000"; d="scan'208";a="500347821"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2021 11:27:57 +0200
+Date: Sun, 28 Mar 2021 11:27:57 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <0e878958-6245-a3b2-b892-5b67b1cb598f@web.de>
+Message-ID: <alpine.DEB.2.22.394.2103281125350.2854@hadrien>
+References: <0e878958-6245-a3b2-b892-5b67b1cb598f@web.de>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Language: en-GB
-X-Provags-ID: V03:K1:SB2X1zKauVzMplYcWbUyQUno1mpyRH2dIKsR6ORHZRtmlAflVx2
- 6xXpW4BEFLlAZ3gESEiszYUNFj9haf1LYVx7ANCnQ9sgQzmC6Pwcj9/wVh5I2JmPRAJCWvp
- TGuui1ao+lTqYLBrhrsGwcUGVBZUC2mKWNKfWu9o3VseK+10BObR3WKRyTs5U6nwkuz7/5s
- R3vEkC/I8KrLnJutOlbrQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:GnYXfCPiji4=:wdVUzys7xAwBYK5Jv4Z4hN
- TaYw61jpYNTh54tI16RSa411yv3LzU+HgcikSt9aqNQYbQjlqQME5aJbhNW3BKHT5P7d80RIi
- hqf68//gG970GMOFwTXHx1d/w3d4hBXRcKKEcL3TOzec6uE1OeJE0Z1mHnLi5hBzzdTx+ipX3
- D451/DMIxGFQWYw7YmfRM2KahFhzWYN7KW4Wc49rSQttQTd3wPo0saI7NfyYLNtBE+c5m8MEa
- hp4EvcSzMLTMUgCW+ZI036tebNXin2npHZoTbTNVDCPhygkSGCk0HLL9ESVdhFP85BDNs4Mix
- KDXGa8xn1nbUOX+W8ids85q/YUG67n6CH2mWjNbgeyR3rXiH2zafwwbBOsGYAJiMUePQ5YNWR
- i0hlnKTrW9pIlPQxghyQbTKUUl6C/K7rqtwvy8kncrcaF0c14B1iw0pdALb+wCIaIDsrihIBN
- HzyxcY16EWh+OUaN0TT21n/PabE+8QA6eoVQgARO4VNoCTcoA8mYfnSrdy2+PtvswDI4SxdMW
- QuM+VtRkX0hhKqcuCaS67MI5is+OLjtdZ3PVG9jMh6kIpNBdZhNjuj0BWJPqA2U2pjGlDphbg
- Ey/VYmLlF3XZhXVaMbyD9ofh1UR+glMVt6+La271qnzQQ46t1I9XC3VGekv2YsfSacl2N2Rq7
- 8IELguWw2ewLgUVHjeIzhiNNjW5tiV3FR4HaVHfkKJ+wolTb3tUKu3xV/QwcNNgXelMUtcFWQ
- gehvFiqw1b+NK1vx0fio6XHhhyMby5LRug0aADm5OIoMK3QPzkrSjOPzPlIIMGkN4N70m8Faq
- ZM5tvj5dV95E/uhezk3GQMv166D9Yg3KjmV1w58DD4EsWcq6DUOYicKAip5f9VdNNBi6GSDJT
- b4MRprIC6K3JaGj4K7ZellHEmObB2HXvkTwM4rp/qyYb0xXjvr8L2X2mHs/iiYv93AH3DLo2b
- CXJRUXoyUb9f/Nng57fzkyH6gsq/VxWNyGObwJFmtBKJgaEMIxmoOAq2XI8X889+ql0/RadYk
- 6Qm0PpY8UT8UtYQ5I1KhilGI5mucE44nEcDv87RMXwDKP7TlihmJt5E7zuD9O0vhnnDDSKYkz
- vejNoQ2TJM1dm5Eh2cJq6QkLTXk+D3LFY9EdVOMCaVsiSnzkOMOsQi0AxMYZOVe1f7x2SvCVc
- 1IHOj+b5f1T3+mSWDIWi8PtDZl2HUiy0NfJ+8z8KzXYhX9Fv8XzAzfwL6DLmkNTUy9k3A=
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 11:16:33 +0200 (CEST)
+Content-Type: multipart/mixed; boundary="8323329-1916422777-1616923677=:2854"
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 11:28:00 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 09:19:08 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 28 Mar 2021 11:27:57 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Sun, 28 Mar 2021 11:16:31 +0200
-Subject: [Cocci] Replacing #define directives with the help of SmPL
+Cc: Coccinelle <cocci@systeme.lip6.fr>
+Subject: Re: [Cocci] Searching only for header files with the Coccinelle
+ software
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,21 +59,47 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-Hello,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Will the software development interests ever evolve in ways so that #define directives
-can be replaced with the help of the semantic patch language for special source code
-analysis and transformation approaches?
-https://github.com/coccinelle/coccinelle/issues/139
+--8323329-1916422777-1616923677=:2854
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 
-Regards,
-Markus
+
+
+On Sun, 28 Mar 2021, Markus Elfring wrote:
+
+> Hello,
+>
+> The Coccinelle software can search for header files in addition to source files
+> if the option “--include-headers” was specified.
+> https://github.com/coccinelle/coccinelle/blob/287374196da8c7cfd169e721a2d23f1e462422f1/docs/manual/spatch_options.tex#L43
+>
+> How can it be achieved that only header files will be searched by this tool
+> for special source code analysis and transformation approaches?
+
+Probably the simplest is to put the names of the header files in a file,
+eg find . -name "*h" > header_list, and then give the arguement
+--file-groups header_list to Coccinelle.
+
+Another option is to use python in te semantic patch to detect the current
+file and then abort if it doesn't end in .h.  But that would be much
+slower because the undesired files would still be parsed.
+
+julia
+--8323329-1916422777-1616923677=:2854
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
 https://systeme.lip6.fr/mailman/listinfo/cocci
+
+--8323329-1916422777-1616923677=:2854--
