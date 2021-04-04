@@ -2,40 +2,37 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72991353C41
-	for <lists+cocci@lfdr.de>; Mon,  5 Apr 2021 09:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D16353C8A
+	for <lists+cocci@lfdr.de>; Mon,  5 Apr 2021 10:56:00 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 1357sYnW027495;
-	Mon, 5 Apr 2021 09:54:34 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 1358tU1R020594;
+	Mon, 5 Apr 2021 10:55:30 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 7945777EB;
-	Mon,  5 Apr 2021 09:54:34 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id DD33977EB;
+	Mon,  5 Apr 2021 10:55:29 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id EF4EC3C26
- for <cocci@systeme.lip6.fr>; Mon,  5 Apr 2021 09:54:31 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 1357sV7c009367
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 5 Apr 2021 09:54:31 +0200 (CEST)
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AC70/9aPUP6xMCMBcTgqjsMiAIKoaSvp033AA?=
- =?us-ascii?q?0UdtRRtJNvGCn8e1k/gBkTPygjAdWHYv8OrwWpWoa3Xa6JJz/M0tLa6vNTOJhE?=
- =?us-ascii?q?KEJJxvhLGD/xTOACv7n9QttptIV4hbJJnOAUNhjcD8iTPWL/8FzMOc+K6lwcfS?=
- =?us-ascii?q?pk0NcShQZ6tt7xh0B2+geyUcLjVuP4YzF5aX+6N8ywaIRHJ/VKmGOkU=3D?=
-X-IronPort-AV: E=Sophos;i="5.81,306,1610406000"; d="scan'208";a="501566779"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2021 09:54:31 +0200
-Date: Mon, 5 Apr 2021 09:54:31 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <8561006e-7dc6-0f62-ecf0-c93146976925@web.de>
-Message-ID: <alpine.DEB.2.22.394.2104050953290.2981@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id AD74F74DE
+ for <cocci@systeme.lip6.fr>; Sun,  4 Apr 2021 14:11:56 +0200 (CEST)
+Received: from mout.web.de (mout.web.de [212.227.15.3])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 134CBtjx002220
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+ for <cocci@systeme.lip6.fr>; Sun, 4 Apr 2021 14:11:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1617538315;
+ bh=RipVGrlrTXlKa+J0zhZ7gE3jX6NXxI96R5xUybJxmfU=;
+ h=X-UI-Sender-Class:To:Cc:References:From:Subject:Date:In-Reply-To;
+ b=gUkHBe7RvXgBH3loQonpquqhbNNLwNoeHwPiiXh/gat7WHMxAcmnloWwx8TwfdVW2
+ xci79LpIVsX+v/K7kV/Bxn9MOWVIN5WsDXHyU0HZUc1FIIVzvlNEH5n+MCZnDDRnw+
+ 2E19ju0nQMIY52OqRHwxX4Lfxd/x0HsZc2mpwd5s=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([93.133.41.246]) by smtp.web.de (mrweb004
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 0M3xKs-1ll6kq3dHW-00rXzP; Sun, 04
+ Apr 2021 14:11:54 +0200
+To: Julia Lawall <julia.lawall@inria.fr>
 References: <0756b630-a2d7-f300-3b11-59af33b48631@web.de>
  <alpine.DEB.2.22.394.2103281128560.2854@hadrien>
  <1b5f6d22-5b89-097f-37bd-13b3b2ab011a@web.de>
@@ -46,22 +43,46 @@ References: <0756b630-a2d7-f300-3b11-59af33b48631@web.de>
  <alpine.DEB.2.22.394.2103281644480.2854@hadrien>
  <fa66fce2-e60e-1907-7c8b-fd9ceedb8086@web.de>
  <alpine.DEB.2.22.394.2104041357060.2958@hadrien>
- <addb2edb-98cb-2834-b1b9-7d44cacda965@web.de>
- <alpine.DEB.2.22.394.2104041419290.2958@hadrien>
- <b9f6aceb-7e68-303d-bd1e-d41a7992b58b@web.de>
- <alpine.DEB.2.22.394.2104050907270.2981@hadrien>
- <8561006e-7dc6-0f62-ecf0-c93146976925@web.de>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+From: Markus Elfring <Markus.Elfring@web.de>
+Message-ID: <addb2edb-98cb-2834-b1b9-7d44cacda965@web.de>
+Date: Sun, 4 Apr 2021 14:11:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1426433447-1617609271=:2981"
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 05 Apr 2021 09:54:36 +0200 (CEST)
+In-Reply-To: <alpine.DEB.2.22.394.2104041357060.2958@hadrien>
+Content-Language: en-GB
+X-Provags-ID: V03:K1:Ln8TJmFQOZEzPoKLrjTB9vhkUUzpfFKzNrhITKcO+FEea+ZeyXQ
+ dZlfa2qhQw6GRNAQ/31dt7B8+ldkOJr4uc1JoybcVVDcSNA4XPL0vrhoIa9K+PXd74hszBe
+ IG/XZIZ11RA1nIPIco7QBO1h7SEfSBqQrLK4O7gvNICv4SgachBDphlmJMZtY82LSo7AVyM
+ xFV3KDmV4oKH31C8oW4ZQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:PETq62lqACU=:OGOr0UhX3b4Htdqtd7Ph1p
+ xcr6qTHRoup7VxA9PtaLy0BdW54OP4yOnmujvM/gZSrxHN9NvwJ8krXHdfCoR/OS1pDHBEupQ
+ etmTxyoZv79lI0xG09lra9JZZdzftKSJz4oOtuPI/+Pb1oVgtIZEsSrPUBcwPnpbGfoePQndl
+ woikOqu6O9UYsZ53o7RxIxG4mEymYKiTCTyxDoBu1uzGE85Qiamm66cKUGo+gVpQH3A9/qwvn
+ nX7oZRt9A4UrFnWwAORZo5eziP1nEvBmfQImc8eNf19dtouBhO9PWCMXggXYEW47/4Wm1fqOh
+ SovjYh+Jl20ELJC1QU1QdkxziZuPQhK929XYalzVGEa1jpoHNkSlSOH4iJf2o0Ellmmuu2S4N
+ SpVZoqvgKd6HOs9Bt+LwPbiCXK+obOQhKHErKzN6OcNyRv+vy/pGwELv5TaJJVvx8oxqFCPf+
+ /LPYG2aAIlHI/1Ar2tuz1hrSt4pBsdtZFKYXlZF262eOskcJcwj4/u3zYqL6dL+I1A6C4v3GR
+ Hs0pEc+LbXg1G42e6xfgt/BNu2EmChRR5tSjGpOWOLuCjyu3wuTAiwnltLcy8WOWduXIZT7MT
+ wr1vF/BCwvuNalX7VzXppEsTFQ8D+WvwwyTGZ+X6MOZN9i6pNSztIrkVX6+jarU0Og/a93c1f
+ hKLXy/CjenOJWE6fUkpThsn1pJbC+C3d/pzwLbqyQvSZqurWfgEFtyoo1l8I4ki3GKTCJepjw
+ A4Gy9HVd0A+Q9Y4zw8tzWoGd7n7gYdal2/ShncdmOHqh14at7s55UgIuMqb0hpHn0Eh/Yr1bk
+ 2fZNA14m1ARQB+YIXzND5dP0Iv1DRW4eZntc+h+MfeaS3qvPvj45/1n+LZSlxXC0V+ZXNQ4LK
+ yFGgO0SPh83Yj7XhKFK50KmAn5gGogcFryaKFyhMviOghFMtyz1NL+8CCvNx5XDKJdGzO6c0+
+ tMp2HJ5jKwJkABq5kJSvpsc6rE7mw7uCEqap1QMcOBr7GL1uJo76g26fsi48niGP1MU+z6rqX
+ N5Co9EOQ0hXwWf7tBFDQ6FcmDmbSmcj7yDeqC/GzzQ8W6t6gz8oWNYXbzA3bwQPce0KG6AEE/
+ ZuLzZ8uL86yd/V1VRE3D6qgK8KDZWHPQ55oyslOhb+DIQb0FkDMrWTbvtljrplHU9jOqOmBcV
+ gbqpgcu7oGeCiGG/vCSCh2/AErsZI+e00L7K7SWnZmMDyjfQVZGo96eGsqL0fUMlywuVqit8z
+ wja03RFSaQTM0QhW8
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 05 Apr 2021 10:55:30 +0200 (CEST)
 X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 05 Apr 2021 09:54:31 +0200 (CEST)
+ (isis.lip6.fr [132.227.60.2]); Sun, 04 Apr 2021 14:11:56 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Mon, 05 Apr 2021 10:55:28 +0200
 Cc: Coccinelle <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] Checking support for compound expressions (according to
- #define directives)
+Subject: Re: [Cocci] Excluding quotes from strings of #define directives
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,54 +94,37 @@ List-Post: <mailto:cocci@systeme.lip6.fr>
 List-Help: <mailto:cocci-request@systeme.lip6.fr?subject=help>
 List-Subscribe: <https://systeme.lip6.fr/mailman/listinfo/cocci>,
  <mailto:cocci-request@systeme.lip6.fr?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-1426433447-1617609271=:2981
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-
-
-
-On Mon, 5 Apr 2021, Markus Elfring wrote:
-
-> >> @display@
-> >> identifier i =~ "^(?:[A-Z]+_){3,3}[A-Z]+", x;
-> >> constant c =~ "\"";
-> >> @@
-> >> *#define i x c
-> >>
-> >>
-> >> elfring@Sonne:~/Projekte/Coccinelle/janitor> spatch --parse-cocci show_define_usage6.cocci
-> >> …
-> >> minus: parse error:
-> >>   File "show_define_usage6.cocci", line 5, column 13, charpos = 92
-> >>   around = 'c',
-> >>   whole content = *#define i x c
-> >
-> > No.  You have to match the expression and then check it using python.
->
-> I find this view improvable.
->
-> I would like to avoid the repetition of parsing efforts as much as possible.
-> Under which circumstances can replacement lists be taken better into account?
-
-Why does my suggestion involve a repetition of parsing effort?  You want
-to use a regexp.  I'm asking you to put the regexp in a python function.
-
-julia
---8323329-1426433447-1617609271=:2981
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Cocci mailing list
-Cocci@systeme.lip6.fr
-https://systeme.lip6.fr/mailman/listinfo/cocci
-
---8323329-1426433447-1617609271=:2981--
+Pj4gSSBob3BlZCB0aGF0IHRoZSBzcGVjaWZpZWQgY29uc3RyYWludCBmb3IgdGhlIG1ldGF2YXJp
+YWJsZSDigJxl4oCdIHdvdWxkIG1lYW4KPj4gdGhhdCBleHByZXNzaW9ucyB3aGljaCBjb250YWlu
+IGEgZG91YmxlIHF1b3RhdGlvbiBjaGFyYWN0ZXIgc2hvdWxkIGJlIGV4Y2x1ZGVkCj4+IGZvciBt
+eSBzb3VyY2UgY29kZSBhbmFseXNpcyBhcHByb2FjaC4KPj4gV291bGQgeW91IGxpa2UgdG8gY2hl
+Y2sgdGhlIG9ic2VydmVkIHNvZnR3YXJlIGZ1bmN0aW9uYWxpdHkgb25jZSBtb3JlPwo+Cj4gVGhl
+cmUgaXMgcGVyaGFwcyBhIHByb2JsZW0sIGJ1dCBpdCBpcyBzdXJlbHkgbm90IG5lY2Vzc2FyeSB0
+byBoYXZlIGFsbCBvZgo+IHRoaXMgcHl0aG9uIGNvZGUgYXJvdW5kIGl0IHRvIHNlZSB0aGUgcHJv
+YmxlbS4KCkkgY2hvc2UgdGhpcyB0ZXN0IGRpc3BsYXkgc28gdGhhdCBpdCBjYW4gYmUgY2xlYXJs
+eSBzZWVuIHdoaWNoIGRhdGEgd2VyZSBwcm9jZXNzZXMKZm9yIHRoZSBtZXRhdmFyaWFibGUg4oCc
+ZeKAnS4KCgo+IFBsZWFzZSBtYWtlIGEgbWluaW1hbCBleGFtcGxlLiAgQSBydWxlIHdpdGggYSBt
+YXRjaCBhbmQgYSAqIGluIGZyb250IG9mIGl0IHNob3VsZCBiZSBzdWZmaWNpZW50LgoKRG8geW91
+IGZpbmQgY29uc3RyYWludHMgb2YgdGhlIGZvbGxvd2luZyBTbVBMIHNjcmlwdCB2YXJpYW50IGVh
+c2llciB0byBjbGFyaWZ5PwoKQGRpc3BsYXlACmlkZW50aWZpZXIgaSA9fiAiXig/OltBLVpdK18p
+ezMsM31bQS1aXSsiOwpleHByZXNzaW9uIGUgIX4gIlwiIjsKQEAKKiNkZWZpbmUgaSBlCgpUZXN0
+IHJlc3VsdDoKaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL3BpcGV3aXJlL3BpcGV3aXJl
+Ly0vYmxvYi85N2IwMWVkOWIwMWJhYzdjYmE2OGZmMTFjNmJmN2NlYWJjYWU3ZjUyL3NwYS9pbmNs
+dWRlL3NwYS9ub2RlL3R5cGUtaW5mby5oI0wzOAoKZWxmcmluZ0BTb25uZTp+L1Byb2pla3RlL1Bp
+cGVXaXJlL2xva2FsPiBzcGF0Y2ggfi9Qcm9qZWt0ZS9Db2NjaW5lbGxlL2phbml0b3Ivc2hvd19k
+ZWZpbmVfdXNhZ2U0LmNvY2NpIHNwYS9pbmNsdWRlL3NwYS9ub2RlL3R5cGUtaW5mby5oCuKApgpA
+QCAtMzUsOCArMzUsNiBAQCBleHRlcm4gIkMiIHsKICNpbmNsdWRlIDxzcGEvbm9kZS9ldmVudC5o
+PgogI2luY2x1ZGUgPHNwYS9ub2RlL2lvLmg+CgotI2RlZmluZSBTUEFfVFlQRV9JTkZPX0lPICAg
+ICAgICAgICAgICAgICAgICAgICBTUEFfVFlQRV9JTkZPX0VOVU1fQkFTRSAiSU8iCi0jZGVmaW5l
+IFNQQV9UWVBFX0lORk9fSU9fQkFTRSAgICAgICAgICBTUEFfVFlQRV9JTkZPX0lPICI6IgoKIHN0
+YXRpYyBjb25zdCBzdHJ1Y3Qgc3BhX3R5cGVfaW5mbyBzcGFfdHlwZV9pb1tdID0gewogICAgICAg
+IHsgU1BBX0lPX0ludmFsaWQsIFNQQV9UWVBFX0ludCwgU1BBX1RZUEVfSU5GT19JT19CQVNFICJJ
+bnZhbGlkIiwgTlVMTCB9LArigKYKCgpSZWdhcmRzLApNYXJrdXMKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KQ29jY2kgbWFpbGluZyBsaXN0CkNvY2NpQHN5
+c3RlbWUubGlwNi5mcgpodHRwczovL3N5c3RlbWUubGlwNi5mci9tYWlsbWFuL2xpc3RpbmZvL2Nv
+Y2NpCg==
