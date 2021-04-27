@@ -2,59 +2,71 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016C336C731
-	for <lists+cocci@lfdr.de>; Tue, 27 Apr 2021 15:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C480236C767
+	for <lists+cocci@lfdr.de>; Tue, 27 Apr 2021 15:58:03 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 13RDiT8c009546;
-	Tue, 27 Apr 2021 15:44:29 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 13RDvVjW010107;
+	Tue, 27 Apr 2021 15:57:31 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 61DAB77F1;
-	Tue, 27 Apr 2021 15:44:29 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id F0DF977F1;
+	Tue, 27 Apr 2021 15:57:30 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 677C73DD8
- for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:44:27 +0200 (CEST)
-Received: from mail3-relais-sop.national.inria.fr
- (mail3-relais-sop.national.inria.fr [192.134.164.104])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 13RDiQsO023784
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:44:26 +0200 (CEST)
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AC6bClq7Om2nDflsMnwPXwA7XdLJzesId70hD?=
- =?us-ascii?q?6mlaQ3VuGPCwvcaogfgdyFvQgDEeRHkvlbm7Scu9aFnb8oN45pRUAKe6UGDdyQ?=
- =?us-ascii?q?iVBaxr8IeK+VPdMgLk8Oo178pdWoxfLPG1MlRgl8b952CDc+oI5NWc6qiniaP/?=
- =?us-ascii?q?4h5WIj1CUK1r4wdnBgvzKCQfeCB9GZE7GJCAj/AqmxOcfx0sBfiTOmMIRKzqqd?=
- =?us-ascii?q?HNifvdACI7Ow=3D=3D?=
-X-IronPort-AV: E=Sophos;i="5.82,254,1613430000"; d="scan'208";a="379815543"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 15:44:25 +0200
-Date: Tue, 27 Apr 2021 15:44:25 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Johan Hovold <johan@kernel.org>
-In-Reply-To: <YIgPNRiaz2Jup+PT@hovoldconsulting.com>
-Message-ID: <alpine.DEB.2.22.394.2104271542170.5173@hadrien>
-References: <20210426185404.2466195-1-Julia.Lawall@inria.fr>
- <YIgPNRiaz2Jup+PT@hovoldconsulting.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id 152393DD8
+ for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:55:10 +0200 (CEST)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+ [209.85.210.51])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 13RDt8si002681
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=OK)
+ for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:55:08 +0200 (CEST)
+Received: by mail-ot1-f51.google.com with SMTP id
+ z20-20020a0568301294b02902a52ecbaf18so2982858otp.8
+ for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 06:55:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qezdgbyatE1l8zypI4FJQjmH7o9oUZIhojul/qRpkU0=;
+ b=pyCsTL2r+H3RJV/dCQgVgvnXwxSt74gGmQ6UZv1rosHA+9txl1QpF40QX27og5PTv4
+ Rz5MhXgdmp7S99rsDWvxbG7+Dp7HrGCCS4HpkTCxEMrh170B18WazPvbshSRewgP54ej
+ LgAcGPFuUM9+w4g+yGh+5HXWDSEbLx790VF0rQmtliO6pZ3jTbroxS8tPs/hc+UHP9vL
+ yUDGNvxl47bEY3yiHyVnPukr/V/iT6RUkKYH0SlvJgqsloAwJoeOwcU8xW8qoORj43zQ
+ 56jBV9TbAJNNE4zlKnZ5JUYtd+CFIFip7vohCoALVWfQ80pZCQzd3K/KltNzdnCTd6It
+ S0vQ==
+X-Gm-Message-State: AOAM532r1h8ejUrV1JCEHCw/sJ2ud1jPzBVn4Ayz8ICuMsLvSrHA8EDE
+ siHyEMTpB7oQZipDfDDYo2F1IuEHe4eTRy1UN593+57X
+X-Google-Smtp-Source: ABdhPJxCYPLWLZ+In6uL5ea3rfA/sRsYCBbR83vXiHsXVds9LKZjv4AmhBg/RtM2rhV2GrS2/X/KWjb6BDPFY05bQlc=
+X-Received: by 2002:a05:6830:55b:: with SMTP id
+ l27mr19534881otb.260.1619531707610; 
+ Tue, 27 Apr 2021 06:55:07 -0700 (PDT)
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:44:33 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:44:26 +0200 (CEST)
+References: <20210427125834.2477467-1-Julia.Lawall@inria.fr>
+In-Reply-To: <20210427125834.2477467-1-Julia.Lawall@inria.fr>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 27 Apr 2021 15:54:56 +0200
+Message-ID: <CAJZ5v0ib-RegkeXf7G3mHjp2oRu7cSpCYBH_3BqGfKSe39fh4A@mail.gmail.com>
+To: Julia Lawall <Julia.Lawall@inria.fr>
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:57:31 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:55:09 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
+X-Mailman-Approved-At: Tue, 27 Apr 2021 15:57:28 +0200
 Cc: Michal Marek <michal.lkml@markovi.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         kernel-janitors@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
+        Zhang Qilong <zhangqilong3@huawei.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Johan Hovold <johan@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
         cocci@systeme.lip6.fr
-Subject: Re: [Cocci] [PATCH v2] coccinelle: api: semantic patch to use
- pm_runtime_resume_and_get
+Subject: Re: [Cocci] [PATCH v3] coccinelle: api: semantic patch to use
+	pm_runtime_resume_and_get
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,42 +83,199 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-
-
-On Tue, 27 Apr 2021, Johan Hovold wrote:
-
-> On Mon, Apr 26, 2021 at 08:54:04PM +0200, Julia Lawall wrote:
-> > pm_runtime_get_sync keeps a reference count on failure, which can lead
-> > to leaks.  pm_runtime_resume_and_get drops the reference count in the
-> > failure case.  This rule very conservatively follows the definition of
-> > pm_runtime_resume_and_get to address the cases where the reference
-> > count is unlikely to be needed in the failure case.
-> >
-> > pm_runtime_resume_and_get was introduced in
-> > commit dd8088d5a896 ("PM: runtime: Add pm_runtime_resume_and_get to
-> > deal with usage counter")
-> >
-> > Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
+On Tue, Apr 27, 2021 at 3:51 PM Julia Lawall <Julia.Lawall@inria.fr> wrote:
 >
-> As I've said elsewhere, not sure trying to do a mass conversion of this
-> is a good idea. People may not be used to the interface, but it is
-> consistent and has its use. The recent flurry of conversions show that
-> those also risk introducing new bugs in code that is currently tested
-> and correct.
+> pm_runtime_get_sync keeps a reference count on failure, which can lead
+> to leaks.  pm_runtime_resume_and_get drops the reference count in the
+> failure case.  This rule very conservatively follows the definition of
+> pm_runtime_resume_and_get to address the cases where the reference
+> count is unlikely to be needed in the failure case.  Specifically, the
+> change is only done when pm_runtime_get_sync is followed immediately
+> by an if and when the branch of the if is immediately a call to
+> pm_runtime_put_noidle (like in the definition of
+> pm_runtime_resume_and_get) or something that is likely a print
+> statement followed by a pm_runtime_resume_and_get call.  The patch
+> case appears somewhat more complicated, because it also deals with the
+> cases where {}s need to be removed.
+>
+> pm_runtime_resume_and_get was introduced in
+> commit dd8088d5a896 ("PM: runtime: Add pm_runtime_resume_and_get to
+> deal with usage counter")
+>
+> Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
 
-I looked some of the patches you commented on, and this rule would not
-have transformed those cases.  This rule is very restricted to ensure that
-the transformed code follows the behavior of the new function.
+This patch looks good to me, so
+
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
 
 >
-> By giving the script kiddies another toy like this, the influx of broken
-> patches is just bound to increase.
+> ---
+> v3: add the people who signed off on commit dd8088d5a896, expand the log message
+> v2: better keyword
 >
-> Would also be good to CC the PM maintainer on this issue.
-
-Sure, I can resend with Rafael in CC.
-
-julia
+>  scripts/coccinelle/api/pm_runtime_resume_and_get.cocci |  153 +++++++++++++++++
+>  1 file changed, 153 insertions(+)
+>
+> diff --git a/scripts/coccinelle/api/pm_runtime_resume_and_get.cocci b/scripts/coccinelle/api/pm_runtime_resume_and_get.cocci
+> new file mode 100644
+> index 000000000000..3387cb606f9b
+> --- /dev/null
+> +++ b/scripts/coccinelle/api/pm_runtime_resume_and_get.cocci
+> @@ -0,0 +1,153 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +///
+> +/// Use pm_runtime_resume_and_get.
+> +/// pm_runtime_get_sync keeps a reference count on failure,
+> +/// which can lead to leaks.  pm_runtime_resume_and_get
+> +/// drops the reference count in the failure case.
+> +/// This rule addresses the cases where the reference count
+> +/// is unlikely to be needed in the failure case.
+> +///
+> +// Confidence: High
+> +// Copyright: (C) 2021 Julia Lawall, Inria
+> +// URL: https://coccinelle.gitlabpages.inria.fr/website
+> +// Options: --include-headers --no-includes
+> +// Keywords: pm_runtime_get_sync
+> +
+> +virtual patch
+> +virtual context
+> +virtual org
+> +virtual report
+> +
+> +@r0 depends on patch && !context && !org && !report@
+> +expression ret,e;
+> +@@
+> +
+> +-     ret = pm_runtime_get_sync(e);
+> ++     ret = pm_runtime_resume_and_get(e);
+> +-     if (ret < 0)
+> +-             pm_runtime_put_noidle(e);
+> +
+> +@r1 depends on patch && !context && !org && !report@
+> +expression ret,e;
+> +statement S1,S2;
+> +@@
+> +
+> +-     ret = pm_runtime_get_sync(e);
+> ++     ret = pm_runtime_resume_and_get(e);
+> +      if (ret < 0)
+> +-     {
+> +-             pm_runtime_put_noidle(e);
+> +             S1
+> +-     }
+> +      else S2
+> +
+> +@r2 depends on patch && !context && !org && !report@
+> +expression ret,e;
+> +statement S;
+> +@@
+> +
+> +-     ret = pm_runtime_get_sync(e);
+> ++     ret = pm_runtime_resume_and_get(e);
+> +      if (ret < 0) {
+> +-             pm_runtime_put_noidle(e);
+> +             ...
+> +      } else S
+> +
+> +@r3 depends on patch && !context && !org && !report@
+> +expression ret,e;
+> +identifier f;
+> +constant char[] c;
+> +statement S;
+> +@@
+> +
+> +-     ret = pm_runtime_get_sync(e);
+> ++     ret = pm_runtime_resume_and_get(e);
+> +      if (ret < 0)
+> +-     {
+> +              f(...,c,...);
+> +-             pm_runtime_put_noidle(e);
+> +-     }
+> +      else S
+> +
+> +@r4 depends on patch && !context && !org && !report@
+> +expression ret,e;
+> +identifier f;
+> +constant char[] c;
+> +statement S;
+> +@@
+> +
+> +-     ret = pm_runtime_get_sync(e);
+> ++     ret = pm_runtime_resume_and_get(e);
+> +      if (ret < 0) {
+> +              f(...,c,...);
+> +-             pm_runtime_put_noidle(e);
+> +             ...
+> +      } else S
+> +
+> +// ----------------------------------------------------------------------------
+> +
+> +@r2_context depends on !patch && (context || org || report)@
+> +statement S;
+> +expression e, ret;
+> +position j0, j1;
+> +@@
+> +
+> +*     ret@j0 = pm_runtime_get_sync(e);
+> +      if (ret < 0) {
+> +*             pm_runtime_put_noidle@j1(e);
+> +             ...
+> +      } else S
+> +
+> +@r3_context depends on !patch && (context || org || report)@
+> +identifier f;
+> +statement S;
+> +constant char []c;
+> +expression e, ret;
+> +position j0, j1;
+> +@@
+> +
+> +*     ret@j0 = pm_runtime_get_sync(e);
+> +      if (ret < 0) {
+> +              f(...,c,...);
+> +*             pm_runtime_put_noidle@j1(e);
+> +             ...
+> +      } else S
+> +
+> +// ----------------------------------------------------------------------------
+> +
+> +@script:python r2_org depends on org@
+> +j0 << r2_context.j0;
+> +j1 << r2_context.j1;
+> +@@
+> +
+> +msg = "WARNING: opportunity for pm_runtime_get_sync"
+> +coccilib.org.print_todo(j0[0], msg)
+> +coccilib.org.print_link(j1[0], "")
+> +
+> +@script:python r3_org depends on org@
+> +j0 << r3_context.j0;
+> +j1 << r3_context.j1;
+> +@@
+> +
+> +msg = "WARNING: opportunity for pm_runtime_get_sync"
+> +coccilib.org.print_todo(j0[0], msg)
+> +coccilib.org.print_link(j1[0], "")
+> +
+> +// ----------------------------------------------------------------------------
+> +
+> +@script:python r2_report depends on report@
+> +j0 << r2_context.j0;
+> +j1 << r2_context.j1;
+> +@@
+> +
+> +msg = "WARNING: opportunity for pm_runtime_get_sync on line %s." % (j0[0].line)
+> +coccilib.report.print_report(j0[0], msg)
+> +
+> +@script:python r3_report depends on report@
+> +j0 << r3_context.j0;
+> +j1 << r3_context.j1;
+> +@@
+> +
+> +msg = "WARNING: opportunity for pm_runtime_get_sync on %s." % (j0[0].line)
+> +coccilib.report.print_report(j0[0], msg)
+> +
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
