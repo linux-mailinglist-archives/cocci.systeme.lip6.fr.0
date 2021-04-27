@@ -2,70 +2,59 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D47A836C74C
-	for <lists+cocci@lfdr.de>; Tue, 27 Apr 2021 15:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 016C336C731
+	for <lists+cocci@lfdr.de>; Tue, 27 Apr 2021 15:45:00 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 13RDq2av028702;
-	Tue, 27 Apr 2021 15:52:03 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 13RDiT8c009546;
+	Tue, 27 Apr 2021 15:44:29 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 01FB13DD8;
-	Tue, 27 Apr 2021 15:52:03 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 61DAB77F1;
+	Tue, 27 Apr 2021 15:44:29 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 5C5943DD8
- for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:22:52 +0200 (CEST)
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
- [209.85.210.52])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 13RDMofx002290
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=OK)
- for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:22:51 +0200 (CEST)
-Received: by mail-ot1-f52.google.com with SMTP id
- x54-20020a05683040b6b02902a527443e2fso4152932ott.1
- for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 06:22:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dL9fHLMOaZnrAAxMCEfFxqWkDZJNdUJTbPFfIJXD5Io=;
- b=EeDTyAkcKu57eR31VRWqEni30Ljyis65Bq/k2r+d3oeXSmrTTgsRS41KmfzO+2oQFq
- KXzKalgDU0T0gXwWltCmCOwCtnhORfdTgqRDg/zODHs1IKlw6qDgbON40e0Zc8gZuk14
- s158Hita9w6OfIdkXrz1iXm4Nd0gFeqX6TTBUhDHP6LsCm70yTTL5i/Neem6jEGzO+6y
- EBqHqqIWJ1G/Z21E4VzEis04OSO9gAdZhbzK4zUUb8lFw1orxgn/D1N5wPAXE/tliAvj
- q62WFr9Hbw0JvOLB3SQH+YLvC7p8R2hqxhJ2DyXxyNo4tp00qFqqGjT2R3W1WkIkFEaY
- 5QVQ==
-X-Gm-Message-State: AOAM533nY1b7MgZA57T+/pu4EVguWb+x75R1FlA4xYmm4htQ4WuuW+ZR
- lU/evqs2Qrv0Xigt6I1maVGDth5k4CNimk/Qy/U=
-X-Google-Smtp-Source: ABdhPJxmXYPD3RQ2P5xNJi5j79vzmnSUWEqyteq6fgG1zY+79QF9i5W3aX0H8ATySWs1Y1UpcIwSg5jPRLZV9GYVTQM=
-X-Received: by 2002:a05:6830:2458:: with SMTP id
- x24mr8607052otr.206.1619529770539; 
- Tue, 27 Apr 2021 06:22:50 -0700 (PDT)
-MIME-Version: 1.0
+ by systeme.lip6.fr (Postfix) with ESMTPS id 677C73DD8
+ for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:44:27 +0200 (CEST)
+Received: from mail3-relais-sop.national.inria.fr
+ (mail3-relais-sop.national.inria.fr [192.134.164.104])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 13RDiQsO023784
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Tue, 27 Apr 2021 15:44:26 +0200 (CEST)
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AC6bClq7Om2nDflsMnwPXwA7XdLJzesId70hD?=
+ =?us-ascii?q?6mlaQ3VuGPCwvcaogfgdyFvQgDEeRHkvlbm7Scu9aFnb8oN45pRUAKe6UGDdyQ?=
+ =?us-ascii?q?iVBaxr8IeK+VPdMgLk8Oo178pdWoxfLPG1MlRgl8b952CDc+oI5NWc6qiniaP/?=
+ =?us-ascii?q?4h5WIj1CUK1r4wdnBgvzKCQfeCB9GZE7GJCAj/AqmxOcfx0sBfiTOmMIRKzqqd?=
+ =?us-ascii?q?HNifvdACI7Ow=3D=3D?=
+X-IronPort-AV: E=Sophos;i="5.82,254,1613430000"; d="scan'208";a="379815543"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail3-relais-sop.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2021 15:44:25 +0200
+Date: Tue, 27 Apr 2021 15:44:25 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Johan Hovold <johan@kernel.org>
+In-Reply-To: <YIgPNRiaz2Jup+PT@hovoldconsulting.com>
+Message-ID: <alpine.DEB.2.22.394.2104271542170.5173@hadrien>
 References: <20210426185404.2466195-1-Julia.Lawall@inria.fr>
  <YIgPNRiaz2Jup+PT@hovoldconsulting.com>
-In-Reply-To: <YIgPNRiaz2Jup+PT@hovoldconsulting.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Tue, 27 Apr 2021 15:22:39 +0200
-Message-ID: <CAJZ5v0gdBC+zEADs52GnR55Df8gPwG=CF5K_2SRrtoYQXZ-DxA@mail.gmail.com>
-To: Johan Hovold <johan@kernel.org>, Julia Lawall <Julia.Lawall@inria.fr>
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:52:03 +0200 (CEST)
-X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:22:52 +0200 (CEST)
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+MIME-Version: 1.0
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:44:33 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Tue, 27 Apr 2021 15:44:26 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Mailman-Approved-At: Tue, 27 Apr 2021 15:52:01 +0200
 Cc: Michal Marek <michal.lkml@markovi.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         kernel-janitors@vger.kernel.org,
         "Rafael J. Wysocki" <rafael@kernel.org>,
-        Nicolas Palix <nicolas.palix@imag.fr>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Nicolas Palix <nicolas.palix@imag.fr>, linux-kernel@vger.kernel.org,
         cocci@systeme.lip6.fr
 Subject: Re: [Cocci] [PATCH v2] coccinelle: api: semantic patch to use
-	pm_runtime_resume_and_get
+ pm_runtime_resume_and_get
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,8 +71,10 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Tue, Apr 27, 2021 at 3:18 PM Johan Hovold <johan@kernel.org> wrote:
->
+
+
+On Tue, 27 Apr 2021, Johan Hovold wrote:
+
 > On Mon, Apr 26, 2021 at 08:54:04PM +0200, Julia Lawall wrote:
 > > pm_runtime_get_sync keeps a reference count on failure, which can lead
 > > to leaks.  pm_runtime_resume_and_get drops the reference count in the
@@ -98,29 +89,24 @@ On Tue, Apr 27, 2021 at 3:18 PM Johan Hovold <johan@kernel.org> wrote:
 > > Signed-off-by: Julia Lawall <Julia.Lawall@inria.fr>
 >
 > As I've said elsewhere, not sure trying to do a mass conversion of this
-> is a good idea.
-
-No, it isn't.
-
-> People may not be used to the interface, but it is
+> is a good idea. People may not be used to the interface, but it is
 > consistent and has its use. The recent flurry of conversions show that
 > those also risk introducing new bugs in code that is currently tested
 > and correct.
+
+I looked some of the patches you commented on, and this rule would not
+have transformed those cases.  This rule is very restricted to ensure that
+the transformed code follows the behavior of the new function.
+
 >
 > By giving the script kiddies another toy like this, the influx of broken
 > patches is just bound to increase.
 >
 > Would also be good to CC the PM maintainer on this issue.
 
-There are many call sites in the kernel where replacing
-pm_runtime_get_sync() with pm_runtime_resume_and_get() mechanically
-would introduce an error, so please don't do that.
+Sure, I can resend with Rafael in CC.
 
-Every such replacement should be reviewed by the people familiar with
-the code in question.
-
-Thanks,
-Rafael
+julia
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
