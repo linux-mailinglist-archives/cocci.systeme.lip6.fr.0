@@ -2,57 +2,49 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73CB63DE329
-	for <lists+cocci@lfdr.de>; Tue,  3 Aug 2021 01:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C8C3DDEE5
+	for <lists+cocci@lfdr.de>; Mon,  2 Aug 2021 20:06:03 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 172NdveZ004339;
-	Tue, 3 Aug 2021 01:39:57 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 172I5c1S018552;
+	Mon, 2 Aug 2021 20:05:38 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 637307783;
-	Tue,  3 Aug 2021 01:39:57 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 0787D7783;
+	Mon,  2 Aug 2021 20:05:38 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
-Received: from osiris.lip6.fr (osiris.lip6.fr [132.227.60.30])
+Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id 4B7AB3783
- for <cocci@systeme.lip6.fr>; Tue,  3 Aug 2021 01:39:55 +0200 (CEST)
-Received: from smtprelay.hostedemail.com (smtprelay0144.hostedemail.com
- [216.40.44.144])
- by osiris.lip6.fr (8.15.2/8.15.2) with ESMTPS id 172NdnOY025907
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
- for <cocci@systeme.lip6.fr>; Tue, 3 Aug 2021 01:39:50 +0200 (CEST)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
- [10.5.19.251])
- by smtpgrave03.hostedemail.com (Postfix) with ESMTP id DA52B1801F2BB
- for <cocci@systeme.lip6.fr>; Mon,  2 Aug 2021 17:44:02 +0000 (UTC)
-Received: from omf08.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
- by smtprelay03.hostedemail.com (Postfix) with ESMTP id 010B5837F24F;
- Mon,  2 Aug 2021 17:43:59 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf08.hostedemail.com (Postfix) with ESMTPA id 61DC41A29FD; 
- Mon,  2 Aug 2021 17:43:58 +0000 (UTC)
-Message-ID: <5e170252bf759dc90888de34fbad3291a70b58de.camel@perches.com>
-From: Joe Perches <joe@perches.com>
-To: Julia Lawall <julia.lawall@inria.fr>
-Date: Mon, 02 Aug 2021 10:43:56 -0700
-In-Reply-To: <alpine.DEB.2.22.394.2108021933170.19470@hadrien>
+ by systeme.lip6.fr (Postfix) with ESMTPS id B273E3783
+ for <cocci@systeme.lip6.fr>; Mon,  2 Aug 2021 20:05:35 +0200 (CEST)
+Received: from mail2-relais-roc.national.inria.fr
+ (mail2-relais-roc.national.inria.fr [192.134.164.83])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 172I5ZeU001517
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
+ for <cocci@systeme.lip6.fr>; Mon, 2 Aug 2021 20:05:35 +0200 (CEST)
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ALAramq4WWqDjMMnINAPXwNXXdLJyesId70hD?=
+ =?us-ascii?q?6qkRc203TiX2rbHKoB1273HJYVUqOE3I5+rwWpVoKEm0nfUe3WB2B9aftWLd1F?=
+ =?us-ascii?q?dAQrsO0WKb+VLdJxE=3D?=
+X-IronPort-AV: E=Sophos;i="5.84,289,1620684000"; d="scan'208";a="522520154"
+Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
+ by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2021 20:05:34 +0200
+Date: Mon, 2 Aug 2021 20:05:33 +0200 (CEST)
+From: Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To: Joe Perches <joe@perches.com>
+In-Reply-To: <5e170252bf759dc90888de34fbad3291a70b58de.camel@perches.com>
+Message-ID: <alpine.DEB.2.22.394.2108022000400.19470@hadrien>
 References: <ab04588b3b0c2bfa6942beb9069754ce59f2551b.camel@perches.com>
  <alpine.DEB.2.22.394.2108021933170.19470@hadrien>
-User-Agent: Evolution 3.40.0-1 
+ <5e170252bf759dc90888de34fbad3291a70b58de.camel@perches.com>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.23
-X-Rspamd-Server: rspamout04
-X-Rspamd-Queue-Id: 61DC41A29FD
-X-Stat-Signature: nschi65mm597ix8tcjcptuujnpkhrmbr
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1+56IcY2FLgKpdnN/afCM0+Msvs0Tl3G+0=
-X-HE-Tag: 1627926238-586059
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Tue, 03 Aug 2021 01:40:00 +0200 (CEST)
-X-Greylist: Delayed for 06:33:44 by milter-greylist-4.4.3 (osiris.lip6.fr
- [132.227.60.30]); Tue, 03 Aug 2021 01:39:51 +0200 (CEST)
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 02 Aug 2021 20:05:38 +0200 (CEST)
+X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Mon, 02 Aug 2021 20:05:35 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-X-Scanned-By: MIMEDefang 2.78 on 132.227.60.30
+X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 Cc: cocci <cocci@systeme.lip6.fr>
 Subject: Re: [Cocci] Coccinelle: Length/Size of char array?
 X-BeenThere: cocci@systeme.lip6.fr
@@ -71,67 +63,102 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
-On Mon, 2021-08-02 at 19:35 +0200, Julia Lawall wrote:
-> 
-> On Mon, 2 Aug 2021, Joe Perches wrote:
-> 
-> > Is it possible to determine the length of a matched char array and use
-> > the length in a test?
-> > 
-> > For instance, add something like a test to show only the instances
-> > where a src buffer overruns a dest buffer.
-> > 
-> > void foo(void)
-> > {
-> > 	char foo[5];
-> > 
-> > 	strcpy(foo, "fits");
-> > }
-> > 
-> > it would be useful to see only the instances where the dest
-> > buffer would be overrun like:
-> > 
-> > void foo(void)
-> > {
-> > 	char foo[5];
-> > 
-> > 	strcpy(foo, "doesn't fit");
-> > }
-> > 
-> > ---
-> > 
-> > This would find all instances of a constant src array into non-pointer dst:
-> > 
-> > @@
-> > char [] dest;
-> > constant char [] src;
-> > @@
-> > 
-> > *	strcpy(dest, src)
-> > 
-> > ---
-> > 
-> > Is there a mexhanism like:
-> > 
-> > @@
-> > char [] dest;
-> > constant char [] src;
-> > @@
-> > 
-> > 	when (some cocci grammar testing length(dest) < length(src))
-> > *	strcpy(dest, src)
-> 
-> You can match the size and the string, and then use python or ocaml code
-> to do the needed comparisons.
-
-Pardon the question, but how do you determine the size?
-
-> Does it occur often enough that the string
-> is explicit in the call to make it worth it?
-
-The idea is just to find defects/buffer overruns.
 
 
+On Mon, 2 Aug 2021, Joe Perches wrote:
+
+> On Mon, 2021-08-02 at 19:35 +0200, Julia Lawall wrote:
+> >
+> > On Mon, 2 Aug 2021, Joe Perches wrote:
+> >
+> > > Is it possible to determine the length of a matched char array and use
+> > > the length in a test?
+> > >
+> > > For instance, add something like a test to show only the instances
+> > > where a src buffer overruns a dest buffer.
+> > >
+> > > void foo(void)
+> > > {
+> > > 	char foo[5];
+> > >
+> > > 	strcpy(foo, "fits");
+> > > }
+> > >
+> > > it would be useful to see only the instances where the dest
+> > > buffer would be overrun like:
+> > >
+> > > void foo(void)
+> > > {
+> > > 	char foo[5];
+> > >
+> > > 	strcpy(foo, "doesn't fit");
+> > > }
+> > >
+> > > ---
+> > >
+> > > This would find all instances of a constant src array into non-pointer dst:
+> > >
+> > > @@
+> > > char [] dest;
+> > > constant char [] src;
+> > > @@
+> > >
+> > > *	strcpy(dest, src)
+> > >
+> > > ---
+> > >
+> > > Is there a mexhanism like:
+> > >
+> > > @@
+> > > char [] dest;
+> > > constant char [] src;
+> > > @@
+> > >
+> > > 	when (some cocci grammar testing length(dest) < length(src))
+> > > *	strcpy(dest, src)
+> >
+> > You can match the size and the string, and then use python or ocaml code
+> > to do the needed comparisons.
+>
+> Pardon the question, but how do you determine the size?
+
+In the case of a local variable, you can do:
+
+@r@
+constant int n;
+identifier i;
+constant char [] c;
+position p1,p2;
+@@
+
+char i@p1[n];
+... when exists
+strcpy@p2(i,c);
+
+@script:ocaml@
+p1 << r.p1;
+p2 << r.p2;
+n << r.n;
+c << r.c;
+@@
+
+if string_of_int n < String.length c
+then ...
+
+A similar script can be written in python.
+
+If the array is allocated somewhere else, it would be more complicated.
+
+julia
+
+>
+> > Does it occur often enough that the string
+> > is explicit in the call to make it worth it?
+>
+> The idea is just to find defects/buffer overruns.
+>
+>
+>
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
