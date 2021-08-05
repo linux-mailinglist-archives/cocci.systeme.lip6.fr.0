@@ -2,51 +2,68 @@ Return-Path: <cocci-bounces@systeme.lip6.fr>
 X-Original-To: lists+cocci@lfdr.de
 Delivered-To: lists+cocci@lfdr.de
 Received: from isis.lip6.fr (isis.lip6.fr [IPv6:2001:660:3302:283c::2])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C8C3DDEE5
-	for <lists+cocci@lfdr.de>; Mon,  2 Aug 2021 20:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6193E1289
+	for <lists+cocci@lfdr.de>; Thu,  5 Aug 2021 12:22:54 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [132.227.104.7])
-	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 172I5c1S018552;
-	Mon, 2 Aug 2021 20:05:38 +0200 (CEST)
+	by isis.lip6.fr (8.15.2/8.15.2) with ESMTP id 175AMO4Q001352;
+	Thu, 5 Aug 2021 12:22:24 +0200 (CEST)
 Received: from systeme.lip6.fr (systeme.lip6.fr [127.0.0.1])
-	by systeme.lip6.fr (Postfix) with ESMTP id 0787D7783;
-	Mon,  2 Aug 2021 20:05:38 +0200 (CEST)
+	by systeme.lip6.fr (Postfix) with ESMTP id 2E590120D5;
+	Thu,  5 Aug 2021 12:22:24 +0200 (CEST)
 X-Original-To: cocci@systeme.lip6.fr
 Delivered-To: cocci@systeme.lip6.fr
 Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
  (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by systeme.lip6.fr (Postfix) with ESMTPS id B273E3783
- for <cocci@systeme.lip6.fr>; Mon,  2 Aug 2021 20:05:35 +0200 (CEST)
-Received: from mail2-relais-roc.national.inria.fr
- (mail2-relais-roc.national.inria.fr [192.134.164.83])
- by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 172I5ZeU001517
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK)
- for <cocci@systeme.lip6.fr>; Mon, 2 Aug 2021 20:05:35 +0200 (CEST)
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3ALAramq4WWqDjMMnINAPXwNXXdLJyesId70hD?=
- =?us-ascii?q?6qkRc203TiX2rbHKoB1273HJYVUqOE3I5+rwWpVoKEm0nfUe3WB2B9aftWLd1F?=
- =?us-ascii?q?dAQrsO0WKb+VLdJxE=3D?=
-X-IronPort-AV: E=Sophos;i="5.84,289,1620684000"; d="scan'208";a="522520154"
-Received: from 173.121.68.85.rev.sfr.net (HELO hadrien) ([85.68.121.173])
- by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Aug 2021 20:05:34 +0200
-Date: Mon, 2 Aug 2021 20:05:33 +0200 (CEST)
-From: Julia Lawall <julia.lawall@inria.fr>
-X-X-Sender: jll@hadrien
-To: Joe Perches <joe@perches.com>
-In-Reply-To: <5e170252bf759dc90888de34fbad3291a70b58de.camel@perches.com>
-Message-ID: <alpine.DEB.2.22.394.2108022000400.19470@hadrien>
-References: <ab04588b3b0c2bfa6942beb9069754ce59f2551b.camel@perches.com>
- <alpine.DEB.2.22.394.2108021933170.19470@hadrien>
- <5e170252bf759dc90888de34fbad3291a70b58de.camel@perches.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+ by systeme.lip6.fr (Postfix) with ESMTPS id C0856120C5
+ for <cocci@systeme.lip6.fr>; Thu,  5 Aug 2021 12:22:22 +0200 (CEST)
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
+ [209.85.222.172])
+ by isis.lip6.fr (8.15.2/8.15.2) with ESMTPS id 175A7v6V007465
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=OK)
+ for <cocci@systeme.lip6.fr>; Thu, 5 Aug 2021 12:07:57 +0200 (CEST)
+Received: by mail-qk1-f172.google.com with SMTP id c9so5619551qkc.13
+ for <cocci@systeme.lip6.fr>; Thu, 05 Aug 2021 03:07:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=BgKdFE0vGQVPJxa/hxgCIV92XvRlmWHmQs+8hZ4rLCM=;
+ b=jaVZRAlaech/Jqxo5U0f//F6EJm2BWtGfVXaJ8jRDBx/EDY2vHbbWeaTFxLJUBzrY0
+ HmSIIbkplUAUGx9QsGPyDubEvbhoj5AHshrHdmWNelf69AbU2F3REKe5DYlLUJOYDCGd
+ dcP1AXPSgxrYN9MLT08mEv1vrAo1vvPHj2ijUtwYPnCetWsTL8oUm4pZ60k6pWa3hQ83
+ SyTd7I4pdDlukg2WS3Ya15nwvbEjb8aF1b/oi34tMu/ZStzU9zCgt/l2CsVQR9fSGRbx
+ P3T9LqGBz0t8eOfiSOjjYrI5cnRo7AIp7QQud2+Kcop75pUIBk/TaW3wDm0u/gjcGIHf
+ F2fw==
+X-Gm-Message-State: AOAM530rzwbHTFqkL1L27g1EvuXcqwBMXzQ8LKFRusFcWLLRkYm2Mxq8
+ Kj287/cTWkfC9U7bPDB7R5g=
+X-Google-Smtp-Source: ABdhPJy/zGi8yLdv+kWEZaFUANkNBcK1RcK0BY6S4OaxGh9FCIl6mQEQZIrcNdStl+gpzpQ4Dv97WA==
+X-Received: by 2002:a37:9dcd:: with SMTP id g196mr2956011qke.99.1628158076768; 
+ Thu, 05 Aug 2021 03:07:56 -0700 (PDT)
+Received: from [10.10.132.158] ([83.149.199.249])
+ by smtp.gmail.com with ESMTPSA id b66sm367820qkf.135.2021.08.05.03.07.55
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 05 Aug 2021 03:07:56 -0700 (PDT)
+To: Weizhao Ouyang <o451686892@gmail.com>, Julia.Lawall@inria.fr,
+        Gilles.Muller@inria.fr, nicolas.palix@imag.fr, michal.lkml@markovi.net
+References: <20210805095822.1732125-1-o451686892@gmail.com>
+From: Denis Efremov <efremov@linux.com>
+Message-ID: <3cb9caa9-b7d3-5b1b-7020-63d72506c7c7@linux.com>
+Date: Thu, 5 Aug 2021 13:07:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Mon, 02 Aug 2021 20:05:38 +0200 (CEST)
-X-Greylist: Sender passed SPF test, not delayed by milter-greylist-4.4.3
- (isis.lip6.fr [132.227.60.2]); Mon, 02 Aug 2021 20:05:35 +0200 (CEST)
+In-Reply-To: <20210805095822.1732125-1-o451686892@gmail.com>
+Content-Language: en-US
+X-Greylist: Sender IP whitelisted, Sender e-mail whitelisted, not delayed by milter-greylist-4.4.3 (isis.lip6.fr [132.227.60.2]); Thu, 05 Aug 2021 12:22:28 +0200 (CEST)
+X-Greylist: Sender DNS name whitelisted, not delayed by milter-greylist-4.4.3
+ (isis.lip6.fr [132.227.60.2]); Thu, 05 Aug 2021 12:07:58 +0200 (CEST)
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
 X-Scanned-By: MIMEDefang 2.78 on 132.227.60.2
-Cc: cocci <cocci@systeme.lip6.fr>
-Subject: Re: [Cocci] Coccinelle: Length/Size of char array?
+Cc: cocci@systeme.lip6.fr, linux-kernel@vger.kernel.org
+Subject: Re: [Cocci] [RESEND] coccinelle: api: rename kzfree to
+	kfree_sensitive
 X-BeenThere: cocci@systeme.lip6.fr
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,102 +80,38 @@ Content-Transfer-Encoding: 7bit
 Sender: cocci-bounces@systeme.lip6.fr
 Errors-To: cocci-bounces@systeme.lip6.fr
 
+Hi,
 
+On 8/5/21 12:58 PM, Weizhao Ouyang wrote:
+> Commit 453431a54934 ("mm, treewide: rename kzfree() to
+> kfree_sensitive()") renamed kzfree() to kfree_sensitive(),
+> it should be applied to coccinelle.
+> 
+> Signed-off-by: Weizhao Ouyang <o451686892@gmail.com>
 
-On Mon, 2 Aug 2021, Joe Perches wrote:
+Acked-by: Denis Efremov <efremov@linux.com>
 
-> On Mon, 2021-08-02 at 19:35 +0200, Julia Lawall wrote:
-> >
-> > On Mon, 2 Aug 2021, Joe Perches wrote:
-> >
-> > > Is it possible to determine the length of a matched char array and use
-> > > the length in a test?
-> > >
-> > > For instance, add something like a test to show only the instances
-> > > where a src buffer overruns a dest buffer.
-> > >
-> > > void foo(void)
-> > > {
-> > > 	char foo[5];
-> > >
-> > > 	strcpy(foo, "fits");
-> > > }
-> > >
-> > > it would be useful to see only the instances where the dest
-> > > buffer would be overrun like:
-> > >
-> > > void foo(void)
-> > > {
-> > > 	char foo[5];
-> > >
-> > > 	strcpy(foo, "doesn't fit");
-> > > }
-> > >
-> > > ---
-> > >
-> > > This would find all instances of a constant src array into non-pointer dst:
-> > >
-> > > @@
-> > > char [] dest;
-> > > constant char [] src;
-> > > @@
-> > >
-> > > *	strcpy(dest, src)
-> > >
-> > > ---
-> > >
-> > > Is there a mexhanism like:
-> > >
-> > > @@
-> > > char [] dest;
-> > > constant char [] src;
-> > > @@
-> > >
-> > > 	when (some cocci grammar testing length(dest) < length(src))
-> > > *	strcpy(dest, src)
-> >
-> > You can match the size and the string, and then use python or ocaml code
-> > to do the needed comparisons.
->
-> Pardon the question, but how do you determine the size?
+> ---
+>  scripts/coccinelle/api/kvmalloc.cocci | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/scripts/coccinelle/api/kvmalloc.cocci b/scripts/coccinelle/api/kvmalloc.cocci
+> index c30dab718a49..5ddcb76b76b0 100644
+> --- a/scripts/coccinelle/api/kvmalloc.cocci
+> +++ b/scripts/coccinelle/api/kvmalloc.cocci
+> @@ -79,7 +79,7 @@ position p : script:python() { relevant(p) };
+>    } else {
+>      ... when != krealloc(E, ...)
+>          when any
+> -*   \(kfree\|kzfree\)(E)
+> +*   \(kfree\|kfree_sensitive\)(E)
+>      ...
+>    }
+>  
+> 
 
-In the case of a local variable, you can do:
-
-@r@
-constant int n;
-identifier i;
-constant char [] c;
-position p1,p2;
-@@
-
-char i@p1[n];
-... when exists
-strcpy@p2(i,c);
-
-@script:ocaml@
-p1 << r.p1;
-p2 << r.p2;
-n << r.n;
-c << r.c;
-@@
-
-if string_of_int n < String.length c
-then ...
-
-A similar script can be written in python.
-
-If the array is allocated somewhere else, it would be more complicated.
-
-julia
-
->
-> > Does it occur often enough that the string
-> > is explicit in the call to make it worth it?
->
-> The idea is just to find defects/buffer overruns.
->
->
->
+Regards,
+Denis
 _______________________________________________
 Cocci mailing list
 Cocci@systeme.lip6.fr
